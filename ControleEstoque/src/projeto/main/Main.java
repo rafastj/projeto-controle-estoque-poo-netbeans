@@ -9,19 +9,7 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
-import projeto.modelo.to.Cidade;
-import projeto.modelo.to.Endereco;
-import projeto.modelo.to.Fornecedor;
-import projeto.modelo.to.Funcionario;
-import projeto.modelo.to.PessoaFisica;
-import projeto.modelo.to.PessoaJuridica;
-import projeto.modelo.to.Produto;//Diego Silva
-import projeto.modelo.to.Produto_Fornecedor;//Diego Silva
-import projeto.modelo.to.Tipo;
-import projeto.modelo.to.Usuario;//Felipe Carlos
-import projeto.modelo.to.Marca;//Felipe Carlos
-import projeto.modelo.to.FormaPagamento; // Bruno Pinheiro
-import projeto.modelo.to.Segmento; // Bruno Pinheiro
+import projeto.modelo.to.*;
 /**
  * @author EQUIPE
  * R143
@@ -44,14 +32,14 @@ public class Main {
 		
 		
 		menuPrincipal: do{
-			String user = JOptionPane.showInputDialog(	"Informe a opção desejada:\n" +
-														"1) Testes de Daniel\n" +
-														"2) Testes de Diego\n" +
-														"3) Testes de Sandro\n" +
-														"4) Testes de Thiago\n" +
-														"5) Testes de Felipe\n" +
-														"6) Testes de Bruno\n" +
-														"0) Sair dos testes");
+			String user = JOptionPane.showInputDialog(  "Informe a opção desejada:\n" +
+                                                                    "1) Testes de Daniel\n" +
+                                                                    "2) Testes de Diego\n" +
+                                                                    "3) Testes de Sandro\n" +
+                                                                    "4) Testes de Thiago\n" +
+                                                                    "5) Testes de Felipe\n" +
+                                                                    "6) Testes de Bruno\n" +
+                                                                    "0) Sair dos testes");
 			try {
 				int opcaoUser = Integer.parseInt(user);
 			
@@ -65,13 +53,13 @@ public class Main {
 				 */
 				case 1: // Testes de Daniel
 					menuTestes: do{
-						String menu = JOptionPane.showInputDialog(	"Informe a opÃ§Ã£o desejada:\n" +
-																	"1) Teste de Salvar\n" +
-																	"2) Teste de Consultar\n" +
-																	"3) Teste de Alterar\n" +
-																	"4) Teste de Excluir\n" +
-																	"5) Teste de Listar\n" +
-																	"0) Voltar ao menu anterior");
+						String menu = JOptionPane.showInputDialog(  "Informe a opção desejada:\n" +
+                                                                                            "1) Teste de Salvar\n" +
+                                                                                            "2) Teste de Consultar\n" +
+                                                                                            "3) Teste de Alterar\n" +
+                                                                                            "4) Teste de Excluir\n" +
+                                                                                            "5) Teste de Listar\n" +
+                                                                                            "0) Voltar ao menu anterior");
 						try {
 							int opcaoMenu = Integer.parseInt(menu);
 							switch(opcaoMenu){
@@ -81,12 +69,12 @@ public class Main {
 							
 							case 1:
 								do {
-									String salvar = JOptionPane.showInputDialog("Informe a opÃ§Ã£o desejada:\n" +
-																				"1) Salvar Cidade\n" +
-																				"2) Salvar Endereï¿½o\n" +
-																				"3) Salvar Fornecedor\n" +
-																				"0) Voltar ao menu anterior");
-									try {
+									String salvar = JOptionPane.showInputDialog("Informe a opção desejada:\n" +
+                                                                                                                    "1) Salvar Cidade\n" +
+                                                                                                                    "2) Salvar Endereço\n" +
+                                                                                                                    "3) Salvar Fornecedor\n" +
+                                                                                                                    "0) Voltar ao menu anterior");
+                            try {
 										int opcaoSalvar = Integer.parseInt(salvar);
 										switch(opcaoSalvar){
 										case 0:
@@ -101,21 +89,21 @@ public class Main {
 											testarSalvarFornecedor();
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opÃ§Ã£o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);						
 								
 							case 2:
 								do {
-									String consultar = JOptionPane.showInputDialog( "Informe a opÃ§Ã£o desejada:\n" +
-																					"1) Consultar Cidade\n" +
-																					"2) Consultar Endereï¿½o\n" +
-																					"3) Consultar Fornecedor\n" +
-																					"0) Voltar ao menu anterior");
-									try {
+									String consultar = JOptionPane.showInputDialog( "Informe a opção desejada:\n" +
+                                                                                                                        "1) Consultar Cidade\n" +
+                                                                                                                        "2) Consultar Endereço\n" +
+                                                                                                                        "3) Consultar Fornecedor\n" +
+                                                                                                                        "0) Voltar ao menu anterior");
+                        try {
 										int opcaoConsultar = Integer.parseInt(consultar);
 										switch(opcaoConsultar){
 										case 0:
@@ -130,20 +118,20 @@ public class Main {
 											testarConsultarFornecedor();
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opÃ§Ã£o vï¿½lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opÃ§Ã£o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							
 							case 3:
 								do {
-									String alterar = JOptionPane.showInputDialog( 	"Informe a opÃ§Ã£o desejada:\n" +
-																					"1) Alterar Cidade\n" +
-																					"2) Alterar Endereï¿½o\n" +
-																					"3) Alterar Fornecedor\n" +
-																					"0) Voltar ao menu anterior");
+									String alterar = JOptionPane.showInputDialog( 	"Informe a opção desejada:\n" +
+                                                                                                                        "1) Alterar Cidade\n" +
+                                                                                                                        "2) Alterar Endereço\n" +
+                                                                                                                        "3) Alterar Fornecedor\n" +
+                                                                                                                        "0) Voltar ao menu anterior");
 									try {
 										int opcaoAlterar = Integer.parseInt(alterar);
 										switch(opcaoAlterar){
@@ -159,20 +147,20 @@ public class Main {
 											testarAlterarFornecedor();
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opÃ§Ã£o vï¿½lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opÃ§Ã£o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							
 							case 4:
 								do {
-									String excluir = JOptionPane.showInputDialog( "Informe a opÃ§Ã£o desejada:\n" +
-																							"1) Excluir Cidade\n" +
-																							"2) Excluir Endereï¿½o\n" +
-																							"3) Excluir Fornecedor\n" +
-																							"0) Voltar ao menu anterior");
+									String excluir = JOptionPane.showInputDialog(   "Informe a opção desejada:\n" +
+                                                                                                                        "1) Excluir Cidade\n" +
+                                                                                                                        "2) Excluir Endereço\n" +
+                                                                                                                        "3) Excluir Fornecedor\n" +
+                                                                                                                        "0) Voltar ao menu anterior");
 									try {
 										int opcaoExcluir = Integer.parseInt(excluir);
 										switch(opcaoExcluir){
@@ -188,19 +176,19 @@ public class Main {
 											testarExcluirFornecedor();
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opÃ§Ã£o vï¿½lida!");
+                                                                                    JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opÃ§Ã£o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							case 5:
 								do {
-									String listar = JOptionPane.showInputDialog( "Informe a opÃ§Ã£o desejada:\n" +
-																							"1) Listar Cidade\n" +
-																							"2) Listar Endereï¿½o\n" +
-																							"3) Listar Fornecedor\n" +
-																							"0) Voltar ao menu anterior");
+									String listar = JOptionPane.showInputDialog( "Informe a opção desejada:\n" +
+                                                                                                                    "1) Listar Cidade\n" +
+                                                                                                                    "2) Listar Endereço\n" +
+                                                                                                                    "3) Listar Fornecedor\n" +
+                                                                                                                    "0) Voltar ao menu anterior");
 									try {
 										int opcaoListar = Integer.parseInt(listar);
 										switch(opcaoListar){
@@ -216,18 +204,18 @@ public class Main {
 											testarListarFornecedor();
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opÃ§Ã£o vÃ¡lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch (NumberFormatException x) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opÃ§Ã£o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 									
 								} while (true);
 							default:
-								JOptionPane.showMessageDialog(null,"Informe uma opÃ§Ã£o vÃ¡lida!");
+								JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 							}
 						} catch ( NumberFormatException x ) {
-							JOptionPane.showMessageDialog(null,"Escolha uma opÃ§Ã£o!");
+							JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 						}
 					}while(true);
 				
@@ -236,13 +224,13 @@ public class Main {
 				 */
 				case 2: // Testes de Diego
 					menuTestes: do{
-						String menu = JOptionPane.showInputDialog(	"Informe a opÃ§Ã£o desejada:\n" +
-																	"1) Teste de Salvar\n" +
-																	"2) Teste de Consultar\n" +
-																	"3) Teste de Alterar\n" +
-																	"4) Teste de Excluir\n" +
-																	"5) Teste de Listar\n" +
-																	"0) Voltar ao menu anterior");
+						String menu = JOptionPane.showInputDialog(	"Informe a opção desejada:\n" +
+                                                                                                "1) Teste de Salvar\n" +
+                                                                                                "2) Teste de Consultar\n" +
+                                                                                                "3) Teste de Alterar\n" +
+                                                                                                "4) Teste de Excluir\n" +
+                                                                                                "5) Teste de Listar\n" +
+                                                                                                "0) Voltar ao menu anterior");
 						try {
 							int opcaoMenu = Integer.parseInt(menu);
 							switch(opcaoMenu){
@@ -251,11 +239,11 @@ public class Main {
 								continue menuPrincipal;
 							case 1:
 								do {
-									String salvar = JOptionPane.showInputDialog("Informe a opÃ§Ã£o desejada:\n" +
-																				"1) Alterar Produto\n" +
-																				"2) Alterar Produto_Fornecedor\n" +
-																				"3) Alterar NotaFiscal_Produto\n" +
-																				"0) Voltar ao menu anterior");
+									String salvar = JOptionPane.showInputDialog("Informe a opção desejada:\n" +
+                                                                                                                    "1) Alterar Produto\n" +
+                                                                                                                    "2) Alterar Produto_Fornecedor\n" +
+                                                                                                                    "3) Alterar NotaFiscal_Produto\n" +
+                                                                                                                    "0) Voltar ao menu anterior");
 									try {
 										int opcaoSalvar = Integer.parseInt(salvar);
 										switch(opcaoSalvar){
@@ -266,26 +254,26 @@ public class Main {
 											break;
 										case 2:
 											testarSalvarProduto_Fornecedor();
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 3:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opÃ§Ã£o vÃ¡lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opÃ§Ã£o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);						
 								
 							case 2:
 								menuConsultar: do {
-									String consultar = JOptionPane.showInputDialog( "Informe a opÃ§Ã£o desejada:\n" +
-																					"1) Consultar Produto\n" +
-																					"2) Consultar Produto_Fornecedor\n" +
-																					"3) Consultar NotaFiscal_Produto\n" +
-																					"0) Voltar ao menu anterior");
+									String consultar = JOptionPane.showInputDialog( "Informe a opção desejada:\n" +
+                                                                                                                        "1) Consultar Produto\n" +
+                                                                                                                        "2) Consultar Produto_Fornecedor\n" +
+                                                                                                                        "3) Consultar NotaFiscal_Produto\n" +
+                                                                                                                        "0) Voltar ao menu anterior");
 									try {
 										int opcaoConsultar = Integer.parseInt(consultar);
 										switch(opcaoConsultar){
@@ -293,10 +281,10 @@ public class Main {
 											continue menuTestes;
 										case 1:
 											do {
-												String tipoConsulta = JOptionPane.showInputDialog(	"Informe a opÃ§Ã£o desejada:\n" +
-																									"1) Consultar pela Descriï¿½ï¿½o do Produto\n" +
-																									"2) Consultar pelo Cï¿½digo do Produto\n" +
-																									"0) Voltar ao menu anterior");
+												String tipoConsulta = JOptionPane.showInputDialog(	"Informe a opção desejada:\n" +
+                                                                                                                                                        "1) Consultar pela Descrição do Produto\n" +
+                                                                                                                                                        "2) Consultar pelo Código do Produto\n" +
+                                                                                                                                                        "0) Voltar ao menu anterior");
 												try {
 													int opcaoTipoConsulta = Integer.parseInt(tipoConsulta);
 													switch(opcaoTipoConsulta){
@@ -309,32 +297,32 @@ public class Main {
 														testarConsultarProdutoCodigo();
 														break;
 													default:
-														JOptionPane.showMessageDialog(null,"Informe uma opÃ§Ã£o vÃ¡lida!");
+														JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 													}
 												} catch ( NumberFormatException x ) {
-													JOptionPane.showMessageDialog(null,"Escolha uma opÃ§Ã£o!");
+													JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 												}
 											} while (true);
 										case 2:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 3:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opÃ§Ã£o vÃ¡lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opÃ§Ã£o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							case 3:
 								do {
-									String alterar = JOptionPane.showInputDialog(	"Informe a opÃ§Ã£o desejada:\n" +
-																					"1) Alterar Produto\n" +
-																					"2) Alterar Produto_Fornecedor\n" +
-																					"3) Alterar NotaFiscal_Produto\n" +
-																					"0) Voltar ao menu anterior");
+									String alterar = JOptionPane.showInputDialog(	"Informe a opção desejada:\n" +
+                                                                                                                        "1) Alterar Produto\n" +
+                                                                                                                        "2) Alterar Produto_Fornecedor\n" +
+                                                                                                                        "3) Alterar NotaFiscal_Produto\n" +
+                                                                                                                        "0) Voltar ao menu anterior");
 									try {
 										int opcaoAlterar = Integer.parseInt(alterar);
 										switch(opcaoAlterar){
@@ -344,25 +332,25 @@ public class Main {
 											testarAlterarProduto();
 											break;
 										case 2:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 3:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opÃ§Ã£o vÃ¡lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opÃ§Ã£o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							case 4:
 								do {
-									String excluir = JOptionPane.showInputDialog( 	"Informe a opÃ§Ã£o desejada:\n" +
-																					"1) Excluir Produto\n" +
-																					"2) Excluir Produto_Fornecedor\n" +
-																					"3) Excluir NotaFiscal_Produto\n" +
-																					"0) Voltar ao menu anterior");
+									String excluir = JOptionPane.showInputDialog( 	"Informe a opção desejada:\n" +
+                                                                                                                        "1) Excluir Produto\n" +
+                                                                                                                        "2) Excluir Produto_Fornecedor\n" +
+                                                                                                                        "3) Excluir NotaFiscal_Produto\n" +
+                                                                                                                        "0) Voltar ao menu anterior");
 									try {
 										int opcaoExcluir = Integer.parseInt(excluir);
 										switch(opcaoExcluir){
@@ -372,25 +360,25 @@ public class Main {
 											testarExcluirProduto();
 											break;
 										case 2:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 3:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opÃ§Ã£o vÃ¡lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opÃ§Ã£o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							case 5:
 								do {
-									String listar = JOptionPane.showInputDialog("Informe a opÃ§Ã£o desejada:\n" +
-																				"1) Listar Produto\n" +
-																				"2) Listar Produto_Fornecedor\n" +
-																				"3) Listar NotaFiscal_Produto\n" +
-																				"0) Voltar ao menu anterior");
+									String listar = JOptionPane.showInputDialog("Informe a opção desejada:\n" +
+                                                                                                                    "1) Listar Produto\n" +
+                                                                                                                    "2) Listar Produto_Fornecedor\n" +
+                                                                                                                    "3) Listar NotaFiscal_Produto\n" +
+                                                                                                                    "0) Voltar ao menu anterior");
 									try {
 										int opcaoListar = Integer.parseInt(listar);
 										switch(opcaoListar){
@@ -400,23 +388,23 @@ public class Main {
 											testarListarProduto();
 											break;
 										case 2:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 3:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opÃ§Ã£o vÃ¡lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opÃ§Ã£o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							default:
-								JOptionPane.showMessageDialog(null,"Informe uma opÃ§Ã£o vÃ¡lida!");
+								JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 							}
 						} catch ( NumberFormatException x ) {
-							JOptionPane.showMessageDialog(null,"Escolha uma opÃ§Ã£o!");
+							JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 						}
 					}while(true);
 				
@@ -425,13 +413,13 @@ public class Main {
 				 */
 				case 3:
 					menuTestes: do{
-						String menu = JOptionPane.showInputDialog(	"Informe a opÃ§Ã£o desejada:\n" +
-																	"1) Teste de Salvar\n" +
-																	"2) Teste de Consultar\n" +
-																	"3) Teste de Alterar\n" +
-																	"4) Teste de Excluir\n" +
-																	"5) Teste de Listar\n" +
-																	"0) Voltar ao menu anterior");
+						String menu = JOptionPane.showInputDialog(	"Informe a opção desejada:\n" +
+                                                                                                "1) Teste de Salvar\n" +
+                                                                                                "2) Teste de Consultar\n" +
+                                                                                                "3) Teste de Alterar\n" +
+                                                                                                "4) Teste de Excluir\n" +
+                                                                                                "5) Teste de Listar\n" +
+                                                                                                "0) Voltar ao menu anterior");
 						try {
 							int opcaoMenu = Integer.parseInt(menu);
 							switch(opcaoMenu){
@@ -441,9 +429,9 @@ public class Main {
 							
 							case 1:
 								do {
-									String salvar = JOptionPane.showInputDialog("Informe a opÃ§Ã£o desejada:\n" +
-																				"1) Salvar Cliente\n" +
-																				"0) Voltar ao menu anterior");
+									String salvar = JOptionPane.showInputDialog("Informe a opção desejada:\n" +
+                                                                                                                    "1) Salvar Cliente\n" +
+                                                                                                                    "0) Voltar ao menu anterior");
 									try {
 										int opcaoSalvar = Integer.parseInt(salvar);
 										switch(opcaoSalvar){
@@ -453,131 +441,130 @@ public class Main {
 											testarSalvarCliente();
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opÃ§Ã£o vÃ¡lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opÃ§Ã£o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);						
 								
 							case 2:
 								do {
-									String consultar = JOptionPane.showInputDialog( "Informe a opÃ§Ã£o desejada:\n" +
-																					"1) Consultar Cliente\n" +
-																					"2) Consultar Pessoa FÃ­sica\n" +
-																					"3) Consultar Pessoa JurÃ­dica\n" +
-																					"0) Voltar ao menu anterior");
+									String consultar = JOptionPane.showInputDialog( "Informe a opção desejada:\n" +
+                                                                                                                        "1) Listar Cliente\n" +
+                                                                                                                        "2) Listar Pessoa Física\n" +
+                                                                                                                        "3) Listar Pessoa Jurídica\n" +
+                                                                                                                        "0) Voltar ao menu anterior");
 									try {
 										int opcaoConsultar = Integer.parseInt(consultar);
 										switch(opcaoConsultar){
 										case 0:
 											continue menuTestes;
 										case 1:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 2:
 											testarConsultarPessoaFisica();
-											//Chamada do mï¿½todo aqui
 											break;
 										case 3:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opÃ§Ã£o vÃ¡lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opÃ§Ã£o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							case 3:
 								do {
-									String alterar = JOptionPane.showInputDialog( 	"Informe a opï¿½ï¿½o desejada:\n" +
-																					"1) Alterar Cliente\n" +
-																					"2) Alterar Pessoa FÃ­sica\n" +
-																					"3) Alterar Pessoa JurÃ­dica\n" +
-																					"0) Voltar ao menu anterior");
+									String alterar = JOptionPane.showInputDialog( 	"Informe a opção desejada:\n" +
+                                                                                                                        "1) Listar Cliente\n" +
+                                                                                                                        "2) Listar Pessoa Física\n" +
+                                                                                                                        "3) Listar Pessoa Jurídica\n" +
+                                                                                                                        "0) Voltar ao menu anterior");
 									try {
 										int opcaoAlterar = Integer.parseInt(alterar);
 										switch(opcaoAlterar){
 										case 0:
 											continue menuTestes;
 										case 1:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 2:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 3:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opÃ§Ã£o vÃ¡lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opÃ§Ã£o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							case 4:
 								do {
-									String excluir = JOptionPane.showInputDialog(   "Informe a opÃ§Ã£o desejada:\n" +
-																					"1) Excluir Cliente\n" +
-																					"2) Excluir Pessoa FÃ­sica\n" +
-																					"3) Excluir Pessoa JurÃ­dica\n" +
-																					"0) Voltar ao menu anterior");
+									String excluir = JOptionPane.showInputDialog(   "Informe a opção desejada:\n" +
+                                                                                                                        "1) Listar Cliente\n" +
+                                                                                                                        "2) Listar Pessoa Física\n" +
+                                                                                                                        "3) Listar Pessoa Jurídica\n" +
+                                                                                                                        "0) Voltar ao menu anterior");
 									try {
 										int opcaoExcluir = Integer.parseInt(excluir);
 										switch(opcaoExcluir){
 										case 0:
 											continue menuTestes;
 										case 1:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 2:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 3:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opÃ§Ã£o vÃ¡lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opÃ§Ã£o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							case 5:
 								do {
-									String listar = JOptionPane.showInputDialog("Informe a opÃ§Ã£o desejada:\n" +
-																				"1) Listar Cliente\n" +
-																				"2) Listar Pessoa FÃ­sica\n" +
-																				"3) Listar Pessoa JurÃ­dica\n" +
-																				"0) Voltar ao menu anterior");
+									String listar = JOptionPane.showInputDialog("Informe a opção desejada:\n" +
+                                                                                                                    "1) Listar Cliente\n" +
+                                                                                                                    "2) Listar Pessoa Física\n" +
+                                                                                                                    "3) Listar Pessoa Jurídica\n" +
+                                                                                                                    "0) Voltar ao menu anterior");
 									try {
 										int opcaoListar = Integer.parseInt(listar);
 										switch(opcaoListar){
 										case 0:
 											continue menuTestes;
 										case 1:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 2:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 3:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							default:
-								JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+								JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 							}
 						} catch ( NumberFormatException x ) {
-							JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+							JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 						}
 					}while(true);
 					
@@ -586,13 +573,13 @@ public class Main {
 				 */
 				case 4:
 					menuTestes: do{
-						String menu = JOptionPane.showInputDialog(	"Informe a opï¿½ï¿½o desejada:\n" +
-																	"1) Teste de Salvar\n" +
-																	"2) Teste de Consultar\n" +
-																	"3) Teste de Alterar\n" +
-																	"4) Teste de Excluir\n" +
-																	"5) Teste de Listar\n" +
-																	"0) Voltar ao menu anterior");
+						String menu = JOptionPane.showInputDialog(  "Informe a opção desejada:\n" +
+                                                                                            "1) Teste de Salvar\n" +
+                                                                                            "2) Teste de Consultar\n" +
+                                                                                            "3) Teste de Alterar\n" +
+                                                                                            "4) Teste de Excluir\n" +
+                                                                                            "5) Teste de Listar\n" +
+                                                                                            "0) Voltar ao menu anterior");
 						try {
 							int opcaoMenu = Integer.parseInt(menu);
 							switch(opcaoMenu){
@@ -602,150 +589,150 @@ public class Main {
 							
 							case 1:
 								do {
-									String salvar = JOptionPane.showInputDialog("Informe a opï¿½ï¿½o desejada:\n" +
-																				"1) Salvar Funcionï¿½rio\n" +
-																				"2) Salvar Usuï¿½rio\n" +
-																				"3) Salvar Nota Fiscal\n" +
-																				"0) Voltar ao menu anterior");
+									String salvar = JOptionPane.showInputDialog("Informe a opção desejada:\n" +
+                                                                                                                    "1) Listar Funcionário\n" +
+                                                                                                                    "2) Listar Usuário\n" +
+                                                                                                                    "3) Listar Nota Fiscal\n" +
+                                                                                                                    "0) Voltar ao menu anterior");
 									try {
 										int opcaoSalvar = Integer.parseInt(salvar);
 										switch(opcaoSalvar){
 										case 0:
 											continue menuTestes;
 										case 1:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 2:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 3:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);						
 								
 							case 2:
 								do {
-									String consultar = JOptionPane.showInputDialog( "Informe a opï¿½ï¿½o desejada:\n" +
-																					"1) Consultar Funcionï¿½rio\n" +
-																					"2) Consultar Usuï¿½rio\n" +
-																					"3) Consultar Nota Fiscal\n" +
-																					"0) Voltar ao menu anterior");
+									String consultar = JOptionPane.showInputDialog( "Informe a opção desejada:\n" +
+                                                                                                                        "1) Listar Funcionário\n" +
+                                                                                                                        "2) Listar Usuário\n" +
+                                                                                                                        "3) Listar Nota Fiscal\n" +
+                                                                                                                        "0) Voltar ao menu anterior");
 									try {
 										int opcaoConsultar = Integer.parseInt(consultar);
 										switch(opcaoConsultar){
 										case 0:
 											continue menuTestes;
 										case 1:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 2:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 3:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							case 3:
 								do {
-									String alterar = JOptionPane.showInputDialog(	"Informe a opï¿½ï¿½o desejada:\n" +
-																					"1) Alterar Funcionï¿½rio\n" +
-																					"2) Alterar Usuï¿½rio\n" +
-																					"3) Alterar Nota Fiscal\n" +
-																					"0) Voltar ao menu anterior");
+									String alterar = JOptionPane.showInputDialog(	"Informe a opção desejada:\n" +
+                                                                                                                        "1) Listar Funcionário\n" +
+                                                                                                                        "2) Listar Usuário\n" +
+                                                                                                                        "3) Listar Nota Fiscal\n" +
+                                                                                                                        "0) Voltar ao menu anterior");
 									try {
 										int opcaoAlterar = Integer.parseInt(alterar);
 										switch(opcaoAlterar){
 										case 0:
 											continue menuTestes;
 										case 1:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 2:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 3:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							case 4:
 								do {
-									String excluir = JOptionPane.showInputDialog(	"Informe a opï¿½ï¿½o desejada:\n" +
-																					"1) Excluir Funcionï¿½rio\n" +
-																					"2) Excluir Usuï¿½rio\n" +
-																					"3) Excluir Nota Fiscal\n" +
-																					"0) Voltar ao menu anterior");
+									String excluir = JOptionPane.showInputDialog(	"Informe a opção desejada:\n" +
+                                                                                                                        "1) Listar Funcionário\n" +
+                                                                                                                        "2) Listar Usuário\n" +
+                                                                                                                        "3) Listar Nota Fiscal\n" +
+                                                                                                                        "0) Voltar ao menu anterior");
 									try {
 										int opcaoExcluir = Integer.parseInt(excluir);
 										switch(opcaoExcluir){
 										case 0:
 											continue menuTestes;
 										case 1:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 2:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 3:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							case 5:
 								do {
-									String listar = JOptionPane.showInputDialog("Informe a opï¿½ï¿½o desejada:\n" +
-																				"1) Listar Funcionï¿½rio\n" +
-																				"2) Listar Usuï¿½rio\n" +
-																				"3) Listar Nota Fiscal\n" +
-																				"0) Voltar ao menu anterior");
+									String listar = JOptionPane.showInputDialog("Informe a opção desejada:\n" +
+                                                                                                                    "1) Listar Funcionário\n" +
+                                                                                                                    "2) Listar Usuário\n" +
+                                                                                                                    "3) Listar Nota Fiscal\n" +
+                                                                                                                    "0) Voltar ao menu anterior");
 									try {
 										int opcaoListar = Integer.parseInt(listar);
 										switch(opcaoListar){
 										case 0:
 											continue menuTestes;
 										case 1:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 2:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										case 3:
-											//Chamada do mï¿½todo aqui
+											//Chamada do método aqui
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							default:
-								JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+								JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 							}
 						} catch ( NumberFormatException x ) {
-							JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+							JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 						}
 					}while(true);
 				
@@ -754,13 +741,13 @@ public class Main {
 				 */
 				case 5:
 					menuTestes: do{
-						String menu = JOptionPane.showInputDialog(	"Informe a opï¿½ï¿½o desejada:\n" +
-																	"1) Teste de Salvar\n" +
-																	"2) Teste de Consultar\n" +
-																	"3) Teste de Alterar\n" +
-																	"4) Teste de Excluir\n" +
-																	"5) Teste de Listar\n" +
-																	"0) Voltar ao menu anterior");
+						String menu = JOptionPane.showInputDialog(  "Informe a opção desejada:\n" +
+                                                                                            "1) Teste de Salvar\n" +
+                                                                                            "2) Teste de Consultar\n" +
+                                                                                            "3) Teste de Alterar\n" +
+                                                                                            "4) Teste de Excluir\n" +
+                                                                                            "5) Teste de Listar\n" +
+                                                                                            "0) Voltar ao menu anterior");
 						try {
 							int opcaoMenu = Integer.parseInt(menu);
 							switch(opcaoMenu){
@@ -770,10 +757,10 @@ public class Main {
 							
 							case 1:
 								do {
-									String salvar = JOptionPane.showInputDialog("Informe a opï¿½ï¿½o desejada:\n" +
-																				"1) Salvar Tipo\n" +
-																				"2) Salvar Marca\n" +
-																				"0) Voltar ao menu anterior");
+									String salvar = JOptionPane.showInputDialog("Informe a opção desejada:\n" +
+                                                                                                                    "1) Salvar Tipo\n" +
+                                                                                                                    "2) Salvar Marca\n" +
+                                                                                                                    "0) Voltar ao menu anterior");
 									try {
 										int opcaoSalvar = Integer.parseInt(salvar);
 										switch(opcaoSalvar){
@@ -781,130 +768,119 @@ public class Main {
 											continue menuTestes;
 										case 1:
 											testeSalvarTipo();
-											//Chamada do mï¿½todo aqui
 											break;
 										case 2:
-											//Chamada do mï¿½todo aqui
 											testeSalvarMarca();
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);						
 								
 							case 2:
 								do {
-									String consultar = JOptionPane.showInputDialog( "Informe a opï¿½ï¿½o desejada:\n" +
-																					"1) Consultar Tipo\n" +
-																					"2) Consultar Marca\n" +
-																					"0) Voltar ao menu anterior");
+									String consultar = JOptionPane.showInputDialog( "Informe a opção desejada:\n" +
+                                                                                                                        "1) Consultar Tipo\n" +
+                                                                                                                        "2) Consultar Marca\n" +
+                                                                                                                        "0) Voltar ao menu anterior");
 									try {
 										int opcaoConsultar = Integer.parseInt(consultar);
 										switch(opcaoConsultar){
 										case 0:
 											continue menuTestes;
 										case 1:
-											//Chamada do mï¿½todo aqui
 											testarConsultarTipos();
-											
 											break;
 										case 2:
-											//Chamada do mï¿½todo aqui
 											testarConsultarMarcas();
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							case 3:
 								do {
-									String alterar = JOptionPane.showInputDialog(	"Informe a opï¿½ï¿½o desejada:\n" +
-																					"1) Alterar Tipo\n" +
-																					"2) Alterar Marca\n" +
-																					"0) Voltar ao menu anterior");
+									String alterar = JOptionPane.showInputDialog(	"Informe a opção desejada:\n" +
+                                                                                                                        "1) Alterar Tipo\n" +
+                                                                                                                        "2) Alterar Marca\n" +
+                                                                                                                        "0) Voltar ao menu anterior");
 									try {
 										int opcaoAlterar = Integer.parseInt(alterar);
 										switch(opcaoAlterar){
 										case 0:
 											continue menuTestes;
 										case 1:
-											//Chamada do mï¿½todo aqui
 											testeAlterarTipo();
 											break;
 										case 2:
-											//Chamada do mï¿½todo aqui
 											testeAlterarMarca();
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							case 4:
 								do {
-									String excluir = JOptionPane.showInputDialog(	"Informe a opï¿½ï¿½o desejada:\n" +
-																					"1) Excluir Tipo\n" +
-																					"2) Excluir Marca\n" +
-																					"0) Voltar ao menu anterior");
-									try {
+									String excluir = JOptionPane.showInputDialog(	"Informe a opção desejada:\n" +
+                                                                                                                        "1) Excluir Tipo\n" +
+                                                                                                                        "2) Excluir Marca\n" +
+                                                                                                                        "0) Voltar ao menu anterior");
+                        try {
 										int opcaoExcluir = Integer.parseInt(excluir);
 										switch(opcaoExcluir){
 										case 0:
 											continue menuTestes;
 										case 1:
-											//Chamada do mï¿½todo aqui
 											testarExcluirTipo();
 											break;
 										case 2:
-											//Chamada do mï¿½todo aqui
 											testarExcluirMarca();
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							case 5:
 								do {
-									String listar = JOptionPane.showInputDialog("Informe a opï¿½ï¿½o desejada:\n" +
-																				"1) Listar Tipo\n" +
-																				"2) Listar Marca\n" +
-																				"0) Voltar ao menu anterior");
+									String listar = JOptionPane.showInputDialog("Informe a opção desejada:\n" +
+                                                                                                                    "1) Listar Tipo\n" +
+                                                                                                                    "2) Listar Marca\n" +
+                                                                                                                    "0) Voltar ao menu anterior");
 									try {
 										int opcaoListar = Integer.parseInt(listar);
 										switch(opcaoListar){
 										case 0:
 											continue menuTestes;
 										case 1:
-											//Chamada do mï¿½todo aqui
 											testarListarTipo();
 											break;
 										case 2:
-											//Chamada do mï¿½todo aqui
 											testarListarMarca();
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							default:
-								JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+								JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 							}
 						} catch ( NumberFormatException x ) {
-							JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+							JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 						}
 					}while(true);
 					
@@ -913,13 +889,13 @@ public class Main {
 				 */
 				case 6:
 					menuTestes: do{
-						String menu = JOptionPane.showInputDialog(	"Informe a opï¿½ï¿½o desejada:\n" +
-																	"1) Teste de Salvar\n" +
-																	"2) Teste de Consultar\n" +
-																	"3) Teste de Alterar\n" +
-																	"4) Teste de Excluir\n" +
-																	"5) Teste de Listar\n" +
-																	"0) Voltar ao menu anterior");
+						String menu = JOptionPane.showInputDialog(	"Informe a opção desejada:\n" +
+                                                                                                "1) Teste de Salvar\n" +
+                                                                                                "2) Teste de Consultar\n" +
+                                                                                                "3) Teste de Alterar\n" +
+                                                                                                "4) Teste de Excluir\n" +
+                                                                                                "5) Teste de Listar\n" +
+                                                                                                "0) Voltar ao menu anterior");
 						try {
 							int opcaoMenu = Integer.parseInt(menu);
 							switch(opcaoMenu){
@@ -929,10 +905,10 @@ public class Main {
 							
 							case 1:
 								do {
-									String salvar = JOptionPane.showInputDialog("Informe a opï¿½ï¿½o desejada:\n" +
-																				"1) Salvar Segmento\n" +
-																				"2) Salvar Forma de Pagamento\n" +
-																				"0) Voltar ao menu anterior");
+									String salvar = JOptionPane.showInputDialog("Informe a opção desejada:\n" +
+                                                                                                                    "1) Salvar Segmento\n" +
+                                                                                                                    "2) Salvar Forma de Pagamento\n" +
+                                                                                                                    "0) Voltar ao menu anterior");
 									try {
 										int opcaoSalvar = Integer.parseInt(salvar);
 										switch(opcaoSalvar){
@@ -945,19 +921,19 @@ public class Main {
 											testarSalvarFormaPagamento();
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);						
 								
 							case 2:
 								do {
-									String consultar = JOptionPane.showInputDialog( "Informe a opï¿½ï¿½o desejada:\n" +
-																					"1) Consultar Segmento\n" +
-																					"2) Consultar Forma de Pagamento\n" +
-																					"0) Voltar ao menu anterior");
+									String consultar = JOptionPane.showInputDialog( "Informe a opção desejada:\n" +
+                                                                                                                        "1) Consultar Segmento\n" +
+                                                                                                                        "2) Consultar Forma de Pagamento\n" +
+                                                                                                                        "0) Voltar ao menu anterior");
 									try {
 										int opcaoConsultar = Integer.parseInt(consultar);
 										switch(opcaoConsultar){
@@ -970,18 +946,18 @@ public class Main {
 											testarConsultarFormaPagamento();
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							case 3:
 								do {
-									String alterar = JOptionPane.showInputDialog( 	"Informe a opï¿½ï¿½o desejada:\n" +
-																					"1) Alterar Segmento\n" +
-																					"2) Alterar Forma de Pagamento\n" +
-																					"0) Voltar ao menu anterior");
+									String alterar = JOptionPane.showInputDialog( 	"Informe a opção desejada:\n" +
+                                                                                                                        "1) Alterar Segmento\n" +
+                                                                                                                        "2) Alterar Forma de Pagamento\n" +
+                                                                                                                        "0) Voltar ao menu anterior");
 									try {
 										int opcaoAlterar = Integer.parseInt(alterar);
 										switch(opcaoAlterar){
@@ -994,18 +970,18 @@ public class Main {
 											testarAlterarFormaPagamento();
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							case 4:
 								do {
-									String excluir = JOptionPane.showInputDialog( "Informe a opï¿½ï¿½o desejada:\n" +
-																								"1) Excluir Segmento\n" +
-																								"2) Excluir Forma de Pagamento\n" +
-																								"0) Voltar ao menu anterior");
+									String excluir = JOptionPane.showInputDialog(   "Informe a opção desejada:\n" +
+                                                                                                                        "1) Excluir Segmento\n" +
+                                                                                                                        "2) Excluir Forma de Pagamento\n" +
+                                                                                                                        "0) Voltar ao menu anterior");
 									try {
 										int opcaoExcluir = Integer.parseInt(excluir);
 										switch(opcaoExcluir){
@@ -1018,18 +994,18 @@ public class Main {
 											testarExcluirFormaPagamento();
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							case 5:
 								do {
-									String listar = JOptionPane.showInputDialog("Informe a opï¿½ï¿½o desejada:\n" +
-																				"1) Listar Segmento\n" +
-																				"2) Listar Forma de Pagamento\n" +
-																				"0) Voltar ao menu anterior");
+									String listar = JOptionPane.showInputDialog("Informe a opção desejada:\n" +
+                                                                                                                    "1) Listar Segmento\n" +
+                                                                                                                    "2) Listar Forma de Pagamento\n" +
+                                                                                                                    "0) Voltar ao menu anterior");
 									try {
 										int opcaoListar = Integer.parseInt(listar);
 										switch(opcaoListar){
@@ -1042,38 +1018,38 @@ public class Main {
 											testarListarFormaPagamento();
 											break;
 										default:
-											JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+											JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 										}
 									} catch ( NumberFormatException x ) {
-										JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+										JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 									}
 								} while (true);
 							default:
-								JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+								JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 							}
 						} catch ( NumberFormatException x ) {
-							JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+							JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 						}
 					}while(true);
 					
 				default:
-					JOptionPane.showMessageDialog(null,"Informe uma opï¿½ï¿½o vï¿½lida!");
+					JOptionPane.showMessageDialog(null,"Informe uma opção válida!");
 				}
 			} catch ( NumberFormatException x ) {
-				JOptionPane.showMessageDialog(null,"Escolha uma opï¿½ï¿½o!");
+				JOptionPane.showMessageDialog(null,"Escolha uma opção!");
 			}
 			
 		}while(true);
 	}
 	
 	/**
-	 * ABAIXO BLOCO PARA CONSTRUï¿½ï¿½O DOS Mï¿½TODOS DE TESTES
+	 * ABAIXO BLOCO PARA CONSTRUÇÃO DOS MÉTODOS DE TESTES
 	 */
 	
 	
 	
 	/**
-	 * ï¿½REA ESCRITA POR DANIEL VALENï¿½A
+	 * ÁREA ESCRITA POR DANIEL VALENÇA
 	 * RESPONSAVEL PELAS CLASSES Cidade, Fornecedor, Endereco.
 	 */
 	
