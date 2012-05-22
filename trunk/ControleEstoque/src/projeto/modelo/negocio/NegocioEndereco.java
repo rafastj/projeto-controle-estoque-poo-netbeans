@@ -26,11 +26,11 @@ public class NegocioEndereco {
     
     public void salvar( Endereco end ) throws GeralException {
         
-    	if((end.getEnderecos_CEP().equals(null)) || (end.getEnderecos_CEP().equals(""))) {
+    	if((end.getEnderecos_CEP() == null) || (end.getEnderecos_CEP().equals(""))) {
         	throw new GeralException( "Digite um CEP!" );
         }
         
-    	if((end.getEnderecos_Logradouro().equals(null)) || (end.getEnderecos_Logradouro().equals(""))) {
+    	if((end.getEnderecos_Logradouro() == null) || (end.getEnderecos_Logradouro().equals(""))) {
         	throw new GeralException( "Digite um Logradouro!" );
         }
         
@@ -50,7 +50,7 @@ public class NegocioEndereco {
         	throw new GeralException( "Erro de programação!" );
         
     	} catch ( ConexaoException e ) {
-            throw new GeralException( "Banco de dados inacessível!!!" );
+            throw new GeralException( "O banco de dados não está acessível no momento" );
         }
     }
     
@@ -108,13 +108,13 @@ public class NegocioEndereco {
 			throw new GeralException( "Registro não pode ser excluído!\nMotivo: Existem um ou mais cadastros vinculados a este endereço." );
 		
 		} catch ( ConexaoException ex ){
-			throw new GeralException( "O banco de dados não está acessível!" );
+			throw new GeralException( "O banco de dados não está acessível no momento" );
 		}
 	}
     
     public void alterar( Endereco end ) throws GeralException {
 		
-    	if ( (end.getEnderecos_CEP().equals(null)) || (end.getEnderecos_CEP().equals("")) )
+    	if ( (end.getEnderecos_CEP() == null) || (end.getEnderecos_CEP().equals("")) )
 			throw new GeralException("Digite o nome ou o códido da cidade!");
 		
     	try {
@@ -129,7 +129,7 @@ public class NegocioEndereco {
 			throw new GeralException( "Erro de programação!" );
 		
     	} catch ( ConexaoException ex ){
-			throw new  GeralException( "O banco de dados não está acessível!" );
+			throw new GeralException( "O banco de dados não está acessível no momento" );
 		}
 	}
     
@@ -148,7 +148,7 @@ public class NegocioEndereco {
 			throw new GeralException( "Erro de programação!" );
 		
 		} catch ( ConexaoException ex ){
-			throw new GeralException( "O banco de dados não está acessível!" );
+			throw new GeralException( "O banco de dados não está acessível no momento" );
 		}
 		return lista;
 	}

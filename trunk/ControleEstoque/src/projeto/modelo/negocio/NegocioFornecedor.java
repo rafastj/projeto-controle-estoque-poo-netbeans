@@ -30,11 +30,11 @@ public class NegocioFornecedor {
 			throw new GeralException( "CNPJ inválido!");
 		}
 		
-    	if((f.getFornecedores_CNPJ().equals(null)) || (f.getFornecedores_CNPJ().equals(""))) {
+    	if((f.getFornecedores_CNPJ() == null) || (f.getFornecedores_CNPJ().equals(""))) {
         	throw new GeralException( "Digite um CNPJ!" );
         }
         
-    	if((f.getFornecedores_RazaoSocial().equals(null)) || (f.getFornecedores_RazaoSocial().equals(""))) {
+    	if((f.getFornecedores_RazaoSocial() == null) || (f.getFornecedores_RazaoSocial().equals(""))) {
         	throw new GeralException( "Digite a Razão Social!" );
         }
         
@@ -58,7 +58,7 @@ public class NegocioFornecedor {
         	throw new GeralException( "Erro de programação!" );
         
     	} catch ( ConexaoException e ) {
-            throw new GeralException( "Banco de dados inacessível!!!" );
+            throw new GeralException( "O banco de dados não está acessível no momento" );
         }
     }
 	 
@@ -102,7 +102,7 @@ public class NegocioFornecedor {
 	
 	public void alterar( Fornecedor f ) throws GeralException {
 		
-    	if ( (f.getFornecedores_CNPJ().equals(null)) || (f.getFornecedores_CNPJ().equals("")) )
+    	if ( (f.getFornecedores_CNPJ() == null) || (f.getFornecedores_CNPJ().equals("")) )
 			throw new GeralException("Digite o nome CNPJ!");
 		
     	try {
@@ -117,12 +117,12 @@ public class NegocioFornecedor {
 			throw new GeralException( "Erro de programação!" );
 		
     	} catch ( ConexaoException ex ){
-			throw new  GeralException( "O banco de dados não está acessível!" );
+			throw new GeralException( "O banco de dados não está acessível no momento" );
 		}
 	}
 	
 	public void excluir( String fornecedores_CNPJ ) throws GeralException {
-		if ( fornecedores_CNPJ.equals(null) ) {
+		if ( fornecedores_CNPJ == null ) {
 			throw new GeralException( "Digite o CNPJ!" );
 		}
 		
@@ -137,7 +137,7 @@ public class NegocioFornecedor {
 			throw new GeralException( "Erro de programação!" );
 		
 		} catch ( ConexaoException ex ){
-			throw new GeralException( "O banco de dados não está acessível!" );
+			throw new GeralException( "O banco de dados não está acessível no momento" );
 		}
 	}
 	
@@ -145,7 +145,7 @@ public class NegocioFornecedor {
 		
 		ArrayList<Fornecedor> lista;
 		
-		if (fornecedores_CNPJ.equals(null)) {
+		if (fornecedores_CNPJ == null) {
         	throw new GeralException( "Digite o CNPJ!" );
 		}
 		
@@ -156,7 +156,7 @@ public class NegocioFornecedor {
 			throw new GeralException( "Erro de programação!" );
 		
 		} catch ( ConexaoException ex ){
-			throw new GeralException( "O banco de dados não está acessível!" );
+			throw new GeralException( "O banco de dados não está acessível no momento" );
 		}
 		return lista;
 	}
