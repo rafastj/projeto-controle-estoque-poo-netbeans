@@ -3,11 +3,7 @@
  */
 package projeto.modelo.repositorio;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import projeto.conexao.GerenciadorConexao;
@@ -20,28 +16,31 @@ import projeto.modelo.to.FormaPagamento;
  *
  */
 public class RepositorioFormaPagamento implements IRepositorioFormaPagamento{
-private IGerenciadorConexao g;
+    
+    private IGerenciadorConexao g;
 	
-	public RepositorioFormaPagamento () {
-		g = GerenciadorConexao.getInstancia();
-	}
-	public void salvar ( FormaPagamento fp ) throws ConexaoException, RepositorioException {
-		Connection c = g.conectar();
-		String sqlSalvar = "INSERT INTO FormaPagamento( formaPagamento_Descricao ) VALUES( ? )";
-		try {
-			PreparedStatement pstm = c.prepareStatement( sqlSalvar );
-			pstm.setString( 1,fp.getFormaPagamento_Descricao() );
-			pstm.executeUpdate();
+    public RepositorioFormaPagamento () {
+        g = GerenciadorConexao.getInstancia();
+    }
+    
+    @Override
+    public void salvar ( FormaPagamento fp ) throws ConexaoException, RepositorioException {
+        Connection c = g.conectar();
+        String sqlSalvar = "INSERT INTO FormaPagamento( formaPagamento_Descricao ) VALUES( ? )";
+        try {
+            PreparedStatement pstm = c.prepareStatement( sqlSalvar );
+            pstm.setString( 1,fp.getFormaPagamento_Descricao() );
+            pstm.executeUpdate();
             pstm.close();
-		} catch ( SQLException ex ) {
-			throw new RepositorioException ( ex.getMessage() );
-		} finally {
-			g.desconectar( c );
-		}
-	}
+        } catch ( SQLException ex ) {
+            throw new RepositorioException ( ex.getMessage() );
+        } finally {
+            g.desconectar( c );
+        }
+    }
 	
-	
-	public void excluir( int formaPagamento_Codigo ) throws ConexaoException, RepositorioException {
+    @Override
+    public void excluir( int formaPagamento_Codigo ) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
         String sqlExcluir = "DELETE FROM formaPagamento WHERE (formaPagamento_Codigo = ? )";
         try {
@@ -55,24 +54,25 @@ private IGerenciadorConexao g;
             g.desconectar( c );
         }
     }
-	
-	
+
+    @Override
     public void alterar(FormaPagamento fp ) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
         String sqlAlterar = "UPDATE FormaPagamento SET formaPagamento_Descricao = ? WHERE formaPagamento_Codigo = ?";
         try {
-        	PreparedStatement pstm = c.prepareStatement(sqlAlterar);
-        	pstm.setString(1, fp.getFormaPagamento_Descricao());
-        	pstm.setInt(2, fp.getFormaPagamento_Codigo());
-        	pstm.executeUpdate();
-        	pstm.close();
+            PreparedStatement pstm = c.prepareStatement(sqlAlterar);
+            pstm.setString(1, fp.getFormaPagamento_Descricao());
+            pstm.setInt(2, fp.getFormaPagamento_Codigo());
+            pstm.executeUpdate();
+            pstm.close();
         } catch (SQLException ex){
-        	throw new RepositorioException();
+            throw new RepositorioException();
         } finally {
-        	g.desconectar(c);
+            g.desconectar(c);
         }
     }
 
+    @Override
     public FormaPagamento consultarFormaPagamento(int formaPagamento_Codigo) throws ConexaoException, RepositorioException {
     	FormaPagamento fp = null;
         Connection c = g.conectar();
@@ -82,7 +82,6 @@ private IGerenciadorConexao g;
             PreparedStatement pstm = c.prepareStatement(sqlConsulta);
             pstm.setInt( 1, formaPagamento_Codigo );
             ResultSet rs = pstm.executeQuery();
-
             //verifica se retornou algum registro e cria o Objeto
             if( rs.next() ){
                 fp = new FormaPagamento();
@@ -96,16 +95,15 @@ private IGerenciadorConexao g;
         } return fp;
     }
 
+    @Override
     public FormaPagamento consultarFormaPagamento(String formaPagamento_Descricao) throws ConexaoException, RepositorioException {
     	FormaPagamento fp = null;
         Connection c = g.conectar();
         String sqlConsulta = "SELECT s.segmentos_Codigo, s.segmentos_Descricao FROM Segmentos AS s WHERE ( s.segmentos_Descricao = ? )";
-
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsulta);
             pstm.setString( 1, formaPagamento_Descricao );
             ResultSet rs = pstm.executeQuery();
-
             /*verifica se retornou algum registro e cria o Objeto*/
             if( rs.next() ){
                 fp = new FormaPagamento();
@@ -119,7 +117,7 @@ private IGerenciadorConexao g;
         } return fp;
     }
     
-    
+    @Override
     public Collection<FormaPagamento> listarFormasPagamentos(String formaPagamento_Descricao) throws ConexaoException,RepositorioException {
         ArrayList <FormaPagamento> lista = new ArrayList <FormaPagamento>();
         FormaPagamento fp;
@@ -141,5 +139,4 @@ private IGerenciadorConexao g;
             g.desconectar( c );
         }
     }
-
 }

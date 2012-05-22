@@ -5,25 +5,14 @@ package projeto.modelo.negocio;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
 import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.erro.RepositorioException;
-
-import projeto.modelo.repositorio.IRepositorioMarca;
-import projeto.modelo.repositorio.IRepositorioProduto;
-import projeto.modelo.repositorio.IRepositorioSegmento;
-import projeto.modelo.repositorio.IRepositorioTipo;
-
-import projeto.modelo.repositorio.RepositorioMarca;
-import projeto.modelo.repositorio.RepositorioProduto;
-import projeto.modelo.repositorio.RepositorioSegmento;
-import projeto.modelo.repositorio.RepositorioTipo;
-
+import projeto.modelo.repositorio.*;
+import projeto.modelo.to.Marca;
 import projeto.modelo.to.Produto;
 import projeto.modelo.to.Segmento;
 import projeto.modelo.to.Tipo;
-import projeto.modelo.to.Marca;
 
 /**
  * @author diego

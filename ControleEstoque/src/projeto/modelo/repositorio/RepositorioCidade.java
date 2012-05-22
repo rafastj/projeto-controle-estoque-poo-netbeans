@@ -18,42 +18,37 @@ import projeto.modelo.to.Cidade;
  */
 public class RepositorioCidade implements IRepositorioCidade {
 	
-	private IGerenciadorConexao g;
+    private IGerenciadorConexao g;
 	
-	public RepositorioCidade () {
-		g = GerenciadorConexao.getInstancia();
-	}
+    public RepositorioCidade () {
+        g = GerenciadorConexao.getInstancia();
+    }
 		
     @Override
-	public void salvar ( Cidade cd ) throws ConexaoException, RepositorioException {
-		Connection c = g.conectar();
-		String sqlSalvar = "INSERT INTO Cidades( cidades_Nome ) VALUES( ? )";
-		
-		try {
-			PreparedStatement pstm = c.prepareStatement( sqlSalvar );
-			pstm.setString( 1,cd.getCidades_Nome() );
-			pstm.executeUpdate();
+    public void salvar ( Cidade cd ) throws ConexaoException, RepositorioException {
+        Connection c = g.conectar();
+        String sqlSalvar = "INSERT INTO Cidades( cidades_Nome ) VALUES( ? )";
+        try {
+            PreparedStatement pstm = c.prepareStatement( sqlSalvar );
+            pstm.setString( 1,cd.getCidades_Nome() );
+            pstm.executeUpdate();
             pstm.close();
-            
-		} catch ( SQLException ex ) {
-			throw new RepositorioException ( ex.getMessage() );
-		
-		} finally {
-			g.desconectar( c );
-		}
-	}
+        } catch ( SQLException ex ) {
+            throw new RepositorioException ( ex.getMessage() );
+        } finally {
+            g.desconectar( c );
+        }
+    }
 	
     @Override
-	public Cidade consultar( int cidades_Codigo ) throws ConexaoException, RepositorioException {
+    public Cidade consultar( int cidades_Codigo ) throws ConexaoException, RepositorioException {
     	Cidade cd = null;
         Connection c = g.conectar();
         String sqlConsultar = "SELECT cidades_Codigo, cidades_Nome FROM Cidades WHERE ( cidades_Codigo = ? )";
-
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsultar);
             pstm.setInt( 1, cidades_Codigo );
             ResultSet rs = pstm.executeQuery();
-
             //verifica se retornou algum registro e cria o Objeto
             if( rs.next() ){
                 cd = new Cidade();
@@ -72,12 +67,10 @@ public class RepositorioCidade implements IRepositorioCidade {
     	Cidade cd = null;
         Connection c = g.conectar();
         String sqlConsultar = "SELECT cidades_Codigo, cidades_Nome FROM Cidades WHERE ( cidades_Nome LIKE ? )";
-
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsultar);
             pstm.setString( 1, cidades_Nome+"%" );
             ResultSet rs = pstm.executeQuery();
-
             /*verifica se retornou algum registro e cria o Objeto*/
             if( rs.next() ){
                 cd = new Cidade();
@@ -92,7 +85,7 @@ public class RepositorioCidade implements IRepositorioCidade {
     }
 	
     @Override
-	public void excluir( int cidades_Codigo ) throws ConexaoException, RepositorioException {
+    public void excluir( int cidades_Codigo ) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
         String sqlExcluir = "DELETE FROM Cidades WHERE ( cidades_Codigo = ? )";
         try {
@@ -108,7 +101,7 @@ public class RepositorioCidade implements IRepositorioCidade {
     }
 	
     @Override
-	public void excluir( String cidades_Nome ) throws ConexaoException, RepositorioException {
+    public void excluir( String cidades_Nome ) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
         String sqlExcluir = "DELETE FROM Cidades WHERE ( cidades_Nome LIKE ? )";
         try {
@@ -128,15 +121,15 @@ public class RepositorioCidade implements IRepositorioCidade {
         Connection c = g.conectar();
         String sqlAlterar = "UPDATE cidades SET cidades_Nome = ? where cidades_Codigo = ?";
         try {
-        	PreparedStatement pstm = c.prepareStatement(sqlAlterar);
-        	pstm.setString(1, cd.getCidades_Nome());
-        	pstm.setInt(2, cd.getCidades_Codigo());
-        	pstm.executeUpdate();
-        	pstm.close();
+            PreparedStatement pstm = c.prepareStatement(sqlAlterar);
+            pstm.setString(1, cd.getCidades_Nome());
+            pstm.setInt(2, cd.getCidades_Codigo());
+            pstm.executeUpdate();
+            pstm.close();
         } catch (SQLException ex){
-        	throw new RepositorioException();
+            throw new RepositorioException();
         } finally {
-        	g.desconectar(c);
+            g.desconectar(c);
         }
     }    
     

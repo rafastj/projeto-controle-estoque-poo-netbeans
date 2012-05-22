@@ -5,19 +5,10 @@ package projeto.modelo.negocio;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
 import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.erro.RepositorioException;
-
-import projeto.modelo.repositorio.IRepositorioNotaFiscal_Produto;
-import projeto.modelo.repositorio.IRepositorioProduto;
-import projeto.modelo.repositorio.IRepositorioNotaFiscal;
-
-import projeto.modelo.repositorio.RepositorioNotaFiscal_Produto;
-import projeto.modelo.repositorio.RepositorioProduto;
-import projeto.modelo.repositorio.RepositorioNotaFiscal;
-
+import projeto.modelo.repositorio.*;
 import projeto.modelo.to.NotaFiscal;
 import projeto.modelo.to.NotaFiscal_Produto;
 import projeto.modelo.to.Produto;

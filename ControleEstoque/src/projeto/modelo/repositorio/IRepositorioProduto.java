@@ -4,7 +4,6 @@
 package projeto.modelo.repositorio;
 
 import java.util.Collection;
-
 import projeto.erro.ConexaoException;
 import projeto.erro.RepositorioException;
 import projeto.modelo.to.Produto;

@@ -17,7 +17,9 @@ import projeto.modelo.to.Endereco;
  * R.143
  */
 public class RepositorioEndereco implements IRepositorioEndereco {
+   
     private IGerenciadorConexao g;
+    
     public RepositorioEndereco () {
     	g = GerenciadorConexao.getInstancia();
     }
@@ -27,16 +29,16 @@ public class RepositorioEndereco implements IRepositorioEndereco {
     	Connection c = g.conectar();
     	String sqlSalvar = "INSERT INTO Enderecos( enderecos_CEP, cidades_Codigo, enderecos_Logradouro ) VALUES( ?, ?, ? )";
     	try {
-			PreparedStatement pstm = c.prepareStatement( sqlSalvar );
-			pstm.setString( 1,end.getEnderecos_CEP() );
-			pstm.setInt(2, end.getCidades_Codigo());
-			pstm.setString(3, end.getEnderecos_Logradouro());
-			pstm.executeUpdate();
-			pstm.close();
+            PreparedStatement pstm = c.prepareStatement( sqlSalvar );
+            pstm.setString( 1,end.getEnderecos_CEP() );
+            pstm.setInt(2, end.getCidades_Codigo());
+            pstm.setString(3, end.getEnderecos_Logradouro());
+            pstm.executeUpdate();
+            pstm.close();
         } catch ( SQLException ex ) {
-        	throw new RepositorioException ( ex.getMessage() );
+            throw new RepositorioException ( ex.getMessage() );
         } finally {
-        	g.desconectar( c );
+            g.desconectar( c );
         }
     }
     
@@ -46,17 +48,17 @@ public class RepositorioEndereco implements IRepositorioEndereco {
     	Connection c = g.conectar();
     	String sqlConsultar = "SELECT ENDERECOS_CODIGO, ENDERECOS_CEP, CIDADES_CODIGO, ENDERECOS_LOGRADOURO FROM enderecos WHERE ( ENDERECOS_LOGRADOURO LIKE ? )";
     	try {
-	        PreparedStatement pstm = c.prepareStatement(sqlConsultar);
-	        pstm.setString( 1, enderecos_Logradouro+"%" );
-	        ResultSet rs = pstm.executeQuery();
-	        //verifica se retornou algum registro e cria o Objeto
-	        if( rs.next() ){
-	            end = new Endereco();
-	            end.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
-	            end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
-	            end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
-	            end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
-	        }
+            PreparedStatement pstm = c.prepareStatement(sqlConsultar);
+            pstm.setString( 1, enderecos_Logradouro+"%" );
+            ResultSet rs = pstm.executeQuery();
+            //verifica se retornou algum registro e cria o Objeto
+            if( rs.next() ){
+                end = new Endereco();
+                end.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
+                end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
+                end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+            }
     	} catch( SQLException e ){
     		throw new RepositorioException(e.getMessage());
     	} finally {
@@ -70,17 +72,17 @@ public class RepositorioEndereco implements IRepositorioEndereco {
     	Connection c = g.conectar();
     	String sqlConsultar = "SELECT ENDERECOS_CODIGO, ENDERECOS_CEP, CIDADES_CODIGO, ENDERECOS_LOGRADOURO FROM enderecos WHERE ( ENDERECOS_CEP = ? )";
     	try {
-	        PreparedStatement pstm = c.prepareStatement(sqlConsultar);
-	        pstm.setString( 1, enderecos_CEP );
-	        ResultSet rs = pstm.executeQuery();
-	        //verifica se retornou algum registro e cria o Objeto
-	        if( rs.next() ){
-	            end = new Endereco();
-	            end.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
-	            end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
-	            end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
-	            end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
-	        }
+            PreparedStatement pstm = c.prepareStatement(sqlConsultar);
+            pstm.setString( 1, enderecos_CEP );
+            ResultSet rs = pstm.executeQuery();
+            //verifica se retornou algum registro e cria o Objeto
+            if( rs.next() ){
+                end = new Endereco();
+                end.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
+                end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
+                end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+            }
     	} catch( SQLException e ){
     		throw new RepositorioException(e.getMessage());
     	} finally {
@@ -90,18 +92,18 @@ public class RepositorioEndereco implements IRepositorioEndereco {
 
     @Override
     public void excluir( String enderecos_Cep ) throws ConexaoException, RepositorioException {
-	    Connection c = g.conectar();
-	    String sqlExcluir = "DELETE FROM Enderecos WHERE ( enderecos_Cep = ? )";
-	    try {
-	        PreparedStatement pstm = c.prepareStatement(sqlExcluir);
-	        pstm.setString( 1, enderecos_Cep );
-	        pstm.executeUpdate();
-	        pstm.close();
-	    } catch (SQLException ex) {
-	    	throw new RepositorioException();
-	    } finally {
-	    	g.desconectar( c );
-	    }
+        Connection c = g.conectar();
+        String sqlExcluir = "DELETE FROM Enderecos WHERE ( enderecos_Cep = ? )";
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlExcluir);
+            pstm.setString( 1, enderecos_Cep );
+            pstm.executeUpdate();
+            pstm.close();
+        } catch (SQLException ex) {
+            throw new RepositorioException();
+        } finally {
+            g.desconectar( c );
+        }
     }
 
     @Override
@@ -129,23 +131,22 @@ public class RepositorioEndereco implements IRepositorioEndereco {
     	Endereco end;
     	Connection c = g.conectar();
     	String sqlLista = "SELECT end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, end.cidades_Codigo from Enderecos as end inner join Cidades as cd On end.cidades_Codigo = cd.cidades_Codigo order by end.enderecos_Codigo";
-    	
-    	try{
-    		Statement stm = c.createStatement();
-    		ResultSet rs = stm.executeQuery(sqlLista);
-    		//verifica se retornou algum registro e cria os Objetos
-    		while( rs.next() ){
-	            end = new Endereco();
-    			end.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
-	            end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
-	            end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
-	            end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
-	            lista.add( end );
-    		} return lista;
+        try{
+            Statement stm = c.createStatement();
+            ResultSet rs = stm.executeQuery(sqlLista);
+            //verifica se retornou algum registro e cria os Objetos
+            while( rs.next() ){
+                end = new Endereco();
+                end.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
+                end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
+                end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                lista.add( end );
+            } return lista;
     	} catch( SQLException e ) {
-    		throw new RepositorioException(e);
+            throw new RepositorioException(e);
     	} finally {
-    		g.desconectar( c );
+            g.desconectar( c );
     	}
     }
 }

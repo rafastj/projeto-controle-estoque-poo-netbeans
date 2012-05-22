@@ -3,11 +3,7 @@
  */
 package projeto.modelo.repositorio;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import projeto.conexao.GerenciadorConexao;
@@ -20,28 +16,31 @@ import projeto.modelo.to.Segmento;
  *
  */
 public class RepositorioSegmento implements IRepositorioSegmento{
-private IGerenciadorConexao g;
+    
+    private IGerenciadorConexao g;
 	
-	public RepositorioSegmento () {
-		g = GerenciadorConexao.getInstancia();
-	}
-	public void salvar ( Segmento s ) throws ConexaoException, RepositorioException {
-		Connection c = g.conectar();
-		String sqlSalvar = "INSERT INTO Segmentos( segmentos_Descricao ) VALUES( ? )";
-		try {
-			PreparedStatement pstm = c.prepareStatement( sqlSalvar );
-			pstm.setString( 1,s.getSegmentos_Descricao() );
-			pstm.executeUpdate();
+    public RepositorioSegmento () {
+        g = GerenciadorConexao.getInstancia();
+    }
+    
+    @Override
+    public void salvar ( Segmento s ) throws ConexaoException, RepositorioException {
+        Connection c = g.conectar();
+        String sqlSalvar = "INSERT INTO Segmentos( segmentos_Descricao ) VALUES( ? )";
+        try {
+            PreparedStatement pstm = c.prepareStatement( sqlSalvar );
+            pstm.setString( 1,s.getSegmentos_Descricao() );
+            pstm.executeUpdate();
             pstm.close();
-		} catch ( SQLException ex ) {
-			throw new RepositorioException ( ex.getMessage() );
-		} finally {
-			g.desconectar( c );
-		}
-	}
-	
-	
-	public void excluir( int segmentos_Codigo ) throws ConexaoException, RepositorioException {
+        } catch ( SQLException ex ) {
+            throw new RepositorioException ( ex.getMessage() );
+        } finally {
+            g.desconectar( c );
+        }
+    }
+
+    @Override
+    public void excluir( int segmentos_Codigo ) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
         String sqlExcluir = "DELETE FROM segmentos WHERE (segmentos_Codigo = ? )";
         try {
@@ -55,17 +54,17 @@ private IGerenciadorConexao g;
             g.desconectar( c );
         }
     }
-	
-	
+		
+    @Override
     public void alterar(Segmento s ) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
         String sqlAlterar = "UPDATE Segmentos SET segmentos_Descricao = ? WHERE segmentos_Codigo = ?";
         try {
-        	PreparedStatement pstm = c.prepareStatement(sqlAlterar);
-        	pstm.setString(1, s.getSegmentos_Descricao());
-        	pstm.setInt(2, s.getSegmentos_Codigo());
-        	pstm.executeUpdate();
-        	pstm.close();
+            PreparedStatement pstm = c.prepareStatement(sqlAlterar);
+            pstm.setString(1, s.getSegmentos_Descricao());
+            pstm.setInt(2, s.getSegmentos_Codigo());
+            pstm.executeUpdate();
+            pstm.close();
         } catch (SQLException ex){
         	throw new RepositorioException();
         } finally {
@@ -73,16 +72,15 @@ private IGerenciadorConexao g;
         }
     }
 
+    @Override
     public Segmento consultarSegmentos( int segmentos_Codigo ) throws ConexaoException, RepositorioException {
     	Segmento s = null;
         Connection c = g.conectar();
         String sqlConsulta = "SELECT s.segmentos_Codigo, s.segmentos_Descricao FROM Segmentos AS s WHERE ( s.segmentos_Codigo = ? )";
-
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsulta);
             pstm.setInt( 1, segmentos_Codigo );
             ResultSet rs = pstm.executeQuery();
-
             //verifica se retornou algum registro e cria o Objeto
             if( rs.next() ){
                 s = new Segmento();
@@ -96,17 +94,15 @@ private IGerenciadorConexao g;
         } return s;
     }
     
-
+    @Override
     public Segmento consultarSegmentos( String segmentos_Descricao ) throws ConexaoException, RepositorioException {
     	Segmento s = null;
         Connection c = g.conectar();
         String sqlConsulta = "SELECT s.segmentos_Codigo, s.segmentos_Descricao FROM Segmentos AS s WHERE ( s.segmentos_Descricao = ? )";
-
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsulta);
             pstm.setString( 1, segmentos_Descricao );
             ResultSet rs = pstm.executeQuery();
-
             /*verifica se retornou algum registro e cria o Objeto*/
             if( rs.next() ){
                 s = new Segmento();
@@ -119,8 +115,8 @@ private IGerenciadorConexao g;
             g.desconectar( c );
         } return s;
     }
-    
-    
+        
+    @Override
     public Collection<Segmento> listarSegmentos(String segmentos_Descricao) throws ConexaoException,RepositorioException {
         ArrayList <Segmento> lista = new ArrayList <Segmento>();
         Segmento s;

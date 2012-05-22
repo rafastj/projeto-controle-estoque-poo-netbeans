@@ -3,21 +3,16 @@
  */
 package projeto.modelo.negocio;
 
-import javax.swing.JOptionPane;
-
 import java.util.ArrayList;
 import java.util.Collection;
-
+import javax.swing.JOptionPane;
 import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.erro.RepositorioException;
-
 import projeto.modelo.repositorio.RepositorioProduto;
 import projeto.modelo.repositorio.RepositorioProduto_Fornecedor;
-
-//Utilizada para a realização de consultas e reutilizações...
-import projeto.modelo.to.Produto_Fornecedor;
 import projeto.modelo.to.Produto;
+import projeto.modelo.to.Produto_Fornecedor;
 
 
 /**
