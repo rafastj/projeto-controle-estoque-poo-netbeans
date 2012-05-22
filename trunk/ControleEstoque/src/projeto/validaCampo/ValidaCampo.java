@@ -10,12 +10,12 @@ package projeto.validaCampo;
  */
 public class ValidaCampo {
 	
-	/**
-	 * Método para Validação de CNPJ
-	 * @param str_cnpj
-	 * @return
-	 */
-	public  boolean validaCnpj( String str_cnpj ) {   
+    /**
+    * Método para Validação de CNPJ
+    * @param str_cnpj
+    * @return
+    */
+    public  boolean validaCnpj( String str_cnpj ) {   
         if (! str_cnpj.substring(0,1).equals("")){   
             try{   
                 str_cnpj=str_cnpj.replace('.',' ');   
@@ -24,7 +24,7 @@ public class ValidaCampo {
                 str_cnpj=str_cnpj.replaceAll(" ","");   
                 int soma = 0, dig;   
                 String cnpj_calc = str_cnpj.substring(0,12);   
-                   
+
                 if ( str_cnpj.length() != 14 )   
                     return false;   
                 char[] chr_cnpj = str_cnpj.toCharArray();   
@@ -56,42 +56,42 @@ public class ValidaCampo {
             }   
         }else return false;   
     }
-	
-	/**
-	 * Método para validação de CPF
-	 * @param strCpf
-	 * @return
-	 */
-	public static boolean ValidaCPF (String strCpf ) {
-	    int     d1, d2;
-	    int     digito1, digito2, resto;
-	    int     digitoCPF;
-	    String  nDigResult;
 
-	    d1 = d2 = 0;
-	    digito1 = digito2 = resto = 0;
+    /**
+        * Método para validação de CPF
+        * @param strCpf
+        * @return
+        */
+    public static boolean ValidaCPF (String strCpf ) {
+        int     d1, d2;
+        int     digito1, digito2, resto;
+        int     digitoCPF;
+        String  nDigResult;
 
-	    for (int nCount = 1; nCount < strCpf.length() -1; nCount++) {
-	       digitoCPF = Integer.valueOf (strCpf.substring(nCount -1, nCount)).intValue();
-	       d1 = d1 + ( 11 - nCount ) * digitoCPF;
-	       d2 = d2 + ( 12 - nCount ) * digitoCPF;
-	    };
-	    resto = (d1 % 11);
-	    if (resto < 2)
-	       digito1 = 0;
-	    else
-	       digito1 = 11 - resto;
+        d1 = d2 = 0;
+        digito1 = digito2 = resto = 0;
 
-		d2 += 2 * digito1;
-	    resto = (d2 % 11);
+        for (int nCount = 1; nCount < strCpf.length() -1; nCount++) {
+            digitoCPF = Integer.valueOf (strCpf.substring(nCount -1, nCount)).intValue();
+            d1 = d1 + ( 11 - nCount ) * digitoCPF;
+            d2 = d2 + ( 12 - nCount ) * digitoCPF;
+        };
+        resto = (d1 % 11);
+        if (resto < 2)
+            digito1 = 0;
+        else
+            digito1 = 11 - resto;
 
-	    if (resto < 2)
-	       digito2 = 0;
-	    else
-	       digito2 = 11 - resto;
+            d2 += 2 * digito1;
+        resto = (d2 % 11);
 
-	    String nDigVerific = strCpf.substring (strCpf.length()-2, strCpf.length());
-	    nDigResult = String.valueOf(digito1) + String.valueOf(digito2);
-	    return nDigVerific.equals(nDigResult);
-	 }
+        if (resto < 2)
+            digito2 = 0;
+        else
+            digito2 = 11 - resto;
+
+        String nDigVerific = strCpf.substring (strCpf.length()-2, strCpf.length());
+        nDigResult = String.valueOf(digito1) + String.valueOf(digito2);
+        return nDigVerific.equals(nDigResult);
+    }
 }
