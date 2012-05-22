@@ -7,7 +7,7 @@ import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.*;
 /**
- * @author EQUIPE
+ * @author EQUIPE 03
  */
 public class Main {
 	
