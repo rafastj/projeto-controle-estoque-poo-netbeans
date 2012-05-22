@@ -1,7 +1,3 @@
-/**
- * TESTE
- */
-
 package projeto.main;
 
 import java.util.ArrayList;
@@ -12,7 +8,6 @@ import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.*;
 /**
  * @author EQUIPE
- * R143
  */
 public class Main {
 	
@@ -1061,8 +1056,8 @@ public class Main {
 		System.out.println("Iniciando processo...");
 		String cdSalvar = JOptionPane.showInputDialog("Digite o nome da cidade");
 		try {
-			@SuppressWarnings("unused")
-			int validoString = Integer.parseInt(cdSalvar);
+			//@SuppressWarnings("unused")
+			//int validoString = Integer.parseInt(cdSalvar);
 			JOptionPane.showMessageDialog(null, "Digite apenas o nome da cidade!");
 		} catch ( NumberFormatException x )  {
 			Cidade cd = new Cidade (cdSalvar);
@@ -1079,12 +1074,12 @@ public class Main {
 		System.out.println("Iniciando processo...");
 		Cidade cd;
 		int cidades_Codigo;
-		String cidades_Nome = JOptionPane.showInputDialog("Digite o cï¿½digo ou o nome da cidade");
+		String cidades_Nome = JOptionPane.showInputDialog("Digite o código ou o nome da cidade");
 		try {
 			cidades_Codigo = Integer.parseInt(cidades_Nome);
 			try{
 				cd = fachada.consultarCidade(cidades_Codigo);
-				JOptionPane.showMessageDialog(null, "Codigo da Cidade.: ("+cd.getCidades_Codigo() +") \nNome da Cidade.: ("+cd.getCidades_Nome() +")");
+				JOptionPane.showMessageDialog(null, "Código da Cidade.: ("+cd.getCidades_Codigo() +") \nNome da Cidade.: ("+cd.getCidades_Nome() +")");
 			}
 			catch (GeralException e){
 				JOptionPane.showMessageDialog(null, e.getMessage());
@@ -1092,7 +1087,7 @@ public class Main {
 		} catch ( NumberFormatException x ) {
 			try{
 				cd = fachada.consultarCidade(cidades_Nome);
-				JOptionPane.showMessageDialog(null, "Codigo da Cidade.: ("+cd.getCidades_Codigo() +") \nNome da Cidade.: ("+cd.getCidades_Nome() +")");
+				JOptionPane.showMessageDialog(null, "Código da Cidade.: ("+cd.getCidades_Codigo() +") \nNome da Cidade.: ("+cd.getCidades_Nome() +")");
 			}
 			catch (GeralException e){
 				JOptionPane.showMessageDialog(null, e.getMessage());
@@ -1104,12 +1099,12 @@ public class Main {
 	private static void testarExcluirCidade() {
 		System.out.println("Iniciando processo...");
 		int cdExcluirCod;
-		String cdExcluir = JOptionPane.showInputDialog("Digite o cï¿½digo ou o nome da cidade");
+		String cdExcluir = JOptionPane.showInputDialog("Digite o código ou o nome da cidade");
 		try {
 			cdExcluirCod = Integer.parseInt(cdExcluir);
 			try{
 				fachada.excluirCidade(cdExcluirCod);
-				JOptionPane.showMessageDialog(null, "Registro excluï¿½do com sucesso!");
+				JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
 			}
 			catch (GeralException e){
 				JOptionPane.showMessageDialog(null, e.getMessage());
@@ -1117,7 +1112,7 @@ public class Main {
 		} catch (NumberFormatException x) {
 			try{
 				fachada.excluirCidade(cdExcluir);
-				JOptionPane.showMessageDialog(null, "Registro excluï¿½do com sucesso!");
+				JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
 			}
 			catch (GeralException e){
 				JOptionPane.showMessageDialog(null, e.getMessage());
@@ -1130,7 +1125,7 @@ public class Main {
 		
 		System.out.println("Iniciando processo...");
 		int cdAlterarCod;
-		String cdAltOld = JOptionPane.showInputDialog("Digite o cï¿½digo ou o nome da cidade a ser alterado");
+		String cdAltOld = JOptionPane.showInputDialog("Digite o código ou o nome da cidade a ser alterado");
 		try {
 			cdAlterarCod = Integer.parseInt(cdAltOld);
 			try{
@@ -1174,7 +1169,7 @@ public class Main {
 			String imprimeLista = "";
 			for ( Iterator<Cidade> it = lista.iterator(); it.hasNext();){
 				cd = it.next();
-				imprimeLista = imprimeLista + "Cï¿½digo.: ("+ cd.getCidades_Codigo() +") Cidade.: ("+ cd .getCidades_Nome()+")\n-------------------------------------------------------------------\n";
+				imprimeLista = imprimeLista + "Código.: ("+ cd.getCidades_Codigo() +") Cidade.: ("+ cd .getCidades_Nome()+")\n-------------------------------------------------------------------\n";
 			}
 			JOptionPane.showMessageDialog(null, imprimeLista);
 		} catch (GeralException ex){
@@ -1238,10 +1233,10 @@ public class Main {
 	
 	private static void testarExcluirEndereco() {
 		System.out.println("Iniciando processo...");
-		String endExcluir = JOptionPane.showInputDialog("Digite o CEP do endereï¿½o a ser excluï¿½do");
+		String endExcluir = JOptionPane.showInputDialog("Digite o CEP do endereço a ser excluído");
 		try {
 			fachada.excluirEndereco(endExcluir);
-			JOptionPane.showMessageDialog(null, "Registro excluï¿½do com sucesso!");
+			JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
 			}
 		catch (GeralException e){
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -1255,7 +1250,7 @@ public class Main {
 		try {
 			Endereco end = fachada.consultarEndCep(cepOld);
 			if (end == null) {
-				JOptionPane.showMessageDialog(null, "Endereï¿½o nï¿½o estï¿½ cadastrado!");
+				JOptionPane.showMessageDialog(null, "Endereço não está cadastrado!");
 			} else {
 				int codOld = end.getEnderecos_Codigo();
 				String cepNew = JOptionPane.showInputDialog("Digite o novo CEP");
@@ -1287,7 +1282,7 @@ public class Main {
 			String imprimeLista = "";
 			for ( Iterator<Endereco> it = lista.iterator(); it.hasNext();){
 				end = it.next();
-				imprimeLista = imprimeLista + "Cï¿½digo.: ("+ end.getEnderecos_Codigo() +") CEP.: ("+ end.getEnderecos_CEP()+") Logradouro.: ("+ end.getEnderecos_Logradouro()+") Cidade.: ("+ end.getCidades_Codigo()+")\n-----------------------------------------------------------------------------------------------------------\n";
+				imprimeLista = imprimeLista + "Código.: ("+ end.getEnderecos_Codigo() +") CEP.: ("+ end.getEnderecos_CEP()+") Logradouro.: ("+ end.getEnderecos_Logradouro()+") Cidade.: ("+ end.getCidades_Codigo()+")\n-----------------------------------------------------------------------------------------------------------\n";
 			}
 			JOptionPane.showMessageDialog(null,imprimeLista);
 		} catch (GeralException ex){
@@ -1304,9 +1299,9 @@ public class Main {
 	private static void testarSalvarFornecedor() throws GeralException {
         System.out.println( "Iniciando processo..." );
         String cnpj = JOptionPane.showInputDialog("Digite o CNPJ");
-        String razaoSocial = JOptionPane.showInputDialog( "Digite a Razï¿½o Social" );
-        int numeroRua = Integer.parseInt( JOptionPane.showInputDialog("Digite o nï¿½mero da rua") );
-        int enderecos_Codigo = Integer.parseInt( JOptionPane.showInputDialog("Digite o cï¿½digo do endereï¿½o") );
+        String razaoSocial = JOptionPane.showInputDialog( "Digite a Razão Social" );
+        int numeroRua = Integer.parseInt( JOptionPane.showInputDialog("Digite o número da rua") );
+        int enderecos_Codigo = Integer.parseInt( JOptionPane.showInputDialog("Digite o código do endereço") );
         int fornecedores_Codigo = 0;
         Fornecedor f = new Fornecedor ( fornecedores_Codigo, cnpj, razaoSocial, numeroRua, enderecos_Codigo );
         try {
@@ -1323,12 +1318,12 @@ public class Main {
 		Fornecedor f;
 		@SuppressWarnings("unused")
 		double cnpj;
-		String fornecedor = JOptionPane.showInputDialog( "Digite o CNPJ ou Razï¿½o Social" );
+		String fornecedor = JOptionPane.showInputDialog( "Digite o CNPJ ou Razão Social" );
 		try {
 			cnpj = Double.parseDouble(fornecedor);
 			try{
 				f = fachada.consultarForCNPJ(fornecedor);
-				JOptionPane.showMessageDialog(null, "Codigo do Fornecedor.: ("+f.getFornecedores_Codigo() +") \nCNPJ.: ("+f.getFornecedores_CNPJ() +") \nRazï¿½o Social.: ("+f.getFornecedores_RazaoSocial() +")");
+				JOptionPane.showMessageDialog(null, "Código do Fornecedor.: ("+f.getFornecedores_Codigo() +") \nCNPJ.: ("+f.getFornecedores_CNPJ() +") \nRazão Social.: ("+f.getFornecedores_RazaoSocial() +")");
 			}
 			catch (GeralException e){
 				JOptionPane.showMessageDialog(null, e.getMessage());
@@ -1336,7 +1331,7 @@ public class Main {
 		} catch (NumberFormatException x) {
 			try{
 				f = fachada.consultarForRazaoSocial(fornecedor);
-				JOptionPane.showMessageDialog(null, "Codigo do Fornecedor.: ("+f.getFornecedores_Codigo() +") \nCNPJ.: ("+f.getFornecedores_CNPJ() +") \nRazï¿½o Social.: ("+f.getFornecedores_RazaoSocial() +")");
+				JOptionPane.showMessageDialog(null, "Código do Fornecedor.: ("+f.getFornecedores_Codigo() +") \nCNPJ.: ("+f.getFornecedores_CNPJ() +") \nRazão Social.: ("+f.getFornecedores_RazaoSocial() +")");
 			}
 			catch (GeralException e){
 				JOptionPane.showMessageDialog(null, e.getMessage());
@@ -1347,10 +1342,10 @@ public class Main {
 	
 	private static void testarExcluirFornecedor() {
 		System.out.println("Iniciando processo...");
-		String forExcluir = JOptionPane.showInputDialog("Digite o CNPJ do fornecedor a ser excluï¿½do");
+		String forExcluir = JOptionPane.showInputDialog("Digite o CNPJ do fornecedor a ser excluído");
 		try {
 			fachada.excluirFornecedor(forExcluir);
-			JOptionPane.showMessageDialog(null, "Registro excluï¿½do com sucesso!");
+			JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
 			}
 		catch (GeralException e){
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -1364,12 +1359,12 @@ public class Main {
 		try {
 			Fornecedor f = fachada.consultarForCNPJ(cnpjOld);
 			if (f == null) {
-				JOptionPane.showMessageDialog(null, "Fornecedor nï¿½o estï¿½ cadastrado!");
+				JOptionPane.showMessageDialog(null, "Fornecedor não está cadastrado!");
 			} else {
 				int codOld = f.getFornecedores_Codigo();
 				String cnpjNew = JOptionPane.showInputDialog("Digite o novo CNPJ");
-				String rsNew = JOptionPane.showInputDialog("Digite a Razï¿½o Social");
-				int numNew = Integer.parseInt(JOptionPane.showInputDialog("Digite o nï¿½mero"));
+				String rsNew = JOptionPane.showInputDialog("Digite a Razão Social");
+				int numNew = Integer.parseInt(JOptionPane.showInputDialog("Digite o número"));
 				String cepNew = JOptionPane.showInputDialog("Digite o CEP");
 				Endereco end = fachada.consultarEndCep(cepNew);
 				int codNew = end.getEnderecos_Codigo();
@@ -1397,7 +1392,7 @@ public class Main {
 			String imprimeLista = "";
 			for ( Iterator<Fornecedor> it = lista.iterator(); it.hasNext();){
 				f = it.next();
-				imprimeLista = imprimeLista + "Cï¿½digo.: ("+ f.getFornecedores_Codigo() +") CNPJ.: ("+ f.getFornecedores_CNPJ()+") Razï¿½o Social.: ("+ f.getFornecedores_RazaoSocial()+") Nï¿½mero.: ("+ f.getFornecedores_NumeroResidencia()+") Cï¿½digo Endereï¿½o.: ("+ f.getEnderecos_Codigo()+")\n-------------------------------------------------------------------\n";
+				imprimeLista = imprimeLista + "Código.: ("+ f.getFornecedores_Codigo() +") CNPJ.: ("+ f.getFornecedores_CNPJ()+") Razão Social.: ("+ f.getFornecedores_RazaoSocial()+") Número.: ("+ f.getFornecedores_NumeroResidencia()+") Código Endereço.: ("+ f.getEnderecos_Codigo()+")\n-------------------------------------------------------------------\n";
 			}
 			JOptionPane.showMessageDialog(null,imprimeLista);
 		} catch (GeralException ex){
@@ -1407,7 +1402,7 @@ public class Main {
 	}
 	
 	/**
-	 * FIM DA ï¿½REA ESCRITA POR DANIEL VALENï¿½A
+	 * FIM DA ÁREA ESCRITA POR DANIEL VALENÇA
 	 */
 	
 	
@@ -1467,12 +1462,12 @@ public class Main {
 	}
 	
 	/**
-	 * Diego Silva Teste de Exclusï¿½o
-	 * Teste de exclusï¿½o do Produto na tabela Produtos Utilizando as camadas
+	 * Diego Silva Teste de Exclusão
+	 * Teste de exclusão do Produto na tabela Produtos Utilizando as camadas
 	 */
 
 	public static void testarExcluirProduto(){
-		System.out.println("Teste de exclusï¿½o de produto");
+		System.out.println("Teste de exclusão de produto");
 			
 		try{
 			fachada.excluirProduto(3);
@@ -1480,15 +1475,15 @@ public class Main {
 		 }catch (GeralException ex){
 			 JOptionPane.showMessageDialog(null, ex.getMessage());
 		 }
-		 System.out.println("Fim Teste de exclusï¿½o");
+		 System.out.println("Fim Teste de exclusão");
 	}
 
 	/**
-	 * Diego Silva teste de Alteraï¿½ï¿½o
+	 * Diego Silva teste de Alteração
 	 */
 	
 	public static void testarAlterarProduto(){
-		System.out.println("Testando alteraï¿½ï¿½o do produto");
+		System.out.println("Testando alteração do produto");
 		
 		Produto p = new Produto();
 		p.setSegmentos_Codigo(1);
@@ -1501,7 +1496,7 @@ public class Main {
 		
 		try{
 			fachada.alterarProduto(p);
-			JOptionPane.showMessageDialog(null, "Alteraï¿½ï¿½o realizada com sucesso!");
+			JOptionPane.showMessageDialog(null, "Alteração realizada com sucesso!");
 		}catch (GeralException ex){
 			JOptionPane.showMessageDialog(null, ex.getMessage());
 		}
@@ -1509,7 +1504,7 @@ public class Main {
 	}
 	
 	/**
-	 * Diego Silva teste de listagem dos produtos pela descriï¿½ï¿½o informada
+	 * Diego Silva teste de listagem dos produtos pela descrição informada
 	 */
 	public static void testarListarProduto(){
 		Produto p = null;
@@ -1556,7 +1551,7 @@ public class Main {
 	
 	
 	/**
-	 * ï¿½REA ESCRITA POR SANDRO
+	 * ÁREA ESCRITA POR SANDRO
 	 * RESPONSAVEL PELAS CLASSES Cliente, PessoaFisica, PessoaJuridica.
 	 */
 	
@@ -1600,7 +1595,7 @@ public class Main {
 		try {
 			cpf = Double.parseDouble(cliPf);
 			//pf = fachada.consultarPF_Nome(cliPf);
-			//JOptionPane.showMessageDialog(null, "Codigo do Fornecedor.: ("+pf.getClientes_Codigo() +") \nCNPJ.: ("+pf.getPessoasFisica_CPF() +") \nRazï¿½o Social.: ("+pf.getPessoasFisica_Nome() +")");
+			//JOptionPane.showMessageDialog(null, "Codigo do Fornecedor.: ("+pf.getClientes_Codigo() +") \nCNPJ.: ("+pf.getPessoasFisica_CPF() +") \nRazão Social.: ("+pf.getPessoasFisica_Nome() +")");
 		} catch (NumberFormatException x) {
 			pf = fachada.consultarPF_Nome(cliPf);
 			JOptionPane.showMessageDialog(null, "Codigo do Fornecedor.: ("+pf.getClientes_Codigo() +") \nCNPJ.: ("+pf.getPessoasFisica_CPF() +") \nRazï¿½o Social.: ("+pf.getPessoasFisica_Nome() +")");
@@ -1610,7 +1605,7 @@ public class Main {
 	
 	
 	/**
-	 * FIM DA ï¿½REA ESCRITA POR SANDRO
+	 * FIM DA ÁREA ESCRITA POR SANDRO
 	 */
 	
 	
@@ -1653,7 +1648,7 @@ public class Main {
 	public static void testeAlterarTipo(){
 		System.out.println("Iniciando processo...");
 		int tAlterarCod;
-		String tAltOld = JOptionPane.showInputDialog("Digite o cï¿½digo ou a descricï¿½o do tipo a ser alterado");
+		String tAltOld = JOptionPane.showInputDialog("Digite o cï¿½digo ou a descricão do tipo a ser alterado");
 		try {
 			tAlterarCod = Integer.parseInt(tAltOld);
 			try{
@@ -1693,7 +1688,7 @@ public class Main {
 		t.setTipos_Descricao("AAAAA");
 		try{
 			fachada.alterarTipo(t);
-			JOptionPane.showMessageDialog(null, "Alteraï¿½ï¿½o realizada com sucesso!");
+			JOptionPane.showMessageDialog(null, "Alteração realizada com sucesso!");
 		}catch (GeralException ex){
 			JOptionPane.showMessageDialog(null, ex.getMessage());
 		}
@@ -1710,8 +1705,8 @@ public class Main {
 			for (Iterator<Tipo> it = lista.iterator(); it.hasNext();){
 				t = it.next();
 				String cod=String.valueOf(t.getTipos_Codigo());
-				tp= tp+"Cï¿½digo: "+ cod +"-"+ "Descriï¿½ï¿½o: "+t.getTipos_Descricao()+"\n";
-				//JOptionPane.showMessageDialog(null,"Cï¿½digo.: ("+ t.getTipos_Codigo() +") \nTipo.: ("+ t.getTipos_Descricao()+")");
+				tp= tp+"Cï¿½digo: "+ cod +"-"+ "Descrição: "+t.getTipos_Descricao()+"\n";
+				//JOptionPane.showMessageDialog(null,"Código.: ("+ t.getTipos_Codigo() +") \nTipo.: ("+ t.getTipos_Descricao()+")");
 			}
 			
 		} catch (GeralException ex){
@@ -1723,7 +1718,7 @@ public class Main {
 	
 	
 	public static void testarExcluirTipo(){
-		/*System.out.println("Teste de exclusï¿½o de produto");
+		/*System.out.println("Teste de exclusão de produto");
 			
 		try{
 			fachada.excluirTipo(1);
@@ -1731,17 +1726,17 @@ public class Main {
 		 }catch (GeralException ex){
 			 JOptionPane.showMessageDialog(null, ex.getMessage());
 		 }
-		 System.out.println("Fim Teste de exclusï¿½o");
+		 System.out.println("Fim Teste de exclusão");
 	*/
 	System.out.println("Iniciando processo...");
 		
 		int tExcluirCod;
-		String tExcluir = JOptionPane.showInputDialog("Digite o cï¿½digo ou o nome do tipo");
+		String tExcluir = JOptionPane.showInputDialog("Digite o código ou o nome do tipo");
 		try {
 			tExcluirCod = Integer.parseInt(tExcluir);
 			try{
 				fachada.excluirTipo(tExcluirCod);
-				JOptionPane.showMessageDialog(null, "Registro excluï¿½do com sucesso!");
+				JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
 			}
 			catch (GeralException e){
 				JOptionPane.showMessageDialog(null, e.getMessage());
@@ -1749,7 +1744,7 @@ public class Main {
 		} catch (NumberFormatException x) {
 			try{
 				fachada.excluirTipo(tExcluir);
-				JOptionPane.showMessageDialog(null, "Registro excluï¿½do com sucesso!");
+				JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
 			}
 			catch (GeralException e){
 				JOptionPane.showMessageDialog(null, e.getMessage());
@@ -1761,19 +1756,19 @@ public class Main {
 	public static void testarConsultarTipos(){
 		System.out.println("Iniciando consulta");
 		int tpCodigo;
-		String tConsult = JOptionPane.showInputDialog("Digite o cï¿½digo ou o nome tipo");
+		String tConsult = JOptionPane.showInputDialog("Digite o código ou o nome tipo");
         try {
                 tpCodigo = Integer.parseInt(tConsult);
                 try{
                			Tipo t = fachada.consultarTipos(tpCodigo);
-            			JOptionPane.showMessageDialog(null,"Cï¿½digo: "+ t.getTipos_Codigo() +"- Descriï¿½ï¿½o: "+ t.getTipos_Descricao());
+            			JOptionPane.showMessageDialog(null,"Código: "+ t.getTipos_Codigo() +"- Descrição: "+ t.getTipos_Descricao());
             		}catch (GeralException ex){
             			JOptionPane.showMessageDialog(null, ex.getMessage());
             		}
                 } catch (NumberFormatException x) {
         			try{	
                 			Tipo t = fachada.consultarTipos(tConsult);
-                			JOptionPane.showMessageDialog(null,"Cï¿½digo: "+ t.getTipos_Codigo() +"- Descriï¿½ï¿½o: "+ t.getTipos_Descricao());
+                			JOptionPane.showMessageDialog(null,"Código: "+ t.getTipos_Codigo() +"- Descrição: "+ t.getTipos_Descricao());
         			}
         			catch (GeralException ex){
         				JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -1782,7 +1777,7 @@ public class Main {
         		System.out.println("Consulta finalizada!");
             }
 	
-	//MARCA0
+	//MARCA
 	public static void testeSalvarMarca(){
 		/*Marca m = new Marca(1,"Nike");
 		try{
@@ -1814,7 +1809,7 @@ public class Main {
 		public static void testeAlterarMarca(){
 			System.out.println("Iniciando processo...");
 			int mAlterarCod;
-			String mAltOld = JOptionPane.showInputDialog("Digite o cï¿½digo ou a descricï¿½o da marca a ser alterado");
+			String mAltOld = JOptionPane.showInputDialog("Digite o código ou a descrição da marca a ser alterado");
 			try {
 				mAlterarCod = Integer.parseInt(mAltOld);
 				try{
@@ -1854,7 +1849,7 @@ public class Main {
 			m.setMarcas_Descricao("AAAAA");
 			try{
 				fachada.alterarMarca(m);
-				JOptionPane.showMessageDialog(null, "Alteraï¿½ï¿½o realizada com sucesso!");
+				JOptionPane.showMessageDialog(null, "Alteração realizada com sucesso!");
 			}catch (GeralException ex){
 				JOptionPane.showMessageDialog(null, ex.getMessage());
 			}
@@ -1873,8 +1868,8 @@ public class Main {
 				for (Iterator<Marca> it = lista.iterator(); it.hasNext();){
 					m = it.next();
 					String cod=String.valueOf(m.getMarcas_Codigo());
-					ma= ma+"Cï¿½digo: "+ cod +"-"+ "Descriï¿½ï¿½o: "+m.getMarcas_Descricao()+"\n";
-					//JOptionPane.showMessageDialog(null,"Cï¿½digo: "+ t.getTipos_Codigo() +" - Tipo:"+ t.getTipos_Descricao());
+					ma= ma+"Código: "+ cod +"-"+ "Descrição: "+m.getMarcas_Descricao()+"\n";
+					//JOptionPane.showMessageDialog(null,"Código: "+ t.getTipos_Codigo() +" - Tipo:"+ t.getTipos_Descricao());
 				}
 				
 			} catch (GeralException ex){
@@ -1886,15 +1881,15 @@ public class Main {
 		
 		
 		public static void testarExcluirMarca(){
-			/*System.out.println("Teste de exclusï¿½o de produto");
+			/*System.out.println("Teste de exclusão de produto");
 				
 			try{
 				fachada.excluirMarca(1);
-					 JOptionPane.showMessageDialog(null, "Marca excluido com sucesso!");
+					 JOptionPane.showMessageDialog(null, "Marca excluído com sucesso!");
 			 }catch (GeralException ex){
 				 JOptionPane.showMessageDialog(null, ex.getMessage());
 			 }
-			 System.out.println("Fim Teste de exclusï¿½o");
+			 System.out.println("Fim Teste de exclusão");
 		}
 	*/
 			System.out.println("Iniciando processo...");
@@ -1905,7 +1900,7 @@ public class Main {
 				mExcluirCod = Integer.parseInt(mExcluir);
 				try{
 					fachada.excluirMarca(mExcluirCod);
-					JOptionPane.showMessageDialog(null, "Registro excluï¿½do com sucesso!");
+					JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
 				}
 				catch (GeralException e){
 					JOptionPane.showMessageDialog(null, e.getMessage());
@@ -1913,7 +1908,7 @@ public class Main {
 			} catch (NumberFormatException x) {
 				try{
 					fachada.excluirMarca(mExcluir);
-					JOptionPane.showMessageDialog(null, "Registro excluï¿½do com sucesso!");
+					JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
 				}
 				catch (GeralException e){
 					JOptionPane.showMessageDialog(null, e.getMessage());
@@ -1925,19 +1920,19 @@ public class Main {
 		public static void testarConsultarMarcas(){
 			System.out.println("Iniciando consulta");
 			int maCodigo;
-			String mConsult = JOptionPane.showInputDialog("Digite o cï¿½digo ou o nome tipo");
+			String mConsult = JOptionPane.showInputDialog("Digite o código ou o nome tipo");
 	        try {
                 maCodigo = Integer.parseInt(mConsult);
                 try{
            			Marca m = fachada.consultarMarcas(maCodigo);
-        			JOptionPane.showMessageDialog(null,"Cï¿½digo: "+ m.getMarcas_Codigo() +" - Descriï¿½ï¿½o: "+ m.getMarcas_Descricao());
+        			JOptionPane.showMessageDialog(null,"Código: "+ m.getMarcas_Codigo() +" - Descrição: "+ m.getMarcas_Descricao());
         		}catch (GeralException ex){
         			JOptionPane.showMessageDialog(null, ex.getMessage());
         		}
             } catch (NumberFormatException x) {
     			try{	
             			Marca m = fachada.consultarMarcas(mConsult);
-            			JOptionPane.showMessageDialog(null,"Cï¿½digo:"+ m.getMarcas_Codigo() +"- Descriï¿½ï¿½o: "+ m.getMarcas_Descricao());
+            			JOptionPane.showMessageDialog(null,"Código: "+ m.getMarcas_Codigo() +" - Descrição: "+ m.getMarcas_Descricao());
     			}
     			catch (GeralException ex){
     				JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -1949,7 +1944,7 @@ public class Main {
 		
 		
 	/**
-	 * ï¿½REA ESCRITA POR BRUNO PINHEIRO RESPONSAVEL PELAS CLASSES FormaPagamento,
+	 * ÁREA ESCRITA POR BRUNO PINHEIRO RESPONSAVEL PELAS CLASSES FormaPagamento,
 	 * Segmento.
 	 */
 
@@ -1959,13 +1954,11 @@ public class Main {
 
 	private static void testarSalvarFormaPagamento() {
 		System.out.println("Iniciando processo...");
-		String fpSalvar = JOptionPane
-				.showInputDialog("Digite a Forma de Pagamento");
+		String fpSalvar = JOptionPane.showInputDialog("Digite a Forma de Pagamento");
 		try {
 			@SuppressWarnings("unused")
 			int validoString = Integer.parseInt(fpSalvar);
-			JOptionPane.showMessageDialog(null,
-					"Digite apenas a Forma de Pagamento!");
+			JOptionPane.showMessageDialog(null,"Digite apenas a Forma de Pagamento!");
 		} catch (NumberFormatException x) {
 			FormaPagamento fp = new FormaPagamento();
 			fp.setFormaPagamento_Descricao(fpSalvar);
@@ -1982,30 +1975,19 @@ public class Main {
 		System.out.println("Iniciando processo...");
 		FormaPagamento fp;
 		int formaPagamento_Codigo;
-		String formaPagamento_Descricao = JOptionPane
-				.showInputDialog("Digite o cï¿½digo ou o nome da Forma de Pagamanto");
+		String formaPagamento_Descricao = JOptionPane.showInputDialog("Digite o código ou o nome da Forma de Pagamanto");
 		try {
 			formaPagamento_Codigo = Integer.parseInt(formaPagamento_Descricao);
 			try {
 				fp = fachada.consultarFormaPagamento(formaPagamento_Codigo);
-				JOptionPane.showMessageDialog(
-						null,
-						"Codigo da Forma de Pagamento.: ("
-								+ fp.getFormaPagamento_Codigo()
-								+ ") \nDescricao da Forma de Pagamento.: ("
-								+ fp.getFormaPagamento_Descricao() + ")");
+				JOptionPane.showMessageDialog(null,"Código da Forma de Pagamento.: ("+ fp.getFormaPagamento_Codigo()+ ") \nDescrição da Forma de Pagamento.: ("+ fp.getFormaPagamento_Descricao() + ")");
 			} catch (GeralException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
 		} catch (NumberFormatException x) {
 			try {
 				fp = fachada.consultarFormaPagamento(formaPagamento_Descricao);
-				JOptionPane.showMessageDialog(
-						null,
-						"Codigo da Forma de Pagamento.: ("
-								+ fp.getFormaPagamento_Codigo()
-								+ ") \nDescricao da Forma de Pagamento.: ("
-								+ fp.getFormaPagamento_Descricao() + ")");
+				JOptionPane.showMessageDialog(null,"Código da Forma de Pagamento.: ("+ fp.getFormaPagamento_Codigo()+ ") \nDescrição da Forma de Pagamento.: ("+ fp.getFormaPagamento_Descricao() + ")");
 			} catch (GeralException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
@@ -2016,8 +1998,7 @@ public class Main {
 	private static void testarExcluirFormaPagamento() {
 		System.out.println("Iniciando processo...");
 		int fpExcluirCod;
-		String fpExcluir = JOptionPane
-				.showInputDialog("Digite o cï¿½digo da Forma de Pagamento");
+		String fpExcluir = JOptionPane.showInputDialog("Digite o código da Forma de Pagamento");
 		try {
 			fpExcluirCod = Integer.parseInt(fpExcluir);
 			fachada.excluirFormaPagamento(fpExcluirCod);
@@ -2034,18 +2015,16 @@ public class Main {
 		System.out.println("Iniciando processo...");
 		int fpAlterarCod;
 		String fpAltOld = JOptionPane
-				.showInputDialog("Digite o cï¿½digo ou a Descricao da Forma de Pagamento a ser alterada");
+				.showInputDialog("Digite o código ou a Descricao da Forma de Pagamento a ser alterada");
 		try {
 			fpAlterarCod = Integer.parseInt(fpAltOld);
 			try {
-				String fpAltNew = JOptionPane
-						.showInputDialog("Digite o novo nome da Forma de Pagamento");
+				String fpAltNew = JOptionPane.showInputDialog("Digite o novo nome da Forma de Pagamento");
 				FormaPagamento fp = new FormaPagamento();
 				fp.setFormaPagamento_Descricao(fpAltNew);
 				fp.setFormaPagamento_Codigo(fpAlterarCod);
 				fachada.alterarFormaPagamento(fp);
-				JOptionPane.showMessageDialog(null,
-						"Registro alterado com sucesso!");
+				JOptionPane.showMessageDialog(null,"Registro alterado com sucesso!");
 			} catch (GeralException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
@@ -2056,13 +2035,11 @@ public class Main {
 				fpOld = fachada.consultarFormaPagamento(fpAltOld);
 				int FormaPagamento_Codigo;
 				FormaPagamento_Codigo = fpOld.getFormaPagamento_Codigo();
-				String fpAltNew = JOptionPane
-						.showInputDialog("Digite o novo nome da Forma de Pagamento");
+				String fpAltNew = JOptionPane.showInputDialog("Digite o novo nome da Forma de Pagamento");
 				fp.setFormaPagamento_Codigo(FormaPagamento_Codigo);
 				fp.setFormaPagamento_Descricao(fpAltNew);
 				fachada.alterarFormaPagamento(fp);
-				JOptionPane.showMessageDialog(null,
-						"Registro alterado com sucesso!");
+				JOptionPane.showMessageDialog(null,"Registro alterado com sucesso!");
 			} catch (GeralException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
@@ -2076,14 +2053,11 @@ public class Main {
 		FormaPagamento fp = null;
 		ArrayList<FormaPagamento> lista;
 		try {
-			lista = (ArrayList<FormaPagamento>) fachada
-					.listarFormasPagamentos("");
+			lista = (ArrayList<FormaPagamento>) fachada.listarFormasPagamentos("");
 			String imprimeLista = "";
 			for (Iterator<FormaPagamento> it = lista.iterator(); it.hasNext();) {
 				fp = it.next();
-				imprimeLista = imprimeLista + "Cï¿½digo.: ("
-						+ fp.getFormaPagamento_Codigo() + ") Cidade.: ("
-						+ fp.getFormaPagamento_Descricao() + ")\n";
+				imprimeLista = imprimeLista + "Código.: ("+ fp.getFormaPagamento_Codigo() + ") Cidade.: ("+ fp.getFormaPagamento_Descricao() + ")\n";
 			}
 			JOptionPane.showMessageDialog(null, imprimeLista);
 		} catch (GeralException ex) {
@@ -2117,28 +2091,19 @@ public class Main {
 		System.out.println("Iniciando processo...");
 		Segmento s;
 		int segmento_Codigo;
-		String segmento_Descricao = JOptionPane
-				.showInputDialog("Digite o cï¿½digo ou descricao do Segmento");
+		String segmento_Descricao = JOptionPane.showInputDialog("Digite o código ou descricao do Segmento");
 		try {
 			segmento_Codigo = Integer.parseInt(segmento_Descricao);
 			try {
 				s = fachada.consultarSegmentos(segmento_Codigo);
-				JOptionPane.showMessageDialog(
-						null,
-						"Codigo do Segmento.: (" + s.getSegmentos_Codigo()
-								+ ") \nDescricao do Segmento.: ("
-								+ s.getSegmentos_Descricao() + ")");
+				JOptionPane.showMessageDialog(null,"Codigo do Segmento.: (" + s.getSegmentos_Codigo()+ ") \nDescrição do Segmento.: ("+ s.getSegmentos_Descricao() + ")");
 			} catch (GeralException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
 		} catch (NumberFormatException x) {
 			try {
 				s = fachada.consultarSegmentos(segmento_Descricao);
-				JOptionPane.showMessageDialog(
-						null,
-						"Codigo do Segmento.: (" + s.getSegmentos_Codigo()
-								+ ") \nDescricao do Segmento.: ("
-								+ s.getSegmentos_Descricao() + ")");
+				JOptionPane.showMessageDialog(null,"Codigo do Segmento.: (" + s.getSegmentos_Codigo()+ ") \nDescricao do Segmento.: ("+ s.getSegmentos_Descricao() + ")");
 			} catch (GeralException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
@@ -2149,8 +2114,7 @@ public class Main {
 	private static void testarExcluirSegmento() {
 		System.out.println("Iniciando processo...");
 		int sExcluirCod;
-		String sExcluir = JOptionPane
-				.showInputDialog("Digite o cï¿½digo do Segmento");
+		String sExcluir = JOptionPane.showInputDialog("Digite o código do Segmento");
 		try {
 			sExcluirCod = Integer.parseInt(sExcluir);
 			fachada.excluirSegmento(sExcluirCod);
@@ -2166,19 +2130,16 @@ public class Main {
 
 		System.out.println("Iniciando processo...");
 		int sAlterarCod;
-		String sAltOld = JOptionPane
-				.showInputDialog("Digite o cï¿½digo ou a Descricao do Segmento a ser alterado");
+		String sAltOld = JOptionPane.showInputDialog("Digite o código ou a Descrição do Segmento a ser alterado");
 		try {
 			sAlterarCod = Integer.parseInt(sAltOld);
 			try {
-				String sAltNew = JOptionPane
-						.showInputDialog("Digite a nova descricacao do segmento");
+				String sAltNew = JOptionPane.showInputDialog("Digite a nova descricacao do segmento");
 				Segmento s = new Segmento();
 				s.setSegmentos_Descricao(sAltNew);
 				s.setSegmentos_Codigo(sAlterarCod);
 				fachada.alterarSegmento(s);
-				JOptionPane.showMessageDialog(null,
-						"Registro alterado com sucesso!");
+				JOptionPane.showMessageDialog(null,"Registro alterado com sucesso!");
 			} catch (GeralException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
@@ -2189,13 +2150,11 @@ public class Main {
 				sOld = fachada.consultarSegmentos(sAltOld);
 				int Segmento_Codigo;
 				Segmento_Codigo = sOld.getSegmentos_Codigo();
-				String sAltNew = JOptionPane
-						.showInputDialog("Digite a nova descricao do segmento");
+				String sAltNew = JOptionPane.showInputDialog("Digite a nova descricao do segmento");
 				s.setSegmentos_Codigo(Segmento_Codigo);
 				s.setSegmentos_Descricao(sAltNew);
 				fachada.alterarSegmento(s);
-				JOptionPane.showMessageDialog(null,
-						"Registro alterado com sucesso!");
+				JOptionPane.showMessageDialog(null,"Registro alterado com sucesso!");
 			} catch (GeralException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
@@ -2213,9 +2172,7 @@ public class Main {
 			String imprimeLista = "";
 			for (Iterator<Segmento> it = lista.iterator(); it.hasNext();) {
 				s = it.next();
-				imprimeLista = imprimeLista + "Cï¿½digo.: ("
-						+ s.getSegmentos_Codigo() + ") Cidade.: ("
-						+ s.getSegmentos_Descricao() + ")\n";
+				imprimeLista = imprimeLista + "Código.: ("+ s.getSegmentos_Codigo() + ") Cidade.: ("+ s.getSegmentos_Descricao() + ")\n";
 			}
 			JOptionPane.showMessageDialog(null, imprimeLista);
 		} catch (GeralException ex) {
@@ -2224,18 +2181,18 @@ public class Main {
 		System.out.println("...processo finalizado!");
 	}
 	/**
-	 * FIM DA ï¿½REA ESCRITA POR BRUNO PINHEIRO
+	 * FIM DA ÁREA ESCRITA POR BRUNO PINHEIRO
 	 */
 	
 
 
 /**
- * ï¿½REA ESCRITA POR Thiago Evoï¿½
- * RESPONSAVEL PELAS CLASSES Usuï¿½rio, Funcionario, Nota Fiscal.
+ * ÁREA ESCRITA POR Thiago Evoá
+ * RESPONSAVEL PELAS CLASSES Usuário, Funcionario, Nota Fiscal.
  */
 
 /**
- * Usuï¿½rio
+ * Usuário
  */
 
 	private static void testarSalvarUsuario() throws GeralException {
@@ -2258,5 +2215,5 @@ public class Main {
 }
 
 /**
- * FIM DA ï¿½REA ESCRITA POR Thiago Evoï¿½
+ * FIM DA ÁREA ESCRITA POR Thiago Evoá
  */
