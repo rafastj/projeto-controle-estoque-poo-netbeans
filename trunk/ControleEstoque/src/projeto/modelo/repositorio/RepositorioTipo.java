@@ -3,11 +3,7 @@
  */
 package projeto.modelo.repositorio;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import projeto.conexao.GerenciadorConexao;
@@ -20,28 +16,31 @@ import projeto.modelo.to.Tipo;
  *
  */
 public class RepositorioTipo implements IRepositorioTipo {
-	private IGerenciadorConexao g;
-	
-	public RepositorioTipo () {
-		g = GerenciadorConexao.getInstancia();
-	}
-	public void salvar ( Tipo t ) throws ConexaoException, RepositorioException {
-		Connection c = g.conectar();
-		String sqlSalvar = "INSERT INTO Tipos( tipos_Descricao ) VALUES( ? )";
-		try {
-			PreparedStatement pstm = c.prepareStatement( sqlSalvar );
-			pstm.setString( 1,t.getTipos_Descricao() );
-			pstm.executeUpdate();
-            pstm.close();
-		} catch ( SQLException ex ) {
-			throw new RepositorioException ( ex.getMessage() );
-		} finally {
-			g.desconectar( c );
-		}
-	}
-	
+   
+    private IGerenciadorConexao g;
 
-	public void excluirTipos( int tipos_Codigo ) throws ConexaoException, RepositorioException {
+    public RepositorioTipo () {
+        g = GerenciadorConexao.getInstancia();
+    }
+    
+    @Override
+    public void salvar ( Tipo t ) throws ConexaoException, RepositorioException {
+        Connection c = g.conectar();
+        String sqlSalvar = "INSERT INTO Tipos( tipos_Descricao ) VALUES( ? )";
+        try {
+            PreparedStatement pstm = c.prepareStatement( sqlSalvar );
+            pstm.setString( 1,t.getTipos_Descricao() );
+            pstm.executeUpdate();
+            pstm.close();
+        } catch ( SQLException ex ) {
+                throw new RepositorioException ( ex.getMessage() );
+        } finally {
+                g.desconectar( c );
+        }
+    }
+    
+    @Override
+    public void excluirTipos( int tipos_Codigo ) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
         String sqlExcluir = "DELETE FROM Tipos WHERE (tipos_Codigo = ? )";
         try {
@@ -56,7 +55,8 @@ public class RepositorioTipo implements IRepositorioTipo {
         }
     }
 	
-	public void excluirTipos( String tipos_Descricao ) throws ConexaoException, RepositorioException {
+    @Override
+    public void excluirTipos( String tipos_Descricao ) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
         String sqlExcluir = "DELETE FROM Tipos WHERE (tipos_Descricao = ? )";
         try {
@@ -70,34 +70,33 @@ public class RepositorioTipo implements IRepositorioTipo {
             g.desconectar( c );
         }
     }
-	
-	
+		
+    @Override
     public void alterar(Tipo t) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
         String sqlAlterar = "UPDATE Tipos SET tipos_Descricao = ? WHERE tipos_Codigo = ?";
         try {
-        	PreparedStatement pstm = c.prepareStatement(sqlAlterar);
-        	pstm.setString(1, t.getTipos_Descricao());
-        	pstm.setInt(2, t.getTipos_Codigo());
-        	pstm.executeUpdate();
-        	pstm.close();
+            PreparedStatement pstm = c.prepareStatement(sqlAlterar);
+            pstm.setString(1, t.getTipos_Descricao());
+            pstm.setInt(2, t.getTipos_Codigo());
+            pstm.executeUpdate();
+            pstm.close();
         } catch (SQLException ex){
-        	throw new RepositorioException();
+            throw new RepositorioException();
         } finally {
-        	g.desconectar(c);
+            g.desconectar(c);
         }
     }
 
+    @Override
     public Tipo consultarTipos( int tipos_Codigo ) throws ConexaoException, RepositorioException {
     	Tipo t = null;
         Connection c = g.conectar();
         String sqlConsulta = "SELECT t.tipos_Codigo, t.tipos_Descricao FROM Tipos AS t WHERE ( t.tipos_Codigo = ? )";
-
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsulta);
             pstm.setInt( 1, tipos_Codigo );
             ResultSet rs = pstm.executeQuery();
-
             //verifica se retornou algum registro e cria o Objeto
             if( rs.next() ){
                 t = new Tipo();
@@ -111,17 +110,15 @@ public class RepositorioTipo implements IRepositorioTipo {
         } return t;
     }
     
-
+    @Override
     public Tipo consultarTipos( String tipos_Descricao ) throws ConexaoException, RepositorioException {
     	Tipo t = null;
         Connection c = g.conectar();
         String sqlConsulta = "SELECT t.tipos_Codigo, t.tipos_Descricao FROM Tipos AS t WHERE ( t.tipos_Descricao = ? )";
-
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsulta);
             pstm.setString( 1, tipos_Descricao );
             ResultSet rs = pstm.executeQuery();
-
             /*verifica se retornou algum registro e cria o Objeto*/
             if( rs.next() ){
                 t = new Tipo();
@@ -134,8 +131,8 @@ public class RepositorioTipo implements IRepositorioTipo {
             g.desconectar( c );
         } return t;
     }
-    
-    
+        
+    @Override
     public Collection<Tipo> listarTipo(String Tipos_Descricao) throws ConexaoException,RepositorioException {
         ArrayList <Tipo> lista = new ArrayList <Tipo>();
         Tipo t;

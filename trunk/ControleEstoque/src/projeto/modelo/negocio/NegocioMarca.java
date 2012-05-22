@@ -5,11 +5,9 @@ package projeto.modelo.negocio;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
 import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.erro.RepositorioException;
-
 import projeto.modelo.repositorio.IRepositorioMarca;
 import projeto.modelo.repositorio.RepositorioMarca;
 import projeto.modelo.to.Marca;

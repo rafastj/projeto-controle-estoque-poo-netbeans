@@ -8,7 +8,6 @@ import projeto.erro.GeralException;
 import projeto.erro.RepositorioException;
 import projeto.modelo.repositorio.IRepositorioCliente;
 import projeto.modelo.repositorio.RepositorioCliente;
-import projeto.modelo.to.Fornecedor;
 import projeto.modelo.to.PessoaFisica;
 import projeto.modelo.to.PessoaJuridica;
 
