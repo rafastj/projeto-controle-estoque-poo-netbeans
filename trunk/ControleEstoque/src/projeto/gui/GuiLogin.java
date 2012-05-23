@@ -87,31 +87,48 @@ public class GuiLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void acessoLiberado(){
+        //metodo responsável por libera o acesso ao menu
+         //Destruir da memoria
+         dispose();
+							
+         //criar o objeto do Menu
+         GuiMenu tMenu = new GuiMenu();
+						
+         //chamar o Menu
+         tMenu.setVisible(true);
+    }
+    
     private void jbAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAcessarActionPerformed
         // TODO add your handling code here:
-        //AUTENTICAÇÃO DO LOGIN
+        //AUTENTICAÇÃO DO LOGIN ADMIN
+        if(jLoginField.getText().equals("000") && jPasswordField.getText().toString().equals("000")){
+                
+                    //metodo responsável por libera o acesso ao menu
+                    acessoLiberado();
+                
+            }else{
+        //AUTENTICAÇÃO DO LOGIN COM DAO
         try{
             Usuario userAltenticacao = fachada.consultarUsuario(jLoginField.getText());
             
             if(userAltenticacao != null){
                 if(userAltenticacao.getUsuarios_Senha().equals(jPasswordField.getText().toString())){
-                    //Destruir da memoria
-                    dispose();
-							
-                    //criar o objeto do Menu
-                    GuiMenu tMenu = new GuiMenu();
-						
-                    //chamar o Menu
-                    tMenu.setVisible(true);
+                   
+                    //metodo responsável por libera o acesso ao menu
+                    acessoLiberado();
+                    
                 }else{
                       JOptionPane.showMessageDialog(null, "Senha Incorreta!");
                      }
-            }
+                 }
+        
+       
         }catch(GeralException ex){
               	JOptionPane.showMessageDialog(null, ex.getMessage() );
               }
     }//GEN-LAST:event_jbAcessarActionPerformed
-
+  }   
     /**
      * @param args the command line arguments
      */
@@ -142,6 +159,8 @@ public class GuiLogin extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(GuiLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        
 
         /*
          * Create and display the form
