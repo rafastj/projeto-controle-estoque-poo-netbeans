@@ -13,7 +13,7 @@ import projeto.modelo.repositorio.RepositorioSegmento;
 import projeto.modelo.to.Segmento;
 
 /**
- * @author Bruno Pinheiro
+ * @author BRUNO PINHEIRO
  *
  */
 public class NegocioSegmento {
