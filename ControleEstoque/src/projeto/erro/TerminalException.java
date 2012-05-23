@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package projeto.erro;
 
@@ -7,18 +7,17 @@ package projeto.erro;
  * @author DANIEL VALENÇA
  *
  */
-@SuppressWarnings("serial")
 public class TerminalException extends Exception {
-	
-	public TerminalException(){
+
+    public TerminalException() {
         super();
     }
 
-    public TerminalException(String texto){
+    public TerminalException(String texto) {
         super(texto);
     }
 
-    public TerminalException(Exception e){
+    public TerminalException(Exception e) {
         super(e);
     }
 }
