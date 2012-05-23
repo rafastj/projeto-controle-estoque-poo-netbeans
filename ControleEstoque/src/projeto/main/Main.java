@@ -1057,8 +1057,7 @@ public class Main {
         System.out.println("Iniciando processo...");
         String cdSalvar = JOptionPane.showInputDialog("Digite o nome da cidade");
         try {
-            //@SuppressWarnings("unused")
-            //int validoString = Integer.parseInt(cdSalvar);
+            int validoString = Integer.parseInt(cdSalvar);
             JOptionPane.showMessageDialog(null, "Digite apenas o nome da cidade!");
         } catch (NumberFormatException x) {
             Cidade cd = new Cidade(cdSalvar);
