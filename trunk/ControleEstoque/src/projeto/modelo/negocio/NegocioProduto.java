@@ -31,31 +31,11 @@ public class NegocioProduto {
      */
     public NegocioProduto() {
         rep = new RepositorioProduto();
-    }
-
-    /**
-     * Contrutor inicializa o atributo "reps" responsável pela camada de acesso
-     * a dados
-     */
-    public void NegocioSegmento() {
         reps = new RepositorioSegmento();
-    }
-
-    /**
-     * Contrutor inicializa o atributo "rept" responsável pela camada de acesso
-     * a dados
-     */
-    public void NegocioTipo() {
         rept = new RepositorioTipo();
+         repm = new RepositorioMarca();
     }
 
-    /**
-     * Contrutor inicializa o atributo "repm" responsável pela camada de acesso
-     * a dados
-     */
-    public void NegocioMarca() {
-        repm = new RepositorioMarca();
-    }
 
     /**
      * Verificar os dados antes de salvar este método usa Exceptions para

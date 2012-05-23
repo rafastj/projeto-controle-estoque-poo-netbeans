@@ -58,6 +58,7 @@ public class GuiProduto extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jButton3 = new javax.swing.JButton();
         jValorUnitarioField = new javax.swing.JFormattedTextField();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Produto");
@@ -105,7 +106,14 @@ public class GuiProduto extends javax.swing.JFrame {
             }
         });
 
-        jValorUnitarioField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        jValorUnitarioField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+
+        jButton4.setText("Salvar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,7 +161,9 @@ public class GuiProduto extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jButton1)
-                        .addGap(30, 30, 30)
+                        .addGap(27, 27, 27)
+                        .addComponent(jButton4)
+                        .addGap(29, 29, 29)
                         .addComponent(jButton2)))
                 .addContainerGap())
         );
@@ -198,7 +208,8 @@ public class GuiProduto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -218,8 +229,6 @@ public class GuiProduto extends javax.swing.JFrame {
         limparTodosCampos();
         
         jDescricaoField.grabFocus();//setar o focul
-        
-        
         
        //LISTA DO SEGMENTO
        Segmento sg;
@@ -260,7 +269,6 @@ public class GuiProduto extends javax.swing.JFrame {
 	}
         
         
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -297,6 +305,37 @@ public class GuiProduto extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        
+        try{
+        //preparando o novo produto para ser salvo no DAO
+        Produto pSalvar = new Produto();
+        //pegando o codigo do segmento selecionado
+        Segmento sgsalvar = fachada.consultarSegmentos((String)jSegmentoBox.getSelectedItem());
+        pSalvar.setSegmentos_Codigo(sgsalvar.getSegmentos_Codigo());
+        
+        //pegando o codigo do tipo selecionado
+        Tipo tpsalvar = fachada.consultarTipos((String)jTipoBox.getSelectedItem());
+        pSalvar.setTipos_Codigo(tpsalvar.getTipos_Codigo());
+        
+        //pegando o codigo da marca selecionada
+        Marca masalvar = fachada.consultarMarcas((String)jMarcaBox.getSelectedItem());
+        pSalvar.setMarcas_Codigo(masalvar.getMarcas_Codigo());
+        
+        pSalvar.setProdutos_Descricao(jDescricaoField.getText());
+        pSalvar.setProdutos_ValorVenda(Double.parseDouble(jValorUnitarioField.getText()));
+        pSalvar.setProdutos_Quantidade(Integer.parseInt(jQtdeField.getText()));
+        
+        //CHAMAR O DAO SALVAR
+        fachada.salvarProduto(pSalvar);
+        
+        }catch (GeralException ex){
+		JOptionPane.showMessageDialog(null, ex.getMessage());
+	}
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
     
     // LIMPAR OS CAMPOS DO PRODUTO  
     private void limparTodosCampos(){
@@ -359,6 +398,7 @@ public class GuiProduto extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JTextField jDescricaoField;
     private javax.swing.JTextField jDescricaoField1;
     private javax.swing.JLabel jLabel1;
