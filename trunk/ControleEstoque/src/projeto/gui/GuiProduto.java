@@ -4,17 +4,14 @@
  */
 package projeto.gui;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
-import javax.swing.text.MaskFormatter;
 import projeto.erro.GeralException;
-import projeto.modelo.to.Segmento;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Marca;
 import projeto.modelo.to.Produto;
+import projeto.modelo.to.Segmento;
 import projeto.modelo.to.Tipo;
 
 /**
