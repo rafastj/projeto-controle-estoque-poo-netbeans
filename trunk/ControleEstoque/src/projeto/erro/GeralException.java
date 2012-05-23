@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package projeto.erro;
 
@@ -7,19 +7,17 @@ package projeto.erro;
  * @author DANIEL VALENÇA
  *
  */
-@SuppressWarnings("serial")
 public class GeralException extends Exception {
-	
-	public GeralException(){
+
+    public GeralException() {
         super();
     }
 
-    public GeralException(String texto){
+    public GeralException(String texto) {
         super(texto);
     }
 
-    public GeralException(Exception e){
+    public GeralException(Exception e) {
         super(e);
     }
-    
 }
