@@ -11,6 +11,7 @@ import projeto.modelo.repositorio.RepositorioCliente;
 import projeto.modelo.to.Funcionario;
 import projeto.modelo.to.PessoaFisica;
 import projeto.modelo.to.PessoaJuridica;
+import projeto.validaCampo.ValidaCampo;
 
 /**
  * @author Sandro
@@ -25,7 +26,7 @@ public class NegocioCliente {
     }
 
     public void salvar(PessoaFisica pf) throws GeralException {
-        boolean cpf = ValidaCPF(pf.getPessoasFisica_CPF());
+        boolean cpf = ValidaCampo.ValidaCPF(pf.getPessoasFisica_CPF());
         if (cpf == false) {
             throw new GeralException("CPF Inválido!");
         }
@@ -103,7 +104,7 @@ public class NegocioCliente {
         }
         return pf;
     }
-        public PessoaFisica consultar(int cliente_Codigo) throws GeralException {
+       /* public PessoaFisica consultar(int cliente_Codigo) throws GeralException {
         PessoaFisica pf = null;
         if (cliente_Codigo <= 0) {
             throw new GeralException("Digite o codigo do Cliente!");
@@ -119,6 +120,6 @@ public class NegocioCliente {
             throw new GeralException("O banco de dados não está acessível no momento");
         }
         return fu;
-
+        }*/
 
 }
