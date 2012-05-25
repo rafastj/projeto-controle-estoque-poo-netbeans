@@ -13,10 +13,10 @@ public class Fornecedor {
     private String fornecedores_RazaoSocial;
     private int fornecedores_NumeroResidencia;
     private int enderecos_Codigo;
-    private Endereco codigo = new Endereco();
+    private Endereco end = new Endereco();
 
     public void setCodigo(Endereco codigo) {
-        this.codigo = codigo;
+        this.end = codigo;
     }
 
     public Fornecedor() {
@@ -64,11 +64,11 @@ public class Fornecedor {
     }
 
     public Endereco getCodigo() {
-        return codigo;
+        return end;
     }
 
     public void setEndereco_Codigo(Endereco codigo) {
-        this.codigo = codigo;
+        this.end = codigo;
     }
 
     public void setEnderecos_Codigo(int enderecos_Codigo) {

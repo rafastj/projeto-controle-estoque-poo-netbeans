@@ -123,6 +123,11 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenu1.setText("Cadastro");
 
         jMenuItem1.setText("Cidade");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenu4.setText("Cliente");
@@ -311,6 +316,11 @@ public class GuiMenu extends javax.swing.JFrame {
         errosenha();
         errologin();
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        GuiCidadeNova cdSalvar = new GuiCidadeNova();
+        cdSalvar.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
  
     
     /**
