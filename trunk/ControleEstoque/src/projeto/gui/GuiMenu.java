@@ -63,6 +63,10 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu9 = new javax.swing.JMenu();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
 
         jMenu3.setText("jMenu3");
 
@@ -180,6 +184,29 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenu2.setText("Movimentação");
         jMenuBarra.add(jMenu2);
 
+        jMenu9.setText("Sistema");
+
+        jMenuItem13.setText("Logoff");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem13);
+
+        jMenuItem14.setText("Sair");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem14);
+
+        jMenuItem15.setText("Sobre...");
+        jMenu9.add(jMenuItem15);
+
+        jMenuBarra.add(jMenu9);
+
         setJMenuBar(jMenuBarra);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -265,6 +292,25 @@ public class GuiMenu extends javax.swing.JFrame {
                 } 
             }
         }//GEN-LAST:event_jbAcessarActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        // TODO add your handling code here:
+        int resposta;
+        resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente sair do sistema?");
+
+        if (resposta == JOptionPane.YES_OPTION) {
+        // verifica se o usuário clicou no botão YES
+          System.exit(0);  
+        }
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+        jMenuBarra.setVisible(false);
+        jPGuiLogin.setVisible(true);
+        errosenha();
+        errologin();
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
  
     
     /**
@@ -320,11 +366,15 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBarra;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
