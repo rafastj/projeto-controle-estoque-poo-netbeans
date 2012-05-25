@@ -2120,25 +2120,10 @@ public class Main {
     /**
      * Usuário
      */
-    private static void testarSalvarUsuario() throws GeralException {
 
-        String login = JOptionPane.showInputDialog("Digite o login");
-        String senha = JOptionPane.showInputDialog("Digite a senha");
-        String funcionario = JOptionPane.showInputDialog("Digite o nome do funcionario");
-        Funcionario func = fachada.consultarFuncionario(2);
-        int codigo = func.getFuncionarios_Codigo();
-
-        Usuario user = new Usuario(login, senha, codigo);
-        try {
-            fachada.salvarUsuario(user);
-            JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
-        } catch (GeralException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-        System.out.println("...processo finalizado!");
-    }
-}
 
 /**
  * FIM DA ÁREA ESCRITA POR Thiago Evoá
  */
+    
+}

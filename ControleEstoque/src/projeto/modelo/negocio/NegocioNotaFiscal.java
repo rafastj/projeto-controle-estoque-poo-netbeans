@@ -57,7 +57,7 @@ public class NegocioNotaFiscal {
         try {
             NotaFiscal nfconsult = rep.consultar(nf.getNotasFiscal_Numero());
             if (nfconsult != null) {
-                throw new GeralException("Usuário já está cadastrado!");
+                throw new GeralException("Nota fiscal já está cadastrada!");
             }
             rep.salvar(nf);
             throw new GeralException("Registro foi salvo com sucesso!");
