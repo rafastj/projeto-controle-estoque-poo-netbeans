@@ -4,18 +4,28 @@
  */
 package projeto.gui;
 
+import javax.swing.*;
+import projeto.erro.GeralException;
+import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.Usuario;
+
 /**
  *
  * @author diego
  */
 public class GuiMenu extends javax.swing.JFrame {
-
+    
+     public static Fachada fachada = new Fachada();
     /**
      * Creates new form GuiMenu
      */
     public GuiMenu() {
         initComponents();
+        //extender o frame
+        setLocationRelativeTo(null);//mostra no centro da tela  
+        jMenuBarra.setVisible(false); //esconder a barra de menu 
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,7 +38,13 @@ public class GuiMenu extends javax.swing.JFrame {
 
         jMenu3 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jPGuiLogin = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLoginField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jPasswordField = new javax.swing.JPasswordField();
+        jbAcessar = new javax.swing.JButton();
+        jMenuBarra = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -53,6 +69,56 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenu7.setText("jMenu7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jPGuiLogin.setBorder(javax.swing.BorderFactory.createTitledBorder("Autenticação..."));
+
+        jLabel1.setText("Login.:");
+
+        jLabel2.setText("Senha.:");
+
+        jbAcessar.setText("Acessar");
+        jbAcessar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAcessarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPGuiLoginLayout = new javax.swing.GroupLayout(jPGuiLogin);
+        jPGuiLogin.setLayout(jPGuiLoginLayout);
+        jPGuiLoginLayout.setHorizontalGroup(
+            jPGuiLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPGuiLoginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPGuiLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPGuiLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPasswordField)
+                    .addComponent(jLoginField, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jbAcessar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPGuiLoginLayout.setVerticalGroup(
+            jPGuiLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPGuiLoginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPGuiLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLoginField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPGuiLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbAcessar))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        jLabel1.getAccessibleContext().setAccessibleParent(null);
+        jLabel2.getAccessibleContext().setAccessibleParent(null);
+        jbAcessar.getAccessibleContext().setAccessibleParent(null);
 
         jMenu1.setText("Cadastro");
 
@@ -113,27 +179,34 @@ public class GuiMenu extends javax.swing.JFrame {
 
         jMenu1.add(jMenu8);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBarra.add(jMenu1);
 
         jMenu2.setText("Movimentação");
-        jMenuBar1.add(jMenu2);
+        jMenuBarra.add(jMenu2);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jMenuBarra);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(81, 81, 81)
+                .addComponent(jPGuiLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(jPGuiLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+     
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
              
@@ -148,6 +221,59 @@ public class GuiMenu extends javax.swing.JFrame {
 						
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
+   //metodo responsável por libera o acesso ao menu
+    private void acessoLiberado(){
+         //ocultar o Painel de login
+         jPGuiLogin.setVisible(false);
+         //mostrar a Barra de Menu
+         jMenuBarra.setVisible(true);
+    }
+    
+    //metodo responsável por limpar os campos login e senha
+    private void errologin(){
+        jLoginField.setText("");
+        jPasswordField.setText("");
+        jLoginField.requestFocus();
+    }
+    //metodo de erro de senha
+     private void errosenha(){
+        jPasswordField.setText("");
+        jPasswordField.requestFocus();
+    }
+    
+    private void jbAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAcessarActionPerformed
+        // TODO add your handling code here:
+        //AUTENTICAÇÃO DO LOGIN ADMIN
+        if (jLoginField.getText().equals("000") && jPasswordField.getText().toString().equals("000")) {
+
+            //metodo responsável por libera o acesso ao menu
+            acessoLiberado();
+
+        } else {
+            //AUTENTICAÇÃO DO LOGIN COM DAO
+            try {
+                Usuario userAltenticacao = fachada.consultarUsuario(jLoginField.getText());
+
+                if (userAltenticacao != null) {
+                    if (userAltenticacao.getUsuarios_Senha().equals(jPasswordField.getText().toString())) {
+
+                        //metodo responsável por libera o acesso ao menu
+                        acessoLiberado();
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Senha Incorreta!");
+                        errosenha();
+                        
+                    }
+                }
+            } catch (GeralException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+                errologin();
+                } 
+            }
+        }//GEN-LAST:event_jbAcessarActionPerformed
+ 
+    
     /**
      * @param args the command line arguments
      */
@@ -178,18 +304,21 @@ public class GuiMenu extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(GuiMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /*
          * Create and display the form
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            
             public void run() {
                 new GuiMenu().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField jLoginField;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -198,7 +327,7 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBarra;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
@@ -211,5 +340,9 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JPanel jPGuiLogin;
+    private javax.swing.JPasswordField jPasswordField;
+    private javax.swing.JButton jbAcessar;
     // End of variables declaration//GEN-END:variables
+
 }
