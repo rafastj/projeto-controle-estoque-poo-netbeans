@@ -102,7 +102,9 @@ public class RepositorioUsuario implements IRepositorioUsuario {
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
                 us = new Usuario();
-                us.setFuncionarios_Codigo(funcionarios_Codigo);
+                us.setFuncionarios_Codigo(rs.getInt("us.funcionarios_Codigo"));
+                us.setUsuarios_Login(rs.getString("us.usuarios_Login"));
+                us.setUsuarios_Senha(rs.getString("us.usuarios_Senha"));
             }
         } catch (SQLException e) {
             throw new RepositorioException(e.getMessage());

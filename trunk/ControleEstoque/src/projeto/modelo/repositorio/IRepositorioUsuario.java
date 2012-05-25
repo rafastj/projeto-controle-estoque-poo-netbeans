@@ -16,7 +16,6 @@ public interface IRepositorioUsuario {
 
     /**
      * Insere um Usuario no banco de dados
-     *
      * @param us Usuario
      * @throws ConexaoException
      * @throws RepositorioException
@@ -25,7 +24,6 @@ public interface IRepositorioUsuario {
 
     /**
      * Excluir um Usuario no banco de dados
-     *
      * @param funcionarios_Codigo
      * @throws ConexaoException
      * @throws RepositorioException
@@ -34,7 +32,6 @@ public interface IRepositorioUsuario {
 
     /**
      * Excluir um Usuario no banco de dados
-     *
      * @param funcionarios_Codigo
      * @throws ConexaoException
      * @throws RepositorioException
@@ -43,16 +40,15 @@ public interface IRepositorioUsuario {
 
     /**
      * Alterar um Usuario no banco de dados
-     *
      * @param us Usuário
      * @throws ConexaoException
      * @throws RepositorioException
      */
+    
     public void alterar(Usuario us) throws ConexaoException, RepositorioException;
 
     /**
      * Consultar um Usuario pelo código
-     *
      * @param funcionarios_Codigo
      * @throws ConexaoException
      * @throws RepositorioException
@@ -61,7 +57,6 @@ public interface IRepositorioUsuario {
 
     /**
      * Consutar um Usuário pelo nome
-     *
      * @param funcionarios_Codigo
      * @return
      * @throws ConexaoException
@@ -71,7 +66,6 @@ public interface IRepositorioUsuario {
 
     /**
      * Mostra uma lista de Usuarios pelo codigo
-     *
      * @return
      * @throws ConexaoException
      * @throws RepositorioException
@@ -80,7 +74,6 @@ public interface IRepositorioUsuario {
 
     /**
      * Mostrar uma Lista de Usuarios pelo nome
-     *
      * @param funcionarios_Nome
      * @return
      * @throws ConexaoException

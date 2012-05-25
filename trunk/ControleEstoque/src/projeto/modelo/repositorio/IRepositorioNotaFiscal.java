@@ -16,7 +16,6 @@ public interface IRepositorioNotaFiscal {
 
     /**
      * Insere uma NotaFiscal no banco de dados
-     *
      * @param nf NotaFical
      * @throws ConexaoException
      * @throws RepositorioException
@@ -25,7 +24,6 @@ public interface IRepositorioNotaFiscal {
 
     /**
      * Cancela uma NotaFiscal no banco de dados
-     *
      * @param funcionarios_Codigo
      * @throws ConexaoException
      * @throws RepositorioException
@@ -34,7 +32,6 @@ public interface IRepositorioNotaFiscal {
 
     /**
      * Altera uma NotaFiscal no banco de dados pelo número da nota
-     *
      * @param nf NotaFical
      * @throws ConexaoException
      * @throws RepositorioException
@@ -43,7 +40,6 @@ public interface IRepositorioNotaFiscal {
 
     /**
      * Consultar uma Nota Fiscal no banco de dados
-     *
      * @param funcionarios_Codigo
      * @throws ConexaoException
      * @throws RepositorioException
@@ -51,8 +47,7 @@ public interface IRepositorioNotaFiscal {
     public NotaFiscal consultar(int notasFiscal_Numero) throws ConexaoException, RepositorioException;
 
     /**
-     * Consultar uma lista de NotaFiscal no banco de dados pelo número da nota
-     *
+     * Consultar uma lista de NotaFiscal no banco de dados
      * @return
      * @throws ConexaoException
      * @throws RepositorioException
