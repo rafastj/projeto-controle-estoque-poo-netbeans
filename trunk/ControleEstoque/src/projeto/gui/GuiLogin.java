@@ -40,6 +40,7 @@ public class GuiLogin extends javax.swing.JFrame {
         jbAcessar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Autenticação...");
 
         jLabel1.setText("Login.:");
 

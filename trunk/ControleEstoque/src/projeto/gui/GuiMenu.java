@@ -116,10 +116,6 @@ public class GuiMenu extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        jLabel1.getAccessibleContext().setAccessibleParent(null);
-        jLabel2.getAccessibleContext().setAccessibleParent(null);
-        jbAcessar.getAccessibleContext().setAccessibleParent(null);
-
         jMenu1.setText("Cadastro");
 
         jMenuItem1.setText("Cidade");
@@ -210,9 +206,6 @@ public class GuiMenu extends javax.swing.JFrame {
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
              
-        //Ocultar o Menu
-        this.setVisible(false);
-        
         //CHAMADA DA GUI PRODUTO
         
         GuiProduto gProduto = new GuiProduto();//criei o objeto
