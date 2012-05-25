@@ -8,6 +8,7 @@ import projeto.erro.GeralException;
 import projeto.erro.RepositorioException;
 import projeto.modelo.repositorio.IRepositorioCliente;
 import projeto.modelo.repositorio.RepositorioCliente;
+import projeto.modelo.to.Funcionario;
 import projeto.modelo.to.PessoaFisica;
 import projeto.modelo.to.PessoaJuridica;
 
@@ -102,39 +103,22 @@ public class NegocioCliente {
         }
         return pf;
     }
-
-    public static boolean ValidaCPF(String strCpf) {
-        int d1, d2;
-        int digito1, digito2, resto;
-        int digitoCPF;
-        String nDigResult;
-
-        d1 = d2 = 0;
-        digito1 = digito2 = resto = 0;
-
-        for (int nCount = 1; nCount < strCpf.length() - 1; nCount++) {
-            digitoCPF = Integer.valueOf(strCpf.substring(nCount - 1, nCount)).intValue();
-            d1 = d1 + (11 - nCount) * digitoCPF;
-            d2 = d2 + (12 - nCount) * digitoCPF;
-        };
-        resto = (d1 % 11);
-        if (resto < 2) {
-            digito1 = 0;
-        } else {
-            digito1 = 11 - resto;
+        public PessoaFisica consultar(int cliente_Codigo) throws GeralException {
+        PessoaFisica pf = null;
+        if (cliente_Codigo <= 0) {
+            throw new GeralException("Digite o codigo do Cliente!");
         }
-
-        d2 += 2 * digito1;
-        resto = (d2 % 11);
-
-        if (resto < 2) {
-            digito2 = 0;
-        } else {
-            digito2 = 11 - resto;
+        try {
+            pf = rep.consultar(cliente_Codigo);
+            if (pf == null) {
+                throw new GeralException("Não existe Cliente com esse código!");
+            }
+        } catch (RepositorioException e) {
+            throw new GeralException("Erro de programação!");
+        } catch (ConexaoException e) {
+            throw new GeralException("O banco de dados não está acessível no momento");
         }
+        return fu;
 
-        String nDigVerific = strCpf.substring(strCpf.length() - 2, strCpf.length());
-        nDigResult = String.valueOf(digito1) + String.valueOf(digito2);
-        return nDigVerific.equals(nDigResult);
-    }
+
 }

@@ -13,6 +13,7 @@ import projeto.conexao.IGerenciadorConexao;
 import projeto.erro.ConexaoException;
 import projeto.erro.RepositorioException;
 import projeto.modelo.to.Cliente;
+import projeto.modelo.to.Funcionario;
 import projeto.modelo.to.PessoaFisica;
 import projeto.modelo.to.PessoaJuridica;
 
@@ -157,6 +158,31 @@ public class RepositorioCliente implements IRepositorioCliente {
         }
         return pf;
     }
+        public PessoaFisica consultar(int cliente_Codigo) throws ConexaoException, RepositorioException {
+        PessoaFisica pf = null;
+        Connection c = g.conectar();
+        String sqlConsulta = "SELECT cli.clientes_Codigo,cli.enderecos_Codigo,pf.pessoasfisica_Nome,cli.clientes_NumeroResidencia FROM PessoasFisica AS pf, Clientes as cli WHERE (pf.clientes_Codigo = 1 )";
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlConsulta);
+            pstm.setInt(1, cliente_Codigo);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                pf = new PessoaFisica();
+                pf.setClientes_Codigo(rs.getInt("pf.cliente_Codigo"));
+                pf.setEnderecos_Codigo(rs.getInt("pf.pessoafisica_nome"));
+                pf.setPessoasFisica_Nome(rs.getString("fu.funcionarios_Nome"));
+                pf.setPessoasFisica_CPF(sqlConsulta);
+                pf.setPessoasFisica_Sexo(sqlConsulta);
+                pf.setClientes_NumeroResidencia(rs.getString("fu.Funcionarios_NumeroResidencia"));
+            }
+        } catch (SQLException e) {
+            throw new RepositorioException(e.getMessage());
+        } finally {
+            g.desconectar(c);
+        }
+        return pf;
+    }
+
 
     @Override
     public PessoaJuridica consultarPJ(String pj_CNPJ) throws ConexaoException, RepositorioException {
