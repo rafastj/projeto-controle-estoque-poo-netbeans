@@ -30,7 +30,6 @@ public class NegocioFuncionario {
 
     /**
      * Verifica e valida os dados antes de salvar
-     *
      * @param fu Funcionario
      * @throws GeralException
      */
@@ -64,7 +63,6 @@ public class NegocioFuncionario {
 
     /**
      * Método para efetuar uma consulta pelo codigo do funcionario
-     *
      * @param Funcionarios_Codigo
      * @return Usuario us
      * @throws GeralException
@@ -89,14 +87,13 @@ public class NegocioFuncionario {
 
     /**
      * Método para efetuar uma consulta pelo nome do funcionario
-     *
      * @param funcionarios_Nome
      * @return
      * @throws GeralException
      */
     public Funcionario consultar(String funcionarios_Nome) throws GeralException {
         Funcionario fu = null;
-        if ((funcionarios_Nome.equals(null)) || (funcionarios_Nome.equals(""))) {
+        if ((funcionarios_Nome == null) || (funcionarios_Nome.equals(""))) {
             throw new GeralException("Digite o nome do Usuário!");
         }
         try {
@@ -114,7 +111,6 @@ public class NegocioFuncionario {
 
     /**
      * Valida o código do funcionário antes de efetuar a exclusão.
-     *
      * @param funcinarios_Codigo
      * @return
      */
@@ -137,10 +133,34 @@ public class NegocioFuncionario {
             throw new GeralException("O banco de dados não está acessível!");
         }
     }
+    
+    /**
+     * Valida o código do funcionário antes de efetuar a exclusão.
+     * @param funcionarios_Nome
+     * @throws GeralException 
+     */
+     public void excluir(String funcionarios_Nome) throws GeralException {
+        if ((funcionarios_Nome == null) || (funcionarios_Nome.equals(""))) {
+            throw new GeralException("Digite um códido válido!");
+        }
+        try {
+            Funcionario fu = rep.consultar(funcionarios_Nome);
+            if (fu == null) {
+                throw new GeralException("Funcionario não está cadastrado!");
+            }
+
+            rep.excluir(funcionarios_Nome);
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível!");
+        }
+    }
 
     /**
      * Método para alterar um registro a partir de seu código informado.
-     *
      * @param fu Funcionario
      * @throws GeralException
      */
@@ -167,7 +187,6 @@ public class NegocioFuncionario {
 
     /**
      * Método para listar os funcinarios pelo código
-     *
      * @param funcionarios_Codigo
      * @return
      * @throws GeralException
@@ -181,6 +200,30 @@ public class NegocioFuncionario {
         }
         try {
             lista = (ArrayList<Funcionario>) new RepositorioFuncionario().listar(funcionarios_Codigo);
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Erro de programação!");
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível!");
+        }
+        return lista;
+    }
+    
+    /**
+     * Método para listar os funcinarios pelo nome
+     * @param funcionarios_Codigo
+     * @return
+     * @throws GeralException
+     */
+    public Collection<Funcionario> listar(String funcionarios_Nome) throws GeralException {
+
+        ArrayList<Funcionario> lista;
+
+        if ((funcionarios_Nome == null) || (funcionarios_Nome.equals(""))) {
+            throw new GeralException("Digite o nome de um funcionario!");
+        }
+        try {
+            lista = (ArrayList<Funcionario>) new RepositorioFuncionario().listar(funcionarios_Nome);
 
         } catch (RepositorioException ex) {
             throw new GeralException("Erro de programação!");

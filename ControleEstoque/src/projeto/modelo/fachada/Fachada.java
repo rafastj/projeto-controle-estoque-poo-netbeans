@@ -438,13 +438,17 @@ public class Fachada {
     public void excluirFuncionario(int funcionarios_Codigo) throws GeralException {
         rnFuncionario.excluir(funcionarios_Codigo);
     }
-
+    public void excluirFuncionario(String funcionarios_Nome) throws GeralException {
+        rnFuncionario.excluir(funcionarios_Nome);
+    }
     public void alterarFuncionario(Funcionario fu) throws GeralException {
         rnFuncionario.alterar(fu);
     }
-
     public Collection<Funcionario> listarFuncionario(int funcionarios_Codigo) throws GeralException {
         return rnFuncionario.listar(funcionarios_Codigo);
+    }
+    public Collection<Funcionario> listarFuncionario(String funcionarios_Nome) throws GeralException {
+        return rnFuncionario.listar(funcionarios_Nome);
     }
 
     /**

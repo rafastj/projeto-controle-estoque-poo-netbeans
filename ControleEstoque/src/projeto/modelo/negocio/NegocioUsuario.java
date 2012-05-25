@@ -93,7 +93,7 @@ public class NegocioUsuario {
      */
     public Usuario consultar(String funcionarios_Nome) throws GeralException {
         Usuario us = null;
-        if ((funcionarios_Nome.equals(null)) || (funcionarios_Nome.equals(""))) {
+        if ((funcionarios_Nome == null) || (funcionarios_Nome.equals(""))) {
             throw new GeralException("Digite o nome do Usuário!");
         }
         try {
@@ -142,7 +142,7 @@ public class NegocioUsuario {
      * @return
      */
     public void excluir(String funcionarios_Nome) throws GeralException {
-        if ((funcionarios_Nome.equals(null)) || (funcionarios_Nome.equals(""))) {
+        if ((funcionarios_Nome == null) || (funcionarios_Nome.equals(""))) {
             throw new GeralException("Digite um códido válido!");
         }
         try {
@@ -217,7 +217,7 @@ public class NegocioUsuario {
 
         ArrayList<Usuario> lista;
 
-        if ((funcionarios_Nome.equals(null)) || (funcionarios_Nome.equals(""))) {
+        if ((funcionarios_Nome == null) || (funcionarios_Nome.equals(""))) {
             throw new GeralException("Digite o nome de um usuário!");
         }
         try {
