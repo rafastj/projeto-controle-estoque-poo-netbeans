@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package projeto.gui;
 
 import java.text.DecimalFormat;
@@ -13,6 +9,7 @@ import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFormattedTextField.AbstractFormatterFactory;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
@@ -53,7 +50,7 @@ public class GuiProduto extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtabelaProduto = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -71,6 +68,11 @@ public class GuiProduto extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
+            }
+        });
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
             }
         });
 
@@ -91,7 +93,7 @@ public class GuiProduto extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setToolTipText("");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtabelaProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -117,7 +119,7 @@ public class GuiProduto extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtabelaProduto);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -285,6 +287,22 @@ public class GuiProduto extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        //MOSTRAR TODOS OS REGISTRO DE PRODUTOS
+        Produto p = null;
+        ArrayList<Produto> listaProduto = null;
+        int i = 0;
+        try{
+            listaProduto = ( ArrayList<Produto>)fachada.listarProduto("");
+        } catch (GeralException ex){
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaProduto);
+        jtabelaProduto.setModel(modelo);
+        
+    }//GEN-LAST:event_formComponentShown
     
  
     
@@ -368,10 +386,29 @@ public class GuiProduto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox jSegmentoBox;
-    private javax.swing.JTable jTable1;
     private javax.swing.JComboBox jTipoBox;
     private javax.swing.JButton jbNovo;
     private javax.swing.JTextField jcDescricaoField;
+    private javax.swing.JTable jtabelaProduto;
     // End of variables declaration//GEN-END:variables
+
+    private DefaultTableModel geramodelo(ArrayList<Produto> listaProduto) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn( "descricao" );
+        modelo.addColumn( "valor" );
+        modelo.addColumn( "qtde" );
+        
+        ArrayList<String> valores;
+        int i=0;
+        for (Produto p : listaProduto) {
+            valores = new ArrayList<String>();
+            valores.add( p.getProdutos_Descricao());
+            valores.add( Double.toString(p.getProdutos_ValorVenda()));
+            valores.add( Integer.toString(p.getProdutos_Quantidade()));
+            modelo.insertRow(i, valores.toArray());
+            i++;
+        }
+        return modelo;
+    }
 
 }
