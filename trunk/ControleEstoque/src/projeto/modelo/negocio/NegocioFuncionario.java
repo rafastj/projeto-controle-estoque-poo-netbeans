@@ -141,7 +141,7 @@ public class NegocioFuncionario {
      */
      public void excluir(String funcionarios_Nome) throws GeralException {
         if ((funcionarios_Nome == null) || (funcionarios_Nome.equals(""))) {
-            throw new GeralException("Digite um códido válido!");
+            throw new GeralException("Digite um nome válido!");
         }
         try {
             Funcionario fu = rep.consultar(funcionarios_Nome);

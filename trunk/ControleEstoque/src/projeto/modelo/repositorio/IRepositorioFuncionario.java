@@ -24,7 +24,6 @@ public interface IRepositorioFuncionario {
 
     /**
      * Excluir um Funcionario no banco de dados
-     *
      * @param funcionarios_Codigo
      * @throws ConexaoException
      * @throws RepositorioException

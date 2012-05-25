@@ -379,96 +379,180 @@ public class Fachada {
      * AREA ESCRITA POR Thiago Evoa RESPONSAVEL PELAS CLASSES Usuario,
      * Funcionario, NotaFiscal.
      */
+    
     /**
-     * Thiago Evoa salvar Usuario Responsável Thiago
-     *
+     * Salvar usuario!
      * @param us Salvar usuario
      * @throws GeralException
      */
     public void salvarUsuario(Usuario us) throws GeralException {
         rnUsuario.salvar(us);
     }
-
+    /**
+       * Excluir usuario pelo codigo!
+       * @param funcionarios_Codigo
+       * @throws GeralException 
+       */
     public void excluirUsuario(int funcionarios_Codigo) throws GeralException {
         rnUsuario.excluir(funcionarios_Codigo);
     }
-
+    
+    /**
+       * Excluir usuario pelo nome!
+       * @param funcionarios_Codigo
+       * @throws GeralException 
+       */
     public void excluirUsuario(String funcionarios_Nome) throws GeralException {
         rnUsuario.excluir(funcionarios_Nome);
     }
-
+    /**
+       * Alterar usuario!
+       * @param funcionarios_Codigo
+       * @throws GeralException 
+       */
     public void alterarUsuario(Usuario us) throws GeralException {
         rnUsuario.alterar(us);
     }
-
+    
+    /**
+       * Consultar usuario pelo codigo!
+       * @param funcionarios_Codigo
+       * @throws GeralException 
+       */
     public Usuario consultarUsuario(int funcionarios_Codigo) throws GeralException {
         return rnUsuario.consultar(funcionarios_Codigo);
     }
-
+    /**
+       * Consultar usuario pelo nome!
+       * @param funcionarios_Codigo
+       * @throws GeralException 
+       */
     public Usuario consultarUsuario(String funcionarios_Nome) throws GeralException {
         return rnUsuario.consultar(funcionarios_Nome);
     }
-
+    
+    /**
+       * Listar usuario pelo codigo!
+       * @param funcionarios_Codigo
+       * @throws GeralException 
+       */
     public Collection<Usuario> listarUsuario(int funcionarios_Codigo) throws GeralException {
         return rnUsuario.listar(funcionarios_Codigo);
     }
-
+    
+    /**
+       * Listar usuario pelo nome!
+       * @param funcionarios_Codigo
+       * @throws GeralException 
+       */
     public Collection<Usuario> listarUsuario(String funcionarios_Nome) throws GeralException {
         return rnUsuario.listar(funcionarios_Nome);
     }
 
     /**
-     * Thiago Evoa salvar Funcionario Responsável Thiago
-     *
+     * Salvar Funcionario!
      * @param fu Salvar Funcionario
      * @throws GeralException
      */
     public void salvarFuncionario(Funcionario fu) throws GeralException {
         rnFuncionario.salvar(fu);
     }
-
+    
+     /**
+     * Consultar Funcionario pelo codigo!
+     * @param fu Salvar Funcionario
+     * @throws GeralException
+     */
     public Funcionario consultarFuncionario(int funcionarios_Codigo) throws GeralException {
         return rnFuncionario.consultar(funcionarios_Codigo);
     }
-
+    
+    /**
+     * Consultar Funcionario pelo nome!
+     * @param fu Salvar Funcionario
+     * @throws GeralException
+     */
     public Funcionario consultarFuncionario(String funcionarios_Nome) throws GeralException {
         return rnFuncionario.consultar(funcionarios_Nome);
     }
-
+    
+    /**
+     * Excluir Funcionario pelo codigo!
+     * @param fu Salvar Funcionario
+     * @throws GeralException
+     */
     public void excluirFuncionario(int funcionarios_Codigo) throws GeralException {
         rnFuncionario.excluir(funcionarios_Codigo);
     }
+    
+    /**
+     * Excluir Funcionario pelo nome!
+     * @param fu Salvar Funcionario
+     * @throws GeralException
+     */
     public void excluirFuncionario(String funcionarios_Nome) throws GeralException {
         rnFuncionario.excluir(funcionarios_Nome);
     }
+    
+    /**
+     * Alterar Funcionario!
+     * @param fu Salvar Funcionario
+     * @throws GeralException
+     */
     public void alterarFuncionario(Funcionario fu) throws GeralException {
         rnFuncionario.alterar(fu);
     }
+    
+    /**
+     * Listar Funcionario pelo codigo!
+     * @param fu Salvar Funcionario
+     * @throws GeralException
+     */
     public Collection<Funcionario> listarFuncionario(int funcionarios_Codigo) throws GeralException {
         return rnFuncionario.listar(funcionarios_Codigo);
     }
+    
+    /**
+     * Listar Funcionario pelo nome!
+     * @param fu Salvar Funcionario
+     * @throws GeralException
+     */
     public Collection<Funcionario> listarFuncionario(String funcionarios_Nome) throws GeralException {
         return rnFuncionario.listar(funcionarios_Nome);
     }
 
     /**
-     * Thiago Evoa salvar NotaFiscal Responsável Thiago
-     *
+     * Salvar Nota Fiscal!
      * @param nf Salvar NotaFiscal
      * @throws GeralException
      */
     public void salvar(NotaFiscal nf) throws GeralException {
         rnNotaFiscal.salvar(nf);
     }
-
+    
+    /**
+     * Consultar Nota Fiscal!
+     * @param nf Salvar NotaFiscal
+     * @throws GeralException
+     */
     public NotaFiscal consultar(int notasFiscal_Numero) throws GeralException {
         return rnNotaFiscal.consultar(notasFiscal_Numero);
     }
-
+    
+    /**
+     * Cancelar Nota Fiscal!
+     * @param nf Salvar NotaFiscal
+     * @throws GeralException
+     */
     public void cancelar(int notasFiscal_Numero) throws GeralException {
         rnNotaFiscal.cancelar(notasFiscal_Numero);
     }
-
+    
+    /**
+     * Listar Nota Fiscal!
+     * @param nf Salvar NotaFiscal
+     * @throws GeralException
+     */
     public Collection<NotaFiscal> listar(int notasFiscal_Numero) throws GeralException {
         return rnNotaFiscal.listar(notasFiscal_Numero);
     }
