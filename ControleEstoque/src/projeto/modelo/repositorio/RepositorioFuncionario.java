@@ -60,6 +60,22 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
     }
 
     @Override
+    public void excluir(String funcionarios_Nome) throws ConexaoException, RepositorioException {
+        Connection c = g.conectar();
+        String sqlExcluir = "DELETE FROM usuario WHERE (funcionarios_Codigo = ?)";
+        try {
+            java.sql.PreparedStatement pstm = c.prepareStatement(sqlExcluir);
+            pstm.setString(1, funcionarios_Nome);
+            pstm.executeUpdate();
+            pstm.close();
+        } catch (SQLException ex) {
+            throw new RepositorioException(ex.getMessage());
+        } finally {
+            g.desconectar(c);
+        }
+    }
+
+    @Override
     public void alterar(Funcionario fu) throws RepositorioException, ConexaoException {
         Connection c = g.conectar();
         String sqlAlterar = "UPDATE Funcionarios set (?,?) WHERE funcionarios_Codigo (?)";
@@ -127,6 +143,29 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
 
     @Override
     public Collection<Funcionario> listar(int funcionarios_Codigo) throws ConexaoException, RepositorioException {
+        ArrayList<Funcionario> lista = new ArrayList<Funcionario>();
+        Funcionario fu;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT funcionarios_Codigo,enderecos_Codigo,funcionarios_Nome,Funcionarios_NumeroResidencia FROM Funcionarios";
+        try {
+            Statement stm = c.createStatement();
+            ResultSet rs = stm.executeQuery(sqlLista);
+            while (rs.next()) {
+                fu = new Funcionario();
+                fu.setFuncionarios_Codigo(rs.getInt("funcionarios_Codigo"));
+                fu.setFuncionarios_Nome(rs.getString("funcionarios_Nome"));
+                fu.setFuncionarios_NumeroResidencia(rs.getString("funcionarios_NumeroResidencia"));
+                lista.add(fu);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar(c);
+        }
+    }
+    
+    public Collection<Funcionario> listar(String funcionarios_Nome) throws ConexaoException, RepositorioException {
         ArrayList<Funcionario> lista = new ArrayList<Funcionario>();
         Funcionario fu;
         Connection c = g.conectar();

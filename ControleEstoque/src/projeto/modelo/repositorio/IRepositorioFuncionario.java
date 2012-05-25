@@ -16,7 +16,6 @@ public interface IRepositorioFuncionario {
 
     /**
      * Insere um Funcionario no banco de dados
-     *
      * @param fu Funcionario
      * @throws ConexaoException
      * @throws RepositorioException
@@ -33,8 +32,15 @@ public interface IRepositorioFuncionario {
     public void excluir(int funcionarios_Codigo) throws ConexaoException, RepositorioException;
 
     /**
+     * Excluir um Funcionario no banco de dados
+     * @param fu Funcionario
+     * @throws ConexaoException
+     * @throws RepositorioException
+     */
+    public void excluir(String funcionarios_Nome) throws ConexaoException, RepositorioException;
+    
+    /**
      * Alterar um Funcionario no banco de dados
-     *
      * @param fu Funcionario
      * @throws ConexaoException
      * @throws RepositorioException
@@ -43,7 +49,6 @@ public interface IRepositorioFuncionario {
 
     /**
      * Consultar um Funcionario pelo código
-     *
      * @param funcionarios_Codigo
      * @throws ConexaoException
      * @throws RepositorioException
@@ -52,7 +57,6 @@ public interface IRepositorioFuncionario {
 
     /**
      * Consultar um Funcionario pelo nome
-     *
      * @param funcionarios_Codigo
      * @throws ConexaoException
      * @throws RepositorioException
@@ -61,7 +65,6 @@ public interface IRepositorioFuncionario {
 
     /**
      * Mostra uma lista de Funcionario pelo código
-     *
      * @return
      * @throws ConexaoException
      * @throws RepositorioException
