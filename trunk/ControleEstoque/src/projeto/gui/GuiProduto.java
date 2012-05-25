@@ -4,9 +4,18 @@
  */
 package projeto.gui;
 
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFormattedTextField.AbstractFormatterFactory;
 import javax.swing.JOptionPane;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
+import javax.swing.text.NumberFormatter;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Marca;
@@ -38,7 +47,7 @@ public class GuiProduto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jbNovo = new javax.swing.JButton();
         jSegmentoBox = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -54,11 +63,11 @@ public class GuiProduto extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jDescricaoField1 = new javax.swing.JTextField();
+        jcDescricaoField = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jButton3 = new javax.swing.JButton();
         jValorUnitarioField = new javax.swing.JFormattedTextField();
-        jButton4 = new javax.swing.JButton();
+        jbSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Produto");
@@ -68,10 +77,10 @@ public class GuiProduto extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Novo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbNovo.setText("Novo");
+        jbNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbNovoActionPerformed(evt);
             }
         });
 
@@ -106,12 +115,12 @@ public class GuiProduto extends javax.swing.JFrame {
             }
         });
 
-        jValorUnitarioField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+        jValorUnitarioField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
 
-        jButton4.setText("Salvar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jbSalvar.setText("Salvar");
+        jbSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jbSalvarActionPerformed(evt);
             }
         });
 
@@ -133,7 +142,7 @@ public class GuiProduto extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDescricaoField1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jcDescricaoField, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -160,9 +169,9 @@ public class GuiProduto extends javax.swing.JFrame {
                                     .addComponent(jDescricaoField, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jButton1)
+                        .addComponent(jbNovo)
                         .addGap(27, 27, 27)
-                        .addComponent(jButton4)
+                        .addComponent(jbSalvar)
                         .addGap(29, 29, 29)
                         .addComponent(jButton2)))
                 .addContainerGap())
@@ -175,7 +184,7 @@ public class GuiProduto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jDescricaoField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcDescricaoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,9 +216,9 @@ public class GuiProduto extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(jbNovo)
                     .addComponent(jButton2)
-                    .addComponent(jButton4))
+                    .addComponent(jbSalvar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -223,7 +232,7 @@ public class GuiProduto extends javax.swing.JFrame {
         gMenu.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
         // TODO add your handling code here:
         //Metodo para limpar os campos
         limparTodosCampos();
@@ -269,11 +278,13 @@ public class GuiProduto extends javax.swing.JFrame {
 	}
         
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbNovoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
        jDescricaoField.setText((String)jSegmentoBox.getSelectedItem());
+       
+      
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -282,10 +293,11 @@ public class GuiProduto extends javax.swing.JFrame {
         limparTodosCampos();
         
         try{
-            Produto pr = fachada.consultarDescricao(jDescricaoField1.getText());
+            Produto pr = fachada.consultarDescricao(jcDescricaoField.getText());
             if(pr != null){
                              
                 jDescricaoField.setText(pr.getProdutos_Descricao());
+                
                 jValorUnitarioField.setText(String.valueOf(pr.getProdutos_ValorVenda()));
                 jQtdeField.setText(String.valueOf(pr.getProdutos_Quantidade()));
                 
@@ -306,8 +318,8 @@ public class GuiProduto extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+    private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
+        // TODO add your handling code here:    
         
         try{
         //preparando o novo produto para ser salvo no DAO
@@ -325,7 +337,11 @@ public class GuiProduto extends javax.swing.JFrame {
         pSalvar.setMarcas_Codigo(masalvar.getMarcas_Codigo());
         
         pSalvar.setProdutos_Descricao(jDescricaoField.getText());
-        pSalvar.setProdutos_ValorVenda(Double.parseDouble(jValorUnitarioField.getText()));
+        
+        //CONVERTE O VALOR INFORMADO
+        String converterValor =  converterValorReal(jValorUnitarioField.getText());
+        pSalvar.setProdutos_ValorVenda(Double.parseDouble(converterValor));
+        
         pSalvar.setProdutos_Quantidade(Integer.parseInt(jQtdeField.getText()));
         
         //CHAMAR O DAO SALVAR
@@ -335,7 +351,7 @@ public class GuiProduto extends javax.swing.JFrame {
 		JOptionPane.showMessageDialog(null, ex.getMessage());
 	}
         
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jbSalvarActionPerformed
     
     // LIMPAR OS CAMPOS DO PRODUTO  
     private void limparTodosCampos(){
@@ -349,6 +365,28 @@ public class GuiProduto extends javax.swing.JFrame {
                 jQtdeField.setText("");   
     }
     
+    //CONVERTE O VALOR DOUBLE PARA SALVAR DO BD
+    private String converterValorReal(String valorx){
+        String valorConvertido = "";
+        
+        for(int i =0,x =1; i< valorx.length(); i++,x++){
+            
+            if(valorx.substring(i,x).equals(",")){
+                
+                valorConvertido = valorConvertido + ".";
+                
+            }else if(!valorx.substring(i,x).equals(".")){
+                
+                 valorConvertido = valorConvertido + valorx.substring(i,x);
+                
+            }
+        }
+        
+        return valorConvertido;
+    }
+    
+
+     
     /**
      * @param args the command line arguments
      */
@@ -395,12 +433,9 @@ public class GuiProduto extends javax.swing.JFrame {
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JTextField jDescricaoField;
-    private javax.swing.JTextField jDescricaoField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -416,5 +451,9 @@ public class GuiProduto extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JComboBox jTipoBox;
     private javax.swing.JFormattedTextField jValorUnitarioField;
+    private javax.swing.JButton jbNovo;
+    private javax.swing.JButton jbSalvar;
+    private javax.swing.JTextField jcDescricaoField;
     // End of variables declaration//GEN-END:variables
+
 }
