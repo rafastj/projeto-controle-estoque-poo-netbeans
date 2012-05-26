@@ -25,6 +25,7 @@ import projeto.modelo.to.Tipo;
  * @author diego
  */
 public class GuiProduto extends javax.swing.JFrame {
+    ArrayList<Produto> listaProduto = null;
     
     
     public static Fachada fachada = new Fachada();
@@ -51,7 +52,7 @@ public class GuiProduto extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtabelaProduto = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jbApagar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jcDescricaoField = new javax.swing.JTextField();
@@ -95,9 +96,6 @@ public class GuiProduto extends javax.swing.JFrame {
 
         jtabelaProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
                 {null, null, null, null, null, null}
             },
             new String [] {
@@ -132,7 +130,12 @@ public class GuiProduto extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
         );
 
-        jButton1.setText("Apagar");
+        jbApagar.setText("Apagar");
+        jbApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbApagarActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtro"));
 
@@ -208,14 +211,15 @@ public class GuiProduto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jbNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jbApagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(12, 12, 12))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,9 +233,9 @@ public class GuiProduto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2)
                         .addGap(13, 13, 13)
-                        .addComponent(jButton1))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jbApagar))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -292,7 +296,7 @@ public class GuiProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
         //MOSTRAR TODOS OS REGISTRO DE PRODUTOS
         Produto p = null;
-        ArrayList<Produto> listaProduto = null;
+        //ArrayList<Produto> listaProduto = null;
         int i = 0;
         try{
             listaProduto = ( ArrayList<Produto>)fachada.listarProduto("");
@@ -303,6 +307,12 @@ public class GuiProduto extends javax.swing.JFrame {
         jtabelaProduto.setModel(modelo);
         
     }//GEN-LAST:event_formComponentShown
+
+    private void jbApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbApagarActionPerformed
+        // TODO add your handling code here:
+        Produto p = listaProduto.get(jtabelaProduto.getSelectedRow());
+        
+    }//GEN-LAST:event_jbApagarActionPerformed
     
  
     
@@ -374,7 +384,6 @@ public class GuiProduto extends javax.swing.JFrame {
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -387,6 +396,7 @@ public class GuiProduto extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox jSegmentoBox;
     private javax.swing.JComboBox jTipoBox;
+    private javax.swing.JButton jbApagar;
     private javax.swing.JButton jbNovo;
     private javax.swing.JTextField jcDescricaoField;
     private javax.swing.JTable jtabelaProduto;
@@ -394,9 +404,12 @@ public class GuiProduto extends javax.swing.JFrame {
 
     private DefaultTableModel geramodelo(ArrayList<Produto> listaProduto) {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn( "descricao" );
-        modelo.addColumn( "valor" );
-        modelo.addColumn( "qtde" );
+        modelo.addColumn( "Descrição" );
+        modelo.addColumn( "Valor Unit." );
+        modelo.addColumn( "Qtde" );
+        modelo.addColumn( "Marca" );
+        modelo.addColumn( "Tipo" );
+        modelo.addColumn( "Segmento" );
         
         ArrayList<String> valores;
         int i=0;
@@ -405,6 +418,9 @@ public class GuiProduto extends javax.swing.JFrame {
             valores.add( p.getProdutos_Descricao());
             valores.add( Double.toString(p.getProdutos_ValorVenda()));
             valores.add( Integer.toString(p.getProdutos_Quantidade()));
+            valores.add( p.getMarcas().getMarcas_Descricao());
+            valores.add( p.getTipo().getTipos_Descricao());
+            valores.add( p.getSegmentos().getSegmentos_Descricao());
             modelo.insertRow(i, valores.toArray());
             i++;
         }
