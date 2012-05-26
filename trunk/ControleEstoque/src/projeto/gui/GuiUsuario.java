@@ -181,6 +181,7 @@ public class GuiUsuario extends javax.swing.JFrame {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 new GuiUsuario().setVisible(true);
             }
