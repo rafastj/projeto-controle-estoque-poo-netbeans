@@ -190,7 +190,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-              <Component id="jPGuiLogin" min="-2" max="-2" attributes="0"/>
+              <Component id="jPGuiLogin" max="32767" attributes="0"/>
               <EmptySpace pref="86" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -199,7 +199,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-              <Component id="jPGuiLogin" min="-2" max="-2" attributes="0"/>
+              <Component id="jPGuiLogin" max="32767" attributes="0"/>
               <EmptySpace pref="113" max="32767" attributes="0"/>
           </Group>
       </Group>
