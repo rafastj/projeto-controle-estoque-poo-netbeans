@@ -1,6 +1,12 @@
 package projeto.gui;
 
 import java.util.ArrayList;
+import java.util.Currency;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFormattedTextField.AbstractFormatterFactory;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projeto.erro.GeralException;
@@ -12,8 +18,8 @@ import projeto.modelo.to.Produto;
  * @author diego
  */
 public class GuiProduto extends javax.swing.JFrame {
-    ArrayList<Produto> listaProduto = null;
     
+    ArrayList<Produto> listaProduto = null;
     
     public static Fachada fachada = new Fachada();
     /**
@@ -35,7 +41,7 @@ public class GuiProduto extends javax.swing.JFrame {
     private void initComponents() {
 
         jbNovo = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Alterar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtabelaProduto = new javax.swing.JTable();
@@ -71,10 +77,10 @@ public class GuiProduto extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Atualizar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Alterar.setText("Alterar");
+        Alterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                AlterarActionPerformed(evt);
             }
         });
 
@@ -111,7 +117,7 @@ public class GuiProduto extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,7 +208,7 @@ public class GuiProduto extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Alterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jbNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jbApagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(12, 12, 12))
@@ -219,7 +225,7 @@ public class GuiProduto extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbNovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
+                        .addComponent(Alterar)
                         .addGap(13, 13, 13)
                         .addComponent(jbApagar))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -238,15 +244,14 @@ public class GuiProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
         GuiProdutoNovo gpnovo = new GuiProdutoNovo();
         gpnovo.setVisible(true);
-   
     }//GEN-LAST:event_jbNovoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
         // TODO add your handling code here:
        
        
       
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_AlterarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:  
@@ -324,8 +329,6 @@ public class GuiProduto extends javax.swing.JFrame {
         
         return valorConvertido;
     }
-    
-
      
     /**
      * @param args the command line arguments
@@ -374,7 +377,7 @@ public class GuiProduto extends javax.swing.JFrame {
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton Alterar;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
@@ -406,7 +409,9 @@ public class GuiProduto extends javax.swing.JFrame {
         for (Produto p : listaProduto) {
             valores = new ArrayList<String>();
             valores.add( p.getProdutos_Descricao());
-            valores.add( Double.toString(p.getProdutos_ValorVenda()));
+            //recebe a conversão de double para string incluindo no formato Moeda
+            String valorVenda = formataMoeda(p.getProdutos_ValorVenda());
+            valores.add( valorVenda );
             valores.add( Integer.toString(p.getProdutos_Quantidade()));
             valores.add( p.getMarcas().getMarcas_Descricao());
             valores.add( p.getTipo().getTipos_Descricao());
@@ -417,4 +422,12 @@ public class GuiProduto extends javax.swing.JFrame {
         return modelo;
     }
 
+private String formataMoeda(double valormodeda){
+java.text.DecimalFormat df = new java.text.DecimalFormat("###,###,##0.00");
+return df.format(valormodeda);
 }
+    
+
+}
+
+

@@ -37,7 +37,7 @@
                       <Component id="jPanel1" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButton2" max="32767" attributes="0"/>
+                          <Component id="Alterar" max="32767" attributes="0"/>
                           <Component id="jbNovo" alignment="0" max="32767" attributes="0"/>
                           <Component id="jbApagar" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -59,7 +59,7 @@
                   <Group type="102" attributes="0">
                       <Component id="jbNovo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <Component id="Alterar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       <Component id="jbApagar" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -79,12 +79,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbNovoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="Alterar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Atualizar"/>
+        <Property name="text" type="java.lang.String" value="Alterar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AlterarActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
@@ -100,12 +100,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane1" alignment="0" pref="555" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" alignment="0" pref="563" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane1" alignment="0" pref="369" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" alignment="0" pref="373" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
