@@ -22,22 +22,40 @@
     </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBarra">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="jMenuCadastro">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cadastro"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
+            <Menu class="javax.swing.JMenu" name="jMenuCidade">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cidade"/>
               </Properties>
-            </MenuItem>
-            <Menu class="javax.swing.JMenu" name="jMenu4">
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuTabelaCidade">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Cidade"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuTabelaCidadeActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuCidadeNova">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Nova Cidade"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuCidadeNovaActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="jMenuCliente">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cliente"/>
               </Properties>
               <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuClienteNovo">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Novo Cliente"/>
                   </Properties>
@@ -163,7 +181,6 @@
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Menu"/>
     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-      <Color id="Cursor Default"/>
       <Color id="Cursor padr&#xe3;o"/>
     </Property>
   </Properties>
