@@ -1420,7 +1420,7 @@ public class Main {
         System.out.println("Tetando consulta");
 
         try {
-            Produto p = fachada.consultarDescricao("Camisa");
+            Produto p = fachada.consultarProduto("Camisa");
             JOptionPane.showMessageDialog(null, " CodigoProduto.: (" + p.getProdutos_Codigo() + ") CodigoSegmento.: (" + p.getSegmentos_Codigo() + ") CodigoTipo.: (" + p.getTipos_Codigo() + ") CodigoMarca.: (" + p.getMarcas_Codigo() + ") Descriï¿½ï¿½o.: (" + p.getProdutos_Descricao() + ") Quantidade.: (" + p.getProdutos_Quantidade() + ") ValorVeda.: (" + p.getProdutos_ValorVenda() + ")");
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -1435,7 +1435,7 @@ public class Main {
         System.out.println("Tetando consulta");
 
         try {
-            Produto p = fachada.consultarCodigo(1);
+            Produto p = fachada.consultarProduto(1);
             JOptionPane.showMessageDialog(null, " CodigoProduto.: (" + p.getProdutos_Codigo() + ") CodigoSegmento.: (" + p.getSegmentos_Codigo() + ") CodigoTipo.: (" + p.getTipos_Codigo() + ") CodigoMarca.: (" + p.getMarcas_Codigo() + ") Descriï¿½ï¿½o.: (" + p.getProdutos_Descricao() + ") Quantidade.: (" + p.getProdutos_Quantidade() + ") ValorVeda.: (" + p.getProdutos_ValorVenda() + ")");
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
