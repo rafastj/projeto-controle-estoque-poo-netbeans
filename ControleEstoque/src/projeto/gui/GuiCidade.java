@@ -11,17 +11,26 @@
 
 package projeto.gui;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import projeto.erro.GeralException;
+import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.Cidade;
+
 /**
  *
  * @author aluno
  */
 public class GuiCidade extends javax.swing.JFrame {
-
+    ArrayList<Cidade> listaCidade = null;
     /** Creates new form GuiCidade */
     public GuiCidade() {
         initComponents();
         //.setLocationRelativeTo(null);
     }
+    
+    public static Fachada fachada = new Fachada();
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -51,8 +60,6 @@ public class GuiCidade extends javax.swing.JFrame {
         setLocationByPlatform(true);
 
         jPanelFiltro.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtro"));
-        jPanelFiltro.setToolTipText("null");
-        jPanelFiltro.setName("null");
 
         label1Codigo.setText("Código.:");
 
@@ -139,9 +146,16 @@ public class GuiCidade extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableListaCidades.setColumnSelectionAllowed(true);
         jTableListaCidades.setDragEnabled(true);
         jTableListaCidades.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTableListaCidades.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jTableListaCidadesComponentShown(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableListaCidades);
+        jTableListaCidades.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         javax.swing.GroupLayout jPanelListaLayout = new javax.swing.GroupLayout(jPanelLista);
         jPanelLista.setLayout(jPanelListaLayout);
@@ -201,11 +215,26 @@ public class GuiCidade extends javax.swing.JFrame {
         cdSalvar.setVisible(true);
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
+    private void jTableListaCidadesComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTableListaCidadesComponentShown
+        //MOSTRAR TODOS OS REGISTRO DE PRODUTOS
+        Cidade cd = null;
+        //ArrayList<Produto> listaProduto = null;
+        int i = 0;
+        try {
+            listaCidade = ( ArrayList<Cidade>)fachada.listarCidade("");
+        } catch (GeralException ex){
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaCidade);
+        jTableListaCidades.setModel(modelo);
+    }//GEN-LAST:event_jTableListaCidadesComponentShown
+
     /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new GuiCidade().setVisible(true);
             }
@@ -227,5 +256,21 @@ public class GuiCidade extends javax.swing.JFrame {
     private java.awt.Label label1Codigo;
     private java.awt.Label label2Cidade;
     // End of variables declaration//GEN-END:variables
-
+    
+    private DefaultTableModel geramodelo(ArrayList<Cidade> listaCidade) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn( "Código" );
+        modelo.addColumn( "Nome da Cidade" );
+       
+        ArrayList<String> valores;
+        int i=0;
+        for (Cidade cd : listaCidade) {
+            valores = new ArrayList<String>();
+            valores.add( Integer.toString(cd.getCidades_Codigo()));
+            valores.add( cd.getCidades_Nome());
+            modelo.insertRow(i, valores.toArray());
+            i++;
+        }
+        return modelo;
+    }
 }
