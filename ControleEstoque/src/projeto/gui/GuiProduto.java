@@ -1,12 +1,6 @@
 package projeto.gui;
 
 import java.util.ArrayList;
-import java.util.Currency;
-import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFormattedTextField.AbstractFormatterFactory;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projeto.erro.GeralException;
@@ -18,17 +12,17 @@ import projeto.modelo.to.Produto;
  * @author diego
  */
 public class GuiProduto extends javax.swing.JFrame {
-    
+
     ArrayList<Produto> listaProduto = null;
-    
     public static Fachada fachada = new Fachada();
+
     /**
      * Creates new form GuiProduto
      */
     public GuiProduto() {
         initComponents();
         setLocationRelativeTo(null);//mostra no centro da tela  
-        
+
     }
 
     /**
@@ -259,41 +253,35 @@ public class GuiProduto extends javax.swing.JFrame {
 
     private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
         // TODO add your handling code here:
-       
-      
     }//GEN-LAST:event_AlterarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:  
         //Metodo para limpar os campos
-   
         /**
-        try{
-            Produto pr = fachada.consultarDescricao(jcDescricaoField.getText());
-            if(pr != null){
-                             
-               
-                * jDescricaoField.setText(pr.getProdutos_Descricao());
-                
-                jValorUnitarioField.setText(String.valueOf(pr.getProdutos_ValorVenda()));
-                jQtdeField.setText(String.valueOf(pr.getProdutos_Quantidade()));
-                
-                Segmento sg = fachada.consultarSegmentos(pr.getSegmentos_Codigo());
-                jSegmentoBox.addItem(sg.getSegmentos_Descricao());
-                
-                Tipo tp = fachada.consultarTipos(pr.getTipos_Codigo());
-                jTipoBox.addItem(tp.getTipos_Descricao());
-                
-                Marca ma = fachada.consultarMarcas(pr.getMarcas_Codigo());
-                jMarcaBox.addItem(ma.getMarcas_Descricao());
-                
-            }
-        }catch (GeralException ex){
-		JOptionPane.showMessageDialog(null, ex.getMessage());
-	}
-        */ 
-        
-        
+         * try{ Produto pr =
+         * fachada.consultarDescricao(jcDescricaoField.getText()); if(pr !=
+         * null){
+         *
+         *
+         * jDescricaoField.setText(pr.getProdutos_Descricao());
+         *
+         * jValorUnitarioField.setText(String.valueOf(pr.getProdutos_ValorVenda()));
+         * jQtdeField.setText(String.valueOf(pr.getProdutos_Quantidade()));
+         *
+         * Segmento sg = fachada.consultarSegmentos(pr.getSegmentos_Codigo());
+         * jSegmentoBox.addItem(sg.getSegmentos_Descricao());
+         *
+         * Tipo tp = fachada.consultarTipos(pr.getTipos_Codigo());
+         * jTipoBox.addItem(tp.getTipos_Descricao());
+         *
+         * Marca ma = fachada.consultarMarcas(pr.getMarcas_Codigo());
+         * jMarcaBox.addItem(ma.getMarcas_Descricao());
+         *
+         * }
+         * }catch (GeralException ex){ JOptionPane.showMessageDialog(null,
+         * ex.getMessage()); }
+         */
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -305,58 +293,56 @@ public class GuiProduto extends javax.swing.JFrame {
     private void jbApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbApagarActionPerformed
         // TODO add your handling code here:
         int resposta;
-       
-        try{
-        //pegar o os dados do produto selecionado
-        Produto p = listaProduto.get(jtabelaProduto.getSelectedRow());
-        
-        resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Apagar ?","",JOptionPane.YES_NO_OPTION);
-        if (resposta == JOptionPane.YES_OPTION) {
-        
-        //consulta a descrição do produto selecionado
-        Produto pconsul = fachada.consultarProduto(p.getProdutos_Descricao());
-        
-        if(pconsul != null){       //seta o codigo do produto selecionado da consulta
-            fachada.excluirProduto(pconsul.getProdutos_Codigo());
-            atualizarTabela();//atalizar a tabela
+
+        try {
+            //pegar o os dados do produto selecionado
+            Produto p = listaProduto.get(jtabelaProduto.getSelectedRow());
+
+            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Apagar ?", "", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+
+                //consulta a descrição do produto selecionado
+                Produto pconsul = fachada.consultarProduto(p.getProdutos_Descricao());
+
+                if (pconsul != null) {       //seta o codigo do produto selecionado da consulta
+                    fachada.excluirProduto(pconsul.getProdutos_Codigo());
+                    atualizarTabela();//atalizar a tabela
+                }
             }
-         }
-        }catch(ArrayIndexOutOfBoundsException ex){
+        } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Selecione o produto!");
-        }catch(GeralException ex){
-                JOptionPane.showMessageDialog(null, ex);
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
-    
-       
+
+
     }//GEN-LAST:event_jbApagarActionPerformed
 
     private void jbAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizarActionPerformed
         // TODO add your handling code here:
         atualizarTabela();
     }//GEN-LAST:event_jbAtualizarActionPerformed
-    
- 
-    
+
     //CONVERTE O VALOR DOUBLE PARA SALVAR DO BD
-    private String converterValorReal(String valorx){
+    private String converterValorReal(String valorx) {
         String valorConvertido = "";
-        
-        for(int i =0,x =1; i< valorx.length(); i++,x++){
-            
-            if(valorx.substring(i,x).equals(",")){
-                
+
+        for (int i = 0, x = 1; i < valorx.length(); i++, x++) {
+
+            if (valorx.substring(i, x).equals(",")) {
+
                 valorConvertido = valorConvertido + ".";
-                
-            }else if(!valorx.substring(i,x).equals(".")){
-                
-                 valorConvertido = valorConvertido + valorx.substring(i,x);
-                
+
+            } else if (!valorx.substring(i, x).equals(".")) {
+
+                valorConvertido = valorConvertido + valorx.substring(i, x);
+
             }
         }
-        
+
         return valorConvertido;
     }
-     
+
     /**
      * @param args the command line arguments
      */
@@ -398,10 +384,9 @@ public class GuiProduto extends javax.swing.JFrame {
                 new GuiProduto().setVisible(true);
             }
         });
-    /**
-     * Metodo no mão 
-     */
-        
+        /**
+         * Metodo no mão
+         */
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Alterar;
@@ -425,46 +410,43 @@ public class GuiProduto extends javax.swing.JFrame {
 
     private DefaultTableModel geramodelo(ArrayList<Produto> listaProduto) {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn( "Descrição" );
-        modelo.addColumn( "Valor Unit." );
-        modelo.addColumn( "Qtde" );
-        modelo.addColumn( "Marca" );
-        modelo.addColumn( "Tipo" );
-        modelo.addColumn( "Segmento" );
-        
+        modelo.addColumn("Descrição");
+        modelo.addColumn("Valor Unit.");
+        modelo.addColumn("Qtde");
+        modelo.addColumn("Marca");
+        modelo.addColumn("Tipo");
+        modelo.addColumn("Segmento");
+
         ArrayList<String> valores;
-        int i=0;
+        int i = 0;
         for (Produto p : listaProduto) {
             valores = new ArrayList<String>();
-            valores.add( p.getProdutos_Descricao());
+            valores.add(p.getProdutos_Descricao());
             //recebe a conversão de double para string incluindo no formato Moeda
             String valorVenda = formataMoeda(p.getProdutos_ValorVenda());
-            valores.add( valorVenda );
-            valores.add( Integer.toString(p.getProdutos_Quantidade()));
-            valores.add( p.getMarcas().getMarcas_Descricao());
-            valores.add( p.getTipo().getTipos_Descricao());
-            valores.add( p.getSegmentos().getSegmentos_Descricao());
+            valores.add(valorVenda);
+            valores.add(Integer.toString(p.getProdutos_Quantidade()));
+            valores.add(p.getMarcas().getMarcas_Descricao());
+            valores.add(p.getTipo().getTipos_Descricao());
+            valores.add(p.getSegmentos().getSegmentos_Descricao());
             modelo.insertRow(i, valores.toArray());
             i++;
         }
         return modelo;
     }
 
-    private String formataMoeda(double valormodeda){
-java.text.DecimalFormat df = new java.text.DecimalFormat("###,###,##0.00");
-return df.format(valormodeda);
-}
-    
-    private void atualizarTabela(){
-         try{
-            listaProduto = ( ArrayList<Produto>)fachada.listarProduto("");
-        } catch (GeralException ex){
-                JOptionPane.showMessageDialog(null, ex.getMessage());
+    private String formataMoeda(double valormodeda) {
+        java.text.DecimalFormat df = new java.text.DecimalFormat("###,###,##0.00");
+        return df.format(valormodeda);
+    }
+
+    private void atualizarTabela() {
+        try {
+            listaProduto = (ArrayList<Produto>) fachada.listarProduto("");
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         DefaultTableModel modelo = geramodelo(listaProduto);
         jtabelaProduto.setModel(modelo);
     }
-
 }
-
-

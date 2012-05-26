@@ -14,14 +14,15 @@ import projeto.modelo.to.Cidade;
  * @author Daniel
  */
 public class GuiCidadeNova extends javax.swing.JFrame {
-
+    private GuiCidade guiCidade;
     /**
      * Creates new form GuiCidade
      */
     public GuiCidadeNova() {
+        guiCidade = new GuiCidade();
         initComponents();
         setLocationRelativeTo(null);//mostra no centro da tela
-        jTextField1.requestFocus();
+        jTextFieldEntradaCidade.requestFocus();
     }
 
     public static Fachada fachada = new Fachada();
@@ -38,18 +39,18 @@ public class GuiCidadeNova extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jTextFieldEntradaCidade = new javax.swing.JTextField();
+        jButtonSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Salvar Cidade");
 
         jLabel1.setText("Nome da Cidade.:");
 
-        jButton1.setText("Salvar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonSalvarActionPerformed(evt);
             }
         });
 
@@ -62,9 +63,9 @@ public class GuiCidadeNova extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldEntradaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(jButtonSalvar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -74,8 +75,8 @@ public class GuiCidadeNova extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jTextFieldEntradaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSalvar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -100,10 +101,10 @@ public class GuiCidadeNova extends javax.swing.JFrame {
         setBounds((screenSize.width-313)/2, (screenSize.height-139)/2, 313, 139);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
        String cdSalvar = null;
         try {
-             cdSalvar = jTextField1.getText();
+             cdSalvar = jTextFieldEntradaCidade.getText();
             int validoString = Integer.parseInt(cdSalvar);
             JOptionPane.showMessageDialog(null, "Digite apenas o nome da cidade!");
         } catch (NumberFormatException x) {
@@ -113,8 +114,12 @@ public class GuiCidadeNova extends javax.swing.JFrame {
             } catch (GeralException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
+        } finally {
+        jTextFieldEntradaCidade.setText(null);
+        jTextFieldEntradaCidade.requestFocus();
+        guiCidade.atualizarTabela();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,9 +164,9 @@ public class GuiCidadeNova extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldEntradaCidade;
     // End of variables declaration//GEN-END:variables
 }

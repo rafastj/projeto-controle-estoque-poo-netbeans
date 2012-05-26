@@ -46,10 +46,12 @@ public class GuiMenu extends javax.swing.JFrame {
         jPasswordField = new javax.swing.JPasswordField();
         jbAcessar = new javax.swing.JButton();
         jMenuBarra = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuCadastro = new javax.swing.JMenu();
+        jMenuCidade = new javax.swing.JMenu();
+        jMenuTabelaCidade = new javax.swing.JMenuItem();
+        jMenuCidadeNova = new javax.swing.JMenuItem();
+        jMenuCliente = new javax.swing.JMenu();
+        jMenuClienteNovo = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -122,20 +124,37 @@ public class GuiMenu extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("Cadastro");
+        jMenuCadastro.setText("Cadastro");
 
-        jMenuItem7.setText("Cidade");
-        jMenu1.add(jMenuItem7);
+        jMenuCidade.setText("Cidade");
 
-        jMenu4.setText("Cliente");
+        jMenuTabelaCidade.setText("Cidade");
+        jMenuTabelaCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuTabelaCidadeActionPerformed(evt);
+            }
+        });
+        jMenuCidade.add(jMenuTabelaCidade);
 
-        jMenuItem2.setText("Novo Cliente");
-        jMenu4.add(jMenuItem2);
+        jMenuCidadeNova.setText("Nova Cidade");
+        jMenuCidadeNova.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuCidadeNovaActionPerformed(evt);
+            }
+        });
+        jMenuCidade.add(jMenuCidadeNova);
 
-        jMenu1.add(jMenu4);
+        jMenuCadastro.add(jMenuCidade);
+
+        jMenuCliente.setText("Cliente");
+
+        jMenuClienteNovo.setText("Novo Cliente");
+        jMenuCliente.add(jMenuClienteNovo);
+
+        jMenuCadastro.add(jMenuCliente);
 
         jMenuItem3.setText("Endereço");
-        jMenu1.add(jMenuItem3);
+        jMenuCadastro.add(jMenuItem3);
 
         jMenu5.setText("Fornecedor");
 
@@ -145,7 +164,7 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuItem5.setText("Novo Fornecimento");
         jMenu5.add(jMenuItem5);
 
-        jMenu1.add(jMenu5);
+        jMenuCadastro.add(jMenu5);
 
         jMenu6.setText("Funcionário");
 
@@ -160,7 +179,7 @@ public class GuiMenu extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItemNovoUsuario);
 
-        jMenu1.add(jMenu6);
+        jMenuCadastro.add(jMenu6);
 
         jMenu8.setText("Produto");
 
@@ -184,9 +203,9 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuItem12.setText("Marca");
         jMenu8.add(jMenuItem12);
 
-        jMenu1.add(jMenu8);
+        jMenuCadastro.add(jMenu8);
 
-        jMenuBarra.add(jMenu1);
+        jMenuBarra.add(jMenuCadastro);
 
         jMenu2.setText("Movimentação");
         jMenuBarra.add(jMenu2);
@@ -325,6 +344,16 @@ public class GuiMenu extends javax.swing.JFrame {
         GuiUsuario us = new GuiUsuario();
         us.setVisible(true);
     }//GEN-LAST:event_jMenuItemNovoUsuarioActionPerformed
+
+    private void jMenuCidadeNovaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCidadeNovaActionPerformed
+        GuiCidadeNova cdSalvar = new GuiCidadeNova();
+        cdSalvar.setVisible(true);
+    }//GEN-LAST:event_jMenuCidadeNovaActionPerformed
+
+    private void jMenuTabelaCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuTabelaCidadeActionPerformed
+        GuiCidade cd = new GuiCidade();
+        cd.setVisible(true);
+    }//GEN-LAST:event_jMenuTabelaCidadeActionPerformed
  
     
     /**
@@ -373,31 +402,33 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jLoginField;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBarra;
+    private javax.swing.JMenu jMenuCadastro;
+    private javax.swing.JMenu jMenuCidade;
+    private javax.swing.JMenuItem jMenuCidadeNova;
+    private javax.swing.JMenu jMenuCliente;
+    private javax.swing.JMenuItem jMenuClienteNovo;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItemLogoff;
+    private javax.swing.JMenuItem jMenuItemNovoUsuario;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenuItem jMenuItemSobre;
-    private javax.swing.JMenuItem jMenuItemNovoUsuario;
+    private javax.swing.JMenuItem jMenuTabelaCidade;
     private javax.swing.JPanel jPGuiLogin;
     private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JButton jbAcessar;
