@@ -196,11 +196,11 @@ public class NegocioCidade {
 
         ArrayList<Cidade> lista;
 
-        if (cidades_Nome == null) {
+       /* if (cidades_Nome == null) {
             throw new GeralException("Digite o nome ou o códido da cidade!");
-        }
+        }*/
         try {
-            lista = (ArrayList<Cidade>) new RepositorioCidade().listar(cidades_Nome);
+            lista = (ArrayList<Cidade>) new RepositorioCidade().listar();
 
         } catch (RepositorioException ex) {
             throw new GeralException("Erro de programação!");

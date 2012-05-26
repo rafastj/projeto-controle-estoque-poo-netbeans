@@ -19,8 +19,9 @@ import projeto.modelo.to.Tipo;
  * @author diego
  */
 public class GuiProdutoNovo extends javax.swing.JFrame {
-    
-     public static Fachada fachada = new Fachada();
+
+    public static Fachada fachada = new Fachada();
+
     /**
      * Creates new form GuiProdutoNovo
      */
@@ -177,7 +178,7 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
 
             //CHAMAR O DAO SALVAR
             fachada.salvarProduto(pSalvar);
-            
+
             JOptionPane.showMessageDialog(null, "Produto Inserido!");
             dispose();
 
@@ -188,79 +189,79 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     //CONVERTE O VALOR DOUBLE PARA SALVAR DO BD
-    private String converterValorReal(String valorx){
+    private String converterValorReal(String valorx) {
         String valorConvertido = "";
-        
-        for(int i =0,x =1; i< valorx.length(); i++,x++){
-            
-            if(valorx.substring(i,x).equals(",")){
-                
+
+        for (int i = 0, x = 1; i < valorx.length(); i++, x++) {
+
+            if (valorx.substring(i, x).equals(",")) {
+
                 valorConvertido = valorConvertido + ".";
-                
-            }else if(!valorx.substring(i,x).equals(".")){
-                
-                 valorConvertido = valorConvertido + valorx.substring(i,x);
-                
+
+            } else if (!valorx.substring(i, x).equals(".")) {
+
+                valorConvertido = valorConvertido + valorx.substring(i, x);
+
             }
         }
-        
+
         return valorConvertido;
     }
-    
-      // LIMPAR OS CAMPOS DO PRODUTO  
-    private void limparTodosCampos(){
-                 //limpar os comboboxs
-                jSegmentoBox.removeAllItems();
-                jTipoBox.removeAllItems();
-                jMarcaBox.removeAllItems();
-                //limpar os edits
-                jDescricaoField.setText("");
-                jValorUnitarioField.setText("");
-                jQtdeField.setText("");   
+
+    // LIMPAR OS CAMPOS DO PRODUTO  
+    private void limparTodosCampos() {
+        //limpar os comboboxs
+        jSegmentoBox.removeAllItems();
+        jTipoBox.removeAllItems();
+        jMarcaBox.removeAllItems();
+        //limpar os edits
+        jDescricaoField.setText("");
+        jValorUnitarioField.setText("");
+        jQtdeField.setText("");
     }
-    
+
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
-        
-         jDescricaoField.grabFocus();//setar o focul
-        
-       //LISTA DO SEGMENTO
-       Segmento sg;
-       ArrayList<Segmento> listasg;
-	try{
-		//Lista dos os segmentos
-		listasg = (ArrayList<Segmento>)fachada.listarSegmentos("");
-		for(Iterator<Segmento> it = listasg.iterator(); it.hasNext();){
-                    sg = it.next();
-                    jSegmentoBox.addItem(sg.getSegmentos_Descricao());	
-		}
-	}catch (GeralException ex){
-		JOptionPane.showMessageDialog(null, ex.getMessage());
-	}
+
+        jDescricaoField.grabFocus();//setar o focul
+
+        //LISTA DO SEGMENTO
+        Segmento sg;
+        ArrayList<Segmento> listasg;
+        try {
+            //Lista dos os segmentos
+            listasg = (ArrayList<Segmento>) fachada.listarSegmentos("");
+            for (Iterator<Segmento> it = listasg.iterator(); it.hasNext();) {
+                sg = it.next();
+                jSegmentoBox.addItem(sg.getSegmentos_Descricao());
+            }
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
         //LISTAR OS TIPOS
         Tipo tp;
         ArrayList<Tipo> listatp;
-        try{
-                listatp = (ArrayList<Tipo>) fachada.listarTipo("");
-                for(Iterator<Tipo> it = listatp.iterator(); it.hasNext();){
-                    tp = it.next();
-                    jTipoBox.addItem(tp.getTipos_Descricao());
-                }
-        }catch (GeralException ex){
-		JOptionPane.showMessageDialog(null, ex.getMessage());
-	}
+        try {
+            listatp = (ArrayList<Tipo>) fachada.listarTipo("");
+            for (Iterator<Tipo> it = listatp.iterator(); it.hasNext();) {
+                tp = it.next();
+                jTipoBox.addItem(tp.getTipos_Descricao());
+            }
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
         //LISTAR MARCA
         Marca ma;
         ArrayList<Marca> listama;
-        try{
-                listama = (ArrayList<Marca>) fachada.listarMarca("");
-                for(Iterator<Marca> it = listama.iterator(); it.hasNext();){
-                    ma = it.next();
-                    jMarcaBox.addItem(ma.getMarcas_Descricao());
-                }
-        }catch (GeralException ex){
-		JOptionPane.showMessageDialog(null, ex.getMessage());
-	}
+        try {
+            listama = (ArrayList<Marca>) fachada.listarMarca("");
+            for (Iterator<Marca> it = listama.iterator(); it.hasNext();) {
+                ma = it.next();
+                jMarcaBox.addItem(ma.getMarcas_Descricao());
+            }
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }//GEN-LAST:event_formComponentShown
 
     /**

@@ -138,7 +138,7 @@ public class RepositorioCidade implements IRepositorioCidade {
     }
 
     @Override
-    public Collection<Cidade> listar(String cidades_Nome) throws ConexaoException, RepositorioException {
+   public Collection<Cidade> listar() throws ConexaoException, RepositorioException {
         ArrayList<Cidade> lista = new ArrayList<Cidade>();
         Cidade cd;
         Connection c = g.conectar();

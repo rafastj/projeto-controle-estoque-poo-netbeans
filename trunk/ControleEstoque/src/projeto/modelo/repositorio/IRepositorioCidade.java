@@ -77,5 +77,5 @@ public interface IRepositorioCidade {
      * @throws ConexaoException
      * @throws RepositorioException
      */
-    public Collection<Cidade> listar(String cidades_Nome) throws ConexaoException, RepositorioException;
+    public Collection<Cidade> listar() throws ConexaoException, RepositorioException;
 }
