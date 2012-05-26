@@ -1,24 +1,11 @@
 package projeto.gui;
 
-import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFormattedTextField.AbstractFormatterFactory;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
-import javax.swing.text.NumberFormatter;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
-import projeto.modelo.to.Marca;
 import projeto.modelo.to.Produto;
-import projeto.modelo.to.Segmento;
-import projeto.modelo.to.Tipo;
 
 /**
  *
