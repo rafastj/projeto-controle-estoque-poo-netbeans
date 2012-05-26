@@ -65,9 +65,9 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
+        jMenuItemLogoff = new javax.swing.JMenuItem();
+        jMenuItemSair = new javax.swing.JMenuItem();
+        jMenuItemSobre = new javax.swing.JMenuItem();
 
         jMenu3.setText("jMenu3");
 
@@ -198,24 +198,24 @@ public class GuiMenu extends javax.swing.JFrame {
 
         jMenu9.setText("Sistema");
 
-        jMenuItem13.setText("Logoff");
-        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemLogoff.setText("Logoff");
+        jMenuItemLogoff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem13ActionPerformed(evt);
+                jMenuItemLogoffActionPerformed(evt);
             }
         });
-        jMenu9.add(jMenuItem13);
+        jMenu9.add(jMenuItemLogoff);
 
-        jMenuItem14.setText("Sair");
-        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemSair.setText("Sair");
+        jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem14ActionPerformed(evt);
+                jMenuItemSairActionPerformed(evt);
             }
         });
-        jMenu9.add(jMenuItem14);
+        jMenu9.add(jMenuItemSair);
 
-        jMenuItem15.setText("Sobre...");
-        jMenu9.add(jMenuItem15);
+        jMenuItemSobre.setText("Sobre...");
+        jMenu9.add(jMenuItemSobre);
 
         jMenuBarra.add(jMenu9);
 
@@ -306,7 +306,7 @@ public class GuiMenu extends javax.swing.JFrame {
             }
         }//GEN-LAST:event_jbAcessarActionPerformed
 
-    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+    private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
         // TODO add your handling code here:
         int resposta;
         resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente sair do sistema?","",JOptionPane.YES_NO_OPTION);
@@ -315,15 +315,15 @@ public class GuiMenu extends javax.swing.JFrame {
         // verifica se o usuário clicou no botão YES
           System.exit(0);  
         }
-    }//GEN-LAST:event_jMenuItem14ActionPerformed
+    }//GEN-LAST:event_jMenuItemSairActionPerformed
 
-    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+    private void jMenuItemLogoffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLogoffActionPerformed
         // TODO add your handling code here:
         jMenuBarra.setVisible(false);
         jPGuiLogin.setVisible(true);
         errosenha();
         errologin();
-    }//GEN-LAST:event_jMenuItem13ActionPerformed
+    }//GEN-LAST:event_jMenuItemLogoffActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         GuiCidadeNova cdSalvar = new GuiCidadeNova();
@@ -397,9 +397,6 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -407,6 +404,9 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jMenuItemLogoff;
+    private javax.swing.JMenuItem jMenuItemSair;
+    private javax.swing.JMenuItem jMenuItemSobre;
     private javax.swing.JMenuItem jMenuItemNovoUsuario;
     private javax.swing.JPanel jPGuiLogin;
     private javax.swing.JPasswordField jPasswordField;
