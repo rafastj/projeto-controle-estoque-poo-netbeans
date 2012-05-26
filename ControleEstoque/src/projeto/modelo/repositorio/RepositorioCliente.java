@@ -3,17 +3,14 @@
  */
 package projeto.modelo.repositorio;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import projeto.conexao.GerenciadorConexao;
 import projeto.conexao.IGerenciadorConexao;
 import projeto.erro.ConexaoException;
 import projeto.erro.RepositorioException;
 import projeto.modelo.to.Cliente;
-import projeto.modelo.to.Funcionario;
 import projeto.modelo.to.PessoaFisica;
 import projeto.modelo.to.PessoaJuridica;
 
@@ -232,22 +229,36 @@ public class RepositorioCliente implements IRepositorioCliente {
         return pj;
     }
 
+    public Collection<PessoaFisica> listar(String PessoaFisica_CNPJ) throws ConexaoException, RepositorioException {
+        ArrayList<PessoaFisica> lista = new ArrayList<PessoaFisica>();
+        PessoaFisica pf;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT pf.cliente_Codigo, pf.pessoasfisica_CPf, pf.pessoasfisica_nome,cli.clientes_tipo, cli.clientes_numeroresidencia, cli.enderecos_Codigo from PessoasFisica AS pf, clientes as cli ORDER BY pf.clientes_Codigo";
+
+        try {
+            Statement stm = c.createStatement();
+            ResultSet rs = stm.executeQuery(sqlLista);
+            //verifica se retornou algum registro e cria os Objetos
+            while (rs.next()) {
+                pf = new PessoaFisica();
+                pf.setClientes_Codigo(rs.getInt("clientes_Codigo"));
+                pf.setPessoasFisica_CPF(rs.getString("pessoasfisica_CPF"));
+                pf.setPessoasFisica_Nome(rs.getString("pessoasfisica_nome"));
+                pf.setClientes_NumeroResidencia(rs.getString("clientes_NumeroResidencia"));
+                pf.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                pf.setClientes_Tipo(rs.getString("clientes_tipo"));
+                lista.add(pf);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar(c);
+        }
+    }
+
     @Override
     public Collection<Cliente> listar() throws ConexaoException, RepositorioException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
-    /*
-     * public Collection<Produto> listar() throws
-     * ConexaoException,RepositorioException { ArrayList<Produto> lista = new
-     * ArrayList(); Produto p; Connection c = g.conectar(); String sqlLista =
-     * "SELECT id,nome,descricao,status FROM produto"; try{ Statement stm =
-     * c.createStatement(); ResultSet rs = stm.executeQuery(sqlLista); while(
-     * rs.next() ){ p = new Produto(); p.setId( rs.getInt("id") ); p.setNome(
-     * rs.getString("nome") ); p.setDescricao( rs.getString("descricao") );
-     * p.setStatus( rs.getInt("status") ); lista.add(p); } return lista;
-     * }catch(SQLException e){ throw new RepositorioException(e); }finally{
-     * g.desconectar(c); }
-    }
-     */
 }
