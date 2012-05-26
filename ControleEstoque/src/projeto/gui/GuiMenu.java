@@ -73,6 +73,7 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenu7.setText("jMenu7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPGuiLogin.setBorder(javax.swing.BorderFactory.createTitledBorder("Autenticação..."));
