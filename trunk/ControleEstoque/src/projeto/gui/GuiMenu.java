@@ -4,7 +4,7 @@
  */
 package projeto.gui;
 
-import javax.swing.*;
+import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Usuario;
@@ -22,6 +22,7 @@ public class GuiMenu extends javax.swing.JFrame {
     public GuiMenu() {
         initComponents();
         //extender o frame
+        this.setExtendedState(MAXIMIZED_BOTH);
         setLocationRelativeTo(null);//mostra no centro da tela  
         jMenuBarra.setVisible(false); //esconder a barra de menu 
     }

@@ -22,6 +22,7 @@ public class GuiLogin extends javax.swing.JFrame {
      */
     public GuiLogin() {
         initComponents();
+        setLocationRelativeTo(null);//mostra no centro da tela
     }
 
     /**
@@ -85,7 +86,8 @@ public class GuiLogin extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        pack();
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-351)/2, (screenSize.height-133)/2, 351, 133);
     }// </editor-fold>//GEN-END:initComponents
 
     private void acessoLiberado(){
