@@ -56,6 +56,7 @@ public class GuiProduto extends javax.swing.JFrame {
         jTipoBox = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         jMarcaBox = new javax.swing.JComboBox();
+        jbAtualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Produto");
@@ -117,11 +118,11 @@ public class GuiProduto extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
         );
 
         jbApagar.setText("Apagar");
@@ -197,6 +198,13 @@ public class GuiProduto extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jbAtualizar.setText("Atualizar");
+        jbAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAtualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -207,11 +215,11 @@ public class GuiProduto extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Alterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbApagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(12, 12, 12))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbAtualizar)
+                            .addComponent(Alterar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -222,13 +230,16 @@ public class GuiProduto extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jbAtualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbNovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Alterar)
                         .addGap(13, 13, 13)
-                        .addComponent(jbApagar))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jbApagar)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -248,7 +259,6 @@ public class GuiProduto extends javax.swing.JFrame {
 
     private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
         // TODO add your handling code here:
-       
        
       
     }//GEN-LAST:event_AlterarActionPerformed
@@ -289,24 +299,41 @@ public class GuiProduto extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
         //MOSTRAR TODOS OS REGISTRO DE PRODUTOS
-        Produto p = null;
-        //ArrayList<Produto> listaProduto = null;
-        int i = 0;
-        try{
-            listaProduto = ( ArrayList<Produto>)fachada.listarProduto("");
-        } catch (GeralException ex){
-                JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-        DefaultTableModel modelo = geramodelo(listaProduto);
-        jtabelaProduto.setModel(modelo);
-        
+        atualizarTabela();
     }//GEN-LAST:event_formComponentShown
 
     private void jbApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbApagarActionPerformed
         // TODO add your handling code here:
+        int resposta;
+       
+        try{
+        //pegar o os dados do produto selecionado
         Produto p = listaProduto.get(jtabelaProduto.getSelectedRow());
         
+        resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Apagar ?","",JOptionPane.YES_NO_OPTION);
+        if (resposta == JOptionPane.YES_OPTION) {
+        
+        //consulta a descrição do produto selecionado
+        Produto pconsul = fachada.consultarProduto(p.getProdutos_Descricao());
+        
+        if(pconsul != null){       //seta o codigo do produto selecionado da consulta
+            fachada.excluirProduto(pconsul.getProdutos_Codigo());
+            atualizarTabela();//atalizar a tabela
+            }
+         }
+        }catch(ArrayIndexOutOfBoundsException ex){
+            JOptionPane.showMessageDialog(null, "Selecione o produto!");
+        }catch(GeralException ex){
+                JOptionPane.showMessageDialog(null, ex);
+        }
+    
+       
     }//GEN-LAST:event_jbApagarActionPerformed
+
+    private void jbAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizarActionPerformed
+        // TODO add your handling code here:
+        atualizarTabela();
+    }//GEN-LAST:event_jbAtualizarActionPerformed
     
  
     
@@ -390,6 +417,7 @@ public class GuiProduto extends javax.swing.JFrame {
     private javax.swing.JComboBox jSegmentoBox;
     private javax.swing.JComboBox jTipoBox;
     private javax.swing.JButton jbApagar;
+    private javax.swing.JButton jbAtualizar;
     private javax.swing.JButton jbNovo;
     private javax.swing.JTextField jcDescricaoField;
     private javax.swing.JTable jtabelaProduto;
@@ -422,11 +450,20 @@ public class GuiProduto extends javax.swing.JFrame {
         return modelo;
     }
 
-private String formataMoeda(double valormodeda){
+    private String formataMoeda(double valormodeda){
 java.text.DecimalFormat df = new java.text.DecimalFormat("###,###,##0.00");
 return df.format(valormodeda);
 }
     
+    private void atualizarTabela(){
+         try{
+            listaProduto = ( ArrayList<Produto>)fachada.listarProduto("");
+        } catch (GeralException ex){
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaProduto);
+        jtabelaProduto.setModel(modelo);
+    }
 
 }
 

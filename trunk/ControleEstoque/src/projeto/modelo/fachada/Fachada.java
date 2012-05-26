@@ -156,14 +156,14 @@ public class Fachada {
     /**
      * Diego Silva Consultar Produto pela Descrição do Produto
      */
-    public Produto consultarDescricao(String produtos_Descricao) throws GeralException {
+    public Produto consultarProduto(String produtos_Descricao) throws GeralException {
         return rnProduto.consultarDescricao(produtos_Descricao);
     }
 
     /**
      * Diego Silva consultar Produto pelo Codigo do Produto
      */
-    public Produto consultarCodigo(int produtos_Codigo) throws GeralException {
+    public Produto consultarProduto(int produtos_Codigo) throws GeralException {
         return rnProduto.consultarCodigo(produtos_Codigo);
     }
 
