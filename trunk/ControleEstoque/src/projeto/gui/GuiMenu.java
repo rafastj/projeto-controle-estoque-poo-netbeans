@@ -301,7 +301,7 @@ public class GuiMenu extends javax.swing.JFrame {
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
         int resposta;
-        resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente sair do sistema?");
+        resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente sair do sistema?","",JOptionPane.YES_NO_OPTION);
 
         if (resposta == JOptionPane.YES_OPTION) {
         // verifica se o usuário clicou no botão YES

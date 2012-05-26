@@ -117,6 +117,7 @@ public class GuiProduto extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jtabelaProduto.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jtabelaProduto);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
