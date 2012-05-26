@@ -86,6 +86,8 @@ public class GuiLogin extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
+        getAccessibleContext().setAccessibleParent(this);
+
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         setBounds((screenSize.width-351)/2, (screenSize.height-133)/2, 351, 133);
     }// </editor-fold>//GEN-END:initComponents
