@@ -14,7 +14,9 @@ import projeto.modelo.to.Cidade;
  * @author Daniel
  */
 public class GuiCidadeNova extends javax.swing.JFrame {
+
     private GuiCidade guiCidade;
+
     /**
      * Creates new form GuiCidade
      */
@@ -24,10 +26,7 @@ public class GuiCidadeNova extends javax.swing.JFrame {
         setLocationRelativeTo(null);//mostra no centro da tela
         jTextFieldEntradaCidade.requestFocus();
     }
-
     public static Fachada fachada = new Fachada();
-
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,9 +101,9 @@ public class GuiCidadeNova extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-       String cdSalvar = null;
+        String cdSalvar = null;
         try {
-             cdSalvar = jTextFieldEntradaCidade.getText();
+            cdSalvar = jTextFieldEntradaCidade.getText();
             int validoString = Integer.parseInt(cdSalvar);
             JOptionPane.showMessageDialog(null, "Digite apenas o nome da cidade!");
         } catch (NumberFormatException x) {
@@ -115,9 +114,9 @@ public class GuiCidadeNova extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         } finally {
-        jTextFieldEntradaCidade.setText(null);
-        jTextFieldEntradaCidade.requestFocus();
-        guiCidade.atualizarTabela();
+            jTextFieldEntradaCidade.setText(null);
+            jTextFieldEntradaCidade.requestFocus();
+            guiCidade.atualizarTabela();
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 

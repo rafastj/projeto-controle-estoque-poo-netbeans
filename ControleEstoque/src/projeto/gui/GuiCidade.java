@@ -24,7 +24,7 @@ import projeto.modelo.to.Cidade;
 public class GuiCidade extends javax.swing.JFrame {
 
     ArrayList<Cidade> listaCidade = null;
-    
+
     /**
      * Creates new form GuiCidade
      */
@@ -69,6 +69,11 @@ public class GuiCidade extends javax.swing.JFrame {
         label2Cidade.setText("Cidade.:");
 
         jButtonConsultCid.setText("...");
+        jButtonConsultCid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultCidActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelFiltroLayout = new javax.swing.GroupLayout(jPanelFiltro);
         jPanelFiltro.setLayout(jPanelFiltroLayout);
@@ -111,6 +116,11 @@ public class GuiCidade extends javax.swing.JFrame {
         });
 
         jButtonExcluir.setText("Apagar");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
         jTableListaCidades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,6 +150,11 @@ public class GuiCidade extends javax.swing.JFrame {
         jTableListaCidades.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jButtonAlterar.setText("Alterar");
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelListaLayout = new javax.swing.GroupLayout(jPanelLista);
         jPanelLista.setLayout(jPanelListaLayout);
@@ -226,6 +241,64 @@ public class GuiCidade extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         atualizarTabela();
     }//GEN-LAST:event_formComponentShown
+
+    private void jButtonConsultCidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultCidActionPerformed
+        //MOSTRAR TODOS OS REGISTRO DE PRODUTOS
+        Cidade cd = null;
+        //ArrayList<Produto> listaProduto = null;
+        int i = 0;
+        String cidades_nome = jTextFieldCampoCidade.getText();
+        try {
+            listaCidade = (ArrayList<Cidade>) fachada.listarCidade(cidades_nome);
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaCidade);
+        jTableListaCidades.setModel(modelo);
+    }//GEN-LAST:event_jButtonConsultCidActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        int resposta;
+
+        try {
+            Cidade cd = listaCidade.get(jTableListaCidades.getSelectedRow());
+
+            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Apagar ?", "", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+                Cidade cdConsult = fachada.consultarCidade(cd.getCidades_Nome());
+                if (cdConsult != null) {
+                    fachada.excluirCidade(cdConsult.getCidades_Codigo());
+                    atualizarTabela();
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione a cidade!");
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        int resposta;
+
+        try {
+            Cidade cdOld = listaCidade.get(jTableListaCidades.getSelectedRow());
+
+            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar ?", "", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+                Cidade cdConsult = fachada.consultarCidade(cdOld.getCidades_Codigo());
+                if (cdConsult != null) {
+                    String nova = jTextFieldCampoCidade.getText();
+                    Cidade cd = new Cidade(nova);
+                    fachada.alterarCidade(cd);
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione a cidade!");
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     /**
      * @param args the command line arguments
