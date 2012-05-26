@@ -141,7 +141,8 @@ public class GuiUsuario extends javax.swing.JFrame {
                 .addGap(16, 16, 16))
         );
 
-        pack();
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-494)/2, (screenSize.height-448)/2, 494, 448);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
