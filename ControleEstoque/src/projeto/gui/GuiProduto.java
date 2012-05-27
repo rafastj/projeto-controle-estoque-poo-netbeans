@@ -1,12 +1,16 @@
 package projeto.gui;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.Marca;
 import projeto.modelo.to.Produto;
+import projeto.modelo.to.Segmento;
+import projeto.modelo.to.Tipo;
 
 /**
  *
@@ -16,10 +20,7 @@ import projeto.modelo.to.Produto;
 
     ArrayList<Produto> listaProduto = null;
     
-    
-    public static Fachada fachada = new Fachada();
-    private String Nome;
-    
+    public static Fachada fachada = new Fachada();    
 
     /**
      * Creates new form GuiProduto
@@ -331,16 +332,67 @@ import projeto.modelo.to.Produto;
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
         // TODO add your handling code here:
         try{
+       //crio o objeto Produto Alterado         
+       GuiProdutoAlterar gpAlterar = new GuiProdutoAlterar();
+
             
+       //LISTA DO SEGMENTO
+       Segmento sg;
+       ArrayList<Segmento> listasg;
+	try{
+		//Lista dos os segmentos
+		listasg = (ArrayList<Segmento>)fachada.listarSegmentos("");
+		for(Iterator<Segmento> it = listasg.iterator(); it.hasNext();){
+                    sg = it.next();
+                    gpAlterar.jSegmentoBox.addItem(sg.getSegmentos_Descricao());	
+		}
+	}catch (GeralException ex){
+		JOptionPane.showMessageDialog(null, ex.getMessage());
+	}
+        //LISTAR OS TIPOS
+        Tipo tp;
+        ArrayList<Tipo> listatp;
+        try{
+                listatp = (ArrayList<Tipo>) fachada.listarTipo("");
+                for(Iterator<Tipo> it = listatp.iterator(); it.hasNext();){
+                    tp = it.next();
+                    gpAlterar.jTipoBox.addItem(tp.getTipos_Descricao());
+                }
+        }catch (GeralException ex){
+		JOptionPane.showMessageDialog(null, ex.getMessage());
+	}
+        //LISTAR MARCA
+        Marca ma;
+        ArrayList<Marca> listama;
+        try{
+                listama = (ArrayList<Marca>) fachada.listarMarca("");
+                for(Iterator<Marca> it = listama.iterator(); it.hasNext();){
+                    ma = it.next();
+                    gpAlterar.jMarcaBox.addItem(ma.getMarcas_Descricao());
+                }
+        }catch (GeralException ex){
+		JOptionPane.showMessageDialog(null, ex.getMessage());
+	}
+            
+            
+            
+            //pegar o objeto selecionado
             Produto p = pSelecionado();
             
-            GuiProdutoAlterar gpAlterar = new GuiProdutoAlterar();
+            
             gpAlterar.jDescricaoField.setText(p.getProdutos_Descricao());
-            gpAlterar.jValorUnitarioField.setText(String.valueOf(p.getProdutos_ValorVenda()));
+            //recebe a conversão de double para string incluindo no formato Moeda
+            String valorVenda = formaMoeda(p.getProdutos_ValorVenda());
+            gpAlterar.jValorUnitarioField.setText( valorVenda );
             gpAlterar.jQtdeField.setText(String.valueOf(p.getProdutos_Quantidade()));
             gpAlterar.jSegmentoField.setText(p.getSegmentos().getSegmentos_Descricao());
+            gpAlterar.jSegmentoBox.setSelectedItem(p.getSegmentos().getSegmentos_Descricao());//seta o segmento do Produto
             gpAlterar.jTipoField.setText(p.getTipo().getTipos_Descricao());
+            gpAlterar.jTipoBox.setSelectedItem(p.getTipo().getTipos_Descricao());//seta o tipo de Produto
             gpAlterar.jMarcaField.setText(p.getMarcas().getMarcas_Descricao());
+            gpAlterar.jMarcaBox.setSelectedItem(p.getMarcas().getMarcas_Descricao());
+           
+            //chama o jframe produto alterar
             gpAlterar.setVisible(true);
             
             
@@ -351,7 +403,6 @@ import projeto.modelo.to.Produto;
         }
     }//GEN-LAST:event_jbAlterarActionPerformed
     
- 
     //CONVERTE O VALOR DOUBLE PARA SALVAR DO BD
     private String converterValorReal(String valorx) {
         String valorConvertido = "";
@@ -497,12 +548,6 @@ import projeto.modelo.to.Produto;
     public Produto pSelecionado(){
         Produto p = listaProduto.get(jtabelaProduto.getSelectedRow());
         return p;
-    }
-    
-    public GuiProduto teste(){
-        GuiProduto encontrado = null;
-        encontrado.Nome = jcDescricaoField.getText();
-        return encontrado;
     }
 
 }
