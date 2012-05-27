@@ -25,7 +25,7 @@ public class GuiCidade extends javax.swing.JFrame {
 
     ArrayList<Cidade> listaCidade = null;
     public static Fachada fachada = new Fachada();
-    
+
     /**
      * Creates new form GuiCidade
      */
@@ -33,6 +33,7 @@ public class GuiCidade extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

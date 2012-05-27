@@ -18,8 +18,10 @@ import projeto.modelo.to.Endereco;
  * @author Daniel
  */
 public class GuiEndereco extends javax.swing.JFrame {
+
     ArrayList<Endereco> listaEndereco = null;
-     public static Fachada fachada = new Fachada();
+    public static Fachada fachada = new Fachada();
+
     /**
      * Creates new form GuiEndereco
      */
@@ -231,7 +233,7 @@ public class GuiEndereco extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
 
     private void jTableListaEnderecoComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTableListaEnderecoComponentShown
-         //MOSTRAR TODOS OS REGISTRO DE PRODUTOS
+        //MOSTRAR TODOS OS REGISTRO DE PRODUTOS
         Endereco end = null;
         //ArrayList<Produto> listaProduto = null;
         int i = 0;
@@ -334,8 +336,8 @@ public class GuiEndereco extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldEntradaCep;
     private javax.swing.JTextField jTextFieldEntradaLog;
     // End of variables declaration//GEN-END:variables
-    
-     private DefaultTableModel geramodelo(ArrayList<Endereco> listaEndereco) {
+
+    private DefaultTableModel geramodelo(ArrayList<Endereco> listaEndereco) {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("CEP");
         modelo.addColumn("Logradouro");
@@ -353,7 +355,7 @@ public class GuiEndereco extends javax.swing.JFrame {
         }
         return modelo;
     }
-    
+
     public void atualizarTabela() {
         try {
             listaEndereco = (ArrayList<Endereco>) fachada.listarEndereco("");

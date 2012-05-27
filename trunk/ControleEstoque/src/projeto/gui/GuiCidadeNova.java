@@ -18,6 +18,7 @@ public class GuiCidadeNova extends javax.swing.JFrame {
     private GuiCidade guiCidade;
     private GuiEndereco guiEndereco;
     public static Fachada fachada = new Fachada();
+
     /**
      * Creates new form GuiCidade
      */
@@ -28,7 +29,7 @@ public class GuiCidadeNova extends javax.swing.JFrame {
         setLocationRelativeTo(null);//mostra no centro da tela
         jTextFieldEntradaCidade.requestFocus();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -115,7 +116,7 @@ public class GuiCidadeNova extends javax.swing.JFrame {
             try {
                 fachada.salvarCidade(cd);
                 resposta = JOptionPane.showConfirmDialog(null, "Registro salvo com sucesso!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
-                if(resposta == JOptionPane.NO_OPTION) {
+                if (resposta == JOptionPane.NO_OPTION) {
                     dispose();
                 } else {
                     jTextFieldEntradaCidade.setText(null);
