@@ -10,6 +10,7 @@ import projeto.conexao.GerenciadorConexao;
 import projeto.conexao.IGerenciadorConexao;
 import projeto.erro.ConexaoException;
 import projeto.erro.RepositorioException;
+import projeto.modelo.to.Cidade;
 import projeto.modelo.to.Endereco;
 
 /**
@@ -127,11 +128,11 @@ public class RepositorioEndereco implements IRepositorioEndereco {
     }
 
     @Override
-    public Collection<Endereco> listar(String enderecos_Cep) throws ConexaoException, RepositorioException {
+    public Collection<Endereco> listar() throws ConexaoException, RepositorioException {
         ArrayList<Endereco> lista = new ArrayList<Endereco>();
         Endereco end;
         Connection c = g.conectar();
-        String sqlLista = "SELECT end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, end.cidades_Codigo from Enderecos as end inner join Cidades as cd On end.cidades_Codigo = cd.cidades_Codigo order by end.enderecos_Codigo";
+        String sqlLista = "SELECT end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from Enderecos as end inner join Cidades as cd On end.cidades_Codigo = cd.cidades_Codigo order by end.enderecos_CEP";
         try {
             Statement stm = c.createStatement();
             ResultSet rs = stm.executeQuery(sqlLista);
@@ -142,6 +143,7 @@ public class RepositorioEndereco implements IRepositorioEndereco {
                 end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                end.setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(end);
             }
             return lista;

@@ -68,5 +68,5 @@ public interface IRepositorioEndereco {
      * @throws ConexaoException
      * @throws RepositorioException
      */
-    public Collection<Endereco> listar(String enderecos_CEP) throws ConexaoException, RepositorioException;
+    public Collection<Endereco> listar() throws ConexaoException, RepositorioException;
 }

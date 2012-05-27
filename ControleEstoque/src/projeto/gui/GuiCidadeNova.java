@@ -43,7 +43,7 @@ public class GuiCidadeNova extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Salvar Cidade");
-        setAlwaysOnTop(true);
+        setName("frameCidadeNova");
 
         jLabel1.setText("Nome da Cidade.:");
 

@@ -1182,10 +1182,11 @@ public class Main {
         String cep = JOptionPane.showInputDialog("Digite o CEP");
         String logradouro = JOptionPane.showInputDialog("Digite o logradouro");
         String cidade = JOptionPane.showInputDialog("Digite o nome da cidade");
+        String nome = null;
         Cidade cd = fachada.consultarCidade(cidade);
         int codigo = cd.getCidades_Codigo();
         int enderecos_Codigo = 0;
-        Endereco end = new Endereco(enderecos_Codigo, cep, logradouro, codigo);
+        Endereco end = new Endereco(enderecos_Codigo, cep, logradouro, codigo, nome);
         try {
             fachada.salvarEndereco(end);
             JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
