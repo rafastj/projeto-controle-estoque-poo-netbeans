@@ -535,6 +535,8 @@ import projeto.modelo.to.Tipo;
         } catch (GeralException ex){
                 JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+          DefaultTableModel modelo = geramodelo(listaProduto);
+          jtabelaProduto.setModel(modelo); 
     }
     
     private String formaMoeda (double valorMoeda){
