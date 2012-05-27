@@ -81,15 +81,35 @@ public class RepositorioCliente implements IRepositorioCliente {
     }
 
     @Override
-    public void alterar(PessoaFisica pf) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    public void alterar(PessoaFisica pf) throws ConexaoException, RepositorioException {
+              /**
+         * conectar faz a conexão com o banco de dados
+         */
+        Connection c = g.conectar();
+        /**
+         * variavel do tipo String da Instrução de inserção SQL
+         */
+        String sqlAlterar = "UPDATE Produtos SET Segmentos_Codigo = ? ,Tipos_Codigo = ?, Marcas_Codigo = ?, Produtos_Descricao = ?, Produtos_Quantidade = ?, Produtos_ValorVenda = ? WHERE produtos_Codigo = ?";
 
-    @Override
-    public void alterar(PessoaJuridica pf) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlAlterar);
+            pstm.setInt(1, pf.getClientes_Codigo());
+            pstm.setString(2, pf.getPessoasFisica_Nome());
+            pstm.setString(3, pf.getPessoasFisica_CPF());
+            pstm.setString(4, pf.getPessoasFisica_Sexo());
+            pstm.setString(5, pf.getClientes_NumeroResidencia());
+            //pstm.setDouble(6, pf.getProdutos_ValorVenda());
+           // pstm.setInt(7, pf.getProdutos_Codigo());
+            pstm.executeUpdate();
+            pstm.close();
+        } catch (SQLException ex) {
+            throw new RepositorioException(ex.getMessage());
+        } finally {
+            g.desconectar(c);
+        }
     }
-
+ 
+ 
     @Override
     public void excluir(int id) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
@@ -229,11 +249,13 @@ public class RepositorioCliente implements IRepositorioCliente {
         return pj;
     }
 
-    public Collection<PessoaFisica> listar(String PessoaFisica_CNPJ) throws ConexaoException, RepositorioException {
+    
+    @Override
+    public Collection<PessoaFisica> listarPessoaFisica() throws ConexaoException, RepositorioException {
         ArrayList<PessoaFisica> lista = new ArrayList<PessoaFisica>();
         PessoaFisica pf;
         Connection c = g.conectar();
-        String sqlLista = "SELECT pf.cliente_Codigo, pf.pessoasfisica_CPf, pf.pessoasfisica_nome,cli.clientes_tipo, cli.clientes_numeroresidencia, cli.enderecos_Codigo from PessoasFisica AS pf, clientes as cli ORDER BY pf.clientes_Codigo";
+        String sqlLista = "SELECT pf.clientes_Codigo, pf.pessoasfisica_CPf, pf.pessoasfisica_nome,cli.clientes_tipo, cli.clientes_numeroresidencia, cli.enderecos_Codigo from PessoasFisica AS pf, clientes as cli ORDER BY pf.clientes_Codigo";
 
         try {
             Statement stm = c.createStatement();
@@ -256,9 +278,43 @@ public class RepositorioCliente implements IRepositorioCliente {
             g.desconectar(c);
         }
     }
+    
+        public Collection<PessoaJuridica> listarPessoaJuridica() throws ConexaoException, RepositorioException {
+        ArrayList<PessoaJuridica> lista = new ArrayList<PessoaJuridica>();
+        PessoaJuridica pj;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT pj.clientes_Codigo, pj.PessoasJuridica_CNPJ, pj.PessoasJuridica_RazaoSocial,cli.clientes_tipo, cli.clientes_numeroresidencia, cli.enderecos_Codigo from PessoasJuridica AS pj, clientes as cli ORDER BY pj.clientes_Codigo";
+
+        try {
+            Statement stm = c.createStatement();
+            ResultSet rs = stm.executeQuery(sqlLista);
+            //verifica se retornou algum registro e cria os Objetos
+            while (rs.next()) {
+                pj = new PessoaJuridica();
+                pj.setClientes_Codigo(rs.getInt("clientes_Codigo"));
+                pj.setPessoasJuridica_CNPJ(rs.getString("PessoasJuridica_CNPJ"));
+                pj.setPessoasJuridica_RazaoSocial(rs.getString("PessoasJuridica_RazaoSocial"));
+                pj.setClientes_NumeroResidencia(rs.getString("clientes_NumeroResidencia"));
+                pj.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                pj.setClientes_Tipo(rs.getString("clientes_tipo"));
+                lista.add(pj);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar(c);
+        }
+    }
+
+
+
+    public Collection<Cliente> listar() throws ConexaoException, RepositorioException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
     @Override
-    public Collection<Cliente> listar() throws ConexaoException, RepositorioException {
+    public Collection<PessoaJuridica> listarPessoaJuridicaa() throws ConexaoException, RepositorioException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

@@ -3,6 +3,7 @@ package projeto.main;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
+import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.*;
@@ -18,7 +19,7 @@ public class Main {
      * @param args
      * @throws GeralException
      */
-    public static void main(String[] args) throws GeralException {
+    public static void main(String[] args) throws GeralException, ConexaoException {
 
 
         /**
@@ -546,11 +547,10 @@ public class Main {
                                                         //Chamada do método aqui
                                                         break;
                                                     case 2:
-                                                        //Chamada do método aqui
+                                                        testarListarPessoaFisica();
                                                         break;
                                                     case 3:
-                                                        //Chamada do método aqui
-                                                        break;
+                                                        testarListarPessoaJuridica();                                                 break;
                                                     default:
                                                         JOptionPane.showMessageDialog(null, "Informe uma opção válida!");
                                                 }
@@ -1577,6 +1577,41 @@ public class Main {
         }
         System.out.println("...processo finalizado!");
     }
+    
+        public static void testarListarPessoaFisica() throws ConexaoException {
+        PessoaFisica pf;
+        ArrayList<PessoaFisica> lista;
+        try {
+            lista = (ArrayList<PessoaFisica>) fachada.listarPessoaFisica();
+            for (Iterator<PessoaFisica> it = lista.iterator(); it.hasNext();) {
+                pf = it.next();
+                JOptionPane.showMessageDialog(null, "Cliente.: " + pf.getPessoasFisica_Nome()) ;
+            }
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        System.out.println("Fim teste de listagem");
+    }
+
+        public static void testarListarPessoaJuridica() throws ConexaoException {
+        PessoaJuridica pj;
+        ArrayList<PessoaJuridica> lista;
+        try {
+            lista = (ArrayList<PessoaJuridica>) fachada.listarPessoaJuridica();
+            if (lista == null){
+                JOptionPane.showMessageDialog(null, "Não há Cliente a ser Listado");
+            }else{
+            for (Iterator<PessoaJuridica> it = lista.iterator(); it.hasNext();) {
+                pj = it.next();
+                JOptionPane.showMessageDialog(null, "Razão Social.: " + pj.getPessoasJuridica_RazaoSocial()) ;
+            }
+            }
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        System.out.println("Fim teste de listagem");
+    }
+
 
     /**
      * FIM DA ÁREA ESCRITA POR SANDRO

@@ -3,13 +3,19 @@
  */
 package projeto.modelo.negocio;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.erro.RepositorioException;
 import projeto.modelo.repositorio.IRepositorioCliente;
 import projeto.modelo.repositorio.RepositorioCliente;
+import projeto.modelo.repositorio.RepositorioProduto;
 import projeto.modelo.to.PessoaFisica;
 import projeto.modelo.to.PessoaJuridica;
+import projeto.modelo.to.Produto;
 import projeto.validaCampo.ValidaCampo;
 
 /**
@@ -103,6 +109,30 @@ public class NegocioCliente {
         }
         return pf;
     }
+    
+       public Collection<PessoaFisica> listarPessoaFisica() throws GeralException, ConexaoException {
+
+        ArrayList<PessoaFisica> lista = null;
+        try {
+            lista = (ArrayList<PessoaFisica>) new RepositorioCliente().listarPessoaFisica();
+        } catch (RepositorioException ex) {
+            Logger.getLogger(NegocioCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return lista;
+    }
+       
+       public Collection<PessoaJuridica> listarPessoaJuridica() throws ConexaoException{
+           
+        ArrayList<PessoaJuridica> lista = null;
+        try {
+            lista = (ArrayList<PessoaJuridica>) new RepositorioCliente().listarPessoaJuridica();
+        } catch (RepositorioException ex) {
+            Logger.getLogger(NegocioCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return lista;
+       }
        /* public PessoaFisica consultar(int cliente_Codigo) throws GeralException {
         PessoaFisica pf = null;
         if (cliente_Codigo <= 0) {
