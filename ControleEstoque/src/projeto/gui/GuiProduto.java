@@ -262,34 +262,6 @@ import projeto.modelo.to.Tipo;
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:  
-        
-        
-        //Metodo para limpar os campos
-
-        /**
-         * try{ Produto pr =
-         * fachada.consultarDescricao(jcDescricaoField.getText()); if(pr !=
-         * null){
-         *
-         *
-         * jDescricaoField.setText(pr.getProdutos_Descricao());
-         *
-         * jValorUnitarioField.setText(String.valueOf(pr.getProdutos_ValorVenda()));
-         * jQtdeField.setText(String.valueOf(pr.getProdutos_Quantidade()));
-         *
-         * Segmento sg = fachada.consultarSegmentos(pr.getSegmentos_Codigo());
-         * jSegmentoBox.addItem(sg.getSegmentos_Descricao());
-         *
-         * Tipo tp = fachada.consultarTipos(pr.getTipos_Codigo());
-         * jTipoBox.addItem(tp.getTipos_Descricao());
-         *
-         * Marca ma = fachada.consultarMarcas(pr.getMarcas_Codigo());
-         * jMarcaBox.addItem(ma.getMarcas_Descricao());
-         *
-         * }
-         * }catch (GeralException ex){ JOptionPane.showMessageDialog(null,
-         * ex.getMessage()); }
-         */
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
