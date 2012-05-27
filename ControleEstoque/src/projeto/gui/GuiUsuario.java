@@ -38,6 +38,7 @@ public class GuiUsuario extends javax.swing.JFrame {
         JbExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtro"));
 
