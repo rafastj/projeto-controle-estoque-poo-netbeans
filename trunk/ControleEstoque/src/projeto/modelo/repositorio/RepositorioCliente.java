@@ -308,13 +308,13 @@ public class RepositorioCliente implements IRepositorioCliente {
     }
 
 
-
-    public Collection<Cliente> listar() throws ConexaoException, RepositorioException {
+    @Override
+    public Collection<PessoaJuridica> listarPessoaJuridicaa() throws ConexaoException, RepositorioException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Collection<PessoaJuridica> listarPessoaJuridicaa() throws ConexaoException, RepositorioException {
+    public void alterar(PessoaJuridica pj) throws ConexaoException, RepositorioException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
