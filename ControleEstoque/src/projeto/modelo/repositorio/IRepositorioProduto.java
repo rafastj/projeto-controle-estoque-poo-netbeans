@@ -40,9 +40,9 @@ public interface IRepositorioProduto {
     public Produto consultarCodigo(int produtos_Codigo) throws ConexaoException, RepositorioException;
 
     /**
-     * Metodo Padrão para lista os dados
+     * Metodo Padrão para lista os dados pela Descrição
      */
-    public Collection<Produto> listar(String produtos_Descricao) throws ConexaoException, RepositorioException;
+    public Collection<Produto> listarDescicao(String produtos_Descricao) throws ConexaoException, RepositorioException;
     
     /**
      * Metodo Padrão para lista os Marca
@@ -58,5 +58,10 @@ public interface IRepositorioProduto {
      * Metodo Padrão para lista os Segmento
      */
     public Collection<Produto> listarSegmentos(int segmentos_Codigo) throws ConexaoException, RepositorioException;
+    
+    /**
+     * Metodo Padrão para lista os dados
+     */
+    public Collection<Produto> listarTudo() throws ConexaoException, RepositorioException;
     
 }
