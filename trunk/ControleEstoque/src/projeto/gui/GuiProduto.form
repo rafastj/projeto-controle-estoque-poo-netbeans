@@ -40,7 +40,7 @@
                           <Component id="jbNovo" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
                           <Component id="jbApagar" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
                           <Component id="jbAtualizar" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="Alterar" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                          <Component id="jbAlterar" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jPanel2" max="32767" attributes="0"/>
@@ -62,7 +62,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jbNovo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="Alterar" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbAlterar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       <Component id="jbApagar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="246" max="32767" attributes="0"/>
@@ -82,12 +82,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbNovoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Alterar">
+    <Component class="javax.swing.JButton" name="jbAlterar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Alterar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AlterarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbAlterarActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">

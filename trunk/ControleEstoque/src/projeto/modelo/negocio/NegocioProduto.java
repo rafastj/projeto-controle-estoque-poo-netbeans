@@ -183,7 +183,7 @@ public class NegocioProduto {
             rep.excluir(produtos_Codigo);
 
         } catch (RepositorioException ex) {
-            throw new GeralException("Diego fez caca");
+            throw new GeralException("Ação Negada! Esse produto é relecionado com uma Nota Fiscal!");
 
         } catch (ConexaoException ex) {
             throw new GeralException("O banco de dados não está acessível!");

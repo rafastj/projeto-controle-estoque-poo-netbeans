@@ -2,6 +2,7 @@ package projeto.gui;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
@@ -11,10 +12,14 @@ import projeto.modelo.to.Produto;
  *
  * @author diego
  */
-public class GuiProduto extends javax.swing.JFrame {
+    public class GuiProduto extends javax.swing.JFrame {
 
     ArrayList<Produto> listaProduto = null;
+    
+    
     public static Fachada fachada = new Fachada();
+    private String Nome;
+    
 
     /**
      * Creates new form GuiProduto
@@ -22,7 +27,6 @@ public class GuiProduto extends javax.swing.JFrame {
     public GuiProduto() {
         initComponents();
         setLocationRelativeTo(null);//mostra no centro da tela  
-
     }
 
     /**
@@ -35,7 +39,7 @@ public class GuiProduto extends javax.swing.JFrame {
     private void initComponents() {
 
         jbNovo = new javax.swing.JButton();
-        Alterar = new javax.swing.JButton();
+        jbAlterar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtabelaProduto = new javax.swing.JTable();
@@ -72,10 +76,10 @@ public class GuiProduto extends javax.swing.JFrame {
             }
         });
 
-        Alterar.setText("Alterar");
-        Alterar.addActionListener(new java.awt.event.ActionListener() {
+        jbAlterar.setText("Alterar");
+        jbAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AlterarActionPerformed(evt);
+                jbAlterarActionPerformed(evt);
             }
         });
 
@@ -213,7 +217,7 @@ public class GuiProduto extends javax.swing.JFrame {
                             .addComponent(jbNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbAtualizar)
-                            .addComponent(Alterar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jbAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -230,7 +234,7 @@ public class GuiProduto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbNovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Alterar)
+                        .addComponent(jbAlterar)
                         .addGap(13, 13, 13)
                         .addComponent(jbApagar)
                         .addGap(0, 246, Short.MAX_VALUE)))
@@ -251,13 +255,16 @@ public class GuiProduto extends javax.swing.JFrame {
         gpnovo.setVisible(true);
     }//GEN-LAST:event_jbNovoActionPerformed
 
-    private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
+    private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {                                        
         // TODO add your handling code here:
-    }//GEN-LAST:event_AlterarActionPerformed
+    }                                       
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:  
+        
+        
         //Metodo para limpar os campos
+
         /**
          * try{ Produto pr =
          * fachada.consultarDescricao(jcDescricaoField.getText()); if(pr !=
@@ -314,8 +321,6 @@ public class GuiProduto extends javax.swing.JFrame {
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-
-
     }//GEN-LAST:event_jbApagarActionPerformed
 
     private void jbAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizarActionPerformed
@@ -323,6 +328,30 @@ public class GuiProduto extends javax.swing.JFrame {
         atualizarTabela();
     }//GEN-LAST:event_jbAtualizarActionPerformed
 
+    private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
+        // TODO add your handling code here:
+        try{
+            
+            Produto p = pSelecionado();
+            
+            GuiProdutoAlterar gpAlterar = new GuiProdutoAlterar();
+            gpAlterar.jDescricaoField.setText(p.getProdutos_Descricao());
+            gpAlterar.jValorUnitarioField.setText(String.valueOf(p.getProdutos_ValorVenda()));
+            gpAlterar.jQtdeField.setText(String.valueOf(p.getProdutos_Quantidade()));
+            gpAlterar.jSegmentoField.setText(p.getSegmentos().getSegmentos_Descricao());
+            gpAlterar.jTipoField.setText(p.getTipo().getTipos_Descricao());
+            gpAlterar.jMarcaField.setText(p.getMarcas().getMarcas_Descricao());
+            gpAlterar.setVisible(true);
+            
+            
+            
+            
+        } catch(ArrayIndexOutOfBoundsException ex){
+            JOptionPane.showMessageDialog(null, "Selecione o produto!");
+        }
+    }//GEN-LAST:event_jbAlterarActionPerformed
+    
+ 
     //CONVERTE O VALOR DOUBLE PARA SALVAR DO BD
     private String converterValorReal(String valorx) {
         String valorConvertido = "";
@@ -389,7 +418,6 @@ public class GuiProduto extends javax.swing.JFrame {
          */
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Alterar;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
@@ -401,6 +429,7 @@ public class GuiProduto extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox jSegmentoBox;
     private javax.swing.JComboBox jTipoBox;
+    private javax.swing.JButton jbAlterar;
     private javax.swing.JButton jbApagar;
     private javax.swing.JButton jbAtualizar;
     private javax.swing.JButton jbNovo;
@@ -434,7 +463,21 @@ public class GuiProduto extends javax.swing.JFrame {
         }
         return modelo;
     }
-
+    
+    
+    private String formataMoeda(double valormodeda){
+        java.text.DecimalFormat df = new java.text.DecimalFormat("###,###,##0.00");
+    return df.format(valormodeda);
+    }
+    
+    public void atualizarTabela(){
+         try{
+            listaProduto = ( ArrayList<Produto>)fachada.listarProduto("");
+        } catch (GeralException ex){
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+    
     private String formataMoeda(double valormodeda) {
         java.text.DecimalFormat df = new java.text.DecimalFormat("###,###,##0.00");
         return df.format(valormodeda);
@@ -449,4 +492,16 @@ public class GuiProduto extends javax.swing.JFrame {
         DefaultTableModel modelo = geramodelo(listaProduto);
         jtabelaProduto.setModel(modelo);
     }
+
+    public Produto pSelecionado(){
+        Produto p = listaProduto.get(jtabelaProduto.getSelectedRow());
+        return p;
+    }
+    
+    public GuiProduto teste(){
+        GuiProduto encontrado = null;
+        encontrado.Nome = jcDescricaoField.getText();
+        return encontrado;
+    }
+
 }
