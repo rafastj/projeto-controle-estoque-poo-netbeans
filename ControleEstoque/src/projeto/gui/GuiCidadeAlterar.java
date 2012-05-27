@@ -23,6 +23,7 @@ public class GuiCidadeAlterar extends javax.swing.JFrame {
         initComponents();
         guiCidade = new GuiCidade();
         setLocationRelativeTo(null);
+        jTextFieldCidadeNova.requestFocus();
     }
 
     /**
@@ -54,6 +55,9 @@ public class GuiCidadeAlterar extends javax.swing.JFrame {
         jLabel1.setText("Nova Cidade.:");
 
         jButtonAlterar.setText("Alterar");
+        jButtonAlterar.setMaximumSize(new java.awt.Dimension(75, 23));
+        jButtonAlterar.setMinimumSize(new java.awt.Dimension(75, 23));
+        jButtonAlterar.setPreferredSize(new java.awt.Dimension(75, 23));
         jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAlterarActionPerformed(evt);
@@ -72,7 +76,7 @@ public class GuiCidadeAlterar extends javax.swing.JFrame {
                     .addComponent(jTextFieldCidadeOld)
                     .addComponent(jTextFieldCidadeNova, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonAlterar)
+                .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -86,7 +90,7 @@ public class GuiCidadeAlterar extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldCidadeNova, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAlterar)))
+                    .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
