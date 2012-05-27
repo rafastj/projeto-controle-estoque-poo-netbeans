@@ -61,7 +61,6 @@ public class NegocioCidade {
                 throw new GeralException("Cidade já está cadastrada!");
             }
             rep.salvar(cd);
-            throw new GeralException("Registro foi salvo com sucesso!");
         } catch (RepositorioException e) {
             throw new GeralException("Erro de programação!");
         } catch (ConexaoException e) {

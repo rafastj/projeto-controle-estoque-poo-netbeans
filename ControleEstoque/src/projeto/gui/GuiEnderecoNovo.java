@@ -4,7 +4,10 @@
  */
 package projeto.gui;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Cidade;
@@ -24,6 +27,7 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
         guiEndereco = new GuiEndereco();
         initComponents();
         setLocationRelativeTo(null);
+        jTextFieldEntradaCEP.requestFocus();
     }
 
     /**
@@ -44,8 +48,10 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
         jComboBoxCidade = new javax.swing.JComboBox();
         jButtonConsultarCEP = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
+        jButtonIncluirCidade = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Novo Endereço");
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -60,15 +66,24 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
 
         jLabelCidade.setText("Cidade.:");
 
-        jComboBoxCidade.setEditable(true);
-        jComboBoxCidade.setSelectedIndex(-1);
-
         jButtonConsultarCEP.setText("Consultar CEP");
+        jButtonConsultarCEP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultarCEPActionPerformed(evt);
+            }
+        });
 
-        jButtonSalvar.setText("Salvar");
+        jButtonSalvar.setText("Salvar Endereço");
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalvarActionPerformed(evt);
+            }
+        });
+
+        jButtonIncluirCidade.setText("Incluir Cidade");
+        jButtonIncluirCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIncluirCidadeActionPerformed(evt);
             }
         });
 
@@ -88,10 +103,11 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
                         .addGroup(jPanelNovoEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jTextFieldEntradaCEP)
                             .addComponent(jComboBoxCidade, 0, 205, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanelNovoEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonConsultarCEP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButtonConsultarCEP, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                            .addComponent(jButtonIncluirCidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jTextFieldEntradaLog))
                 .addContainerGap())
@@ -112,8 +128,10 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
                 .addGroup(jPanelNovoEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCidade)
                     .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSalvar))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(jButtonIncluirCidade))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonSalvar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -137,33 +155,73 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        
+        Cidade cid;
+        ArrayList<Cidade> listaCd;
+        try {
+            listaCd = (ArrayList<Cidade>) fachada.listarCidade("");
+            for (Iterator<Cidade> it = listaCd.iterator(); it.hasNext();) {
+                cid = it.next();
+                jComboBoxCidade.addItem(cid.getCidades_Nome());
+            }
+        } catch (GeralException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_formComponentShown
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        int resposta;
         int enderecos_Codigo;
         int cidades_Codigo;
-        String cep;
-        String log;
+        String enderecos_Cep;
+        String enderecos_Logradouro;
         String cidades_Nome;
         try {
             enderecos_Codigo = 0;
-            cep = jTextFieldEntradaCEP.getText();
-            log = jTextFieldEntradaLog.getText();
+            enderecos_Cep = jTextFieldEntradaCEP.getText();
+            enderecos_Logradouro = jTextFieldEntradaLog.getText();
             cidades_Nome = jComboBoxCidade.getSelectedItem().toString();
             Cidade cd = fachada.consultarCidade(cidades_Nome);
             cidades_Codigo = cd.getCidades_Codigo();
-            Endereco end = new Endereco(enderecos_Codigo, cep, log, cidades_Codigo, cidades_Nome);
+            Endereco end = new Endereco(enderecos_Codigo, enderecos_Cep, enderecos_Logradouro, cidades_Codigo, cidades_Nome);
             fachada.salvarEndereco(end);
-            JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
+            resposta = JOptionPane.showConfirmDialog(null, "Registro salvo com sucesso!\nDeseja continuar?","",JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.NO_OPTION ) {
+                dispose();
+                guiEndereco.atualizarTabela();
+            } else {
+                limparTodosCampos();
+            }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         } finally {
-            jTextFieldEntradaCEP.setText(null);
-            jTextFieldEntradaLog.requestFocus();
-            guiEndereco.atualizarTabela();
+            jTextFieldEntradaCEP.requestFocus();
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jButtonIncluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirCidadeActionPerformed
+        GuiCidadeNova cidade = new GuiCidadeNova();
+        cidade.setVisible(true);
+    }//GEN-LAST:event_jButtonIncluirCidadeActionPerformed
+
+    private void jButtonConsultarCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarCEPActionPerformed
+        String enderecos_CEP;
+        String enderecos_Logradouro;
+        try{
+            enderecos_CEP = jTextFieldEntradaCEP.getText();
+            Endereco end = fachada.consultarEndCep(enderecos_CEP);
+            enderecos_Logradouro = end.getEnderecos_Logradouro();
+            if (end != null) {
+                jTextFieldEntradaCEP.setText(enderecos_CEP);
+                jTextFieldEntradaLog.setText(enderecos_Logradouro);
+            } else {
+                jTextFieldEntradaLog.requestFocus();
+            }
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } finally {
+            jTextFieldEntradaCEP.requestFocus();
+        }
+    }//GEN-LAST:event_jButtonConsultarCEPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,8 +265,17 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void limparTodosCampos() {
+        //limpar os edits
+        jTextFieldEntradaCEP.setText("");
+        jTextFieldEntradaLog.setText("");
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConsultarCEP;
+    private javax.swing.JButton jButtonIncluirCidade;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox jComboBoxCidade;
     private javax.swing.JLabel jLabelCEP;
