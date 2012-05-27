@@ -50,7 +50,7 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
         jComboBoxCidade = new javax.swing.JComboBox();
         jButtonIncluirCidade = new javax.swing.JButton();
         jLabelNumero = new javax.swing.JLabel();
-        jTextFieldNumero = new javax.swing.JTextField();
+        jTextFieldEntradaNumero = new javax.swing.JTextField();
         jButtonPesquisaLog = new javax.swing.JButton();
         jLabelLogradouro = new javax.swing.JLabel();
         jButtonSalvarFornecedor = new javax.swing.JButton();
@@ -78,6 +78,11 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
         });
 
         jButtonPesquisaCNPJ.setText("...");
+        jButtonPesquisaCNPJ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisaCNPJActionPerformed(evt);
+            }
+        });
 
         jButtonPesquisaRS.setText("...");
 
@@ -99,9 +104,9 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
 
         jLabelNumero.setText("Número.:");
 
-        jTextFieldNumero.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldEntradaNumero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNumeroActionPerformed(evt);
+                jTextFieldEntradaNumeroActionPerformed(evt);
             }
         });
 
@@ -125,7 +130,7 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelFiltroLayout.createSequentialGroup()
-                                .addComponent(jTextFieldEntradaCEP, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                                .addComponent(jTextFieldEntradaCEP, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonPesquisaCEP)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -140,7 +145,7 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
                                 .addGap(25, 25, 25)
                                 .addComponent(jLabelNumero)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextFieldEntradaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelFiltroLayout.createSequentialGroup()
                                 .addComponent(jButtonPesquisaCNPJ)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -182,14 +187,15 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
                         .addGap(4, 4, 4))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFiltroLayout.createSequentialGroup()
                         .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldEntradaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelNumero))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCidade)
-                    .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonIncluirCidade)
-                    .addComponent(jButtonSalvarFornecedor))
+                .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonSalvarFornecedor)
+                    .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelCidade)
+                        .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonIncluirCidade)))
                 .addContainerGap())
         );
 
@@ -236,9 +242,9 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
         cidade.setVisible(true);
     }//GEN-LAST:event_jButtonIncluirCidadeActionPerformed
 
-    private void jTextFieldNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumeroActionPerformed
+    private void jTextFieldEntradaNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEntradaNumeroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNumeroActionPerformed
+    }//GEN-LAST:event_jTextFieldEntradaNumeroActionPerformed
 
     private void jButtonPesquisaCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCEPActionPerformed
         String enderecos_CEP;
@@ -259,6 +265,10 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
             jTextFieldEntradaCEP.requestFocus();
         }
     }//GEN-LAST:event_jButtonPesquisaCEPActionPerformed
+
+    private void jButtonPesquisaCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCNPJActionPerformed
+        
+    }//GEN-LAST:event_jButtonPesquisaCNPJActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,7 +330,7 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldEntradaCEP;
     private javax.swing.JTextField jTextFieldEntradaCNPJ;
     private javax.swing.JTextField jTextFieldEntradaLog;
+    private javax.swing.JTextField jTextFieldEntradaNumero;
     private javax.swing.JTextField jTextFieldEntradaRS;
-    private javax.swing.JTextField jTextFieldNumero;
     // End of variables declaration//GEN-END:variables
 }

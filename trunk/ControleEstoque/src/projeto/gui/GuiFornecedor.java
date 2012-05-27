@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Cidade;
+import projeto.modelo.to.Endereco;
 import projeto.modelo.to.Fornecedor;
 
 /**
@@ -54,7 +55,7 @@ public class GuiFornecedor extends javax.swing.JFrame {
         jComboBoxCidade = new javax.swing.JComboBox();
         jButtonIncluirCidade = new javax.swing.JButton();
         jLabelNumero = new javax.swing.JLabel();
-        jTextFieldNumero = new javax.swing.JTextField();
+        jTextFieldEntradaNumero = new javax.swing.JTextField();
         jButtonPesquisaLog = new javax.swing.JButton();
         jLabelLogradouro = new javax.swing.JLabel();
         jPanelLista = new javax.swing.JPanel();
@@ -88,10 +89,20 @@ public class GuiFornecedor extends javax.swing.JFrame {
         });
 
         jButtonPesquisaCNPJ.setText("...");
+        jButtonPesquisaCNPJ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisaCNPJActionPerformed(evt);
+            }
+        });
 
         jButtonPesquisaRS.setText("...");
 
         jButtonPesquisaCEP.setText("...");
+        jButtonPesquisaCEP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisaCEPActionPerformed(evt);
+            }
+        });
 
         jLabelCidade.setText("Cidade.:");
 
@@ -104,9 +115,9 @@ public class GuiFornecedor extends javax.swing.JFrame {
 
         jLabelNumero.setText("Número.:");
 
-        jTextFieldNumero.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldEntradaNumero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNumeroActionPerformed(evt);
+                jTextFieldEntradaNumeroActionPerformed(evt);
             }
         });
 
@@ -128,7 +139,7 @@ public class GuiFornecedor extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelFiltroLayout.createSequentialGroup()
-                                .addComponent(jTextFieldEntradaCEP, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                                .addComponent(jTextFieldEntradaCEP, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonPesquisaCEP)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -143,7 +154,7 @@ public class GuiFornecedor extends javax.swing.JFrame {
                                 .addGap(25, 25, 25)
                                 .addComponent(jLabelNumero)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextFieldEntradaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelFiltroLayout.createSequentialGroup()
                                 .addComponent(jButtonPesquisaCNPJ)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -183,7 +194,7 @@ public class GuiFornecedor extends javax.swing.JFrame {
                         .addGap(4, 4, 4))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFiltroLayout.createSequentialGroup()
                         .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldEntradaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelNumero))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -291,9 +302,9 @@ public class GuiFornecedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldEntradaLogActionPerformed
 
-    private void jTextFieldNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumeroActionPerformed
+    private void jTextFieldEntradaNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEntradaNumeroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNumeroActionPerformed
+    }//GEN-LAST:event_jTextFieldEntradaNumeroActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         Cidade cid;
@@ -344,6 +355,47 @@ public class GuiFornecedor extends javax.swing.JFrame {
         GuiCidadeNova cidade = new GuiCidadeNova();
         cidade.setVisible(true);
     }//GEN-LAST:event_jButtonIncluirCidadeActionPerformed
+
+    private void jButtonPesquisaCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCEPActionPerformed
+        String enderecos_CEP;
+        String enderecos_Logradouro;
+        try {
+            enderecos_CEP = jTextFieldEntradaCEP.getText();
+            Endereco end = fachada.consultarEndCep(enderecos_CEP);
+            enderecos_Logradouro = end.getEnderecos_Logradouro();
+            if (end != null) {
+                jTextFieldEntradaCEP.setText(enderecos_CEP);
+                jTextFieldEntradaLog.setText(enderecos_Logradouro);
+            } else {
+                jTextFieldEntradaLog.requestFocus();
+            }
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } finally {
+            jTextFieldEntradaCEP.requestFocus();
+        }
+    }//GEN-LAST:event_jButtonPesquisaCEPActionPerformed
+
+    private void jButtonPesquisaCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCNPJActionPerformed
+        String fornecedores_CNPJ;
+        try {
+            fornecedores_CNPJ = jTextFieldEntradaCNPJ.getText();
+            Fornecedor f = fachada.consultarForCNPJ(fornecedores_CNPJ);
+            if (f != null) {
+                jTextFieldEntradaCNPJ.setText(f.getFornecedores_CNPJ());
+                jTextFieldEntradaRS.setText(f.getFornecedores_RazaoSocial());
+                jTextFieldEntradaCEP.setText(f.getEnderecos_CEP());
+                jTextFieldEntradaLog.setText(f.getEnderecos_Logradouro());
+                jTextFieldEntradaNumero.setText(String.valueOf(f.getFornecedores_NumeroResidencia()));
+            } else {
+                jButtonAtualizar.requestFocus();
+            }
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } finally {
+            jTextFieldEntradaCNPJ.requestFocus();
+        }
+    }//GEN-LAST:event_jButtonPesquisaCNPJActionPerformed
 
     /**
      * @param args the command line arguments
@@ -446,7 +498,7 @@ public class GuiFornecedor extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldEntradaCEP;
     private javax.swing.JTextField jTextFieldEntradaCNPJ;
     private javax.swing.JTextField jTextFieldEntradaLog;
+    private javax.swing.JTextField jTextFieldEntradaNumero;
     private javax.swing.JTextField jTextFieldEntradaRS;
-    private javax.swing.JTextField jTextFieldNumero;
     // End of variables declaration//GEN-END:variables
 }
