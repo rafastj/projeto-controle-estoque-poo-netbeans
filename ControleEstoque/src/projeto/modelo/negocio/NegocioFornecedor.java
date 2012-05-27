@@ -146,16 +146,12 @@ public class NegocioFornecedor {
         }
     }
 
-    public Collection<Fornecedor> listar(String fornecedores_CNPJ) throws GeralException {
+    public Collection<Fornecedor> listar() throws GeralException {
 
         ArrayList<Fornecedor> lista;
-
-        if (fornecedores_CNPJ == null) {
-            throw new GeralException("Digite o CNPJ!");
-        }
-
+        
         try {
-            lista = (ArrayList<Fornecedor>) new RepositorioFornecedor().listar(fornecedores_CNPJ);
+            lista = (ArrayList<Fornecedor>) new RepositorioFornecedor().listar();
 
         } catch (RepositorioException ex) {
             throw new GeralException("Erro de programação!");

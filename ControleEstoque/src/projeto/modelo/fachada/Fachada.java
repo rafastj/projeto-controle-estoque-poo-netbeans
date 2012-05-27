@@ -79,8 +79,8 @@ public class Fachada {
         rnCidade.alterar(cd);
     }
 
-    public Collection<Cidade> listarCidade(String cidades_nome) throws GeralException {
-        return rnCidade.listar(cidades_nome);
+    public Collection<Cidade> listarCidade() throws GeralException {
+        return rnCidade.listar();
     }
 
     /**
@@ -106,7 +106,7 @@ public class Fachada {
         rnEndereco.alterar(end);
     }
 
-    public Collection<Endereco> listarEndereco(String Enderecos_CEP) throws GeralException {
+    public Collection<Endereco> listarEndereco() throws GeralException {
         return rnEndereco.listar();
     }
 
@@ -133,8 +133,8 @@ public class Fachada {
         rnFornecedor.alterar(f);
     }
 
-    public Collection<Fornecedor> listarFornecedor(String fornecedores_CNPJ) throws GeralException {
-        return rnFornecedor.listar(fornecedores_CNPJ);
+    public Collection<Fornecedor> listarFornecedor() throws GeralException {
+        return rnFornecedor.listar();
     }
 
     /**

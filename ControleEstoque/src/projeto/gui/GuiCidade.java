@@ -222,7 +222,7 @@ public class GuiCidade extends javax.swing.JFrame {
         //ArrayList<Produto> listaProduto = null;
         int i = 0;
         try {
-            listaCidade = (ArrayList<Cidade>) fachada.listarCidade("");
+            listaCidade = (ArrayList<Cidade>) fachada.listarCidade();
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -246,7 +246,7 @@ public class GuiCidade extends javax.swing.JFrame {
         int i = 0;
         String cidades_nome = jTextFieldCampoCidade.getText();
         try {
-            listaCidade = (ArrayList<Cidade>) fachada.listarCidade(cidades_nome);
+            listaCidade = (ArrayList<Cidade>) fachada.listarCidade();
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -342,7 +342,7 @@ public class GuiCidade extends javax.swing.JFrame {
 
     public void atualizarTabela() {
         try {
-            listaCidade = (ArrayList<Cidade>) fachada.listarCidade("");
+            listaCidade = (ArrayList<Cidade>) fachada.listarCidade();
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }

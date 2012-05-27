@@ -159,7 +159,7 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
         Cidade cid;
         ArrayList<Cidade> listaCd;
         try {
-            listaCd = (ArrayList<Cidade>) fachada.listarCidade("");
+            listaCd = (ArrayList<Cidade>) fachada.listarCidade();
             for (Iterator<Cidade> it = listaCd.iterator(); it.hasNext();) {
                 cid = it.next();
                 jComboBoxCidade.addItem(cid.getCidades_Nome());

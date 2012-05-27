@@ -77,5 +77,5 @@ public interface IRepositorioFornecedor {
      * @throws ConexaoException
      * @throws RepositorioException
      */
-    public Collection<Fornecedor> listar(String fornecedores_CNPJ) throws ConexaoException, RepositorioException;
+    public Collection<Fornecedor> listar() throws ConexaoException, RepositorioException;
 }

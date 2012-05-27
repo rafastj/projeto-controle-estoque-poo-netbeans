@@ -191,7 +191,7 @@ public class NegocioCidade {
         }
     }
 
-    public Collection<Cidade> listar(String cidades_Nome) throws GeralException {
+    public Collection<Cidade> listar() throws GeralException {
 
         ArrayList<Cidade> lista;
 
