@@ -294,7 +294,7 @@ import projeto.modelo.to.Produto;
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
         //MOSTRAR TODOS OS REGISTRO DE PRODUTOS
-        atualizarTabela();
+        atualizarJTabela();
     }//GEN-LAST:event_formComponentShown
 
     private void jbApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbApagarActionPerformed
@@ -325,7 +325,7 @@ import projeto.modelo.to.Produto;
 
     private void jbAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizarActionPerformed
         // TODO add your handling code here:
-        atualizarTabela();
+        atualizarJTabela();
     }//GEN-LAST:event_jbAtualizarActionPerformed
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
@@ -452,7 +452,7 @@ import projeto.modelo.to.Produto;
             valores = new ArrayList<String>();
             valores.add(p.getProdutos_Descricao());
             //recebe a conversão de double para string incluindo no formato Moeda
-            String valorVenda = formataMoeda(p.getProdutos_ValorVenda());
+            String valorVenda = formaMoeda(p.getProdutos_ValorVenda());
             valores.add(valorVenda);
             valores.add(Integer.toString(p.getProdutos_Quantidade()));
             valores.add(p.getMarcas().getMarcas_Descricao());
@@ -478,19 +478,20 @@ import projeto.modelo.to.Produto;
         }
     }
     
-    private String formataMoeda(double valormodeda) {
+    private String formaMoeda (double valorMoeda){
         java.text.DecimalFormat df = new java.text.DecimalFormat("###,###,##0.00");
-        return df.format(valormodeda);
+        return df.format(valorMoeda);
     }
-
-    private void atualizarTabela() {
+    
+    
+    private void atualizarJTabela(){
         try {
             listaProduto = (ArrayList<Produto>) fachada.listarProduto("");
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         DefaultTableModel modelo = geramodelo(listaProduto);
-        jtabelaProduto.setModel(modelo);
+        jtabelaProduto.setModel(modelo); 
     }
 
     public Produto pSelecionado(){
