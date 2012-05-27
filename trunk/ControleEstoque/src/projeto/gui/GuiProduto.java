@@ -48,7 +48,7 @@ import projeto.modelo.to.Tipo;
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jcDescricaoField = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        jconsulDescricao = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSegmentoBox = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
@@ -117,7 +117,7 @@ import projeto.modelo.to.Tipo;
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,10 +135,10 @@ import projeto.modelo.to.Tipo;
 
         jLabel8.setText("Descrição.:");
 
-        jButton3.setText("...");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jconsulDescricao.setText("...");
+        jconsulDescricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jconsulDescricaoActionPerformed(evt);
             }
         });
 
@@ -156,24 +156,24 @@ import projeto.modelo.to.Tipo;
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSegmentoBox, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTipoBox, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jMarcaBox, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(37, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTipoBox, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSegmentoBox, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jcDescricaoField)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jconsulDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -183,17 +183,18 @@ import projeto.modelo.to.Tipo;
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jcDescricaoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(jconsulDescricao))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jSegmentoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTipoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jMarcaBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTipoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel1)
+                                .addComponent(jSegmentoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel6))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -243,7 +244,7 @@ import projeto.modelo.to.Tipo;
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-692)/2, (screenSize.height-542)/2, 692, 542);
+        setBounds((screenSize.width-702)/2, (screenSize.height-542)/2, 702, 542);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -260,12 +261,51 @@ import projeto.modelo.to.Tipo;
         // TODO add your handling code here:
     }                                       
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jconsulDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jconsulDescricaoActionPerformed
         // TODO add your handling code here:  
-    }//GEN-LAST:event_jButton3ActionPerformed
+        pesquisarDescricao();
+    }//GEN-LAST:event_jconsulDescricaoActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
+        //LISTA DO SEGMENTO
+       Segmento sg;
+       ArrayList<Segmento> listasg;
+	try{
+		//Lista dos os segmentos
+		listasg = (ArrayList<Segmento>)fachada.listarSegmentos("");
+		for(Iterator<Segmento> it = listasg.iterator(); it.hasNext();){
+                    sg = it.next();
+                    jSegmentoBox.addItem(sg.getSegmentos_Descricao());	
+		}
+	}catch (GeralException ex){
+		JOptionPane.showMessageDialog(null, ex.getMessage());
+	}
+        //LISTAR OS TIPOS
+        Tipo tp;
+        ArrayList<Tipo> listatp;
+        try{
+                listatp = (ArrayList<Tipo>) fachada.listarTipo("");
+                for(Iterator<Tipo> it = listatp.iterator(); it.hasNext();){
+                    tp = it.next();
+                    jTipoBox.addItem(tp.getTipos_Descricao());
+                }
+        }catch (GeralException ex){
+		JOptionPane.showMessageDialog(null, ex.getMessage());
+	}
+        //LISTAR MARCA
+        Marca ma;
+        ArrayList<Marca> listama;
+        try{
+                listama = (ArrayList<Marca>) fachada.listarMarca("");
+                for(Iterator<Marca> it = listama.iterator(); it.hasNext();){
+                    ma = it.next();
+                    jMarcaBox.addItem(ma.getMarcas_Descricao());
+                }
+        }catch (GeralException ex){
+		JOptionPane.showMessageDialog(null, ex.getMessage());
+	}
+        
         //MOSTRAR TODOS OS REGISTRO DE PRODUTOS
         atualizarJTabela();
     }//GEN-LAST:event_formComponentShown
@@ -299,6 +339,7 @@ import projeto.modelo.to.Tipo;
     private void jbAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizarActionPerformed
         // TODO add your handling code here:
         atualizarJTabela();
+        jcDescricaoField.setText("");//limpar o conteúdo!
     }//GEN-LAST:event_jbAtualizarActionPerformed
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
@@ -449,7 +490,6 @@ import projeto.modelo.to.Tipo;
          */
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -465,6 +505,7 @@ import projeto.modelo.to.Tipo;
     private javax.swing.JButton jbAtualizar;
     private javax.swing.JButton jbNovo;
     private javax.swing.JTextField jcDescricaoField;
+    private javax.swing.JButton jconsulDescricao;
     private javax.swing.JTable jtabelaProduto;
     // End of variables declaration//GEN-END:variables
 
@@ -495,27 +536,10 @@ import projeto.modelo.to.Tipo;
         return modelo;
     }
     
-    
-    private String formataMoeda(double valormodeda){
-        java.text.DecimalFormat df = new java.text.DecimalFormat("###,###,##0.00");
-    return df.format(valormodeda);
-    }
-    
-    public void atualizarTabela(){
-         try{
-            listaProduto = ( ArrayList<Produto>)fachada.listarProduto("");
-        } catch (GeralException ex){
-                JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-          DefaultTableModel modelo = geramodelo(listaProduto);
-          jtabelaProduto.setModel(modelo); 
-    }
-    
     private String formaMoeda (double valorMoeda){
         java.text.DecimalFormat df = new java.text.DecimalFormat("###,###,##0.00");
         return df.format(valorMoeda);
     }
-    
     
     private void atualizarJTabela(){
         try {
@@ -530,6 +554,26 @@ import projeto.modelo.to.Tipo;
     public Produto pSelecionado(){
         Produto p = listaProduto.get(jtabelaProduto.getSelectedRow());
         return p;
+    }
+    
+    public void atualizarTabela(){
+         try{
+            listaProduto = ( ArrayList<Produto>)fachada.listarProduto("");
+        } catch (GeralException ex){
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+          DefaultTableModel modelo = geramodelo(listaProduto);
+          jtabelaProduto.setModel(modelo); 
+    }
+    
+    public void pesquisarDescricao(){
+         try{
+            listaProduto = ( ArrayList<Produto>)fachada.listarProduto(jcDescricaoField.getText());
+        } catch (GeralException ex){
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+          DefaultTableModel modelo = geramodelo(listaProduto);
+          jtabelaProduto.setModel(modelo); 
     }
 
 }
