@@ -54,6 +54,7 @@ public class GuiProduto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Produto");
+        setAlwaysOnTop(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -233,7 +234,7 @@ public class GuiProduto extends javax.swing.JFrame {
                         .addComponent(Alterar)
                         .addGap(13, 13, 13)
                         .addComponent(jbApagar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 246, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
