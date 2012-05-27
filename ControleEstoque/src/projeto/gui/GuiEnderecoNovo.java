@@ -18,8 +18,10 @@ import projeto.modelo.to.Endereco;
  * @author Daniel
  */
 public class GuiEnderecoNovo extends javax.swing.JFrame {
+
     private GuiEndereco guiEndereco;
     public static Fachada fachada = new Fachada();
+
     /**
      * Creates new form GuiEnderecoNovo
      */
@@ -184,8 +186,8 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
             cidades_Codigo = cd.getCidades_Codigo();
             Endereco end = new Endereco(enderecos_Codigo, enderecos_Cep, enderecos_Logradouro, cidades_Codigo, cidades_Nome);
             fachada.salvarEndereco(end);
-            resposta = JOptionPane.showConfirmDialog(null, "Registro salvo com sucesso!\nDeseja continuar?","",JOptionPane.YES_NO_OPTION);
-            if (resposta == JOptionPane.NO_OPTION ) {
+            resposta = JOptionPane.showConfirmDialog(null, "Registro salvo com sucesso!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.NO_OPTION) {
                 dispose();
                 guiEndereco.atualizarTabela();
             } else {
@@ -206,7 +208,7 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
     private void jButtonConsultarCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarCEPActionPerformed
         String enderecos_CEP;
         String enderecos_Logradouro;
-        try{
+        try {
             enderecos_CEP = jTextFieldEntradaCEP.getText();
             Endereco end = fachada.consultarEndCep(enderecos_CEP);
             enderecos_Logradouro = end.getEnderecos_Logradouro();
@@ -265,14 +267,12 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void limparTodosCampos() {
         //limpar os edits
         jTextFieldEntradaCEP.setText("");
         jTextFieldEntradaLog.setText("");
     }
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConsultarCEP;
     private javax.swing.JButton jButtonIncluirCidade;
