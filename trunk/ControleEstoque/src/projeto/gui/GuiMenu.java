@@ -59,7 +59,7 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItemNovoUsuario = new javax.swing.JMenuItem();
         jMenuProduto = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItemNovoProduto = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
@@ -185,13 +185,12 @@ public class GuiMenu extends javax.swing.JFrame {
 
         jMenuProduto.setText("Produto");
 
-        jMenuItem8.setText("Novo Produto");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemNovoProduto.setText("Novo Produto");
+        jMenuItemNovoProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                jMenuItemNovoProdutoActionPerformed(evt);
             }
         });
-        jMenuProduto.add(jMenuItem8);
 
         jMenuItem9.setText("Forma de Pagamento");
         jMenuProduto.add(jMenuItem9);
@@ -251,14 +250,14 @@ public class GuiMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addComponent(jPGuiLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         setBounds((screenSize.width-555)/2, (screenSize.height-367)/2, 555, 367);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void jMenuItemNovoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoProdutoActionPerformed
         // TODO add your handling code here:
 
         //CHAMADA DA GUI PRODUTO
@@ -267,7 +266,7 @@ public class GuiMenu extends javax.swing.JFrame {
 
         gProduto.setVisible(true);//chamei o objeto      
 
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }//GEN-LAST:event_jMenuItemNovoProdutoActionPerformed
 
     //metodo responsável por libera o acesso ao menu
     private void acessoLiberado() {
@@ -425,9 +424,9 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItemLogoff;
+    private javax.swing.JMenuItem jMenuItemNovoProduto;
     private javax.swing.JMenuItem jMenuItemNovoUsuario;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenuItem jMenuItemSobre;
