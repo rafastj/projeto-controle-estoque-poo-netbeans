@@ -22,13 +22,14 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
 
     Fachada fachada = new Fachada();
     private GuiProduto guiPro;
+    int produtoCodigo;
     /**
      * Creates new form GuiProdutoAlterar
      */
     public GuiProdutoAlterar() {
         initComponents();
-        guiPro = new GuiProduto();
-        setLocationRelativeTo(null);//mostra no centro da tela 
+        guiPro = new GuiProduto();//objeto do GuiProduto
+        setLocationRelativeTo(null);//mostra no centro da tela  
     }
 
     /**
@@ -59,7 +60,6 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Alterar Produto");
@@ -115,13 +115,6 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
 
         jLabel9.setText("Alterar para.:");
 
-        jButton1.setText("Teste");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -169,9 +162,7 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
                             .addComponent(jSegmentoBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jMarcaBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jbAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jbAlterar)
                         .addGap(8, 8, 8))))
         );
         layout.setVerticalGroup(
@@ -187,13 +178,12 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
                     .addComponent(jQtdeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jValorUnitarioField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(25, 25, 25)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jSegmentoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSegmentoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jButton1))
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTipoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,10 +197,8 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
                     .addComponent(jbAlterar)
                     .addComponent(jMarcaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
-
-        jSegmentoField.getAccessibleContext().setAccessibleParent(null);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -221,6 +209,10 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
         try {
             //preparando o novo produto para ser salvo no DAO
             Produto pAlterar = new Produto();
+            
+            
+            //recebe o codigo do produto
+            pAlterar.setProdutos_Codigo(produtoCodigo);
             
             //pegando o codigo do segmento selecionado
             Segmento sgsalvar = fachada.consultarSegmentos((String) jSegmentoBox.getSelectedItem());
@@ -239,13 +231,15 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
             //CONVERTE O VALOR INFORMADO
             String converterValor = converterValorReal(jValorUnitarioField.getText());
             pAlterar.setProdutos_ValorVenda(Double.parseDouble(converterValor));
-
             pAlterar.setProdutos_Quantidade(Integer.parseInt(jQtdeField.getText()));
-
+            
+            
             //CHAMAR O DAO ALTERAR
             fachada.alterarProduto(pAlterar);
 
             JOptionPane.showMessageDialog(null, "Produto Alterado!");
+            //PROFESSOR AJUDA!
+            guiPro.atualizarTabela();//atualizar a tabela
             dispose();
 
         } catch (GeralException ex) {
@@ -254,61 +248,16 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
     }//GEN-LAST:event_jbAlterarActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        // TODO add your handling code here:
-
-       //LISTA DO SEGMENTO
-       Segmento sg;
-       ArrayList<Segmento> listasg;
-	try{
-		//Lista dos os segmentos
-		listasg = (ArrayList<Segmento>)fachada.listarSegmentos("");
-		for(Iterator<Segmento> it = listasg.iterator(); it.hasNext();){
-                    sg = it.next();
-                    jSegmentoBox.addItem(sg.getSegmentos_Descricao());	
-		}
-	}catch (GeralException ex){
-		JOptionPane.showMessageDialog(null, ex.getMessage());
-	}
-        //LISTAR OS TIPOS
-        Tipo tp;
-        ArrayList<Tipo> listatp;
-        try{
-                listatp = (ArrayList<Tipo>) fachada.listarTipo("");
-                for(Iterator<Tipo> it = listatp.iterator(); it.hasNext();){
-                    tp = it.next();
-                    jTipoBox.addItem(tp.getTipos_Descricao());
-                }
-        }catch (GeralException ex){
-		JOptionPane.showMessageDialog(null, ex.getMessage());
-	}
-        //LISTAR MARCA
-        Marca ma;
-        ArrayList<Marca> listama;
-        try{
-                listama = (ArrayList<Marca>) fachada.listarMarca("");
-                for(Iterator<Marca> it = listama.iterator(); it.hasNext();){
-                    ma = it.next();
-                    jMarcaBox.addItem(ma.getMarcas_Descricao());
-                }
-        }catch (GeralException ex){
-		JOptionPane.showMessageDialog(null, ex.getMessage());
-	}
-        
+        // TODO add your handling code here:   
     }//GEN-LAST:event_formComponentShown
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosed
 
     private void jSegmentoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSegmentoFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jSegmentoFieldActionPerformed
-
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // TODO add your handling code here:
-       guiPro.atualizarTabela(); 
-    }//GEN-LAST:event_formWindowClosed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -352,7 +301,6 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     public javax.swing.JTextField jDescricaoField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -363,12 +311,12 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JComboBox jMarcaBox;
+    public javax.swing.JComboBox jMarcaBox;
     public javax.swing.JTextField jMarcaField;
     public javax.swing.JTextField jQtdeField;
-    private javax.swing.JComboBox jSegmentoBox;
+    public javax.swing.JComboBox jSegmentoBox;
     public javax.swing.JTextField jSegmentoField;
-    private javax.swing.JComboBox jTipoBox;
+    public javax.swing.JComboBox jTipoBox;
     public javax.swing.JTextField jTipoField;
     public javax.swing.JFormattedTextField jValorUnitarioField;
     private javax.swing.JButton jbAlterar;
@@ -390,11 +338,5 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
         } 
         return valorConvertido;
     }   
-  
- //CONVERTE O DOUBLE EM MOEDA 
-    private String formataMoeda(double valormodeda){
-        java.text.DecimalFormat df = new java.text.DecimalFormat("###,###,##0.00");
-    return df.format(valormodeda);
-    }
     
 }
