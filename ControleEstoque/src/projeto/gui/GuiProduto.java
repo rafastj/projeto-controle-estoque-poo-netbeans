@@ -392,12 +392,20 @@ import projeto.modelo.to.Tipo;
             gpAlterar.jMarcaField.setText(p.getMarcas().getMarcas_Descricao());
             gpAlterar.jMarcaBox.setSelectedItem(p.getMarcas().getMarcas_Descricao());
            
+            try{
+            //antes de abrir lança o codigo desse produto selecionado
+            Produto pconsul = fachada.consultarProduto(p.getProdutos_Descricao());
+            
+            //Codigo do produto lançado para um Inteiro publico em GuiProdutoAlterar
+            gpAlterar.produtoCodigo = pconsul.getProdutos_Codigo();
+            
+            }catch(GeralException ex){
+                JOptionPane.showMessageDialog(null,ex.getMessage());
+            }
+ 
             //chama o jframe produto alterar
             gpAlterar.setVisible(true);
-            
-            
-            
-            
+                        
         } catch(ArrayIndexOutOfBoundsException ex){
             JOptionPane.showMessageDialog(null, "Selecione o produto!");
         }
