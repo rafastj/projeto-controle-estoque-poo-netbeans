@@ -189,8 +189,8 @@ public class Fachada {
      * @return
      * @throws GeralException
      */
-    public Collection<Produto> listarProduto(String produtos_Descricao) throws GeralException {
-        return rnProduto.listarProdutos(produtos_Descricao);
+    public Collection<Produto> listarDescricao(String produtos_Descricao) throws GeralException {
+        return rnProduto.listarDescricao(produtos_Descricao);
     }
     
     /**
@@ -221,6 +221,15 @@ public class Fachada {
      */
     public Collection<Produto> listaSegmentos(int segmentos_Codigo) throws GeralException{
         return rnProduto.listarProdutosSegmento(segmentos_Codigo);
+    }
+    
+    /**
+     * Diego Silva Lista todos os Produtos
+     * @return
+     * @throws GeralException 
+     */
+    public Collection<Produto> listaTudo()throws GeralException{
+        return rnProduto.listarTudo();
     }
 
     /**
