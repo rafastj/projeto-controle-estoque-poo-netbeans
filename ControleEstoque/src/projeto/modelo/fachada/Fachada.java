@@ -5,6 +5,7 @@ package projeto.modelo.fachada;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.modelo.negocio.*;
 import projeto.modelo.to.*;
@@ -368,8 +369,12 @@ public class Fachada {
      * @return
      * @throws GeralException
      */
-    public Collection<Cliente> listarCliente(String clientes_Tipo) throws GeralException {
-        return null;
+    public Collection<PessoaFisica> listarPessoaFisica() throws GeralException, ConexaoException {
+        return rnCliente.listarPessoaFisica();
+    }
+    
+      public Collection<PessoaJuridica> listarPessoaJuridica() throws GeralException, ConexaoException{
+        return rnCliente.listarPessoaJuridica();
     }
 
     /**

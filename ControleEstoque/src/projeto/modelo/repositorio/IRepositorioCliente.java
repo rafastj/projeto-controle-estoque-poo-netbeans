@@ -79,5 +79,7 @@ public interface IRepositorioCliente {
      * @throws ConexaoException
      * @throws RepositorioException
      */
-    public Collection<Cliente> listar() throws ConexaoException, RepositorioException;
+    public Collection<PessoaFisica> listarPessoaFisica() throws ConexaoException, RepositorioException;
+    
+    public Collection<PessoaJuridica> listarPessoaJuridicaa() throws ConexaoException, RepositorioException;
 }
