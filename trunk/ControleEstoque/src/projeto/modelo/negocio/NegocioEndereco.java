@@ -137,16 +137,16 @@ public class NegocioEndereco {
         }
     }
 
-    public Collection<Endereco> listar(String enderecos_Cep) throws GeralException {
+    public Collection<Endereco> listar() throws GeralException {
 
         ArrayList<Endereco> lista;
 
-        if (enderecos_Cep == null) {
+        /*if (enderecos_Cep == null) {
             throw new GeralException("Digite o nome ou o códido da cidade!");
-        }
+        }*/
 
         try {
-            lista = (ArrayList<Endereco>) new RepositorioEndereco().listar(enderecos_Cep);
+            lista = (ArrayList<Endereco>) new RepositorioEndereco().listar();
 
         } catch (RepositorioException ex) {
             throw new GeralException("Erro de programação!");

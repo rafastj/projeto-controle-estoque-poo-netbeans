@@ -105,8 +105,8 @@ public class Fachada {
         rnEndereco.alterar(end);
     }
 
-    public Collection<Endereco> listarEndereco(String enderecos_Cep) throws GeralException {
-        return rnEndereco.listar(enderecos_Cep);
+    public Collection<Endereco> listarEndereco(String Enderecos_CEP) throws GeralException {
+        return rnEndereco.listar();
     }
 
     /**

@@ -49,10 +49,10 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuCadastro = new javax.swing.JMenu();
         jMenuCidade = new javax.swing.JMenu();
         jMenuTabelaCidade = new javax.swing.JMenuItem();
-        jMenuCidadeNova = new javax.swing.JMenuItem();
         jMenuCliente = new javax.swing.JMenu();
         jMenuClienteNovo = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -128,21 +128,13 @@ public class GuiMenu extends javax.swing.JFrame {
 
         jMenuCidade.setText("Cidade");
 
-        jMenuTabelaCidade.setText("Cidade");
+        jMenuTabelaCidade.setText("Gerenciar Cidade");
         jMenuTabelaCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuTabelaCidadeActionPerformed(evt);
             }
         });
         jMenuCidade.add(jMenuTabelaCidade);
-
-        jMenuCidadeNova.setText("Nova Cidade");
-        jMenuCidadeNova.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuCidadeNovaActionPerformed(evt);
-            }
-        });
-        jMenuCidade.add(jMenuCidadeNova);
 
         jMenuCadastro.add(jMenuCidade);
 
@@ -153,8 +145,17 @@ public class GuiMenu extends javax.swing.JFrame {
 
         jMenuCadastro.add(jMenuCliente);
 
-        jMenuItem3.setText("Endereço");
-        jMenuCadastro.add(jMenuItem3);
+        jMenu1.setText("Endereço");
+
+        jMenuItem2.setText("Gerenciar Endereços");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuCadastro.add(jMenu1);
 
         jMenu5.setText("Fornecedor");
 
@@ -345,15 +346,15 @@ public class GuiMenu extends javax.swing.JFrame {
         us.setVisible(true);
     }//GEN-LAST:event_jMenuItemNovoUsuarioActionPerformed
 
-    private void jMenuCidadeNovaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCidadeNovaActionPerformed
-        GuiCidadeNova cdSalvar = new GuiCidadeNova();
-        cdSalvar.setVisible(true);
-    }//GEN-LAST:event_jMenuCidadeNovaActionPerformed
-
     private void jMenuTabelaCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuTabelaCidadeActionPerformed
         GuiCidade cd = new GuiCidade();
         cd.setVisible(true);
     }//GEN-LAST:event_jMenuTabelaCidadeActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        GuiEndereco end = new GuiEndereco();
+        end.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
  
     
     /**
@@ -402,6 +403,7 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jLoginField;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
@@ -412,13 +414,12 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBarra;
     private javax.swing.JMenu jMenuCadastro;
     private javax.swing.JMenu jMenuCidade;
-    private javax.swing.JMenuItem jMenuCidadeNova;
     private javax.swing.JMenu jMenuCliente;
     private javax.swing.JMenuItem jMenuClienteNovo;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
