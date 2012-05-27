@@ -253,7 +253,7 @@ public class NegocioProduto {
     /**
      * Verificar os dados antes de consultar a lista pela Descrição do Produto
      */
-    public Collection<Produto> listarProdutos(String produtos_Descricao) throws GeralException {
+    public Collection<Produto> listarDescricao(String produtos_Descricao) throws GeralException {
 
         ArrayList<Produto> lista;
 
@@ -261,7 +261,7 @@ public class NegocioProduto {
             throw new GeralException("Descrição do produto não informada");
         }
         try {
-            lista = (ArrayList<Produto>) new RepositorioProduto().listar(produtos_Descricao);
+            lista = (ArrayList<Produto>) new RepositorioProduto().listarDescicao(produtos_Descricao);
 
         } catch (RepositorioException ex) {
             throw new GeralException("Diego fez caca!");
@@ -334,5 +334,21 @@ public class NegocioProduto {
         return lista;
        }
     
-    
+    /**
+     * Verificar os dados antes de consultar a lista pela Descrição do Produto
+     */
+    public Collection<Produto> listarTudo() throws GeralException {
+
+        ArrayList<Produto> lista;
+
+        try {
+            lista = (ArrayList<Produto>) new RepositorioProduto().listarTudo();
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Diego fez caca!");
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível!");
+        }
+        return lista;
+    }
 }
