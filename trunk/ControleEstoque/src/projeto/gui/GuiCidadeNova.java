@@ -16,12 +16,14 @@ import projeto.modelo.to.Cidade;
 public class GuiCidadeNova extends javax.swing.JFrame {
 
     private GuiCidade guiCidade;
+    private GuiEndereco guiEndereco;
     public static Fachada fachada = new Fachada();
     /**
      * Creates new form GuiCidade
      */
     public GuiCidadeNova() {
         guiCidade = new GuiCidade();
+        guiEndereco = new GuiEndereco();
         initComponents();
         setLocationRelativeTo(null);//mostra no centro da tela
         jTextFieldEntradaCidade.requestFocus();
@@ -102,6 +104,7 @@ public class GuiCidadeNova extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        int resposta;
         String cdSalvar = null;
         try {
             cdSalvar = jTextFieldEntradaCidade.getText();
@@ -111,6 +114,13 @@ public class GuiCidadeNova extends javax.swing.JFrame {
             Cidade cd = new Cidade(cdSalvar);
             try {
                 fachada.salvarCidade(cd);
+                resposta = JOptionPane.showConfirmDialog(null, "Registro salvo com sucesso!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
+                if(resposta == JOptionPane.NO_OPTION) {
+                    dispose();
+                } else {
+                    jTextFieldEntradaCidade.setText(null);
+                    jTextFieldEntradaCidade.requestFocus();
+                }
             } catch (GeralException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
@@ -118,6 +128,7 @@ public class GuiCidadeNova extends javax.swing.JFrame {
             jTextFieldEntradaCidade.setText(null);
             jTextFieldEntradaCidade.requestFocus();
             guiCidade.atualizarTabela();
+            guiEndereco.atualizarTabela();
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
