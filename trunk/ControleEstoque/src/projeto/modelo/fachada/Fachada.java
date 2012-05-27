@@ -190,7 +190,37 @@ public class Fachada {
      * @throws GeralException
      */
     public Collection<Produto> listarProduto(String produtos_Descricao) throws GeralException {
-        return rnProduto.listarProduto(produtos_Descricao);
+        return rnProduto.listarProdutos(produtos_Descricao);
+    }
+    
+    /**
+     * Diego Silva Lista os Produto pelo codigo da Marca
+     * @param marcas_Codigo
+     * @return
+     * @throws GeralException 
+     */
+    public Collection<Produto> listarMarcas(int marcas_Codigo) throws GeralException {
+        return rnProduto.listarProdutosMarca(marcas_Codigo);
+    }
+    
+    /**
+     * Diego Silva Lista os Produto pelo codigo do Tipo 
+     * @param tipos_Codigo
+     * @return
+     * @throws GeralException 
+     */
+    public Collection<Produto> listaTipos(int tipos_Codigo) throws GeralException{
+        return rnProduto.listarProdutosTipos(tipos_Codigo);
+    }
+    
+    /**
+     * Diego Silva Lista os Produto pelo codigo do Segmento
+     * @param segmentos_Codigo
+     * @return
+     * @throws GeralException 
+     */
+    public Collection<Produto> listaSegmentos(int segmentos_Codigo) throws GeralException{
+        return rnProduto.listarProdutosSegmento(segmentos_Codigo);
     }
 
     /**
