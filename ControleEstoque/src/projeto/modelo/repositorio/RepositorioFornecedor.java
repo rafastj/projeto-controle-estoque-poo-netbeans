@@ -152,7 +152,7 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
         ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
         Fornecedor f;
         Connection c = g.conectar();
-        String sqlLista = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, f.enderecos_Codigo from FORNECEDORES AS f ORDER BY f.fornecedores_Codigo";
+        String sqlLista = "SELECT distinct f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo ORDER BY f.fornecedores_CNPJ";
 
         try {
             Statement stm = c.createStatement();
@@ -165,6 +165,10 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
                 f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
                 f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
                 f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                f.setEnderecos_CEP(rs.getString("enderecos_CEP"));
+                f.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
+                f.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(f);
             }
             return lista;

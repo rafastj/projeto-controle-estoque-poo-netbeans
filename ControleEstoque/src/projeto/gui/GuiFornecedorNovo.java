@@ -50,7 +50,6 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        
     }//GEN-LAST:event_formComponentShown
 
     /**
@@ -89,6 +88,7 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 new GuiFornecedorNovo().setVisible(true);
             }

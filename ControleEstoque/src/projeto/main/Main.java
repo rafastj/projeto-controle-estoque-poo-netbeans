@@ -82,7 +82,7 @@ public class Main {
                                                         testarSalvarEndereco();
                                                         break;
                                                     case 3:
-                                                        testarSalvarFornecedor();
+                                                        //testarSalvarFornecedor();
                                                         break;
                                                     default:
                                                         JOptionPane.showMessageDialog(null, "Informe uma opção válida!");
@@ -191,7 +191,7 @@ public class Main {
                                                     case 0:
                                                         continue menuTestes;
                                                     case 1:
-                                                        testarListarCidade();
+                                                        //testarListarCidade();
                                                         break;
                                                     case 2:
                                                         testarListarEndereco();
@@ -1137,7 +1137,7 @@ public class Main {
         } catch (NumberFormatException x) {
             try {
                 Cidade cd = new Cidade();
-                Cidade cdOld = new Cidade();
+                Cidade cdOld;
                 cdOld = fachada.consultarCidade(cdAltOld);
                 int cidades_Codigo;
                 cidades_Codigo = cdOld.getCidades_Codigo();
@@ -1153,7 +1153,7 @@ public class Main {
         System.out.println("...processo finalizado!");
     }
 
-    private static void testarListarCidade() {
+    /*private static void testarListarCidade() {
         System.out.println("Iniciando processo...");
 
         Cidade cd;
@@ -1170,7 +1170,7 @@ public class Main {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         System.out.println("...processo finalizado!");
-    }
+    }*/
 
     /**
      * ENDERECO
@@ -1267,7 +1267,7 @@ public class Main {
     private static void testarListarEndereco() {
         System.out.println("Iniciando processo...");
 
-        Endereco end = null;
+        Endereco end;
         ArrayList<Endereco> lista;
         try {
             lista = (ArrayList<Endereco>) fachada.listarEndereco();
@@ -1288,7 +1288,7 @@ public class Main {
      *
      * @throws GeralException
      */
-    private static void testarSalvarFornecedor() throws GeralException {
+    /*private static void testarSalvarFornecedor() throws GeralException {
         System.out.println("Iniciando processo...");
         String cnpj = JOptionPane.showInputDialog("Digite o CNPJ");
         String razaoSocial = JOptionPane.showInputDialog("Digite a Razão Social");
@@ -1303,7 +1303,7 @@ public class Main {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         System.out.println("...processo finalizado!");
-    }
+    }*/
 
     private static void testarConsultarFornecedor() {
         System.out.println("Iniciando processo...");
@@ -1374,7 +1374,7 @@ public class Main {
 
     private static void testarListarFornecedor() {
         System.out.println("Iniciando processo...");
-        Fornecedor f = null;
+        Fornecedor f;
         ArrayList<Fornecedor> lista;
         try {
             lista = (ArrayList<Fornecedor>) fachada.listarFornecedor();
@@ -1488,7 +1488,7 @@ public class Main {
      * Diego Silva teste de listagem dos produtos pela descrição informada
      */
     public static void testarListarProduto() {
-        Produto p = null;
+        Produto p;
         ArrayList<Produto> lista;
         try {
             lista = (ArrayList<Produto>) fachada.listarProduto("Cami");
@@ -1666,7 +1666,7 @@ public class Main {
         } catch (NumberFormatException x) {
             try {
                 Tipo t = new Tipo();
-                Tipo tOld = new Tipo();
+                Tipo tOld;
                 tOld = fachada.consultarTipos(tAltOld);
                 int tipos_Codigo;
                 tipos_Codigo = tOld.getTipos_Codigo();
@@ -1691,7 +1691,7 @@ public class Main {
      */
     //teste listar
     public static void testarListarTipo() {
-        Tipo t = null;
+        Tipo t;
         String tp = "";
         ArrayList<Tipo> lista;
         try {
@@ -1810,7 +1810,7 @@ public class Main {
         } catch (NumberFormatException x) {
             try {
                 Marca m = new Marca();
-                Marca mOld = new Marca();
+                Marca mOld;
                 mOld = fachada.consultarMarcas(mAltOld);
                 int marcas_Codigo;
                 marcas_Codigo = mOld.getMarcas_Codigo();
@@ -1838,7 +1838,7 @@ public class Main {
      */
     //teste listar
     public static void testarListarMarca() {
-        Marca m = null;
+        Marca m;
         String ma = "";
         ArrayList<Marca> lista;
         try {
@@ -1997,7 +1997,7 @@ public class Main {
         } catch (NumberFormatException x) {
             try {
                 FormaPagamento fp = new FormaPagamento();
-                FormaPagamento fpOld = new FormaPagamento();
+                FormaPagamento fpOld;
                 fpOld = fachada.consultarFormaPagamento(fpAltOld);
                 int FormaPagamento_Codigo;
                 FormaPagamento_Codigo = fpOld.getFormaPagamento_Codigo();
@@ -2016,7 +2016,7 @@ public class Main {
     private static void testarListarFormaPagamento() {
         System.out.println("Iniciando processo...");
 
-        FormaPagamento fp = null;
+        FormaPagamento fp;
         ArrayList<FormaPagamento> lista;
         try {
             lista = (ArrayList<FormaPagamento>) fachada.listarFormasPagamentos("");
@@ -2111,7 +2111,7 @@ public class Main {
         } catch (NumberFormatException x) {
             try {
                 Segmento s = new Segmento();
-                Segmento sOld = new Segmento();
+                Segmento sOld;
                 sOld = fachada.consultarSegmentos(sAltOld);
                 int Segmento_Codigo;
                 Segmento_Codigo = sOld.getSegmentos_Codigo();
@@ -2130,7 +2130,7 @@ public class Main {
     private static void testarListarSegmento() {
         System.out.println("Iniciando processo...");
 
-        Segmento s = null;
+        Segmento s;
         ArrayList<Segmento> lista;
         try {
             lista = (ArrayList<Segmento>) fachada.listarSegmentos("");

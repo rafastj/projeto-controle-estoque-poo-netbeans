@@ -11,7 +11,6 @@ import javax.swing.table.DefaultTableModel;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Cidade;
-import projeto.modelo.to.Endereco;
 import projeto.modelo.to.Fornecedor;
 
 /**
@@ -19,7 +18,7 @@ import projeto.modelo.to.Fornecedor;
  * @author Daniel
  */
 public class GuiFornecedor extends javax.swing.JFrame {
-    
+
     ArrayList<Fornecedor> listaFornecedor = null;
     public static Fachada fachada = new Fachada();
 
@@ -291,11 +290,11 @@ public class GuiFornecedor extends javax.swing.JFrame {
     private void jTextFieldEntradaLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEntradaLogActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldEntradaLogActionPerformed
-    
+
     private void jTextFieldNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumeroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNumeroActionPerformed
-    
+
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         Cidade cid;
         ArrayList<Cidade> listaCd;
@@ -310,22 +309,22 @@ public class GuiFornecedor extends javax.swing.JFrame {
         }
         atualizarTabela();
     }//GEN-LAST:event_formComponentShown
-    
+
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         GuiFornecedorNovo fornecedor = new GuiFornecedorNovo();
         fornecedor.setVisible(true);
     }//GEN-LAST:event_jButtonNovoActionPerformed
-    
+
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         atualizarTabela();
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
-    
+
     private void jButtonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApagarActionPerformed
         int resposta;
-        
+
         try {
             Fornecedor f = listaFornecedor.get(jTableListaFornecedor.getSelectedRow());
-            
+
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Apagar ?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
                 Fornecedor fConsult = fachada.consultarForCNPJ(f.getFornecedores_CNPJ());
@@ -340,7 +339,7 @@ public class GuiFornecedor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jButtonApagarActionPerformed
-    
+
     private void jButtonIncluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirCidadeActionPerformed
         GuiCidadeNova cidade = new GuiCidadeNova();
         cidade.setVisible(true);
@@ -381,14 +380,14 @@ public class GuiFornecedor extends javax.swing.JFrame {
          * Create and display the form
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            
+
             @Override
             public void run() {
                 new GuiFornecedor().setVisible(true);
             }
         });
     }
-    
+
     private DefaultTableModel geramodelo(ArrayList<Fornecedor> listaFornecedor) {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("CNPJ");
@@ -397,19 +396,23 @@ public class GuiFornecedor extends javax.swing.JFrame {
         modelo.addColumn("Número");
         modelo.addColumn("Cidade");
         modelo.addColumn("CEP");
-        
+
         ArrayList<String> valores;
         int i = 0;
         for (Fornecedor f : listaFornecedor) {
             valores = new ArrayList<String>();
             valores.add(f.getFornecedores_CNPJ());
             valores.add(f.getFornecedores_RazaoSocial());
+            valores.add(f.getEnderecos_Logradouro());
+            valores.add(String.valueOf(f.getFornecedores_NumeroResidencia()));
+            valores.add(f.getCidades_Nome() );
+            valores.add(f.getEnderecos_CEP());
             modelo.insertRow(i, valores.toArray());
             i++;
         }
         return modelo;
     }
-    
+
     public void atualizarTabela() {
         try {
             listaFornecedor = (ArrayList<Fornecedor>) fachada.listarFornecedor();
