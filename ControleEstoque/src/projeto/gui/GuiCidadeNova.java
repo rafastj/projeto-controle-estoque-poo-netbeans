@@ -16,7 +16,7 @@ import projeto.modelo.to.Cidade;
 public class GuiCidadeNova extends javax.swing.JFrame {
 
     private GuiCidade guiCidade;
-
+    public static Fachada fachada = new Fachada();
     /**
      * Creates new form GuiCidade
      */
@@ -26,7 +26,7 @@ public class GuiCidadeNova extends javax.swing.JFrame {
         setLocationRelativeTo(null);//mostra no centro da tela
         jTextFieldEntradaCidade.requestFocus();
     }
-    public static Fachada fachada = new Fachada();
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
