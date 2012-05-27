@@ -221,4 +221,110 @@ public class RepositorioProduto implements IRepositorioProduto {
             g.desconectar(c);
         }
     }
+    
+     /**
+     * Implementação padrão DAO para listar pelo Codigo do Marcas
+     * Produtos
+     */
+    @Override
+    public Collection<Produto> listarTipos(int tipos_Codigo) throws ConexaoException, RepositorioException {
+        // criar variavel arrey list
+        ArrayList<Produto> lista = new ArrayList<Produto>();
+        Produto p;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT s.segmentos_Descricao, t.tipos_Descricao, m.marcas_Descricao, p.produtos_Descricao, p.produtos_Quantidade, p.produtos_ValorVenda from Produtos p inner join Segmentos s On p.segmentos_Codigo = s.segmentos_Codigo inner join Tipos t On p.tipos_Codigo = t.tipos_Codigo inner join Marcas m On p.marcas_Codigo = m.marcas_Codigo where  t.tipos_Codigo = ? order by p.produtos_Descricao";
+        //	String sqlLista = "SELECT produtos_Descricao from Produtos where produtos_Descricao like ?";
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlLista);//salvar todos os registro na variavel do Result set
+            pstm.setInt(1, tipos_Codigo );
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                p = new Produto();
+                //AJUDA PROFESSOR! VALEU!
+                p.getSegmentos().setSegmentos_Descricao(rs.getString("s.segmentos_Descricao"));
+                p.getTipo().setTipos_Descricao(rs.getString("t.tipos_Descricao"));
+                p.getMarcas().setMarcas_Descricao(rs.getString("m.marcas_Descricao"));
+                p.setProdutos_Descricao(rs.getString("p.produtos_Descricao"));
+                p.setProdutos_Quantidade(rs.getInt("p.produtos_Quantidade"));
+                p.setProdutos_ValorVenda(rs.getDouble("p.produtos_ValorVenda"));
+                lista.add(p);
+            }
+            return lista;
+        } catch (SQLException ex) {
+            throw new RepositorioException(ex.getMessage());
+        } finally {
+            g.desconectar(c);
+        }
+    }
+    
+     /**
+     * Implementação padrão DAO para listar pelo Codigo do Tipos
+     * Produtos
+     */
+    @Override
+    public Collection<Produto> listarMarcas(int marca_Codigo) throws ConexaoException, RepositorioException {
+        // criar variavel arrey list
+        ArrayList<Produto> lista = new ArrayList<Produto>();
+        Produto p;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT s.segmentos_Descricao, t.tipos_Descricao, m.marcas_Descricao, p.produtos_Descricao, p.produtos_Quantidade, p.produtos_ValorVenda from Produtos p inner join Segmentos s On p.segmentos_Codigo = s.segmentos_Codigo inner join Tipos t On p.tipos_Codigo = t.tipos_Codigo inner join Marcas m On p.marcas_Codigo = m.marcas_Codigo where m.marcas_Codigo = ? order by p.produtos_Descricao";
+        //	String sqlLista = "SELECT produtos_Descricao from Produtos where produtos_Descricao like ?";
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlLista);//salvar todos os registro na variavel do Result set
+            pstm.setInt(1, marca_Codigo );
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                p = new Produto();
+                //AJUDA PROFESSOR! VALEU!
+                p.getSegmentos().setSegmentos_Descricao(rs.getString("s.segmentos_Descricao"));
+                p.getTipo().setTipos_Descricao(rs.getString("t.tipos_Descricao"));
+                p.getMarcas().setMarcas_Descricao(rs.getString("m.marcas_Descricao"));
+                p.setProdutos_Descricao(rs.getString("p.produtos_Descricao"));
+                p.setProdutos_Quantidade(rs.getInt("p.produtos_Quantidade"));
+                p.setProdutos_ValorVenda(rs.getDouble("p.produtos_ValorVenda"));
+                lista.add(p);
+            }
+            return lista;
+        } catch (SQLException ex) {
+            throw new RepositorioException(ex.getMessage());
+        } finally {
+            g.desconectar(c);
+        }
+    }
+  
+       /**
+     * Implementação padrão DAO para listar pelo Codigo do Tipos
+     * Produtos
+     */
+    @Override
+    public Collection<Produto> listarSegmentos(int segmentos_Codigo) throws ConexaoException, RepositorioException {
+        // criar variavel arrey list
+        ArrayList<Produto> lista = new ArrayList<Produto>();
+        Produto p;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT s.segmentos_Descricao, t.tipos_Descricao, m.marcas_Descricao, p.produtos_Descricao, p.produtos_Quantidade, p.produtos_ValorVenda from Produtos p inner join Segmentos s On p.segmentos_Codigo = s.segmentos_Codigo inner join Tipos t On p.tipos_Codigo = t.tipos_Codigo inner join Marcas m On p.marcas_Codigo = m.marcas_Codigo where s.segmentos_Codigo = ? order by p.produtos_Descricao";
+        //	String sqlLista = "SELECT produtos_Descricao from Produtos where produtos_Descricao like ?";
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlLista);//salvar todos os registro na variavel do Result set
+            pstm.setInt(1, segmentos_Codigo );
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                p = new Produto();
+                //AJUDA PROFESSOR! VALEU!
+                p.getSegmentos().setSegmentos_Descricao(rs.getString("s.segmentos_Descricao"));
+                p.getTipo().setTipos_Descricao(rs.getString("t.tipos_Descricao"));
+                p.getMarcas().setMarcas_Descricao(rs.getString("m.marcas_Descricao"));
+                p.setProdutos_Descricao(rs.getString("p.produtos_Descricao"));
+                p.setProdutos_Quantidade(rs.getInt("p.produtos_Quantidade"));
+                p.setProdutos_ValorVenda(rs.getDouble("p.produtos_ValorVenda"));
+                lista.add(p);
+            }
+            return lista;
+        } catch (SQLException ex) {
+            throw new RepositorioException(ex.getMessage());
+        } finally {
+            g.desconectar(c);
+        }
+    }
+    
 }

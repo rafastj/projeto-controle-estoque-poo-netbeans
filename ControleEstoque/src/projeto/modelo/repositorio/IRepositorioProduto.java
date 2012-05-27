@@ -43,4 +43,20 @@ public interface IRepositorioProduto {
      * Metodo Padrão para lista os dados
      */
     public Collection<Produto> listar(String produtos_Descricao) throws ConexaoException, RepositorioException;
+    
+    /**
+     * Metodo Padrão para lista os Marca
+     */
+    public Collection<Produto> listarMarcas(int marca_Codigo) throws ConexaoException, RepositorioException;
+    
+    /**
+     * Metodo Padrão para lista os Tipo
+     */
+    public Collection<Produto> listarTipos(int tipos_Codigo) throws ConexaoException, RepositorioException;
+    
+     /**
+     * Metodo Padrão para lista os Segmento
+     */
+    public Collection<Produto> listarSegmentos(int segmentos_Codigo) throws ConexaoException, RepositorioException;
+    
 }
