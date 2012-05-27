@@ -4,7 +4,7 @@
 package projeto.modelo.to;
 
 /**
- * @author DANIEL VALENÇA R.143
+ * @author DANIEL VALENÇA
  */
 public class Fornecedor {
 
@@ -13,21 +13,26 @@ public class Fornecedor {
     private String fornecedores_RazaoSocial;
     private int fornecedores_NumeroResidencia;
     private int enderecos_Codigo;
+    private String enderecos_CEP;
+    private String enderecos_Logradouro;
+    private int cidades_Codigo;
+    private String cidades_Nome;
     private Endereco end = new Endereco();
-
-    public void setCodigo(Endereco codigo) {
-        this.end = codigo;
-    }
-
+    private Cidade cd = new Cidade();
+    
     public Fornecedor() {
     }
 
-    public Fornecedor(int fornecedores_Codigo, String fornecedores_CNPJ, String fornecedores_RazaoSocial, int fornecedores_NumeroResidencia, int enderecos_Codigo) {
+    public Fornecedor(int fornecedores_Codigo, String fornecedores_CNPJ, String fornecedores_RazaoSocial, int fornecedores_NumeroResidencia, int enderecos_Codigo, String enderecos_CEP, String enderecos_Logradouro, int cidades_Codigo, String cidades_Nome) {
         this.fornecedores_Codigo = fornecedores_Codigo;
         this.fornecedores_CNPJ = fornecedores_CNPJ;
         this.fornecedores_RazaoSocial = fornecedores_RazaoSocial;
         this.fornecedores_NumeroResidencia = fornecedores_NumeroResidencia;
         this.enderecos_Codigo = enderecos_Codigo;
+        this.enderecos_CEP = enderecos_CEP;
+        this.enderecos_Logradouro = enderecos_Logradouro;
+        this.cidades_Codigo = cidades_Codigo;
+        this.cidades_Nome = cidades_Nome;
     }
 
     public int getFornecedores_Codigo() {
@@ -66,6 +71,10 @@ public class Fornecedor {
     public Endereco getCodigo() {
         return end;
     }
+    
+     public void setCodigo(Endereco codigo) {
+        this.end = codigo;
+    }
 
     public void setEndereco_Codigo(Endereco codigo) {
         this.end = codigo;
@@ -77,5 +86,53 @@ public class Fornecedor {
 
     public int getEnderecos_Codigo() {
         return enderecos_Codigo;
+    }
+    
+    public Cidade getCd() {
+        return cd;
+    }
+
+    public void setCd(Cidade cd) {
+        this.cd = cd;
+    }
+
+    public int getCidades_Codigo() {
+        return cidades_Codigo;
+    }
+
+    public void setCidades_Codigo(int cidades_Codigo) {
+        this.cidades_Codigo = cidades_Codigo;
+    }
+
+    public String getCidades_Nome() {
+        return cidades_Nome;
+    }
+
+    public void setCidades_Nome(String cidades_Nome) {
+        this.cidades_Nome = cidades_Nome;
+    }
+
+    public Endereco getEnd() {
+        return end;
+    }
+
+    public void setEnd(Endereco end) {
+        this.end = end;
+    }
+
+    public String getEnderecos_CEP() {
+        return enderecos_CEP;
+    }
+
+    public void setEnderecos_CEP(String enderecos_CEP) {
+        this.enderecos_CEP = enderecos_CEP;
+    }
+
+    public String getEnderecos_Logradouro() {
+        return enderecos_Logradouro;
+    }
+
+    public void setEnderecos_Logradouro(String enderecos_Logradouro) {
+        this.enderecos_Logradouro = enderecos_Logradouro;
     }
 }
