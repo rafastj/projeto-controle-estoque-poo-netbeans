@@ -117,7 +117,7 @@ public class NegocioProduto {
     public Produto consultarDescricao(String produtos_Descricao) throws GeralException {
         Produto p = null;
 
-        if (produtos_Descricao == null) {
+        if (produtos_Descricao.equals("")) {
             throw new GeralException("Descrição do produto não informada");
         }
 
@@ -251,13 +251,13 @@ public class NegocioProduto {
     }
 
     /**
-     * Verificar os dados antes de consultar a lista
+     * Verificar os dados antes de consultar a lista pela Descrição do Produto
      */
-    public Collection<Produto> listarProduto(String produtos_Descricao) throws GeralException {
+    public Collection<Produto> listarProdutos(String produtos_Descricao) throws GeralException {
 
         ArrayList<Produto> lista;
 
-        if (produtos_Descricao == null) {
+        if (produtos_Descricao.equals("")) {
             throw new GeralException("Descrição do produto não informada");
         }
         try {
@@ -270,4 +270,69 @@ public class NegocioProduto {
         }
         return lista;
     }
+    
+    /**
+     * Verificar os dados antes de consultar a lista pelo Codigo da Marca
+     */
+    public Collection<Produto> listarProdutosMarca(int marcas_Codigo) throws GeralException {
+
+        ArrayList<Produto> lista;
+
+        if (marcas_Codigo <= 0) {
+            throw new GeralException("Código da Marca não informada");
+        }
+        try {
+            lista = (ArrayList<Produto>) new RepositorioProduto().listarMarcas( marcas_Codigo );
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Diego fez caca!");
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível!");
+        }
+        return lista;
+       }
+    
+     /**
+     * Verificar os dados antes de consultar a lista pelo Codigo do Tipos
+     */
+    public Collection<Produto> listarProdutosTipos(int tipos_Codigo) throws GeralException {
+
+        ArrayList<Produto> lista;
+
+        if (tipos_Codigo <= 0) {
+            throw new GeralException("Código da Marca não informada");
+        }
+        try {
+            lista = (ArrayList<Produto>) new RepositorioProduto().listarTipos( tipos_Codigo );
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Diego fez caca!");
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível!");
+        }
+        return lista;
+       }
+    
+     /**
+     * Verificar os dados antes de consultar a lista pelo Codigo do Segmento
+     */
+    public Collection<Produto> listarProdutosSegmento(int Segmentos_Codigo) throws GeralException {
+
+        ArrayList<Produto> lista;
+
+        if (Segmentos_Codigo <= 0) {
+            throw new GeralException("Código da Marca não informada");
+        }
+        try {
+            lista = (ArrayList<Produto>) new RepositorioProduto().listarSegmentos( Segmentos_Codigo );
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Diego fez caca!");
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível!");
+        }
+        return lista;
+       }
+    
+    
 }
