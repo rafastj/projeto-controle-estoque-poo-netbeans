@@ -4,11 +4,24 @@
  */
 package projeto.gui;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import projeto.erro.GeralException;
+import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.Cidade;
+import projeto.modelo.to.Endereco;
+import projeto.modelo.to.Fornecedor;
+
 /**
  *
  * @author Daniel
  */
 public class GuiFornecedor extends javax.swing.JFrame {
+    
+    ArrayList<Fornecedor> listaFornecedor = null;
+    public static Fachada fachada = new Fachada();
 
     /**
      * Creates new form GuiFornecedor
@@ -41,7 +54,6 @@ public class GuiFornecedor extends javax.swing.JFrame {
         jLabelCidade = new javax.swing.JLabel();
         jComboBoxCidade = new javax.swing.JComboBox();
         jButtonIncluirCidade = new javax.swing.JButton();
-        jButtonSalvar = new javax.swing.JButton();
         jLabelNumero = new javax.swing.JLabel();
         jTextFieldNumero = new javax.swing.JTextField();
         jButtonPesquisaLog = new javax.swing.JButton();
@@ -51,10 +63,11 @@ public class GuiFornecedor extends javax.swing.JFrame {
         jButtonNovo = new javax.swing.JButton();
         jButtonAlterar = new javax.swing.JButton();
         jButtonApagar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPaneFornecedor = new javax.swing.JScrollPane();
+        jTableListaFornecedor = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Fornecedor");
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -84,8 +97,11 @@ public class GuiFornecedor extends javax.swing.JFrame {
         jLabelCidade.setText("Cidade.:");
 
         jButtonIncluirCidade.setText("Incluir Cidade");
-
-        jButtonSalvar.setText("Salvar Fornecedor");
+        jButtonIncluirCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIncluirCidadeActionPerformed(evt);
+            }
+        });
 
         jLabelNumero.setText("Número.:");
 
@@ -111,46 +127,39 @@ public class GuiFornecedor extends javax.swing.JFrame {
                             .addComponent(jLabelCNPJ)
                             .addComponent(jLabelCEP))
                         .addGap(22, 22, 22)
-                        .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanelFiltroLayout.createSequentialGroup()
-                                .addComponent(jTextFieldEntradaCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonPesquisaCNPJ))
-                            .addGroup(jPanelFiltroLayout.createSequentialGroup()
-                                .addComponent(jTextFieldEntradaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonPesquisaCEP)))
-                        .addGap(10, 10, 10)
                         .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelFiltroLayout.createSequentialGroup()
-                                .addComponent(jLabelRazaoSocial)
+                                .addComponent(jTextFieldEntradaCEP, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonPesquisaCEP)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldEntradaRS, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelFiltroLayout.createSequentialGroup()
-                                .addComponent(jLabelLogradouro)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldEntradaLog, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabelLogradouro))
+                            .addComponent(jTextFieldEntradaCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanelFiltroLayout.createSequentialGroup()
+                                .addComponent(jTextFieldEntradaLog, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonPesquisaLog)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                                .addGap(25, 25, 25)
                                 .addComponent(jLabelNumero)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelFiltroLayout.createSequentialGroup()
-                                .addComponent(jButtonPesquisaRS)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(jButtonPesquisaCNPJ)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelRazaoSocial)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldEntradaRS, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonPesquisaRS))))
                     .addGroup(jPanelFiltroLayout.createSequentialGroup()
                         .addComponent(jLabelCidade)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonIncluirCidade)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonSalvar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButtonIncluirCidade)))
+                .addContainerGap())
         );
         jPanelFiltroLayout.setVerticalGroup(
             jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,29 +187,42 @@ public class GuiFornecedor extends javax.swing.JFrame {
                             .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelNumero))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelFiltroLayout.createSequentialGroup()
-                        .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelCidade)
-                            .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonIncluirCidade))
-                        .addGap(29, 29, 29))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFiltroLayout.createSequentialGroup()
-                        .addComponent(jButtonSalvar)
-                        .addContainerGap())))
+                .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCidade)
+                    .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonIncluirCidade)))
         );
 
         jPanelLista.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista dos Fornecedores"));
 
         jButtonAtualizar.setText("Atualizar");
+        jButtonAtualizar.setToolTipText("Atualizar lista de fornecedores");
+        jButtonAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtualizarActionPerformed(evt);
+            }
+        });
 
         jButtonNovo.setText("Novo");
+        jButtonNovo.setToolTipText("Salvar novo fornecedor");
+        jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNovoActionPerformed(evt);
+            }
+        });
 
         jButtonAlterar.setText("Alterar");
+        jButtonAlterar.setToolTipText("Alterar o registro selecionado");
 
         jButtonApagar.setText("Apagar");
+        jButtonApagar.setToolTipText("Excluir o registro selecionado");
+        jButtonApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonApagarActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableListaFornecedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null}
             },
@@ -208,7 +230,7 @@ public class GuiFornecedor extends javax.swing.JFrame {
                 "CNPJ", "Razão Social", "Logradouro", "Número", "Cidade", "CEP"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPaneFornecedor.setViewportView(jTableListaFornecedor);
 
         javax.swing.GroupLayout jPanelListaLayout = new javax.swing.GroupLayout(jPanelLista);
         jPanelLista.setLayout(jPanelListaLayout);
@@ -216,7 +238,7 @@ public class GuiFornecedor extends javax.swing.JFrame {
             jPanelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelListaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPaneFornecedor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -237,8 +259,8 @@ public class GuiFornecedor extends javax.swing.JFrame {
                         .addComponent(jButtonAlterar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonApagar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE))
+                        .addGap(0, 114, Short.MAX_VALUE))
+                    .addComponent(jScrollPaneFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -269,14 +291,60 @@ public class GuiFornecedor extends javax.swing.JFrame {
     private void jTextFieldEntradaLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEntradaLogActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldEntradaLogActionPerformed
-
+    
     private void jTextFieldNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumeroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNumeroActionPerformed
-
+    
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        
+        Cidade cid;
+        ArrayList<Cidade> listaCd;
+        try {
+            listaCd = (ArrayList<Cidade>) fachada.listarCidade();
+            for (Iterator<Cidade> it = listaCd.iterator(); it.hasNext();) {
+                cid = it.next();
+                jComboBoxCidade.addItem(cid.getCidades_Nome());
+            }
+        } catch (GeralException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        atualizarTabela();
     }//GEN-LAST:event_formComponentShown
+    
+    private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
+        GuiFornecedorNovo fornecedor = new GuiFornecedorNovo();
+        fornecedor.setVisible(true);
+    }//GEN-LAST:event_jButtonNovoActionPerformed
+    
+    private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
+        atualizarTabela();
+    }//GEN-LAST:event_jButtonAtualizarActionPerformed
+    
+    private void jButtonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApagarActionPerformed
+        int resposta;
+        
+        try {
+            Fornecedor f = listaFornecedor.get(jTableListaFornecedor.getSelectedRow());
+            
+            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Apagar ?", "", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+                Fornecedor fConsult = fachada.consultarForCNPJ(f.getFornecedores_CNPJ());
+                if (fConsult != null) {
+                    fachada.excluirFornecedor(fConsult.getFornecedores_CNPJ());
+                    atualizarTabela();
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione o Fornecedor!");
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_jButtonApagarActionPerformed
+    
+    private void jButtonIncluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirCidadeActionPerformed
+        GuiCidadeNova cidade = new GuiCidadeNova();
+        cidade.setVisible(true);
+    }//GEN-LAST:event_jButtonIncluirCidadeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,11 +381,43 @@ public class GuiFornecedor extends javax.swing.JFrame {
          * Create and display the form
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
-
+            
+            @Override
             public void run() {
                 new GuiFornecedor().setVisible(true);
             }
         });
+    }
+    
+    private DefaultTableModel geramodelo(ArrayList<Fornecedor> listaFornecedor) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("CNPJ");
+        modelo.addColumn("Razão Social");
+        modelo.addColumn("Logradouro");
+        modelo.addColumn("Número");
+        modelo.addColumn("Cidade");
+        modelo.addColumn("CEP");
+        
+        ArrayList<String> valores;
+        int i = 0;
+        for (Fornecedor f : listaFornecedor) {
+            valores = new ArrayList<String>();
+            valores.add(f.getFornecedores_CNPJ());
+            valores.add(f.getFornecedores_RazaoSocial());
+            modelo.insertRow(i, valores.toArray());
+            i++;
+        }
+        return modelo;
+    }
+    
+    public void atualizarTabela() {
+        try {
+            listaFornecedor = (ArrayList<Fornecedor>) fachada.listarFornecedor();
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaFornecedor);
+        jTableListaFornecedor.setModel(modelo);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;
@@ -329,7 +429,6 @@ public class GuiFornecedor extends javax.swing.JFrame {
     private javax.swing.JButton jButtonPesquisaCNPJ;
     private javax.swing.JButton jButtonPesquisaLog;
     private javax.swing.JButton jButtonPesquisaRS;
-    private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox jComboBoxCidade;
     private javax.swing.JLabel jLabelCEP;
     private javax.swing.JLabel jLabelCNPJ;
@@ -339,8 +438,8 @@ public class GuiFornecedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelRazaoSocial;
     private javax.swing.JPanel jPanelFiltro;
     private javax.swing.JPanel jPanelLista;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPaneFornecedor;
+    private javax.swing.JTable jTableListaFornecedor;
     private javax.swing.JTextField jTextFieldEntradaCEP;
     private javax.swing.JTextField jTextFieldEntradaCNPJ;
     private javax.swing.JTextField jTextFieldEntradaLog;

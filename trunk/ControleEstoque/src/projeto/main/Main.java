@@ -1156,10 +1156,10 @@ public class Main {
     private static void testarListarCidade() {
         System.out.println("Iniciando processo...");
 
-        Cidade cd = null;
+        Cidade cd;
         ArrayList<Cidade> lista;
         try {
-            lista = (ArrayList<Cidade>) fachada.listarCidade("");
+            lista = (ArrayList<Cidade>) fachada.listarCidade();
             String imprimeLista = "";
             for (Iterator<Cidade> it = lista.iterator(); it.hasNext();) {
                 cd = it.next();
@@ -1270,7 +1270,7 @@ public class Main {
         Endereco end = null;
         ArrayList<Endereco> lista;
         try {
-            lista = (ArrayList<Endereco>) fachada.listarEndereco("");
+            lista = (ArrayList<Endereco>) fachada.listarEndereco();
             String imprimeLista = "";
             for (Iterator<Endereco> it = lista.iterator(); it.hasNext();) {
                 end = it.next();
@@ -1377,7 +1377,7 @@ public class Main {
         Fornecedor f = null;
         ArrayList<Fornecedor> lista;
         try {
-            lista = (ArrayList<Fornecedor>) fachada.listarFornecedor("");
+            lista = (ArrayList<Fornecedor>) fachada.listarFornecedor();
             String imprimeLista = "";
             for (Iterator<Fornecedor> it = lista.iterator(); it.hasNext();) {
                 f = it.next();

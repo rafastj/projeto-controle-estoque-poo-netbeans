@@ -148,7 +148,7 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
     }
 
     @Override
-    public Collection<Fornecedor> listar(String fornecedores_CNPJ) throws ConexaoException, RepositorioException {
+    public Collection<Fornecedor> listar() throws ConexaoException, RepositorioException {
         ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
         Fornecedor f;
         Connection c = g.conectar();

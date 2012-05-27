@@ -221,7 +221,7 @@ public class GuiEndereco extends javax.swing.JFrame {
         Cidade cid;
         ArrayList<Cidade> listaCd;
         try {
-            listaCd = (ArrayList<Cidade>) fachada.listarCidade("");
+            listaCd = (ArrayList<Cidade>) fachada.listarCidade();
             for (Iterator<Cidade> it = listaCd.iterator(); it.hasNext();) {
                 cid = it.next();
                 jComboBoxCidade.addItem(cid.getCidades_Nome());
@@ -238,7 +238,7 @@ public class GuiEndereco extends javax.swing.JFrame {
         //ArrayList<Produto> listaProduto = null;
         int i = 0;
         try {
-            listaEndereco = (ArrayList<Endereco>) fachada.listarEndereco("");
+            listaEndereco = (ArrayList<Endereco>) fachada.listarEndereco();
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -270,7 +270,7 @@ public class GuiEndereco extends javax.swing.JFrame {
                 }
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
-            JOptionPane.showMessageDialog(null, "Selecione a cidade!");
+            JOptionPane.showMessageDialog(null, "Selecione o endereço!");
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -358,7 +358,7 @@ public class GuiEndereco extends javax.swing.JFrame {
 
     public void atualizarTabela() {
         try {
-            listaEndereco = (ArrayList<Endereco>) fachada.listarEndereco("");
+            listaEndereco = (ArrayList<Endereco>) fachada.listarEndereco();
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
