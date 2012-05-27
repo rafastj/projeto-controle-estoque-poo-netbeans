@@ -14,8 +14,9 @@ import projeto.modelo.to.Usuario;
  * @author diego
  */
 public class GuiMenu extends javax.swing.JFrame {
-    
-     public static Fachada fachada = new Fachada();
+
+    public static Fachada fachada = new Fachada();
+
     /**
      * Creates new form GuiMenu
      */
@@ -26,7 +27,6 @@ public class GuiMenu extends javax.swing.JFrame {
         setLocationRelativeTo(null);//mostra no centro da tela
         jMenuBarra.setVisible(false); //esconder a barra de menu 
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,15 +51,14 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuTabelaCidade = new javax.swing.JMenuItem();
         jMenuCliente = new javax.swing.JMenu();
         jMenuClienteNovo = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
+        jMenuEndereco = new javax.swing.JMenu();
+        jMenuEnderecoNovo = new javax.swing.JMenuItem();
+        jMenuFornecedor = new javax.swing.JMenu();
+        jMenuGerenciarFornecedor = new javax.swing.JMenuItem();
+        jMenuFuncionario = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItemNovoUsuario = new javax.swing.JMenuItem();
-        jMenu8 = new javax.swing.JMenu();
+        jMenuProduto = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
@@ -145,32 +144,34 @@ public class GuiMenu extends javax.swing.JFrame {
 
         jMenuCadastro.add(jMenuCliente);
 
-        jMenu1.setText("Endereço");
+        jMenuEndereco.setText("Endereço");
 
-        jMenuItem2.setText("Gerenciar Endereços");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuEnderecoNovo.setText("Gerenciar Endereços");
+        jMenuEnderecoNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMenuEnderecoNovoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenuEndereco.add(jMenuEnderecoNovo);
 
-        jMenuCadastro.add(jMenu1);
+        jMenuCadastro.add(jMenuEndereco);
 
-        jMenu5.setText("Fornecedor");
+        jMenuFornecedor.setText("Fornecedor");
 
-        jMenuItem4.setText("Novo Fornecedor");
-        jMenu5.add(jMenuItem4);
+        jMenuGerenciarFornecedor.setText("Gerenciar Fornecedor");
+        jMenuGerenciarFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuGerenciarFornecedorActionPerformed(evt);
+            }
+        });
+        jMenuFornecedor.add(jMenuGerenciarFornecedor);
 
-        jMenuItem5.setText("Novo Fornecimento");
-        jMenu5.add(jMenuItem5);
+        jMenuCadastro.add(jMenuFornecedor);
 
-        jMenuCadastro.add(jMenu5);
-
-        jMenu6.setText("Funcionário");
+        jMenuFuncionario.setText("Funcionário");
 
         jMenuItem6.setText("Novo Funcionário");
-        jMenu6.add(jMenuItem6);
+        jMenuFuncionario.add(jMenuItem6);
 
         jMenuItemNovoUsuario.setText("Usuário");
         jMenuItemNovoUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -178,11 +179,11 @@ public class GuiMenu extends javax.swing.JFrame {
                 jMenuItemNovoUsuarioActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItemNovoUsuario);
+        jMenuFuncionario.add(jMenuItemNovoUsuario);
 
-        jMenuCadastro.add(jMenu6);
+        jMenuCadastro.add(jMenuFuncionario);
 
-        jMenu8.setText("Produto");
+        jMenuProduto.setText("Produto");
 
         jMenuItem8.setText("Novo Produto");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
@@ -190,21 +191,21 @@ public class GuiMenu extends javax.swing.JFrame {
                 jMenuItem8ActionPerformed(evt);
             }
         });
-        jMenu8.add(jMenuItem8);
+        jMenuProduto.add(jMenuItem8);
 
         jMenuItem9.setText("Forma de Pagamento");
-        jMenu8.add(jMenuItem9);
+        jMenuProduto.add(jMenuItem9);
 
         jMenuItem10.setText("Segmento");
-        jMenu8.add(jMenuItem10);
+        jMenuProduto.add(jMenuItem10);
 
         jMenuItem11.setText("Tipo");
-        jMenu8.add(jMenuItem11);
+        jMenuProduto.add(jMenuItem11);
 
         jMenuItem12.setText("Marca");
-        jMenu8.add(jMenuItem12);
+        jMenuProduto.add(jMenuItem12);
 
-        jMenuCadastro.add(jMenu8);
+        jMenuCadastro.add(jMenuProduto);
 
         jMenuBarra.add(jMenuCadastro);
 
@@ -257,38 +258,38 @@ public class GuiMenu extends javax.swing.JFrame {
         setBounds((screenSize.width-555)/2, (screenSize.height-367)/2, 555, 367);
     }// </editor-fold>//GEN-END:initComponents
 
-     
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-             
+
         //CHAMADA DA GUI PRODUTO
-        
+
         GuiProduto gProduto = new GuiProduto();//criei o objeto
-       		
+
         gProduto.setVisible(true);//chamei o objeto      
-						
+
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
-   //metodo responsável por libera o acesso ao menu
-    private void acessoLiberado(){
-         //ocultar o Painel de login
-         jPGuiLogin.setVisible(false);
-         //mostrar a Barra de Menu
-         jMenuBarra.setVisible(true);
+    //metodo responsável por libera o acesso ao menu
+    private void acessoLiberado() {
+        //ocultar o Painel de login
+        jPGuiLogin.setVisible(false);
+        //mostrar a Barra de Menu
+        jMenuBarra.setVisible(true);
     }
-    
+
     //metodo responsável por limpar os campos login e senha
-    private void errologin(){
+    private void errologin() {
         jLoginField.setText("");
         jPasswordField.setText("");
         jLoginField.requestFocus();
     }
     //metodo de erro de senha
-     private void errosenha(){
+
+    private void errosenha() {
         jPasswordField.setText("");
         jPasswordField.requestFocus();
     }
-    
+
     private void jbAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAcessarActionPerformed
         // TODO add your handling code here:
         //AUTENTICAÇÃO DO LOGIN ADMIN
@@ -311,24 +312,24 @@ public class GuiMenu extends javax.swing.JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "Senha Incorreta!");
                         errosenha();
-                        
+
                     }
                 }
             } catch (GeralException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
                 errologin();
-                } 
             }
+        }
         }//GEN-LAST:event_jbAcessarActionPerformed
 
     private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
         // TODO add your handling code here:
         int resposta;
-        resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente sair do sistema?","",JOptionPane.YES_NO_OPTION);
+        resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente sair do sistema?", "", JOptionPane.YES_NO_OPTION);
 
         if (resposta == JOptionPane.YES_OPTION) {
-        // verifica se o usuário clicou no botão YES
-          System.exit(0);  
+            // verifica se o usuário clicou no botão YES
+            System.exit(0);
         }
     }//GEN-LAST:event_jMenuItemSairActionPerformed
 
@@ -351,12 +352,16 @@ public class GuiMenu extends javax.swing.JFrame {
         cd.setVisible(true);
     }//GEN-LAST:event_jMenuTabelaCidadeActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMenuEnderecoNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEnderecoNovoActionPerformed
         GuiEndereco end = new GuiEndereco();
         end.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
- 
-    
+    }//GEN-LAST:event_jMenuEnderecoNovoActionPerformed
+
+    private void jMenuGerenciarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGerenciarFornecedorActionPerformed
+        GuiFornecedor fornecedor = new GuiFornecedor();
+        fornecedor.setVisible(true);
+    }//GEN-LAST:event_jMenuGerenciarFornecedorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -392,7 +397,6 @@ public class GuiMenu extends javax.swing.JFrame {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
-            
             @Override
             public void run() {
                 new GuiMenu().setVisible(true);
@@ -403,25 +407,23 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jLoginField;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBarra;
     private javax.swing.JMenu jMenuCadastro;
     private javax.swing.JMenu jMenuCidade;
     private javax.swing.JMenu jMenuCliente;
     private javax.swing.JMenuItem jMenuClienteNovo;
+    private javax.swing.JMenu jMenuEndereco;
+    private javax.swing.JMenuItem jMenuEnderecoNovo;
+    private javax.swing.JMenu jMenuFornecedor;
+    private javax.swing.JMenu jMenuFuncionario;
+    private javax.swing.JMenuItem jMenuGerenciarFornecedor;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
@@ -429,10 +431,10 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemNovoUsuario;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenuItem jMenuItemSobre;
+    private javax.swing.JMenu jMenuProduto;
     private javax.swing.JMenuItem jMenuTabelaCidade;
     private javax.swing.JPanel jPGuiLogin;
     private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JButton jbAcessar;
     // End of variables declaration//GEN-END:variables
-
 }
