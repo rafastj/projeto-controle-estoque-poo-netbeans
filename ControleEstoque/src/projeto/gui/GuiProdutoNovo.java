@@ -22,7 +22,7 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
 
     public static Fachada fachada = new Fachada();
     
-    private GuiProduto guiPro = GuiProduto();
+    private GuiProduto guiPro = new GuiProduto();
 
     /**
      * Creates new form GuiProdutoNovo
