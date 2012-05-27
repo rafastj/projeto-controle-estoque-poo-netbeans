@@ -59,7 +59,6 @@ public class GuiEndereco extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Endereço");
         setName("frameEndereco");
-        setPreferredSize(new java.awt.Dimension(800, 600));
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -77,6 +76,11 @@ public class GuiEndereco extends javax.swing.JFrame {
         jButtonPesquisaLog.setText("...");
 
         jButtonPesquisaCEP.setText("...");
+        jButtonPesquisaCEP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisaCEPActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelFiltroLayout = new javax.swing.GroupLayout(jPanelFiltro);
         jPanelFiltro.setLayout(jPanelFiltroLayout);
@@ -275,6 +279,10 @@ public class GuiEndereco extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jButtonApagarActionPerformed
+
+    private void jButtonPesquisaCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCEPActionPerformed
+        
+    }//GEN-LAST:event_jButtonPesquisaCEPActionPerformed
 
     /**
      * @param args the command line arguments
