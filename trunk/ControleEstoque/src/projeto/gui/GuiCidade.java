@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Cidade;
+import projeto.modelo.to.Produto;
 
 /**
  *
@@ -283,17 +284,12 @@ public class GuiCidade extends javax.swing.JFrame {
 
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar ?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
-                Cidade cdConsult = fachada.consultarCidade(cdOld.getCidades_Codigo());
-                if (cdConsult != null) {
-                    String nova = jTextFieldCampoCidade.getText();
-                    Cidade cd = new Cidade(nova);
-                    fachada.alterarCidade(cd);
-                }
+                GuiCidadeAlterar guiCidadeAlterar = new GuiCidadeAlterar();
+                guiCidadeAlterar.jTextFieldCidadeOld.setText(cdOld.getCidades_Nome());
+                guiCidadeAlterar.setVisible(true);
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Selecione a cidade!");
-        } catch (GeralException ex) {
-            JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
