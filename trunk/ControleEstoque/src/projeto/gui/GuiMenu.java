@@ -76,7 +76,6 @@ public class GuiMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
-        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPGuiLogin.setBorder(javax.swing.BorderFactory.createTitledBorder("Autenticação..."));
 
@@ -191,6 +190,7 @@ public class GuiMenu extends javax.swing.JFrame {
                 jMenuItemNovoProdutoActionPerformed(evt);
             }
         });
+        jMenuProduto.add(jMenuItemNovoProduto);
 
         jMenuItem9.setText("Forma de Pagamento");
         jMenuProduto.add(jMenuItem9);
@@ -256,17 +256,6 @@ public class GuiMenu extends javax.swing.JFrame {
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         setBounds((screenSize.width-555)/2, (screenSize.height-367)/2, 555, 367);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuItemNovoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoProdutoActionPerformed
-        // TODO add your handling code here:
-
-        //CHAMADA DA GUI PRODUTO
-
-        GuiProduto gProduto = new GuiProduto();//criei o objeto
-
-        gProduto.setVisible(true);//chamei o objeto      
-
-    }//GEN-LAST:event_jMenuItemNovoProdutoActionPerformed
 
     //metodo responsável por libera o acesso ao menu
     private void acessoLiberado() {
@@ -360,6 +349,14 @@ public class GuiMenu extends javax.swing.JFrame {
         GuiFornecedor fornecedor = new GuiFornecedor();
         fornecedor.setVisible(true);
     }//GEN-LAST:event_jMenuGerenciarFornecedorActionPerformed
+
+    private void jMenuItemNovoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoProdutoActionPerformed
+        // TODO add your handling code here:
+                //CHAMADA DA GUI PRODUTO
+        GuiProduto gProduto = new GuiProduto();//criei o objeto
+
+        gProduto.setVisible(true);//chamei o objeto    
+    }//GEN-LAST:event_jMenuItemNovoProdutoActionPerformed
 
     /**
      * @param args the command line arguments
