@@ -21,6 +21,8 @@ import projeto.modelo.to.Tipo;
 public class GuiProdutoNovo extends javax.swing.JFrame {
 
     public static Fachada fachada = new Fachada();
+    
+    private GuiProduto guiPro = GuiProduto();
 
     /**
      * Creates new form GuiProdutoNovo
@@ -56,6 +58,11 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Novo Produto");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -262,6 +269,11 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_formComponentShown
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        guiPro.atualizarTabela();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
