@@ -205,6 +205,8 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonIncluirCidadeActionPerformed
 
     private void jButtonConsultarCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarCEPActionPerformed
+        jTextFieldEntradaLog.requestFocus();
+        jTextFieldEntradaLog.setText(null);
         String enderecos_CEP;
         String enderecos_Logradouro;
         try {
@@ -215,12 +217,10 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
                 jTextFieldEntradaCEP.setText(enderecos_CEP);
                 jTextFieldEntradaLog.setText(enderecos_Logradouro);
             } else {
-                jTextFieldEntradaLog.requestFocus();
+                JOptionPane.showMessageDialog(null, "CEP não está cadastrado!");
             }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } finally {
-            jTextFieldEntradaCEP.requestFocus();
         }
     }//GEN-LAST:event_jButtonConsultarCEPActionPerformed
 

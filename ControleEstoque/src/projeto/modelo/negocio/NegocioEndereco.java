@@ -55,9 +55,9 @@ public class NegocioEndereco {
 
     public Endereco consultarCep(String enderecos_Cep) throws GeralException {
         Endereco end = null;
-        if (enderecos_Cep == null) {
+        /*if (enderecos_Cep == null) {
             throw new GeralException("Digite um endereço!");
-        }
+        }*/
 
         try {
             end = rep.consultarCep(enderecos_Cep);

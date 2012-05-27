@@ -74,8 +74,14 @@ public class GuiEndereco extends javax.swing.JFrame {
         jLabelCidade.setText("Cidade.:");
 
         jButtonPesquisaLog.setText("...");
+        jButtonPesquisaLog.setMaximumSize(new java.awt.Dimension(75, 23));
+        jButtonPesquisaLog.setMinimumSize(new java.awt.Dimension(75, 23));
+        jButtonPesquisaLog.setPreferredSize(new java.awt.Dimension(75, 23));
 
         jButtonPesquisaCEP.setText("...");
+        jButtonPesquisaCEP.setMaximumSize(new java.awt.Dimension(75, 23));
+        jButtonPesquisaCEP.setMinimumSize(new java.awt.Dimension(75, 23));
+        jButtonPesquisaCEP.setPreferredSize(new java.awt.Dimension(75, 23));
         jButtonPesquisaCEP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPesquisaCEPActionPerformed(evt);
@@ -94,23 +100,24 @@ public class GuiEndereco extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelFiltroLayout.createSequentialGroup()
-                        .addComponent(jComboBoxCidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabelCEP)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldEntradaCep, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonPesquisaCEP))
+                        .addComponent(jTextFieldEntradaCep, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonPesquisaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelFiltroLayout.createSequentialGroup()
                         .addComponent(jTextFieldEntradaLog)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonPesquisaLog))))
+                        .addComponent(jButtonPesquisaLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanelFiltroLayout.setVerticalGroup(
             jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFiltroLayout.createSequentialGroup()
                 .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonPesquisaLog)
+                    .addComponent(jButtonPesquisaLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelLogradouro)
                     .addComponent(jTextFieldEntradaLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -119,7 +126,7 @@ public class GuiEndereco extends javax.swing.JFrame {
                         .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jTextFieldEntradaCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelCEP)
-                        .addComponent(jButtonPesquisaCEP))
+                        .addComponent(jButtonPesquisaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabelCidade))
                 .addGap(0, 9, Short.MAX_VALUE))
         );
@@ -153,6 +160,9 @@ public class GuiEndereco extends javax.swing.JFrame {
         });
 
         jButtonNovo.setText("Novo");
+        jButtonNovo.setMaximumSize(new java.awt.Dimension(75, 23));
+        jButtonNovo.setMinimumSize(new java.awt.Dimension(75, 23));
+        jButtonNovo.setPreferredSize(new java.awt.Dimension(75, 23));
         jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNovoActionPerformed(evt);
@@ -160,8 +170,14 @@ public class GuiEndereco extends javax.swing.JFrame {
         });
 
         jButtonAlterar.setText("Alterar");
+        jButtonAlterar.setMaximumSize(new java.awt.Dimension(75, 23));
+        jButtonAlterar.setMinimumSize(new java.awt.Dimension(75, 23));
+        jButtonAlterar.setPreferredSize(new java.awt.Dimension(75, 23));
 
         jButtonApagar.setText("Apagar");
+        jButtonApagar.setMaximumSize(new java.awt.Dimension(75, 23));
+        jButtonApagar.setMinimumSize(new java.awt.Dimension(75, 23));
+        jButtonApagar.setPreferredSize(new java.awt.Dimension(75, 23));
         jButtonApagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonApagarActionPerformed(evt);
@@ -189,11 +205,11 @@ public class GuiEndereco extends javax.swing.JFrame {
             .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                 .addComponent(jButtonAtualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonNovo)
+                .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonAlterar)
+                .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonApagar)
+                .addComponent(jButtonApagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -270,6 +286,7 @@ public class GuiEndereco extends javax.swing.JFrame {
                 Endereco endConsult = fachada.consultarEndCep(end.getEnderecos_CEP());
                 if (endConsult != null) {
                     fachada.excluirEndereco(endConsult.getEnderecos_CEP());
+                    JOptionPane.showMessageDialog(null, "Registro excluído!");
                     atualizarTabela();
                 }
             }
