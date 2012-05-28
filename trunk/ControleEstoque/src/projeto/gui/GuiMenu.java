@@ -167,6 +167,11 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuFornecedor.add(jMenuGerenciarFornecedor);
 
         jMenuItem1.setText("Fornecimento");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenuFornecedor.add(jMenuItem1);
 
         jMenuCadastro.add(jMenuFornecedor);
@@ -361,6 +366,13 @@ public class GuiMenu extends javax.swing.JFrame {
 
         gProduto.setVisible(true);//chamei o objeto    
     }//GEN-LAST:event_jMenuItemNovoProdutoActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+         GuiFornecedorForneceProduto gForneForneProduto = new GuiFornecedorForneceProduto();//criei o objeto
+
+        gForneForneProduto.setVisible(true);//chamei o objeto    
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
