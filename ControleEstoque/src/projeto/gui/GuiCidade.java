@@ -16,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Cidade;
-import projeto.modelo.to.Produto;
 
 /**
  *
