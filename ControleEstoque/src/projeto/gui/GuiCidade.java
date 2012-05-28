@@ -242,17 +242,7 @@ public class GuiCidade extends javax.swing.JFrame {
 
     private void jButtonConsultCidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultCidActionPerformed
         //MOSTRAR TODOS OS REGISTRO DE PRODUTOS
-        Cidade cd = null;
-        //ArrayList<Produto> listaProduto = null;
-        int i = 0;
-        String cidades_nome = jTextFieldCampoCidade.getText();
-        try {
-            listaCidade = (ArrayList<Cidade>) fachada.listarCidade();
-        } catch (GeralException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-        DefaultTableModel modelo = geramodelo(listaCidade);
-        jTableListaCidades.setModel(modelo);
+       pesquisarCidade();
     }//GEN-LAST:event_jButtonConsultCidActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
@@ -344,5 +334,15 @@ public class GuiCidade extends javax.swing.JFrame {
         }
         DefaultTableModel modelo = geramodelo(listaCidade);
         jTableListaCidades.setModel(modelo);
+    }
+    
+    public void pesquisarCidade(){
+         try{
+            listaCidade = ( ArrayList<Cidade>)fachada.listarCidade(jTextFieldCampoCidade.getText());
+        } catch (GeralException ex){
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+          DefaultTableModel modelo = geramodelo(listaCidade);
+          jTableListaCidades.setModel(modelo); 
     }
 }

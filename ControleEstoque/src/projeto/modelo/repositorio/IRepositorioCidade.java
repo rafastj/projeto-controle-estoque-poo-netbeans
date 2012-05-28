@@ -78,4 +78,13 @@ public interface IRepositorioCidade {
      * @throws RepositorioException
      */
     public Collection<Cidade> listar() throws ConexaoException, RepositorioException;
+    
+    /**
+     * 
+     * @param cidades_Nome
+     * @return
+     * @throws ConexaoException
+     * @throws RepositorioException 
+     */
+    public Collection<Cidade> listarCidade(String cidades_Nome) throws ConexaoException, RepositorioException;
 }

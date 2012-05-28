@@ -82,6 +82,10 @@ public class Fachada {
     public Collection<Cidade> listarCidade() throws GeralException {
         return rnCidade.listar();
     }
+    
+    public Collection<Cidade> listarCidade(String cidades_Nome) throws GeralException {
+        return rnCidade.listarCidade(cidades_Nome);
+    }
 
     /**
      * ENDEREÇO

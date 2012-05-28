@@ -208,4 +208,22 @@ public class NegocioCidade {
         }
         return lista;
     }
+    
+    public Collection<Cidade> listarCidade(String cidades_Nome) throws GeralException {
+
+        ArrayList<Cidade> lista;
+
+       /* if (cidades_Nome == null) {
+            throw new GeralException("Digite o nome ou o códido da cidade!");
+        }*/
+        try {
+            lista = (ArrayList<Cidade>) new RepositorioCidade().listarCidade(cidades_Nome);
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Erro de programação!");
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível no momento");
+        }
+        return lista;
+    }
 }
