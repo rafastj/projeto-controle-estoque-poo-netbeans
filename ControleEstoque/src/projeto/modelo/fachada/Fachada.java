@@ -140,6 +140,8 @@ public class Fachada {
     /**
      * FIM DA ÁREA ESCRITA POR DANIEL VALENÇA
      */
+
+    
     /**
      * AREA ESCRITA POR DIEGO SILVA RESPONSAVEL PELAS CLASSES Produto,
      * Produto_Fornecedor, NotaFiscal_Produto. --PRODUTO--
@@ -276,9 +278,25 @@ public class Fachada {
     public void alterarLigacaoFornecedorProduto(String Fornecedor_RazaoSocial, String Produto_Descricao) throws GeralException {
         rnProduto_Fornecedor.alterarProduto_Fornecedor(Fornecedor_RazaoSocial, Produto_Descricao);
     }
-
+    
+    /**
+     * Listar todos os fornecedores do Produto informado
+     * @param Produto_Descricao
+     * @return
+     * @throws GeralException 
+     */
     public Collection<Produto_Fornecedor> listarFornecedoresdetalProduto(String Produto_Descricao) throws GeralException {
         return rnProduto_Fornecedor.listarFornecedordeProduto(Produto_Descricao);
+    }
+    
+    /**
+     * Listar todos os produtos do Fornecedor informado
+     * @param fornecedor_RazaoSocial
+     * @return
+     * @throws GeralException 
+     */
+    public Collection<Produto_Fornecedor> listarFornecedordeProduto(String fornecedor_RazaoSocial) throws GeralException{
+        return rnProduto_Fornecedor.listarFornecedordeProdutoFornecido(fornecedor_RazaoSocial);
     }
 
     /**
