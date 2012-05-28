@@ -148,6 +148,12 @@ import projeto.modelo.to.Tipo;
 
         jLabel6.setText("Marca.:");
 
+        jMarcaBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMarcaBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -187,13 +193,12 @@ import projeto.modelo.to.Tipo;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jMarcaBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTipoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel1)
-                                .addComponent(jSegmentoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel1)
+                        .addComponent(jSegmentoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTipoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5))
+                    .addComponent(jMarcaBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -423,6 +428,11 @@ import projeto.modelo.to.Tipo;
             JOptionPane.showMessageDialog(null, "Selecione o produto!");
         }
     }//GEN-LAST:event_jbAlterarActionPerformed
+
+        private void jMarcaBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMarcaBoxActionPerformed
+            // TODO add your handling code here:
+            JOptionPane.showMessageDialog(null, jMarcaBox.getSelectedItem());
+        }//GEN-LAST:event_jMarcaBoxActionPerformed
     
     //CONVERTE O VALOR DOUBLE PARA SALVAR DO BD
     private String converterValorReal(String valorx) {
@@ -543,7 +553,7 @@ import projeto.modelo.to.Tipo;
     
     private void atualizarJTabela(){
         try {
-            listaProduto = (ArrayList<Produto>) fachada.listarProduto("");
+            listaProduto = (ArrayList<Produto>) fachada.listaProdutoTudo();
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -558,7 +568,7 @@ import projeto.modelo.to.Tipo;
     
     public void atualizarTabela(){
          try{
-            listaProduto = ( ArrayList<Produto>)fachada.listarProduto("");
+            listaProduto = ( ArrayList<Produto>)fachada.listaProdutoTudo();
         } catch (GeralException ex){
                 JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -568,7 +578,7 @@ import projeto.modelo.to.Tipo;
     
     public void pesquisarDescricao(){
          try{
-            listaProduto = ( ArrayList<Produto>)fachada.listarProduto(jcDescricaoField.getText());
+            listaProduto = ( ArrayList<Produto>)fachada.listarProdutoDescricao(jcDescricaoField.getText());
         } catch (GeralException ex){
                 JOptionPane.showMessageDialog(null, ex.getMessage());
         }
