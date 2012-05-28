@@ -431,7 +431,7 @@ import projeto.modelo.to.Tipo;
 
         private void jMarcaBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMarcaBoxActionPerformed
             // TODO add your handling code here:
-            JOptionPane.showMessageDialog(null, jMarcaBox.getSelectedItem());
+            pesquisarMarca((String) jMarcaBox.getSelectedItem());//joga a descrição da marca selecionada
         }//GEN-LAST:event_jMarcaBoxActionPerformed
     
     //CONVERTE O VALOR DOUBLE PARA SALVAR DO BD
@@ -585,5 +585,17 @@ import projeto.modelo.to.Tipo;
           DefaultTableModel modelo = geramodelo(listaProduto);
           jtabelaProduto.setModel(modelo); 
     }
-
+    
+    private void pesquisarMarca(String marca_Descricao){
+        try{
+            Marca ma = fachada.consultarMarcas(marca_Descricao);//consultar a descrição da marca
+            listaProduto = ( ArrayList<Produto>)fachada.listarProdutoMarcas(ma.getMarcas_Codigo());//lista pelo codigo da Marca
+        } catch (GeralException ex){
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+          DefaultTableModel modelo = geramodelo(listaProduto);
+          jtabelaProduto.setModel(modelo); 
+    }
+    
+//fim    
 }
