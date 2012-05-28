@@ -189,7 +189,7 @@ public class Fachada {
      * @return
      * @throws GeralException
      */
-    public Collection<Produto> listarDescricao(String produtos_Descricao) throws GeralException {
+    public Collection<Produto> listarProdutoDescricao(String produtos_Descricao) throws GeralException {
         return rnProduto.listarDescricao(produtos_Descricao);
     }
     
@@ -199,7 +199,7 @@ public class Fachada {
      * @return
      * @throws GeralException 
      */
-    public Collection<Produto> listarMarcas(int marcas_Codigo) throws GeralException {
+    public Collection<Produto> listarProdutoMarcas(int marcas_Codigo) throws GeralException {
         return rnProduto.listarProdutosMarca(marcas_Codigo);
     }
     
@@ -209,7 +209,7 @@ public class Fachada {
      * @return
      * @throws GeralException 
      */
-    public Collection<Produto> listaTipos(int tipos_Codigo) throws GeralException{
+    public Collection<Produto> listaProdutoTipos(int tipos_Codigo) throws GeralException{
         return rnProduto.listarProdutosTipos(tipos_Codigo);
     }
     
@@ -219,7 +219,7 @@ public class Fachada {
      * @return
      * @throws GeralException 
      */
-    public Collection<Produto> listaSegmentos(int segmentos_Codigo) throws GeralException{
+    public Collection<Produto> listaProdutoSegmentos(int segmentos_Codigo) throws GeralException{
         return rnProduto.listarProdutosSegmento(segmentos_Codigo);
     }
     
@@ -228,7 +228,7 @@ public class Fachada {
      * @return
      * @throws GeralException 
      */
-    public Collection<Produto> listaTudo()throws GeralException{
+    public Collection<Produto> listaProdutoTudo()throws GeralException{
         return rnProduto.listarTudo();
     }
 
