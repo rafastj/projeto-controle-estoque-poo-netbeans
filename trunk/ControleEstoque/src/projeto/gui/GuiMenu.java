@@ -55,6 +55,7 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuEnderecoNovo = new javax.swing.JMenuItem();
         jMenuFornecedor = new javax.swing.JMenu();
         jMenuGerenciarFornecedor = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuFuncionario = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItemNovoUsuario = new javax.swing.JMenuItem();
@@ -119,7 +120,7 @@ public class GuiMenu extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbAcessar))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jMenuCadastro.setText("Cadastro");
@@ -164,6 +165,9 @@ public class GuiMenu extends javax.swing.JFrame {
             }
         });
         jMenuFornecedor.add(jMenuGerenciarFornecedor);
+
+        jMenuItem1.setText("Fornecimento");
+        jMenuFornecedor.add(jMenuItem1);
 
         jMenuCadastro.add(jMenuFornecedor);
 
@@ -250,7 +254,7 @@ public class GuiMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addComponent(jPGuiLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -417,6 +421,7 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuFornecedor;
     private javax.swing.JMenu jMenuFuncionario;
     private javax.swing.JMenuItem jMenuGerenciarFornecedor;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
