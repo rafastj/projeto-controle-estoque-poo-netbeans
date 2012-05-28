@@ -208,7 +208,7 @@ public class NegocioProduto_Fornecedor {
         ArrayList<Produto_Fornecedor> lista;
 
         //verifica se foi realmente informado o nome do produto
-        if (Produto_Descricao == null) {
+        if (Produto_Descricao.equals("")) {
             throw new GeralException("O Nome do Produto não foi Informado!");
         }
 
@@ -253,6 +253,29 @@ public class NegocioProduto_Fornecedor {
             }
 
             lista = (ArrayList<Produto_Fornecedor>) new RepositorioProduto_Fornecedor().listarFornecedor(fornecedor_RazaoSocial);
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Diego fez caca!");
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível!");
+        }
+        return lista;
+    }
+    
+     /**
+      * LISTAR Todos os Produtos que tem fornecedores
+      * @return
+      * @throws GeralException 
+      */
+     public Collection<Produto_Fornecedor> listarTodos() throws GeralException {
+
+        //criar uma array lista vazia
+        ArrayList<Produto_Fornecedor> lista;
+
+        try {
+
+
+            lista = (ArrayList<Produto_Fornecedor>) new RepositorioProduto_Fornecedor().listarTodos();
 
         } catch (RepositorioException ex) {
             throw new GeralException("Diego fez caca!");
