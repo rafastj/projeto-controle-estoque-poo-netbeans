@@ -268,13 +268,10 @@ public class NegocioProduto_Fornecedor {
       * @throws GeralException 
       */
      public Collection<Produto_Fornecedor> listarTodos() throws GeralException {
-
         //criar uma array lista vazia
         ArrayList<Produto_Fornecedor> lista;
 
         try {
-
-
             lista = (ArrayList<Produto_Fornecedor>) new RepositorioProduto_Fornecedor().listarTodos();
 
         } catch (RepositorioException ex) {
@@ -284,7 +281,35 @@ public class NegocioProduto_Fornecedor {
         }
         return lista;
     }
+     
+     /**
+      * LISTA todos os produtos não fornecidos pelo Fornecedor selecionado
+      * @param fornecedor_RazaoSocial
+      * @return
+      * @throws GeralException 
+      */
+     public Collection<Produto_Fornecedor> listadeProdutosNaoFornecidos(String fornecedor_RazaoSocial) throws GeralException {
 
+        //criar uma array lista vazia
+        ArrayList<Produto_Fornecedor> lista;
+
+        //verifica se foi realmente informado o nome do produto
+        if (fornecedor_RazaoSocial.equals("")) {
+            throw new GeralException("O Nome do Produto não foi Informado!");
+        }
+
+        try {
+
+            lista = (ArrayList<Produto_Fornecedor>) new RepositorioProduto_Fornecedor().listadeProdutosNaoFornecidos(fornecedor_RazaoSocial);
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Diego fez caca!");
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível!");
+        }
+        return lista;
+    }
+         
     
 //fim
 }
