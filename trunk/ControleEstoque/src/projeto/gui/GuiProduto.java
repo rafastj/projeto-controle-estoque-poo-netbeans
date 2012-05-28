@@ -146,6 +146,12 @@ import projeto.modelo.to.Tipo;
 
         jLabel5.setText("Tipo.:");
 
+        jTipoBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTipoBoxActionPerformed(evt);
+            }
+        });
+
         jLabel6.setText("Marca.:");
 
         jMarcaBox.addActionListener(new java.awt.event.ActionListener() {
@@ -433,6 +439,11 @@ import projeto.modelo.to.Tipo;
             // TODO add your handling code here:
             pesquisarMarca((String) jMarcaBox.getSelectedItem());//joga a descrição da marca selecionada
         }//GEN-LAST:event_jMarcaBoxActionPerformed
+
+        private void jTipoBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTipoBoxActionPerformed
+            // TODO add your handling code here:
+            pesquisarTipo((String) jTipoBox.getSelectedItem() );
+        }//GEN-LAST:event_jTipoBoxActionPerformed
     
     //CONVERTE O VALOR DOUBLE PARA SALVAR DO BD
     private String converterValorReal(String valorx) {
@@ -590,6 +601,17 @@ import projeto.modelo.to.Tipo;
         try{
             Marca ma = fachada.consultarMarcas(marca_Descricao);//consultar a descrição da marca
             listaProduto = ( ArrayList<Produto>)fachada.listarProdutoMarcas(ma.getMarcas_Codigo());//lista pelo codigo da Marca
+        } catch (GeralException ex){
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+          DefaultTableModel modelo = geramodelo(listaProduto);
+          jtabelaProduto.setModel(modelo); 
+    }
+    
+    private void pesquisarTipo(String tipo_Descricao){
+        try{
+            Tipo tp = fachada.consultarTipos(tipo_Descricao);//consultar a descrição da marca
+            listaProduto = ( ArrayList<Produto>)fachada.listaProdutoTipos(tp.getTipos_Codigo());//lista pelo codigo da Marca
         } catch (GeralException ex){
                 JOptionPane.showMessageDialog(null, ex.getMessage());
         }
