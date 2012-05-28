@@ -61,6 +61,11 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
         jLabel1.setText("Fornecedores.:");
 
         jFornecedorBox.setToolTipText("");
+        jFornecedorBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFornecedorBoxActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Produtos.:");
 
@@ -200,6 +205,11 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
         pesquisarProduto((String)jProdutoBox.getSelectedItem());
     }//GEN-LAST:event_jProdutoBoxActionPerformed
 
+    private void jFornecedorBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFornecedorBoxActionPerformed
+        // TODO add your handling code here:
+        pesquisarFornecedor((String) jFornecedorBox.getSelectedItem());
+    }//GEN-LAST:event_jFornecedorBoxActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -312,6 +322,16 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
         DefaultTableModel modelo = geramodelo(listaProdutoFornecedor);
         jTabelaForneForneceProduto.setModel(modelo); 
     }
+     
+     private void pesquisarFornecedor(String fornecedor_RazaoSocial){
+        try {
+            listaProdutoFornecedor = (ArrayList<Produto_Fornecedor>) fachada.listarFornecedordeProduto(fornecedor_RazaoSocial);
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaProdutoFornecedor);
+        jTabelaForneForneceProduto.setModel(modelo); 
+     }
     
     
 //fim
