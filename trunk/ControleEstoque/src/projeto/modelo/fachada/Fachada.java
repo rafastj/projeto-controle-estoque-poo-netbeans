@@ -311,6 +311,16 @@ public class Fachada {
     public Collection<Produto_Fornecedor> listarTodosProdutosFornecidos() throws GeralException{
         return rnProduto_Fornecedor.listarTodos();
     }
+    
+    /**
+     * Listar todos os Produtos não fornecidos pelos fornecedor selecionado
+     * @param fornecedor_RazaSocial
+     * @return
+     * @throws GeralException 
+     */
+    public Collection<Produto_Fornecedor> listadeProdutosNaoFornecidos(String fornecedor_RazaSocial) throws GeralException{
+      return rnProduto_Fornecedor.listadeProdutosNaoFornecidos(fornecedor_RazaSocial);  
+    }
 
     /**
      * --NOTAFISCAL_PRODUTO--
