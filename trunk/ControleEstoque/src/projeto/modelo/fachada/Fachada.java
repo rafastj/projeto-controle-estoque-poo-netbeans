@@ -298,6 +298,15 @@ public class Fachada {
     public Collection<Produto_Fornecedor> listarFornecedordeProduto(String fornecedor_RazaoSocial) throws GeralException{
         return rnProduto_Fornecedor.listarFornecedordeProdutoFornecido(fornecedor_RazaoSocial);
     }
+    
+    /**
+     * Listar todos os Produtos Fornecidos
+     * @return
+     * @throws GeralException 
+     */
+    public Collection<Produto_Fornecedor> listarTodosProdutosFornecidos() throws GeralException{
+        return rnProduto_Fornecedor.listarTodos();
+    }
 
     /**
      * --NOTAFISCAL_PRODUTO--
@@ -357,6 +366,7 @@ public class Fachada {
     /**
      * FIM DA ÁREA ESCRITA POR DIEGO SILVA-----------------
      */
+    
     /**
      * ÁREA ESCRITA POR SANDRO RESPONSAVEL PELAS CLASSES Cliente, PessoaFisica,
      * PessoaJuridica.
