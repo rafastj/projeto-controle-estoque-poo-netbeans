@@ -144,6 +144,12 @@ import projeto.modelo.to.Tipo;
 
         jLabel1.setText("Segmento.:");
 
+        jSegmentoBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSegmentoBoxActionPerformed(evt);
+            }
+        });
+
         jLabel5.setText("Tipo.:");
 
         jTipoBox.addActionListener(new java.awt.event.ActionListener() {
@@ -444,6 +450,11 @@ import projeto.modelo.to.Tipo;
             // TODO add your handling code here:
             pesquisarTipo((String) jTipoBox.getSelectedItem() );
         }//GEN-LAST:event_jTipoBoxActionPerformed
+
+        private void jSegmentoBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSegmentoBoxActionPerformed
+            // TODO add your handling code here:
+            pesquisarSegmento((String) jSegmentoBox.getSelectedItem());
+        }//GEN-LAST:event_jSegmentoBoxActionPerformed
     
     //CONVERTE O VALOR DOUBLE PARA SALVAR DO BD
     private String converterValorReal(String valorx) {
@@ -617,6 +628,17 @@ import projeto.modelo.to.Tipo;
         }
           DefaultTableModel modelo = geramodelo(listaProduto);
           jtabelaProduto.setModel(modelo); 
+    }
+    
+    private void pesquisarSegmento(String segmento_Descricao){
+        try{
+            Segmento sg = fachada.consultarSegmentos(segmento_Descricao);
+            listaProduto = (ArrayList<Produto>)fachada.listaProdutoSegmentos(sg.getSegmentos_Codigo());
+        }catch (GeralException ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage() );
+        }
+        DefaultTableModel modelo = geramodelo(listaProduto);
+        jtabelaProduto.setModel(modelo);
     }
     
 //fim    
