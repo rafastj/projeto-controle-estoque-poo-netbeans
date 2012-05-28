@@ -285,43 +285,7 @@ import projeto.modelo.to.Tipo;
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
-        //LISTA DO SEGMENTO
-       Segmento sg;
-       ArrayList<Segmento> listasg;
-	try{
-		//Lista dos os segmentos
-		listasg = (ArrayList<Segmento>)fachada.listarSegmentos("");
-		for(Iterator<Segmento> it = listasg.iterator(); it.hasNext();){
-                    sg = it.next();
-                    jSegmentoBox.addItem(sg.getSegmentos_Descricao());	
-		}
-	}catch (GeralException ex){
-		JOptionPane.showMessageDialog(null, ex.getMessage());
-	}
-        //LISTAR OS TIPOS
-        Tipo tp;
-        ArrayList<Tipo> listatp;
-        try{
-                listatp = (ArrayList<Tipo>) fachada.listarTipo("");
-                for(Iterator<Tipo> it = listatp.iterator(); it.hasNext();){
-                    tp = it.next();
-                    jTipoBox.addItem(tp.getTipos_Descricao());
-                }
-        }catch (GeralException ex){
-		JOptionPane.showMessageDialog(null, ex.getMessage());
-	}
-        //LISTAR MARCA
-        Marca ma;
-        ArrayList<Marca> listama;
-        try{
-                listama = (ArrayList<Marca>) fachada.listarMarca("");
-                for(Iterator<Marca> it = listama.iterator(); it.hasNext();){
-                    ma = it.next();
-                    jMarcaBox.addItem(ma.getMarcas_Descricao());
-                }
-        }catch (GeralException ex){
-		JOptionPane.showMessageDialog(null, ex.getMessage());
-	}
+        atualizarFiltro();
         
         //MOSTRAR TODOS OS REGISTRO DE PRODUTOS
         atualizarJTabela();
@@ -356,7 +320,8 @@ import projeto.modelo.to.Tipo;
     private void jbAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizarActionPerformed
         // TODO add your handling code here:
         atualizarJTabela();
-        jcDescricaoField.setText("");//limpar o conteúdo!
+        
+        jcDescricaoField.setText("");
     }//GEN-LAST:event_jbAtualizarActionPerformed
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
@@ -639,6 +604,47 @@ import projeto.modelo.to.Tipo;
         }
         DefaultTableModel modelo = geramodelo(listaProduto);
         jtabelaProduto.setModel(modelo);
+    }
+    
+    private void atualizarFiltro(){
+
+        //LISTA DO SEGMENTO
+       Segmento sg;
+       ArrayList<Segmento> listasg;
+	try{
+		//Lista dos os segmentos
+		listasg = (ArrayList<Segmento>)fachada.listarSegmentos("");
+		for(Iterator<Segmento> it = listasg.iterator(); it.hasNext();){
+                    sg = it.next();
+                    jSegmentoBox.addItem(sg.getSegmentos_Descricao());	
+		}
+	}catch (GeralException ex){
+		JOptionPane.showMessageDialog(null, ex.getMessage());
+	}
+        //LISTAR OS TIPOS
+        Tipo tp;
+        ArrayList<Tipo> listatp;
+        try{
+                listatp = (ArrayList<Tipo>) fachada.listarTipo("");
+                for(Iterator<Tipo> it = listatp.iterator(); it.hasNext();){
+                    tp = it.next();
+                    jTipoBox.addItem(tp.getTipos_Descricao());
+                }
+        }catch (GeralException ex){
+		JOptionPane.showMessageDialog(null, ex.getMessage());
+	}
+        //LISTAR MARCA
+        Marca ma;
+        ArrayList<Marca> listama;
+        try{
+                listama = (ArrayList<Marca>) fachada.listarMarca("");
+                for(Iterator<Marca> it = listama.iterator(); it.hasNext();){
+                    ma = it.next();
+                    jMarcaBox.addItem(ma.getMarcas_Descricao());
+                }
+        }catch (GeralException ex){
+		JOptionPane.showMessageDialog(null, ex.getMessage());
+	}
     }
     
 //fim    
