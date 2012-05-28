@@ -383,7 +383,7 @@ public class Main {
                                                     case 0:
                                                         continue menuTestes;
                                                     case 1:
-                                                        testarListarProduto();
+                                                        //testarListarProduto();
                                                         break;
                                                     case 2:
                                                         //Chamada do método aqui
@@ -1487,11 +1487,11 @@ public class Main {
     /**
      * Diego Silva teste de listagem dos produtos pela descrição informada
      */
-    public static void testarListarProduto() {
+    /*public static void testarListarProduto() {
         Produto p;
         ArrayList<Produto> lista;
         try {
-            lista = (ArrayList<Produto>) fachada.listarProduto("Cami");
+            lista = (ArrayList<Produto>) fachada.listarProduto();
             for (Iterator<Produto> it = lista.iterator(); it.hasNext();) {
                 p = it.next();
                 JOptionPane.showMessageDialog(null, "Segmento.: (" + p.getSegmentos().getSegmentos_Descricao() + ") Tipo.: (" + p.getTipo().getTipos_Descricao() + ") Marca.: (" + p.getMarcas().getMarcas_Descricao() + ") Descriï¿½ï¿½o.: (" + p.getProdutos_Descricao() + ") Quantidade.: (" + p.getProdutos_Quantidade() + ") Valor de Venda.: (" + p.getProdutos_ValorVenda() + ")");
@@ -1500,7 +1500,7 @@ public class Main {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         System.out.println("Fim teste de listagem");
-    }
+    }*/
 
     /**
      * --PRODUTO_FORNECEDOR--
