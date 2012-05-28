@@ -24,6 +24,8 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
     
     Fachada fachada = new Fachada();
     
+    private int selecionado;
+    
     /**
      * Creates new form GuiFornecedorForneceProduto
      */
@@ -50,30 +52,35 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTabelaForneForneceProduto = new javax.swing.JTable();
         jBAtualizar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBNovo = new javax.swing.JButton();
+        jBAlterar = new javax.swing.JButton();
+        jBApagar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Entrada de Produtos");
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPFornecedor.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtro"));
 
         jLabel1.setText("Fornecedores.:");
 
         jFornecedorBox.setToolTipText("");
-        jFornecedorBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFornecedorBoxActionPerformed(evt);
+        jFornecedorBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jFornecedorBoxItemStateChanged(evt);
             }
         });
 
         jLabel2.setText("Produtos.:");
 
         jProdutoBox.setToolTipText("");
-        jProdutoBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jProdutoBoxActionPerformed(evt);
+        jProdutoBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jProdutoBoxItemStateChanged(evt);
             }
         });
 
@@ -144,11 +151,16 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Novo");
+        jBNovo.setText("Novo");
 
-        jButton1.setText("Alterar");
+        jBAlterar.setText("Alterar");
 
-        jButton2.setText("Apagar");
+        jBApagar.setText("Apagar");
+        jBApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBApagarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,9 +174,9 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jBAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jBNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
@@ -178,11 +190,11 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addComponent(jBAtualizar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
+                        .addComponent(jBNovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)
+                        .addComponent(jBAlterar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2))
+                        .addComponent(jBApagar))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -194,22 +206,70 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
 
     private void jBAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtualizarActionPerformed
         // TODO add your handling code here:
-        //remove tudo o que tem dentro dos combobox
-        jFornecedorBox.removeAllItems();
-        jProdutoBox.removeAllItems();
         //atualizar combobox Fornecedor e o Produto
-        atualizarFornecedorProduto();
+        atualizarListaTodos();
     }//GEN-LAST:event_jBAtualizarActionPerformed
 
-    private void jProdutoBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jProdutoBoxActionPerformed
+    private void jBApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBApagarActionPerformed
         // TODO add your handling code here:
-        pesquisarProduto((String)jProdutoBox.getSelectedItem());
-    }//GEN-LAST:event_jProdutoBoxActionPerformed
+         int resposta;
 
-    private void jFornecedorBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFornecedorBoxActionPerformed
+        try {
+            //pegar o os dados do produto selecionado
+            Produto_Fornecedor pf = listaProdutoFornecedor.get(jTabelaForneForneceProduto.getSelectedRow());
+
+            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Apagar ?", "", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+
+                //consulta a descrição do produto selecionado
+                Produto pconsul = fachada.consultarProduto(pf.getProduto().getProdutos_Descricao());
+                
+                //consultar a descrição do fornecedor selecionado
+                Fornecedor fconsul = fachada.consultarForRazaoSocial(pf.getFornecedor().getFornecedores_RazaoSocial());
+                
+                if (pconsul != null) {       //seta o codigo do produto selecionado da consulta
+                    fachada.excluirProduto_Fornecedor(fconsul.getFornecedores_Codigo(),pconsul.getProdutos_Codigo());
+                    
+                    //Qual foi o fitro utilizado!
+                    switch(selecionado){
+                        case 1:
+                            pesquisarFornecedor((String)jFornecedorBox.getSelectedItem());//atalizar a tabela do tal fornecedor selecionado
+                            break;
+                        case 2:
+                            pesquisarProduto((String) jProdutoBox.getSelectedItem());//atualizar a tabela do tal produto selecionado
+                    }
+                    
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione o produto!");
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_jBApagarActionPerformed
+
+    private void jFornecedorBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jFornecedorBoxItemStateChanged
         // TODO add your handling code here:
         pesquisarFornecedor((String) jFornecedorBox.getSelectedItem());
-    }//GEN-LAST:event_jFornecedorBoxActionPerformed
+        
+        //Isso indica que o filtro foi feito pelo Produto
+        selecionado = 1;
+    }//GEN-LAST:event_jFornecedorBoxItemStateChanged
+
+    private void jProdutoBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jProdutoBoxItemStateChanged
+        // TODO add your handling code here:
+        pesquisarProduto((String)jProdutoBox.getSelectedItem());
+        
+        //Isso indica que o filtro foi feito pelo Produto
+        selecionado = 2;
+    }//GEN-LAST:event_jProdutoBoxItemStateChanged
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        atualizarFiltro();//atualiza o filtro
+        
+        atualizarListaTodos();//Lista todos os produtos que possuem Fornecedores
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
@@ -254,10 +314,10 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAlterar;
+    private javax.swing.JButton jBApagar;
     private javax.swing.JButton jBAtualizar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jBNovo;
     public javax.swing.JComboBox jFornecedorBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -269,8 +329,8 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     
     //ATUALIZAR OS COMBOBOX FORNECEDOR E PRODUTO
-    private void atualizarFornecedorProduto(){
-         //LISTA DO SEGMENTO
+    public void atualizarFiltro(){
+         //LISTA DO FORNECEDOR
        Fornecedor forne;
        ArrayList<Fornecedor> listafo;
 	try{
@@ -283,7 +343,7 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
 	}catch (GeralException ex){
 		JOptionPane.showMessageDialog(null, ex.getMessage());
 	}
-        //LISTAR OS TIPOS
+        //LISTAR OS PRODUTDOS
         Produto p;
         ArrayList<Produto> listap;
         try{
@@ -315,7 +375,8 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
         return modelo;
     }
     
-     private void pesquisarProduto(String descricao_produto){
+    
+    private void pesquisarProduto(String descricao_produto){
         try {
             listaProdutoFornecedor = (ArrayList<Produto_Fornecedor>) fachada.listarFornecedoresdetalProduto(descricao_produto);
         } catch (GeralException ex) {
@@ -324,8 +385,9 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
         DefaultTableModel modelo = geramodelo(listaProdutoFornecedor);
         jTabelaForneForneceProduto.setModel(modelo); 
     }
-     
-     private void pesquisarFornecedor(String fornecedor_RazaoSocial){
+    
+    //LISTAR TODOS OS PRODUTOS FORNECIDOS PELO FORNECEDOR SELECIONADO
+    private void pesquisarFornecedor(String fornecedor_RazaoSocial){
         try {
             listaProdutoFornecedor = (ArrayList<Produto_Fornecedor>) fachada.listarFornecedordeProduto(fornecedor_RazaoSocial);
         } catch (GeralException ex) {
@@ -335,6 +397,16 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
         jTabelaForneForneceProduto.setModel(modelo); 
      }
     
+    //LISTAR TODOS OS PRODUTOS FORNECIDOS
+    private void atualizarListaTodos(){
+         try {
+            listaProdutoFornecedor = (ArrayList<Produto_Fornecedor>) fachada.listarTodosProdutosFornecidos();
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaProdutoFornecedor);
+        jTabelaForneForneceProduto.setModel(modelo); 
+    }
     
 //fim
 }
