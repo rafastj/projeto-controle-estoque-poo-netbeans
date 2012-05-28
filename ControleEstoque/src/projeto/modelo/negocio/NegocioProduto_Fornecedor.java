@@ -9,8 +9,10 @@ import javax.swing.JOptionPane;
 import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.erro.RepositorioException;
+import projeto.modelo.repositorio.RepositorioFornecedor;
 import projeto.modelo.repositorio.RepositorioProduto;
 import projeto.modelo.repositorio.RepositorioProduto_Fornecedor;
+import projeto.modelo.to.Fornecedor;
 import projeto.modelo.to.Produto;
 import projeto.modelo.to.Produto_Fornecedor;
 
@@ -26,10 +28,12 @@ public class NegocioProduto_Fornecedor {
      */
     private RepositorioProduto_Fornecedor rep;
     private RepositorioProduto repProduto;
+    private RepositorioFornecedor repFornecedor;
 
     public NegocioProduto_Fornecedor() {
         rep = new RepositorioProduto_Fornecedor();
         repProduto = new RepositorioProduto();
+        repFornecedor = new RepositorioFornecedor();
     }
 
     /**
@@ -191,7 +195,13 @@ public class NegocioProduto_Fornecedor {
             throw new GeralException("O banco de dados não está acessível!");
         }
     }
-
+    
+    /**
+     * Lista todos os Fornecedores que fornece o Produto informado
+     * @param Produto_Descricao
+     * @return
+     * @throws GeralException 
+     */
     public Collection<Produto_Fornecedor> listarFornecedordeProduto(String Produto_Descricao) throws GeralException {
 
         //criar uma array lista vazia
@@ -218,4 +228,40 @@ public class NegocioProduto_Fornecedor {
         }
         return lista;
     }
+    
+    /**
+     * Metodo para Listar todos os Produtos do Fornecedor informado
+     * @param fornecedor_RazaoSocial
+     * @return
+     * @throws GeralException 
+     */
+    public Collection<Produto_Fornecedor> listarFornecedordeProdutoFornecido(String fornecedor_RazaoSocial) throws GeralException {
+
+        //criar uma array lista vazia
+        ArrayList<Produto_Fornecedor> lista;
+
+        //verifica se foi realmente informado o nome do produto
+        if (fornecedor_RazaoSocial.equals("")) {
+            throw new GeralException("O Nome do Produto não foi Informado!");
+        }
+
+        try {
+
+            Fornecedor fconsul = repFornecedor.consultarRazaoSocial(fornecedor_RazaoSocial);
+            if (fconsul == null) {
+                throw new GeralException("Esse produto não existe na tabela de Produtos!");
+            }
+
+            lista = (ArrayList<Produto_Fornecedor>) new RepositorioProduto_Fornecedor().listarFornecedor(fornecedor_RazaoSocial);
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Diego fez caca!");
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível!");
+        }
+        return lista;
+    }
+
+    
+//fim
 }
