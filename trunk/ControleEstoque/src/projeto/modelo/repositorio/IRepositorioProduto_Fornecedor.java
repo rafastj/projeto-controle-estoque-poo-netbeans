@@ -55,5 +55,12 @@ public interface IRepositorioProduto_Fornecedor {
      * @throws RepositorioException 
      */
     public Collection<Produto_Fornecedor> listarFornecedor(String Fornecedor_RazaoSocial) throws ConexaoException, RepositorioException;
-     
+    
+    /**
+     * LISTAR todos os fornecedores de tal produto
+     * @return
+     * @throws ConexaoException
+     * @throws RepositorioException 
+     */
+    public Collection<Produto_Fornecedor> listarTodos() throws ConexaoException, RepositorioException;
 }
