@@ -205,4 +205,30 @@ public class RepositorioProduto_Fornecedor implements IRepositorioProduto_Fornec
         return lista; 
     }
 //fim    
+
+    @Override
+    public Collection<Produto_Fornecedor> listarTodos() throws ConexaoException, RepositorioException {
+          // criar variavel arrey list
+        ArrayList<Produto_Fornecedor> lista = new ArrayList<Produto_Fornecedor>();
+        //criar o objeto pf
+        Produto_Fornecedor pf;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT p.produtos_Descricao,f.Fornecedores_RazaoSocial from Produtos_Fornecedores pf INNER JOIN Produtos p ON pf.produtos_Codigo = p.Produtos_Codigo INNER JOIN Fornecedores f ON pf.Fornecedores_Codigo = f.Fornecedores_Codigo order by p.produtos_Descricao";
+        //	String sqlLista = "SELECT produtos_Descricao from Produtos where produtos_Descricao like ?";
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlLista);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                pf = new Produto_Fornecedor();
+                pf.getProduto().setProdutos_Descricao(rs.getString("p.produtos_Descricao"));
+                pf.getFornecedor().setFornecedores_RazaoSocial(rs.getString("f.Fornecedores_RazaoSocial"));
+                lista.add(pf);
+            }
+        } catch (SQLException ex) {
+            throw new RepositorioException(ex.getMessage());
+        } finally {
+            g.desconectar(c);
+        }
+        return lista; 
+    }
 }
