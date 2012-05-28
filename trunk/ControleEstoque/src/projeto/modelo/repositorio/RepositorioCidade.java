@@ -160,4 +160,29 @@ public class RepositorioCidade implements IRepositorioCidade {
             g.desconectar(c);
         }
     }
+    
+    @Override
+     public Collection<Cidade> listarCidade(String cidades_Nome) throws ConexaoException, RepositorioException {
+        ArrayList<Cidade> lista = new ArrayList<Cidade>();
+        Cidade cd;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT cidades_Codigo,cidades_Nome FROM cidades where cidades_Nome like = ? ORDER BY cidades_Codigo";
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlLista);
+            pstm.setString(1, cidades_Nome + "%");
+            ResultSet rs = pstm.executeQuery();
+            //verifica se retornou algum registro e cria os Objetos
+            while (rs.next()) {
+                cd = new Cidade();
+                cd.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                cd.setCidades_Nome(rs.getString("cidades_Nome"));
+                lista.add(cd);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar(c);
+        }
+    }
 }
