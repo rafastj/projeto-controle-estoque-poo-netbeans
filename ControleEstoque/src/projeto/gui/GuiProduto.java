@@ -505,6 +505,7 @@ import projeto.modelo.to.Tipo;
     private javax.swing.JTable jtabelaProduto;
     // End of variables declaration//GEN-END:variables
 
+   
     private DefaultTableModel geramodelo(ArrayList<Produto> listaProduto) {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Descrição");

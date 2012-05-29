@@ -20,6 +20,7 @@ import projeto.modelo.to.Produto_Fornecedor;
  */
 public class GuiFornecedorFoneceNovoProduto extends javax.swing.JFrame {
     
+     ArrayList<Produto_Fornecedor> listaProdutoFornecedor = null;
     
     Fachada fachada = new Fachada();
     /**
@@ -47,7 +48,7 @@ public class GuiFornecedorFoneceNovoProduto extends javax.swing.JFrame {
         jPFornecedor1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTabelaForneForneceProduto = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jBSalvarFornecimento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -107,7 +108,7 @@ public class GuiFornecedorFoneceNovoProduto extends javax.swing.JFrame {
                 .addGroup(jPFornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jProdutoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPFornecedor1.setBorder(javax.swing.BorderFactory.createTitledBorder("Fornece..."));
@@ -134,17 +135,17 @@ public class GuiFornecedorFoneceNovoProduto extends javax.swing.JFrame {
         jPFornecedor1.setLayout(jPFornecedor1Layout);
         jPFornecedor1Layout.setHorizontalGroup(
             jPFornecedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
         );
         jPFornecedor1Layout.setVerticalGroup(
             jPFornecedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
         );
 
-        jButton1.setText("Salvar Fornecimento");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBSalvarFornecimento.setText("Salvar Fornecimento");
+        jBSalvarFornecimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBSalvarFornecimentoActionPerformed(evt);
             }
         });
 
@@ -153,17 +154,14 @@ public class GuiFornecedorFoneceNovoProduto extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPFornecedor1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(217, 217, 217)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(224, 224, 224))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPFornecedor1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(216, 216, 216)
+                        .addComponent(jBSalvarFornecimento)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -171,11 +169,11 @@ public class GuiFornecedorFoneceNovoProduto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPFornecedor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBSalvarFornecimento, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(jPFornecedor1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -183,15 +181,50 @@ public class GuiFornecedorFoneceNovoProduto extends javax.swing.JFrame {
 
     private void jFornecedorBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jFornecedorBoxItemStateChanged
         // TODO add your handling code here:
+        listarTodosProdutosFornecidospeloFornecedor((String) jFornecedorBox.getSelectedItem());
     }//GEN-LAST:event_jFornecedorBoxItemStateChanged
 
     private void jProdutoBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jProdutoBoxItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_jProdutoBoxItemStateChanged
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBSalvarFornecimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarFornecimentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+         
+        try {
+            //preparando o novo produto para ser salvo no DAO
+            Produto_Fornecedor pfSalvar = new Produto_Fornecedor();
+            //pegando o codigo do segmento selecionado
+            Produto psalvar = fachada.consultarProduto((String) jProdutoBox.getSelectedItem());
+            pfSalvar.setProdutos_Codigo(psalvar.getProdutos_Codigo());
+
+            //pegando o codigo do tipo selecionado
+            Fornecedor fsalvar = fachada.consultarForRazaoSocial((String) jFornecedorBox.getSelectedItem());
+            pfSalvar.setFornecedores_Codigo(fsalvar.getFornecedores_Codigo());
+
+
+            //CHAMAR O DAO SALVAR
+            fachada.salvarProduto_Fornecedor(pfSalvar);
+
+            JOptionPane.showMessageDialog(null, "Fornecimento Inserido!"); 
+
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
+        int resposta;
+        
+        resposta = JOptionPane.showConfirmDialog(null, "Deseja cadastrar novo fornecimento ?", "", JOptionPane.YES_NO_OPTION);
+        if (resposta == JOptionPane.YES_OPTION) {
+        }else{
+         //se não fecha a tela
+        dispose();   
+        }
+        
+        
+      
+        
+    }//GEN-LAST:event_jBSalvarFornecimentoActionPerformed
 
     private void jFornecedorBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFornecedorBoxActionPerformed
         // TODO add your handling code here:
@@ -247,7 +280,7 @@ public class GuiFornecedorFoneceNovoProduto extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBSalvarFornecimento;
     public javax.swing.JComboBox jFornecedorBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -309,6 +342,15 @@ public class GuiFornecedorFoneceNovoProduto extends javax.swing.JFrame {
 	}
     }
     
+    private void listarTodosProdutosFornecidospeloFornecedor(String fornecedor_RazaoSocial){
+        try {
+            listaProdutoFornecedor = (ArrayList<Produto_Fornecedor>) fachada.listarFornecedordeProduto(fornecedor_RazaoSocial);
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaProdutoFornecedor);
+        jTabelaForneForneceProduto.setModel(modelo); 
+    }
     
 //fim
 }
