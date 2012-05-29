@@ -57,7 +57,7 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuGerenciarFornecedor = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuFuncionario = new javax.swing.JMenu();
-        jMenuItemNovoFuncionario = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItemNovoUsuario = new javax.swing.JMenuItem();
         jMenuProduto = new javax.swing.JMenu();
         jMenuItemNovoProduto = new javax.swing.JMenuItem();
@@ -120,7 +120,7 @@ public class GuiMenu extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbAcessar))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jMenuCadastro.setText("Cadastro");
@@ -178,13 +178,8 @@ public class GuiMenu extends javax.swing.JFrame {
 
         jMenuFuncionario.setText("Funcionário");
 
-        jMenuItemNovoFuncionario.setText("Novo Funcionário");
-        jMenuItemNovoFuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemNovoFuncionarioActionPerformed(evt);
-            }
-        });
-        jMenuFuncionario.add(jMenuItemNovoFuncionario);
+        jMenuItem6.setText("Novo Funcionário");
+        jMenuFuncionario.add(jMenuItem6);
 
         jMenuItemNovoUsuario.setText("Usuário");
         jMenuItemNovoUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -257,14 +252,14 @@ public class GuiMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(81, 81, 81)
                 .addComponent(jPGuiLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addComponent(jPGuiLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -352,7 +347,6 @@ public class GuiMenu extends javax.swing.JFrame {
     private void jMenuTabelaCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuTabelaCidadeActionPerformed
         GuiCidade cd = new GuiCidade();
         cd.setVisible(true);
-        
     }//GEN-LAST:event_jMenuTabelaCidadeActionPerformed
 
     private void jMenuEnderecoNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEnderecoNovoActionPerformed
@@ -378,12 +372,6 @@ public class GuiMenu extends javax.swing.JFrame {
          GuiFornecedorForneceProduto gForneForneProduto = new GuiFornecedorForneceProduto();//criei o objeto
          gForneForneProduto.setVisible(true);//chamei o objeto    
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItemNovoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoFuncionarioActionPerformed
-        // TODO add your handling code here:
-        GuiFuncionario fu = new GuiFuncionario();
-        fu.setVisible(true);
-    }//GEN-LAST:event_jMenuItemNovoFuncionarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -448,9 +436,9 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItemLogoff;
-    private javax.swing.JMenuItem jMenuItemNovoFuncionario;
     private javax.swing.JMenuItem jMenuItemNovoProduto;
     private javax.swing.JMenuItem jMenuItemNovoUsuario;
     private javax.swing.JMenuItem jMenuItemSair;
