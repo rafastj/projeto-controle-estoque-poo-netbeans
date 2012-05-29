@@ -37,7 +37,7 @@ public class GuiFuncionario extends javax.swing.JFrame {
         JbAlterar = new javax.swing.JButton();
         JbExcluir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtro"));
 

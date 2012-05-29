@@ -35,7 +35,7 @@ public class GuiUsuarioNovo extends javax.swing.JFrame {
         JcSenhaUsuario = new javax.swing.JTextField();
         JbSalvar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         JlNomeusuario.setText("Nome usuário.:");
 

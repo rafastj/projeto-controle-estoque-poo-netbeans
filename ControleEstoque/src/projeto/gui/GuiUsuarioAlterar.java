@@ -35,7 +35,7 @@ public class GuiUsuarioAlterar extends javax.swing.JFrame {
         JcSenhaUsuario2 = new javax.swing.JTextField();
         JbAlterar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         JlNomeusuario2.setText("Nome usuário.:");
 
@@ -157,28 +157,12 @@ public class GuiUsuarioAlterar extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbAlterar;
-    private javax.swing.JButton JbSalvar;
-    private javax.swing.JButton JbSalvar1;
-    private javax.swing.JTextField JcLoginUsuario;
-    private javax.swing.JTextField JcLoginUsuario1;
     private javax.swing.JTextField JcLoginUsuario2;
-    private javax.swing.JTextField JcNomeUsuario;
-    private javax.swing.JTextField JcNomeUsuario1;
     private javax.swing.JTextField JcNomeUsuario2;
-    private javax.swing.JTextField JcSenhaUsuario;
-    private javax.swing.JTextField JcSenhaUsuario1;
     private javax.swing.JTextField JcSenhaUsuario2;
-    private javax.swing.JLabel JlLoginUsuario;
-    private javax.swing.JLabel JlLoginUsuario1;
     private javax.swing.JLabel JlLoginUsuario2;
-    private javax.swing.JLabel JlNomeusuario;
-    private javax.swing.JLabel JlNomeusuario1;
     private javax.swing.JLabel JlNomeusuario2;
-    private javax.swing.JLabel JlSenhaUsuario;
-    private javax.swing.JLabel JlSenhaUsuario1;
     private javax.swing.JLabel JlSenhaUsuario2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }
