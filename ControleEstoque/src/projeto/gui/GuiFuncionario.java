@@ -81,8 +81,18 @@ public class GuiFuncionario extends javax.swing.JFrame {
         jScrollPane1.setViewportView(JtListarFuncionario);
 
         JbSalvar.setText("Salvar");
+        JbSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbSalvarActionPerformed(evt);
+            }
+        });
 
         JbAlterar.setText("Alterar");
+        JbAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbAlterarActionPerformed(evt);
+            }
+        });
 
         JbExcluir.setText("Excluir");
 
@@ -141,6 +151,18 @@ public class GuiFuncionario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbSalvarActionPerformed
+        // TODO add your handling code here:
+        GuiFuncionarioNovo fu = new GuiFuncionarioNovo();
+        fu.setVisible(true);
+    }//GEN-LAST:event_JbSalvarActionPerformed
+
+    private void JbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbAlterarActionPerformed
+        // TODO add your handling code here:
+        GuiFuncionarioAlterar fu = new GuiFuncionarioAlterar();
+        fu.setVisible(true);
+    }//GEN-LAST:event_JbAlterarActionPerformed
 
     /**
      * @param args the command line arguments
