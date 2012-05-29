@@ -50,7 +50,7 @@ public class GuiFornecedorFoneceNovoProduto extends javax.swing.JFrame {
         jTabelaForneForneceProduto = new javax.swing.JTable();
         jBSalvarFornecimento = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -205,6 +205,12 @@ public class GuiFornecedorFoneceNovoProduto extends javax.swing.JFrame {
 
             //CHAMAR O DAO SALVAR
             fachada.salvarProduto_Fornecedor(pfSalvar);
+            
+            //relistar os produtos
+            listarProdutosNaoFornecidos((String)jFornecedorBox.getSelectedItem());
+            
+            //relistar os produtos dessete fornecedor
+            listarTodosProdutosFornecidospeloFornecedor((String) jFornecedorBox.getSelectedItem());
 
             JOptionPane.showMessageDialog(null, "Fornecimento Inserido!"); 
 
@@ -228,7 +234,6 @@ public class GuiFornecedorFoneceNovoProduto extends javax.swing.JFrame {
 
     private void jFornecedorBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFornecedorBoxActionPerformed
         // TODO add your handling code here:
-        jProdutoBox.removeAllItems();
         listarProdutosNaoFornecidos((String) jFornecedorBox.getSelectedItem());
     }//GEN-LAST:event_jFornecedorBoxActionPerformed
 
@@ -328,7 +333,9 @@ public class GuiFornecedorFoneceNovoProduto extends javax.swing.JFrame {
     
     //Filtrar os produtos não fornecidos pelo fornecedor selecionado
     public void listarProdutosNaoFornecidos(String fornecedor_RazaoSocial){
-    //LISTAR OS PRODUTDOS
+        //remover todos os items
+        jProdutoBox.removeAllItems();
+        //LISTAR OS PRODUTDOS
         Produto_Fornecedor p;
         ArrayList<Produto_Fornecedor> listp;
         try{
