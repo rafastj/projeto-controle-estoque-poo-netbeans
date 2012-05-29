@@ -15,6 +15,7 @@ public class GuiUsuario extends javax.swing.JFrame {
      */
     public GuiUsuario() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
