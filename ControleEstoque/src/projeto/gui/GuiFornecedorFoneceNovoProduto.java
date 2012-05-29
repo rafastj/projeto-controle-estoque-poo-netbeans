@@ -51,6 +51,7 @@ public class GuiFornecedorFoneceNovoProduto extends javax.swing.JFrame {
         jBSalvarFornecimento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Novo Fornecimento");
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -135,7 +136,7 @@ public class GuiFornecedorFoneceNovoProduto extends javax.swing.JFrame {
         jPFornecedor1.setLayout(jPFornecedor1Layout);
         jPFornecedor1Layout.setHorizontalGroup(
             jPFornecedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPFornecedor1Layout.setVerticalGroup(
             jPFornecedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +160,7 @@ public class GuiFornecedorFoneceNovoProduto extends javax.swing.JFrame {
                     .addComponent(jPFornecedor1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(216, 216, 216)
+                        .addGap(166, 166, 166)
                         .addComponent(jBSalvarFornecimento)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
