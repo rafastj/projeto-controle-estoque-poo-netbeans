@@ -250,8 +250,8 @@ public class RepositorioProduto_Fornecedor implements IRepositorioProduto_Fornec
         
         try {
             PreparedStatement pstm = c.prepareStatement(sqlLista);
-            ResultSet rs = pstm.executeQuery();
             pstm.setString(1, "%" + fornecedor_RazaoSocial + "%");
+            ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 pf = new Produto_Fornecedor();
                 pf.getProduto().setProdutos_Descricao(rs.getString("p.produtos_Descricao"));
