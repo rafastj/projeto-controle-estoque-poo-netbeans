@@ -15,6 +15,7 @@ public class GuiFuncionarioNovo extends javax.swing.JFrame {
      */
     public GuiFuncionarioNovo() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

@@ -15,6 +15,7 @@ public class GuiUsuarioAlterar extends javax.swing.JFrame {
      */
     public GuiUsuarioAlterar() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

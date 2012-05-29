@@ -15,6 +15,7 @@ public class GuiFuncionarioAlterar extends javax.swing.JFrame {
      */
     public GuiFuncionarioAlterar() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
