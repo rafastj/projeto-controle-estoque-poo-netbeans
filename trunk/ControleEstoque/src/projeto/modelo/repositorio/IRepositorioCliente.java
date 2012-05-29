@@ -81,5 +81,5 @@ public interface IRepositorioCliente {
      */
     public Collection<PessoaFisica> listarPessoaFisica() throws ConexaoException, RepositorioException;
     
-    public Collection<PessoaJuridica> listarPessoaJuridicaa() throws ConexaoException, RepositorioException;
+    public Collection<PessoaJuridica> listarPessoaJuridica() throws ConexaoException, RepositorioException;
 }
