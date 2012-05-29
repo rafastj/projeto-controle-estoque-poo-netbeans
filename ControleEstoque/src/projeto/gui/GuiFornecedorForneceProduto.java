@@ -137,11 +137,13 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jBAtualizar.setText("Atualizar");
@@ -152,6 +154,11 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
         });
 
         jBNovo.setText("Novo");
+        jBNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBNovoActionPerformed(evt);
+            }
+        });
 
         jBAlterar.setText("Alterar");
 
@@ -250,18 +257,18 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
 
     private void jFornecedorBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jFornecedorBoxItemStateChanged
         // TODO add your handling code here:
-        pesquisarFornecedor((String) jFornecedorBox.getSelectedItem());
+       // pesquisarFornecedor((String) jFornecedorBox.getSelectedItem());
         
         //Isso indica que o filtro foi feito pelo Produto
-        selecionado = 1;
+        //selecionado = 1;
     }//GEN-LAST:event_jFornecedorBoxItemStateChanged
 
     private void jProdutoBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jProdutoBoxItemStateChanged
         // TODO add your handling code here:
-        pesquisarProduto((String)jProdutoBox.getSelectedItem());
+        //pesquisarProduto((String)jProdutoBox.getSelectedItem());
         
         //Isso indica que o filtro foi feito pelo Produto
-        selecionado = 2;
+       // selecionado = 2;
     }//GEN-LAST:event_jProdutoBoxItemStateChanged
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -270,6 +277,12 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
         
         atualizarListaTodos();//Lista todos os produtos que possuem Fornecedores
     }//GEN-LAST:event_formComponentShown
+
+    private void jBNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNovoActionPerformed
+        // TODO add your handling code here:
+        GuiFornecedorFoneceNovoProduto gffnp = new GuiFornecedorFoneceNovoProduto();
+        gffnp.setVisible(true);
+    }//GEN-LAST:event_jBNovoActionPerformed
 
     /**
      * @param args the command line arguments
