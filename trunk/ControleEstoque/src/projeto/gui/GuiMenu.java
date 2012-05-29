@@ -352,6 +352,7 @@ public class GuiMenu extends javax.swing.JFrame {
     private void jMenuTabelaCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuTabelaCidadeActionPerformed
         GuiCidade cd = new GuiCidade();
         cd.setVisible(true);
+        
     }//GEN-LAST:event_jMenuTabelaCidadeActionPerformed
 
     private void jMenuEnderecoNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEnderecoNovoActionPerformed
