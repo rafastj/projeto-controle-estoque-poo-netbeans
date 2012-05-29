@@ -10,7 +10,6 @@ import projeto.conexao.GerenciadorConexao;
 import projeto.conexao.IGerenciadorConexao;
 import projeto.erro.ConexaoException;
 import projeto.erro.RepositorioException;
-import projeto.modelo.to.Cliente;
 import projeto.modelo.to.PessoaFisica;
 import projeto.modelo.to.PessoaJuridica;
 
@@ -27,6 +26,7 @@ public class RepositorioCliente implements IRepositorioCliente {
         g = GerenciadorConexao.getInstancia();
     }
 
+    
     @Override
     public void salvar(PessoaFisica pf) throws ConexaoException, RepositorioException {
         //solicita uma conexão ao gerenciador
@@ -54,6 +54,7 @@ public class RepositorioCliente implements IRepositorioCliente {
         }
     }
 
+    
     @Override
     public void salvar(PessoaJuridica pj) throws ConexaoException, RepositorioException {
         //solicita uma conexão ao gerenciador
@@ -80,23 +81,23 @@ public class RepositorioCliente implements IRepositorioCliente {
         }
     }
 
+    
     @Override
     public void alterar(PessoaFisica pf) throws ConexaoException, RepositorioException {
-              /**
+         /**
          * conectar faz a conexão com o banco de dados
          */
         Connection c = g.conectar();
         /**
          * variavel do tipo String da Instrução de inserção SQL
          */
-        String sqlAlterar = "UPDATE Produtos SET Segmentos_Codigo = ? ,Tipos_Codigo = ?, Marcas_Codigo = ?, Produtos_Descricao = ?, Produtos_Quantidade = ?, Produtos_ValorVenda = ? WHERE produtos_Codigo = ?";
+        String sqlAlterarPF = "UPDATE PessoaFisica SET PessoasFisica_CPF = ? ,PessoasFisica_Nome = ?, PessoasFisica_Sexo = ? WHERE PessoasFisica_CPF = ?";
 
         try {
-            PreparedStatement pstm = c.prepareStatement(sqlAlterar);
-            pstm.setInt(1, pf.getClientes_Codigo());
+            PreparedStatement pstm = c.prepareStatement(sqlAlterarPF);
+            pstm.setString(1, pf.getPessoasFisica_CPF());
             pstm.setString(2, pf.getPessoasFisica_Nome());
-            pstm.setString(3, pf.getPessoasFisica_CPF());
-            pstm.setString(4, pf.getPessoasFisica_Sexo());
+            pstm.setString(3, pf.getPessoasFisica_Sexo());
             pstm.setString(5, pf.getClientes_NumeroResidencia());
             //pstm.setDouble(6, pf.getProdutos_ValorVenda());
            // pstm.setInt(7, pf.getProdutos_Codigo());
@@ -108,8 +109,39 @@ public class RepositorioCliente implements IRepositorioCliente {
             g.desconectar(c);
         }
     }
+    
+    @Override
+    public void alterar(PessoaJuridica pj) throws ConexaoException, RepositorioException {
+              /**
+         * conectar faz a conexão com o banco de dados
+         */
+        Connection c = g.conectar();
+        /**
+         * variavel do tipo String da Instrução de inserção SQL
+         */
+        String sqlAlterar = "UPDATE Produtos SET Segmentos_Codigo = ? ,Tipos_Codigo = ?, Marcas_Codigo = ?, Produtos_Descricao = ?, Produtos_Quantidade = ?, Produtos_ValorVenda = ? WHERE produtos_Codigo = ?";
+
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlAlterar);
+            pstm.setInt(1, pj.getClientes_Codigo());
+            pstm.setString(2, pj.getPessoasJuridica_RazaoSocial());
+            pstm.setString(3, pj.getPessoasJuridica_CNPJ());
+            pstm.setString(4, pj.getClientes_NumeroResidencia());
+//            pstm.setString(5, pj.getClientes_NumeroResidencia());
+            //pstm.setDouble(6, pf.getProdutos_ValorVenda());
+           // pstm.setInt(7, pf.getProdutos_Codigo());
+            pstm.executeUpdate();
+            pstm.close();
+        } catch (SQLException ex) {
+            throw new RepositorioException(ex.getMessage());
+        } finally {
+            g.desconectar(c);
+        }
+    }
+
  
  
+    
     @Override
     public void excluir(int id) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
@@ -126,12 +158,13 @@ public class RepositorioCliente implements IRepositorioCliente {
         }
     }
 
+    
     @Override
     public PessoaFisica consultarPF(String pf_CPF) throws ConexaoException, RepositorioException {
         PessoaFisica pf = null;
         Connection c = g.conectar();
         String sqlConsulta = "SELECT clientes_codigo, pessoasfisica_CPF, pessoasfisica_nome, pessoasfisica_sexo FROM pessoasfisica WHERE ( pessoasfisica_cpf = ? )";
-        //"select PessoasFisica_CPF from PessoasFisicaliente_nome, c.clientemodelo from marcas as m innerjoin carros as c on Clientes.clientes_Codigo = PessoasFisica_Codigo(id=?)";
+        
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsulta);
             pstm.setString(1, '%' + pf_CPF + '%');
@@ -152,6 +185,7 @@ public class RepositorioCliente implements IRepositorioCliente {
         return pf;
     }
 
+    
     @Override
     public PessoaFisica consultarPF_Nome(String pf_Nome) throws ConexaoException, RepositorioException {
         PessoaFisica pf = null;
@@ -175,7 +209,8 @@ public class RepositorioCliente implements IRepositorioCliente {
         }
         return pf;
     }
-        public PessoaFisica consultar(int cliente_Codigo) throws ConexaoException, RepositorioException {
+    
+    public PessoaFisica consultar(int cliente_Codigo) throws ConexaoException, RepositorioException {
         PessoaFisica pf = null;
         Connection c = g.conectar();
         String sqlConsulta = "SELECT cli.clientes_Codigo,cli.enderecos_Codigo,pf.pessoasfisica_Nome,cli.clientes_NumeroResidencia FROM PessoasFisica AS pf, Clientes as cli WHERE (pf.clientes_Codigo = 1 )";
@@ -201,6 +236,7 @@ public class RepositorioCliente implements IRepositorioCliente {
     }
 
 
+    
     @Override
     public PessoaJuridica consultarPJ(String pj_CNPJ) throws ConexaoException, RepositorioException {
         PessoaJuridica pj = null;
@@ -225,6 +261,7 @@ public class RepositorioCliente implements IRepositorioCliente {
         return pj;
     }
 
+    
     @Override
     public PessoaJuridica consultarPJ_RSocial(String pj_RazaoSocial) throws ConexaoException, RepositorioException {
         PessoaJuridica pj = null;
@@ -249,6 +286,7 @@ public class RepositorioCliente implements IRepositorioCliente {
         return pj;
     }
 
+    
     
     @Override
     public Collection<PessoaFisica> listarPessoaFisica() throws ConexaoException, RepositorioException {
@@ -278,8 +316,10 @@ public class RepositorioCliente implements IRepositorioCliente {
             g.desconectar(c);
         }
     }
+
     
-        public Collection<PessoaJuridica> listarPessoaJuridica() throws ConexaoException, RepositorioException {
+    @Override
+    public Collection<PessoaJuridica> listarPessoaJuridica() throws ConexaoException, RepositorioException {
         ArrayList<PessoaJuridica> lista = new ArrayList<PessoaJuridica>();
         PessoaJuridica pj;
         Connection c = g.conectar();
@@ -307,14 +347,4 @@ public class RepositorioCliente implements IRepositorioCliente {
         }
     }
 
-
-    @Override
-    public Collection<PessoaJuridica> listarPessoaJuridicaa() throws ConexaoException, RepositorioException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void alterar(PessoaJuridica pj) throws ConexaoException, RepositorioException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }
