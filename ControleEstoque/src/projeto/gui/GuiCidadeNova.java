@@ -4,7 +4,9 @@
  */
 package projeto.gui;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Cidade;
@@ -15,16 +17,13 @@ import projeto.modelo.to.Cidade;
  */
 public class GuiCidadeNova extends javax.swing.JFrame {
 
-    private GuiCidade guiCidade;
-    private GuiEndereco guiEndereco;
     public static Fachada fachada = new Fachada();
+    ArrayList<Cidade> listaCidade = null;
 
     /**
      * Creates new form GuiCidade
      */
     public GuiCidadeNova() {
-        guiCidade = new GuiCidade();
-        guiEndereco = new GuiEndereco();
         initComponents();
         setLocationRelativeTo(null);//mostra no centro da tela
         jTextFieldEntradaCidade.requestFocus();
@@ -131,8 +130,6 @@ public class GuiCidadeNova extends javax.swing.JFrame {
         } finally {
             jTextFieldEntradaCidade.setText(null);
             jTextFieldEntradaCidade.requestFocus();
-            guiCidade.atualizarTabela();
-            guiEndereco.atualizarTabela();
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
@@ -178,6 +175,7 @@ public class GuiCidadeNova extends javax.swing.JFrame {
             }
         });
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabel1;

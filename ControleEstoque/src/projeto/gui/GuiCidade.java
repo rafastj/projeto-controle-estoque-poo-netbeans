@@ -33,7 +33,20 @@ public class GuiCidade extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
+            public void run() {
+                new GuiCidade().setVisible(true);
+            }
+        });
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,7 +82,7 @@ public class GuiCidade extends javax.swing.JFrame {
 
         label2Cidade.setText("Cidade.:");
 
-        jButtonConsultCid.setText("...");
+        jButtonConsultCid.setText("Filtrar");
         jButtonConsultCid.setMaximumSize(new java.awt.Dimension(75, 23));
         jButtonConsultCid.setMinimumSize(new java.awt.Dimension(75, 23));
         jButtonConsultCid.setPreferredSize(new java.awt.Dimension(75, 23));
@@ -223,7 +236,7 @@ public class GuiCidade extends javax.swing.JFrame {
         //ArrayList<Produto> listaProduto = null;
         int i = 0;
         try {
-            listaCidade = (ArrayList<Cidade>) fachada.listarCidade();
+            listaCidade = (ArrayList<Cidade>) fachada.listarCidadeTudo();
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -237,77 +250,21 @@ public class GuiCidade extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        jTextFieldCampoCidade.setText(null);
         atualizarTabela();
     }//GEN-LAST:event_formComponentShown
 
     private void jButtonConsultCidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultCidActionPerformed
-        //MOSTRAR TODOS OS REGISTRO DE PRODUTOS
-       pesquisarCidade();
+       pesquisarCidadeNome();
     }//GEN-LAST:event_jButtonConsultCidActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        int resposta;
-
-        try {
-            Cidade cd = listaCidade.get(jTableListaCidades.getSelectedRow());
-
-            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Apagar ?", "", JOptionPane.YES_NO_OPTION);
-            if (resposta == JOptionPane.YES_OPTION) {
-                Cidade cdConsult = fachada.consultarCidade(cd.getCidades_Nome());
-                if (cdConsult != null) {
-                    fachada.excluirCidade(cdConsult.getCidades_Codigo());
-                    atualizarTabela();
-                }
-            }
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            JOptionPane.showMessageDialog(null, "Selecione a cidade!");
-        } catch (GeralException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
+        excluirCidade();
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-        int resposta;
-
-        try {
-            Cidade cdOld = listaCidade.get(jTableListaCidades.getSelectedRow());
-
-            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar ?", "", JOptionPane.YES_NO_OPTION);
-            if (resposta == JOptionPane.YES_OPTION) {
-                GuiCidadeAlterar guiCidadeAlterar = new GuiCidadeAlterar();
-                guiCidadeAlterar.jTextFieldCidadeOld.setText(cdOld.getCidades_Nome());
-                guiCidadeAlterar.setVisible(true);
-            }
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            JOptionPane.showMessageDialog(null, "Selecione a cidade!");
-        }
+        alterarCidade();
     }//GEN-LAST:event_jButtonAlterarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                new GuiCidade().setVisible(true);
-            }
-        });
-    }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAlterar;
-    private javax.swing.JButton jButtonAtualizar;
-    private javax.swing.JButton jButtonConsultCid;
-    private javax.swing.JButton jButtonExcluir;
-    private javax.swing.JButton jButtonSalvar;
-    private javax.swing.JPanel jPanelFiltro;
-    private javax.swing.JPanel jPanelLista;
-    private javax.swing.JScrollPane jScrollPaneListaCidades;
-    private javax.swing.JTable jTableListaCidades;
-    private javax.swing.JTextField jTextFieldCampoCidade;
-    private java.awt.Label label2Cidade;
-    // End of variables declaration//GEN-END:variables
 
     private DefaultTableModel geramodelo(ArrayList<Cidade> listaCidade) {
         DefaultTableModel modelo = new DefaultTableModel();
@@ -328,7 +285,7 @@ public class GuiCidade extends javax.swing.JFrame {
 
     public void atualizarTabela() {
         try {
-            listaCidade = (ArrayList<Cidade>) fachada.listarCidade();
+            listaCidade = (ArrayList<Cidade>) fachada.listarCidadeTudo();
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -336,13 +293,62 @@ public class GuiCidade extends javax.swing.JFrame {
         jTableListaCidades.setModel(modelo);
     }
     
-    public void pesquisarCidade(){
-         try{
-            listaCidade = ( ArrayList<Cidade>)fachada.listarCidade(jTextFieldCampoCidade.getText());
+    public void pesquisarCidadeNome(){
+        try{
+            listaCidade = (ArrayList<Cidade>)fachada.listarCidadeNome(jTextFieldCampoCidade.getText());
         } catch (GeralException ex){
                 JOptionPane.showMessageDialog(null, ex.getMessage());
         }
           DefaultTableModel modelo = geramodelo(listaCidade);
           jTableListaCidades.setModel(modelo); 
     }
+    
+    private void alterarCidade() {
+        int resposta;
+        try {
+            Cidade cdOld = listaCidade.get(jTableListaCidades.getSelectedRow());
+
+            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar ?", "", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+                GuiCidadeAlterar guiCidadeAlterar = new GuiCidadeAlterar();
+                guiCidadeAlterar.jTextFieldCidadeOld.setText(cdOld.getCidades_Nome());
+                guiCidadeAlterar.setVisible(true);
+            }
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione a cidade!");
+        }
+    }
+    
+    private void excluirCidade() {
+        int resposta;
+        try {
+            Cidade cd = listaCidade.get(jTableListaCidades.getSelectedRow());
+
+            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Apagar ?", "", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+                Cidade cdConsult = fachada.consultarCidade(cd.getCidades_Nome());
+                if (cdConsult != null) {
+                    fachada.excluirCidade(cdConsult.getCidades_Codigo());
+                    atualizarTabela();
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione a cidade!");
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAlterar;
+    private javax.swing.JButton jButtonAtualizar;
+    private javax.swing.JButton jButtonConsultCid;
+    private javax.swing.JButton jButtonExcluir;
+    private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JPanel jPanelFiltro;
+    private javax.swing.JPanel jPanelLista;
+    private javax.swing.JScrollPane jScrollPaneListaCidades;
+    public javax.swing.JTable jTableListaCidades;
+    private javax.swing.JTextField jTextFieldCampoCidade;
+    private java.awt.Label label2Cidade;
+    // End of variables declaration//GEN-END:variables
 }

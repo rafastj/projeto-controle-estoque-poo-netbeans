@@ -79,12 +79,12 @@ public class Fachada {
         rnCidade.alterar(cd);
     }
 
-    public Collection<Cidade> listarCidade() throws GeralException {
-        return rnCidade.listar();
+    public Collection<Cidade> listarCidadeTudo() throws GeralException {
+        return rnCidade.listarTudo();
     }
     
-    public Collection<Cidade> listarCidade(String cidades_Nome) throws GeralException {
-        return rnCidade.listarCidade(cidades_Nome);
+    public Collection<Cidade> listarCidadeNome(String cidades_Nome) throws GeralException {
+        return rnCidade.listarCidadeNome(cidades_Nome);
     }
 
     /**
