@@ -10,7 +10,6 @@ import projeto.conexao.GerenciadorConexao;
 import projeto.conexao.IGerenciadorConexao;
 import projeto.erro.ConexaoException;
 import projeto.erro.RepositorioException;
-import projeto.modelo.to.Cidade;
 import projeto.modelo.to.Endereco;
 
 /**
@@ -128,7 +127,7 @@ public class RepositorioEndereco implements IRepositorioEndereco {
     }
 
     @Override
-    public Collection<Endereco> listar() throws ConexaoException, RepositorioException {
+    public Collection<Endereco> listarTudo() throws ConexaoException, RepositorioException {
         ArrayList<Endereco> lista = new ArrayList<Endereco>();
         Endereco end;
         Connection c = g.conectar();
@@ -136,6 +135,90 @@ public class RepositorioEndereco implements IRepositorioEndereco {
         try {
             Statement stm = c.createStatement();
             ResultSet rs = stm.executeQuery(sqlLista);
+            //verifica se retornou algum registro e cria os Objetos
+            while (rs.next()) {
+                end = new Endereco();
+                end.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
+                end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
+                end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                end.setCidades_Nome(rs.getString("cidades_Nome"));
+                lista.add(end);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar(c);
+        }
+    }
+    
+    @Override
+    public Collection<Endereco> listarEndCEP(String enderecos_CEP) throws ConexaoException, RepositorioException {
+        ArrayList<Endereco> lista = new ArrayList<Endereco>();
+        Endereco end;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from Enderecos as end inner join Cidades as cd On end.cidades_Codigo = cd.cidades_Codigo where end.Enderecos_CEP = ? ORDER BY end.enderecos_CEP";
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlLista);
+            pstm.setString(1, enderecos_CEP);
+            ResultSet rs = pstm.executeQuery();
+            //verifica se retornou algum registro e cria os Objetos
+            while (rs.next()) {
+                end = new Endereco();
+                end.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
+                end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
+                end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                end.setCidades_Nome(rs.getString("cidades_Nome"));
+                lista.add(end);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar(c);
+        }
+    }
+    
+    @Override
+    public Collection<Endereco> listarEndLog(String enderecos_Logradouro) throws ConexaoException, RepositorioException {
+        ArrayList<Endereco> lista = new ArrayList<Endereco>();
+        Endereco end;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from Enderecos as end inner join Cidades as cd On end.cidades_Codigo = cd.cidades_Codigo where end.Enderecos_Logradouro LIKE ? ORDER BY end.enderecos_CEP";
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlLista);
+            pstm.setString(1, enderecos_Logradouro+"%");
+            ResultSet rs = pstm.executeQuery();
+            //verifica se retornou algum registro e cria os Objetos
+            while (rs.next()) {
+                end = new Endereco();
+                end.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
+                end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
+                end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                end.setCidades_Nome(rs.getString("cidades_Nome"));
+                lista.add(end);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar(c);
+        }
+    }
+    
+    @Override
+    public Collection<Endereco> listarEndCidade(String cidades_Nome) throws ConexaoException, RepositorioException {
+        ArrayList<Endereco> lista = new ArrayList<Endereco>();
+        Endereco end;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from Enderecos as end inner join Cidades as cd On end.cidades_Codigo = cd.cidades_Codigo where cd.cidades_Nome = ? ORDER BY end.enderecos_CEP";
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlLista);
+            pstm.setString(1, cidades_Nome);
+            ResultSet rs = pstm.executeQuery();
             //verifica se retornou algum registro e cria os Objetos
             while (rs.next()) {
                 end = new Endereco();

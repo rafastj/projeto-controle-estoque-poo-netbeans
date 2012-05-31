@@ -138,7 +138,7 @@ public class RepositorioCidade implements IRepositorioCidade {
     }
 
     @Override
-   public Collection<Cidade> listarTudo() throws ConexaoException, RepositorioException {
+    public Collection<Cidade> listarTudo() throws ConexaoException, RepositorioException {
         ArrayList<Cidade> lista = new ArrayList<Cidade>();
         Cidade cd;
         Connection c = g.conectar();
@@ -160,9 +160,9 @@ public class RepositorioCidade implements IRepositorioCidade {
             g.desconectar(c);
         }
     }
-    
+
     @Override
-     public Collection<Cidade> listarCidadeNome(String cidades_Nome) throws ConexaoException, RepositorioException {
+    public Collection<Cidade> listarCidadeNome(String cidades_Nome) throws ConexaoException, RepositorioException {
         ArrayList<Cidade> lista = new ArrayList<Cidade>();
         Cidade cd;
         Connection c = g.conectar();

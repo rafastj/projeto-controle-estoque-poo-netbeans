@@ -68,5 +68,34 @@ public interface IRepositorioEndereco {
      * @throws ConexaoException
      * @throws RepositorioException
      */
-    public Collection<Endereco> listar() throws ConexaoException, RepositorioException;
+    public Collection<Endereco> listarTudo() throws ConexaoException, RepositorioException;
+    
+    /**
+     * Retorna uma lista filtrada pelo CEP;
+     * 
+     * @return
+     * @throws ConexaoException
+     * @throws RepositorioException 
+     */
+    public Collection<Endereco> listarEndCEP(String enderecos_CEP) throws ConexaoException, RepositorioException;
+    
+    /**
+     * Retorna uma lista filtrada pelo Logradouro;
+     * 
+     * @param enderecos_Log
+     * @return
+     * @throws ConexaoException
+     * @throws RepositorioException 
+     */
+    public Collection<Endereco> listarEndLog(String enderecos_Logradouro) throws ConexaoException, RepositorioException;
+    
+    /**
+     * Retorna uma lista filtrada pelo Nome da Cidade;
+     * 
+     * @param cidades_Nome
+     * @return
+     * @throws ConexaoException
+     * @throws RepositorioException 
+     */
+    public Collection<Endereco> listarEndCidade(String cidades_Nome) throws ConexaoException, RepositorioException;
 }

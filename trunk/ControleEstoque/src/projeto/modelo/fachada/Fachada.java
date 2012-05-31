@@ -110,8 +110,20 @@ public class Fachada {
         rnEndereco.alterar(end);
     }
 
-    public Collection<Endereco> listarEndereco() throws GeralException {
-        return rnEndereco.listar();
+    public Collection<Endereco> listarEndTudo() throws GeralException {
+        return rnEndereco.listarTudo();
+    }
+    
+    public Collection<Endereco> listarEndCEP(String enderecos_CEP) throws GeralException {
+        return rnEndereco.listarEndCEP(enderecos_CEP);
+    }
+    
+    public Collection<Endereco> listarEndLog(String enderecos_Logradouro) throws GeralException {
+        return rnEndereco.listarEndLog(enderecos_Logradouro);
+    }
+    
+    public Collection<Endereco> listarEndCidade(String cidades_Nome) throws GeralException {
+        return rnEndereco.listarEndCidade(cidades_Nome);
     }
 
     /**
