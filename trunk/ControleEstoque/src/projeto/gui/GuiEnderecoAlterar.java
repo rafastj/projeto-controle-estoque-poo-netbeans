@@ -14,7 +14,7 @@ import projeto.modelo.to.Endereco;
 
 /**
  *
- * @author Daniel
+ * @author DANIEL VALENÇA
  */
 public class GuiEnderecoAlterar extends javax.swing.JFrame {
 
@@ -97,7 +97,7 @@ public class GuiEnderecoAlterar extends javax.swing.JFrame {
         jButtonPesquisaCEPNew = new javax.swing.JButton();
         jLabelCEPNew = new javax.swing.JLabel();
         jButtonAlterar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonGerenciarCidade = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Alterar Endereço");
@@ -143,7 +143,7 @@ public class GuiEnderecoAlterar extends javax.swing.JFrame {
                             .addComponent(jTextFieldSaidaLogOld, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE))
                         .addGroup(jPanelEndOldLayout.createSequentialGroup()
                             .addComponent(jLabelCidadeOld)
-                            .addGap(0, 0, Short.MAX_VALUE)))
+                            .addGap(0, 593, Short.MAX_VALUE)))
                     .addContainerGap()))
         );
         jPanelEndOldLayout.setVerticalGroup(
@@ -201,10 +201,10 @@ public class GuiEnderecoAlterar extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Gerenciar Cidade");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGerenciarCidade.setText("Gerenciar Cidade");
+        jButtonGerenciarCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonGerenciarCidadeActionPerformed(evt);
             }
         });
 
@@ -229,11 +229,11 @@ public class GuiEnderecoAlterar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelEndNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelEndNewLayout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonGerenciarCidade)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                         .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelEndNewLayout.createSequentialGroup()
-                        .addComponent(jTextFieldEntradaLogNew)
+                        .addComponent(jTextFieldEntradaLogNew, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonPesquisaLogNew, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -253,7 +253,7 @@ public class GuiEnderecoAlterar extends javax.swing.JFrame {
                 .addGroup(jPanelEndNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxCidadeNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelCidadeNew)
-                    .addComponent(jButton1)
+                    .addComponent(jButtonGerenciarCidade)
                     .addComponent(jButtonAlterar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -282,28 +282,51 @@ public class GuiEnderecoAlterar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Chamada do método que vai verificar se já existe cadastro.
+     * @param evt
+     */
     private void jButtonPesquisaCEPNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCEPNewActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonPesquisaCEPNewActionPerformed
 
+    /**
+     * Chamada do método que altera um registro selecionado;
+     * @param evt
+     */
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         alterarEndereco();
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    /**
+     * Chama a tela para gerenciar a cidade;
+     * @param evt
+     */
+    private void jButtonGerenciarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerenciarCidadeActionPerformed
         GuiCidade cd = new GuiCidade();
         cd.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonGerenciarCidadeActionPerformed
 
+    /**
+     * Chamada do método que vai verificar se já existe cadastro.
+     * @param evt
+     */
     private void jButtonPesquisaLogNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaLogNewActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonPesquisaLogNewActionPerformed
 
+    /**
+     * Atualiza o "ComboBox Cidade", no carregamento da tela;
+     * @param evt
+     */
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         jTextFieldEntradaCepNew.requestFocus();
         atualizarComboCidade();
     }//GEN-LAST:event_formComponentShown
 
+    /**
+     * Metodo que altera um registro selecionado;
+     */
     private void alterarEndereco() {
         Endereco end;
         String cepOld;
@@ -328,6 +351,9 @@ public class GuiEnderecoAlterar extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Método que trás a llista das cidades para ser mostrada no "ComboBox Cidade";
+     */
     private void atualizarComboCidade() {
         Cidade cid;
         ArrayList<Cidade> listaCd;
@@ -342,8 +368,8 @@ public class GuiEnderecoAlterar extends javax.swing.JFrame {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAlterar;
+    private javax.swing.JButton jButtonGerenciarCidade;
     private javax.swing.JButton jButtonPesquisaCEPNew;
     private javax.swing.JButton jButtonPesquisaLogNew;
     private javax.swing.JComboBox jComboBoxCidadeNew;

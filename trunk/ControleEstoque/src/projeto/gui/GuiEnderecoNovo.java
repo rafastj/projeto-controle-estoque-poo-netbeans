@@ -14,7 +14,7 @@ import projeto.modelo.to.Endereco;
 
 /**
  *
- * @author Daniel
+ * @author DANIEL VALENÇA
  */
 public class GuiEnderecoNovo extends javax.swing.JFrame {
 
@@ -27,6 +27,49 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         jTextFieldEntradaCEP.requestFocus();
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /*
+         * Set the Nimbus look and feel
+         */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the
+         * default look and feel. For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(GuiEnderecoNovo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(GuiEnderecoNovo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(GuiEnderecoNovo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(GuiEnderecoNovo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /*
+         * Create and display the form
+         */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                new GuiEnderecoNovo().setVisible(true);
+            }
+        });
     }
 
     /**
@@ -158,7 +201,27 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
         listarComboBoxCidade();
     }//GEN-LAST:event_formComponentShown
 
+    /**
+     * Chamada do médoto salvarEndereco();
+     * @param evt
+     */
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        salvarEndereco();
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jButtonIncluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirCidadeActionPerformed
+        GuiCidade cidade = new GuiCidade();
+        cidade.setVisible(true);
+    }//GEN-LAST:event_jButtonIncluirCidadeActionPerformed
+
+    private void jButtonConsultarCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarCEPActionPerformed
+        consultarCep();
+    }//GEN-LAST:event_jButtonConsultarCEPActionPerformed
+
+    /**
+     * Método que salva um novo registro Endereco;
+     */
+    private void salvarEndereco() {
         int resposta;
         int enderecos_Codigo;
         int cidades_Codigo;
@@ -185,66 +248,20 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
         } finally {
             jTextFieldEntradaCEP.requestFocus();
         }
-    }//GEN-LAST:event_jButtonSalvarActionPerformed
-
-    private void jButtonIncluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirCidadeActionPerformed
-        GuiCidade cidade = new GuiCidade();
-        cidade.setVisible(true);
-    }//GEN-LAST:event_jButtonIncluirCidadeActionPerformed
-
-    private void jButtonConsultarCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarCEPActionPerformed
-        consultarCep();
-    }//GEN-LAST:event_jButtonConsultarCEPActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiEnderecoNovo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiEnderecoNovo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiEnderecoNovo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiEnderecoNovo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /*
-         * Create and display the form
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                new GuiEnderecoNovo().setVisible(true);
-            }
-        });
     }
 
+    /**
+     * Método que limpa os campos dos filtros;
+     */
     private void limparTodosCampos() {
         //limpar os edits
         jTextFieldEntradaCEP.setText("");
         jTextFieldEntradaLog.setText("");
     }
 
+    /**
+     * Método que verifica se já existe o CEP cadastrado, caso exista, escolha se quer consultar outro ou sair;
+     */
     private void consultarCep() {
         String enderecos_CEP;
         int resComCadastro;
@@ -273,6 +290,9 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Método que cria um ArrayList de Cidade, para ser inserido no ComboBox Cidade;
+     */
     private void listarComboBoxCidade() {
         Cidade cid;
         ArrayList<Cidade> listaCd;
