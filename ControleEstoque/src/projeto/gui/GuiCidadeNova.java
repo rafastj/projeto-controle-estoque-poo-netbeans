@@ -6,7 +6,6 @@ package projeto.gui;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Cidade;
@@ -19,6 +18,7 @@ public class GuiCidadeNova extends javax.swing.JFrame {
 
     public static Fachada fachada = new Fachada();
     ArrayList<Cidade> listaCidade = null;
+    GuiCidade guiCidade = new GuiCidade();
 
     /**
      * Creates new form GuiCidade
@@ -27,6 +27,49 @@ public class GuiCidadeNova extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);//mostra no centro da tela
         jTextFieldEntradaCidade.requestFocus();
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /*
+         * Set the Nimbus look and feel
+         */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the
+         * default look and feel. For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(GuiCidadeNova.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(GuiCidadeNova.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(GuiCidadeNova.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(GuiCidadeNova.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /*
+         * Create and display the form
+         */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                new GuiCidadeNova().setVisible(true);
+            }
+        });
     }
 
     /**
@@ -107,11 +150,16 @@ public class GuiCidadeNova extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        salvarCidade();
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void salvarCidade() {
         int resposta;
+        int validoString;
         String cdSalvar = null;
         try {
             cdSalvar = jTextFieldEntradaCidade.getText();
-            int validoString = Integer.parseInt(cdSalvar);
+            validoString = Integer.parseInt(cdSalvar);
             JOptionPane.showMessageDialog(null, "Digite apenas o nome da cidade!");
         } catch (NumberFormatException x) {
             Cidade cd = new Cidade(cdSalvar);
@@ -128,54 +176,9 @@ public class GuiCidadeNova extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         } finally {
-            jTextFieldEntradaCidade.setText(null);
-            jTextFieldEntradaCidade.requestFocus();
+            guiCidade.atualizarTabela();
         }
-    }//GEN-LAST:event_jButtonSalvarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiCidadeNova.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiCidadeNova.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiCidadeNova.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiCidadeNova.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /*
-         * Create and display the form
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                new GuiCidadeNova().setVisible(true);
-            }
-        });
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabel1;

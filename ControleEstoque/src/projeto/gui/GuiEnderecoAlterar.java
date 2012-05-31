@@ -4,9 +4,12 @@
  */
 package projeto.gui;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.Cidade;
 import projeto.modelo.to.Endereco;
 
 /**
@@ -14,6 +17,7 @@ import projeto.modelo.to.Endereco;
  * @author Daniel
  */
 public class GuiEnderecoAlterar extends javax.swing.JFrame {
+
     public static Fachada fachada = new Fachada();
 
     /**
@@ -21,6 +25,50 @@ public class GuiEnderecoAlterar extends javax.swing.JFrame {
      */
     public GuiEnderecoAlterar() {
         initComponents();
+        setLocationRelativeTo(null);
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /*
+         * Set the Nimbus look and feel
+         */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the
+         * default look and feel. For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(GuiEnderecoAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(GuiEnderecoAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(GuiEnderecoAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(GuiEnderecoAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /*
+         * Create and display the form
+         */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                new GuiEnderecoAlterar().setVisible(true);
+            }
+        });
     }
 
     /**
@@ -51,7 +99,13 @@ public class GuiEnderecoAlterar extends javax.swing.JFrame {
         jButtonAlterar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Alterar Endereço");
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanelEndOld.setBorder(javax.swing.BorderFactory.createTitledBorder("Endereço Antigo"));
 
@@ -95,7 +149,7 @@ public class GuiEnderecoAlterar extends javax.swing.JFrame {
         jPanelEndOldLayout.setVerticalGroup(
             jPanelEndOldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEndOldLayout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
+                .addContainerGap(46, Short.MAX_VALUE)
                 .addGroup(jPanelEndOldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldSaidaCidadeOld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldSaidaCepOld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,6 +176,11 @@ public class GuiEnderecoAlterar extends javax.swing.JFrame {
         jButtonPesquisaLogNew.setMaximumSize(new java.awt.Dimension(75, 23));
         jButtonPesquisaLogNew.setMinimumSize(new java.awt.Dimension(75, 23));
         jButtonPesquisaLogNew.setPreferredSize(new java.awt.Dimension(75, 23));
+        jButtonPesquisaLogNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisaLogNewActionPerformed(evt);
+            }
+        });
 
         jButtonPesquisaCEPNew.setText("Consultar");
         jButtonPesquisaCEPNew.setMaximumSize(new java.awt.Dimension(75, 23));
@@ -228,29 +287,7 @@ public class GuiEnderecoAlterar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonPesquisaCEPNewActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-       Endereco end;
-       String cepOld;
-       int enderecos_Codigo;
-       String cd;
-       try {
-            cepOld = jTextFieldSaidaCepOld.getText();
-            end = fachada.consultarEndCep(cepOld);
-            Endereco endAlterar = new Endereco();
-            enderecos_Codigo = end.getEnderecos_Codigo();
-            endAlterar.setEnderecos_Codigo(enderecos_Codigo);
-            endAlterar.setEnderecos_Logradouro(jTextFieldEntradaLogNew.getText());
-            endAlterar.setEnderecos_CEP(jTextFieldEntradaCepNew.getText());
-            cd = jComboBoxCidadeNew.getSelectedItem().toString();
-
-            //CHAMAR O DAO ALTERAR
-            fachada.alterarEndereco(endAlterar);
-
-            JOptionPane.showMessageDialog(null, "Cidade Alterada!");
-            dispose();
-
-        } catch (GeralException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
+        alterarEndereco();
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -258,47 +295,51 @@ public class GuiEnderecoAlterar extends javax.swing.JFrame {
         cd.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
+    private void jButtonPesquisaLogNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaLogNewActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonPesquisaLogNewActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        jTextFieldEntradaCepNew.requestFocus();
+        atualizarComboCidade();
+    }//GEN-LAST:event_formComponentShown
+
+    private void alterarEndereco() {
+        Endereco end;
+        String cepOld;
+        int enderecos_Codigo;
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiEnderecoAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiEnderecoAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiEnderecoAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiEnderecoAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            cepOld = jTextFieldSaidaCepOld.getText();
+            end = fachada.consultarEndCep(cepOld);
+            Cidade cd = fachada.consultarCidade((String) jComboBoxCidadeNew.getSelectedItem());
+            Endereco endAlterar = new Endereco();
+            enderecos_Codigo = end.getEnderecos_Codigo();
+            endAlterar.setEnderecos_Codigo(enderecos_Codigo);
+            endAlterar.setEnderecos_Logradouro(jTextFieldEntradaLogNew.getText());
+            endAlterar.setEnderecos_CEP(jTextFieldEntradaCepNew.getText());
+            endAlterar.setCidades_Codigo(cd.getCidades_Codigo());
+            fachada.alterarEndereco(endAlterar);
+
+            JOptionPane.showMessageDialog(null, "Endereço alterado!");
+            dispose();
+
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        //</editor-fold>
+    }
 
-        /*
-         * Create and display the form
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                new GuiEnderecoAlterar().setVisible(true);
+    private void atualizarComboCidade() {
+        Cidade cid;
+        ArrayList<Cidade> listaCd;
+        try {
+            listaCd = (ArrayList<Cidade>) fachada.listarCidadeTudo();
+            for (Iterator<Cidade> it = listaCd.iterator(); it.hasNext();) {
+                cid = it.next();
+                jComboBoxCidadeNew.addItem(cid.getCidades_Nome());
             }
-        });
+        } catch (GeralException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -316,8 +357,8 @@ public class GuiEnderecoAlterar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelEndOld;
     private javax.swing.JTextField jTextFieldEntradaCepNew;
     private javax.swing.JTextField jTextFieldEntradaLogNew;
-    private javax.swing.JTextField jTextFieldSaidaCepOld;
-    private javax.swing.JTextField jTextFieldSaidaCidadeOld;
-    private javax.swing.JTextField jTextFieldSaidaLogOld;
+    public javax.swing.JTextField jTextFieldSaidaCepOld;
+    public javax.swing.JTextField jTextFieldSaidaCidadeOld;
+    public javax.swing.JTextField jTextFieldSaidaLogOld;
     // End of variables declaration//GEN-END:variables
 }

@@ -80,12 +80,14 @@
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="jButtonPesquisaLog" alignment="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jButtonPesquisaCidade" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jButtonPesquisaCEP" pref="0" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jButtonPesquisaLog" alignment="0" pref="61" max="32767" attributes="0"/>
+                          <Component id="jButtonPesquisaCEP" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="jButtonPesquisarCidade" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="184" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -106,8 +108,8 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                          <Component id="jButtonPesquisaCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jComboBoxCidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonPesquisarCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabelCidade" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -170,20 +172,23 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPesquisaCEPActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonPesquisaCidade">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Filtrar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPesquisaCidadeActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JComboBox" name="jComboBoxCidade">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxCidadeActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonPesquisarCidade">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Filtrar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPesquisarCidadeActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

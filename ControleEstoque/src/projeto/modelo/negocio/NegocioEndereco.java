@@ -55,19 +55,10 @@ public class NegocioEndereco {
 
     public Endereco consultarCep(String enderecos_Cep) throws GeralException {
         Endereco end = null;
-        /*if (enderecos_Cep == null) {
-            throw new GeralException("Digite um endereço!");
-        }*/
-
         try {
             end = rep.consultarCep(enderecos_Cep);
-            if (end == null) {
-                throw new GeralException("Endereço não está cadastrado!");
-            }
-
         } catch (RepositorioException e) {
             throw new GeralException("Erro de programação!");
-
         } catch (ConexaoException e) {
             throw new GeralException("O banco de dados não está acessível no momento");
         }
@@ -76,19 +67,10 @@ public class NegocioEndereco {
 
     public Endereco consultarLogradouro(String enderecos_Logradouro) throws GeralException {
         Endereco end = null;
-        if (enderecos_Logradouro == null) {
-            throw new GeralException("Digite um endereço!");
-        }
-
         try {
             end = rep.consultarLogradouro(enderecos_Logradouro);
-            if (end == null) {
-                throw new GeralException("Endereço não está cadastrado!");
-            }
-
         } catch (RepositorioException e) {
             throw new GeralException("Erro de programação!");
-
         } catch (ConexaoException e) {
             throw new GeralException("O banco de dados não está acessível no momento");
         }
@@ -137,16 +119,52 @@ public class NegocioEndereco {
         }
     }
 
-    public Collection<Endereco> listar() throws GeralException {
-
+    public Collection<Endereco> listarTudo() throws GeralException {
         ArrayList<Endereco> lista;
-
-        /*if (enderecos_Cep == null) {
-            throw new GeralException("Digite o nome ou o códido da cidade!");
-        }*/
-
         try {
-            lista = (ArrayList<Endereco>) new RepositorioEndereco().listar();
+            lista = (ArrayList<Endereco>) new RepositorioEndereco().listarTudo();
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível no momento");
+        }
+        return lista;
+    }
+    
+    public Collection<Endereco> listarEndCEP(String enderecos_CEP) throws GeralException {
+        ArrayList<Endereco> lista;
+        try {
+            lista = (ArrayList<Endereco>) new RepositorioEndereco().listarEndCEP(enderecos_CEP);
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível no momento");
+        }
+        return lista;
+    }
+    
+    public Collection<Endereco> listarEndLog(String enderecos_Logradouro) throws GeralException {
+        ArrayList<Endereco> lista;
+        try {
+            lista = (ArrayList<Endereco>) new RepositorioEndereco().listarEndLog(enderecos_Logradouro);
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível no momento");
+        }
+        return lista;
+    }
+    
+    public Collection<Endereco> listarEndCidade(String cidades_Nome) throws GeralException {
+        ArrayList<Endereco> lista;
+        try {
+            lista = (ArrayList<Endereco>) new RepositorioEndereco().listarEndCidade(cidades_Nome);
 
         } catch (RepositorioException ex) {
             throw new GeralException("Erro de programação!");

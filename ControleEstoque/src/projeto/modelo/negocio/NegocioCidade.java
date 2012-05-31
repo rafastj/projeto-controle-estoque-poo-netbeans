@@ -173,7 +173,7 @@ public class NegocioCidade {
         }
 
         if ((cd.getCidades_Nome() == null) || (cd.getCidades_Nome().equals(""))) {
-            throw new GeralException("Digite o nome ou o códido da cidade!");
+            throw new GeralException("Digite o nome da cidade!");
         }
 
         try {

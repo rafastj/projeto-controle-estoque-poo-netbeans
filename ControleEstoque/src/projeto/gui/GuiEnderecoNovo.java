@@ -18,14 +18,12 @@ import projeto.modelo.to.Endereco;
  */
 public class GuiEnderecoNovo extends javax.swing.JFrame {
 
-    private GuiEndereco guiEndereco;
     public static Fachada fachada = new Fachada();
 
     /**
      * Creates new form GuiEnderecoNovo
      */
     public GuiEnderecoNovo() {
-        guiEndereco = new GuiEndereco();
         initComponents();
         setLocationRelativeTo(null);
         jTextFieldEntradaCEP.requestFocus();
@@ -246,29 +244,35 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
         jTextFieldEntradaCEP.setText("");
         jTextFieldEntradaLog.setText("");
     }
-    
+
     private void consultarCep() {
         String enderecos_CEP;
-        int resultado;
+        int resComCadastro;
+        int resSemCadastro;
         try {
             enderecos_CEP = jTextFieldEntradaCEP.getText();
             Endereco end = fachada.consultarEndCep(enderecos_CEP);
             if (end != null) {
-                resultado = JOptionPane.showConfirmDialog(null, "CEP já está cadastrado!\nDeseja cadastrar outro?","",JOptionPane.YES_NO_OPTION);
-                if (resultado == JOptionPane.YES_OPTION) {
+                resComCadastro = JOptionPane.showConfirmDialog(null, "CEP já está cadastrado!\nDeseja cadastrar outro?", "", JOptionPane.YES_NO_OPTION);
+                if (resComCadastro == JOptionPane.YES_OPTION) {
                     jTextFieldEntradaCEP.setText("");
                     jTextFieldEntradaCEP.requestFocus();
                 } else {
                     dispose();
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "CEP não está cadastrado!");
+                resSemCadastro = JOptionPane.showConfirmDialog(null, "CEP não está cadastrado!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
+                if (resSemCadastro == JOptionPane.YES_OPTION) {
+                    jTextFieldEntradaLog.requestFocus();
+                } else {
+                    dispose();
+                }
             }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
-    
+
     private void listarComboBoxCidade() {
         Cidade cid;
         ArrayList<Cidade> listaCd;
@@ -282,7 +286,6 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConsultarCEP;
     private javax.swing.JButton jButtonIncluirCidade;

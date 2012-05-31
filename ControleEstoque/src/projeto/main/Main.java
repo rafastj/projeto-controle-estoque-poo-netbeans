@@ -33,6 +33,8 @@ public class Main {
     /**
      * CIDADE
      */
+    
+    /*
     private static void testarSalvarCidade() {
         System.out.println("Iniciando processo...");
         String cdSalvar = JOptionPane.showInputDialog("Digite o nome da cidade");
@@ -157,6 +159,7 @@ public class Main {
      *
      * @throws GeralException
      */
+    /*
     private static void testarSalvarEndereco() throws GeralException {
         System.out.println("Iniciando processo...");
         String cep = JOptionPane.showInputDialog("Digite o CEP");
@@ -243,7 +246,7 @@ public class Main {
         }
         System.out.println("...processo finalizado!");
     }
-
+    /*
     private static void testarListarEndereco() {
         System.out.println("Iniciando processo...");
 
@@ -261,7 +264,7 @@ public class Main {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         System.out.println("...processo finalizado!");
-    }
+    }*/
 
     /**
      * FORNECEDOR
@@ -283,7 +286,7 @@ public class Main {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         System.out.println("...processo finalizado!");
-    }*/
+    }
 
     private static void testarConsultarFornecedor() {
         System.out.println("Iniciando processo...");

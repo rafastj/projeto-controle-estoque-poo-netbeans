@@ -14,16 +14,59 @@ import projeto.modelo.to.Cidade;
  * @author Daniel
  */
 public class GuiCidadeAlterar extends javax.swing.JFrame {
+
     Fachada fachada = new Fachada();
-    private GuiCidade guiCidade;
+
     /**
      * Creates new form GuiCidadeAlterar
      */
     public GuiCidadeAlterar() {
         initComponents();
-        guiCidade = new GuiCidade();
         setLocationRelativeTo(null);
         jTextFieldCidadeNova.requestFocus();
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /*
+         * Set the Nimbus look and feel
+         */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the
+         * default look and feel. For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(GuiCidadeAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(GuiCidadeAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(GuiCidadeAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(GuiCidadeAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /*
+         * Create and display the form
+         */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                new GuiCidadeAlterar().setVisible(true);
+            }
+        });
     }
 
     /**
@@ -114,68 +157,34 @@ public class GuiCidadeAlterar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-       Cidade cd;
-       String cdOld;
-       int cidades_Codigo;
-       try {
+        alterarCidade();
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
+
+    private void alterarCidade() {
+        String cdOld;
+        int validoString;
+        int cidades_Codigo;
+        try {
             cdOld = jTextFieldCidadeOld.getText();
+            Cidade cd;
             cd = fachada.consultarCidade(cdOld);
-            Cidade cdAlterar = new Cidade();
-            cidades_Codigo = cd.getCidades_Codigo();
-            cdAlterar.setCidades_Codigo(cidades_Codigo);
-            cdAlterar.setCidades_Nome(jTextFieldCidadeNova.getText());
-            //CHAMAR O DAO ALTERAR
-            fachada.alterarCidade(cdAlterar);
-
-            JOptionPane.showMessageDialog(null, "Cidade Alterada!");
-            dispose();
-
+            try {
+                validoString = Integer.parseInt(jTextFieldCidadeNova.getText());
+                JOptionPane.showMessageDialog(null, "Digita apenas o nome da cidade!");
+                jTextFieldCidadeNova.requestFocus();
+                jTextFieldCidadeNova.setText("");
+            } catch (NumberFormatException e) {
+                Cidade cdAlterar = new Cidade();
+                cidades_Codigo = cd.getCidades_Codigo();
+                cdAlterar.setCidades_Codigo(cidades_Codigo);
+                cdAlterar.setCidades_Nome(jTextFieldCidadeNova.getText());
+                fachada.alterarCidade(cdAlterar);
+                JOptionPane.showMessageDialog(null, "Cidade Alterada!");
+                dispose();
+            }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-    }//GEN-LAST:event_jButtonAlterarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiCidadeAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiCidadeAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiCidadeAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiCidadeAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /*
-         * Create and display the form
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                new GuiCidadeAlterar().setVisible(true);
-            }
-        });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;
