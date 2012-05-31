@@ -11,8 +11,7 @@ import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Cidade;
 
 /**
- *
- * @author Daniel
+ *@author DANIEL VALENÇA
  */
 public class GuiCidadeNova extends javax.swing.JFrame {
 
@@ -149,10 +148,17 @@ public class GuiCidadeNova extends javax.swing.JFrame {
         setBounds((screenSize.width-294)/2, (screenSize.height-125)/2, 294, 125);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Chamada do método salvarCidade();
+     * @param evt
+     */
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         salvarCidade();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
+    /**
+     * Método que salva um novo registro na tabela Cidade;
+     */
     private void salvarCidade() {
         int resposta;
         int validoString;

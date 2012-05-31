@@ -14,8 +14,7 @@ import projeto.modelo.to.Cidade;
 import projeto.modelo.to.Endereco;
 
 /**
- *
- * @author Daniel
+ *@author DANIEL VALENÇA
  */
 public class GuiEndereco extends javax.swing.JFrame {
 
@@ -59,7 +58,7 @@ public class GuiEndereco extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Endereço");
-        setName("frameEndereco");
+        setName("frameEndereco"); // NOI18N
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -125,12 +124,11 @@ public class GuiEndereco extends javax.swing.JFrame {
                             .addComponent(jTextFieldEntradaLog)
                             .addComponent(jComboBoxCidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButtonPesquisaLog, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, Short.MAX_VALUE)
-                        .addComponent(jButtonPesquisaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                    .addComponent(jButtonPesquisarCidade))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonPesquisaCEP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonPesquisaLog, 0, 0, Short.MAX_VALUE)
+                    .addComponent(jButtonPesquisarCidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(174, Short.MAX_VALUE))
         );
         jPanelFiltroLayout.setVerticalGroup(
             jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,9 +300,7 @@ public class GuiEndereco extends javax.swing.JFrame {
     }
 
     /**
-     * Ao ser exibido, o formulário seta o foco no 'jTextField' do CEP, e
-     * atualiza a tabela e o comboBox;
-     *
+     * Ao ser exibido, o formulário seta o foco no 'jTextField' do CEP, e atualiza a tabela e o comboBox;
      * @param evt
      */
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -313,6 +309,10 @@ public class GuiEndereco extends javax.swing.JFrame {
         listaTabelaEndereco();
     }//GEN-LAST:event_formComponentShown
 
+    /**
+     * Atualiza a tela GuiEndereco;
+     * @param evt
+     */
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         jTextFieldEntradaCep.requestFocus();
         listaTabelaEndereco();
@@ -328,7 +328,7 @@ public class GuiEndereco extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     /**
-     * Chama o método 'apagarEndereco();'
+     * Chama o método 'apagarEndereco()';
      */
     private void jButtonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApagarActionPerformed
         jTextFieldEntradaCep.requestFocus();
@@ -358,18 +358,24 @@ public class GuiEndereco extends javax.swing.JFrame {
         alterarEndereco();
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
+    /**
+     * AINDA SERÁ TRATADO!!!!!!!!!
+     * @param evt
+     */
     private void jComboBoxCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCidadeActionPerformed
         //
     }//GEN-LAST:event_jComboBoxCidadeActionPerformed
 
+    /**
+     * AINDA SERÁ TRATADO!!!!!!!!!
+     * @param evt
+     */
     private void jButtonPesquisarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarCidadeActionPerformed
-        pesquisarEndCidade( (String) jButtonPesquisarCidade.getSelectedObjects().toString());
+        pesquisarEndCidade((String) jButtonPesquisarCidade.getSelectedObjects().toString());
     }//GEN-LAST:event_jButtonPesquisarCidadeActionPerformed
 
     /**
-     * Define o padrão da tabela e insere os dados da tabela Endereco em um
-     * ArrayList;
-     *
+     * Define o padrão da tabela e insere os dados da tabela Endereco em um ArrayList;
      * @param listaEndereco
      * @return
      */
@@ -447,6 +453,10 @@ public class GuiEndereco extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Filtra a lista pelo CEP passado;
+     * Lista completa caso o campo seja nulo;
+     */
     private void pesquisarEndCEP() {
         try {
             if ((jTextFieldEntradaCep.getText() == null) || (jTextFieldEntradaCep.getText().equals(""))) {
@@ -460,7 +470,11 @@ public class GuiEndereco extends javax.swing.JFrame {
         DefaultTableModel modelo = geramodelo(listaEndereco);
         jTableListaEndereco.setModel(modelo);
     }
-    
+
+    /**
+     * Filtra a lista pelo Logradouro passado;
+     * Lista completa caso o campo seja nulo;
+     */
     private void pesquisarEndLog() {
         try {
             if ((jTextFieldEntradaLog.getText() == null) || (jTextFieldEntradaLog.getText().equals(""))) {
@@ -474,7 +488,10 @@ public class GuiEndereco extends javax.swing.JFrame {
         DefaultTableModel modelo = geramodelo(listaEndereco);
         jTableListaEndereco.setModel(modelo);
     }
-    
+
+    /**
+     * Filtra a lista pela cidade selecionada no ComboBox;
+     */
     private void pesquisarEndCidade(String cidades_Nome) {
         try {
             listaEndereco = (ArrayList<Endereco>) fachada.listarEndCidade(cidades_Nome);
@@ -484,7 +501,10 @@ public class GuiEndereco extends javax.swing.JFrame {
         DefaultTableModel modelo = geramodelo(listaEndereco);
         jTableListaEndereco.setModel(modelo);
     }
-    
+
+    /**
+     * Método para alterar um endereço;
+     */
     private void alterarEndereco() {
         int resposta;
         try {
@@ -502,7 +522,6 @@ public class GuiEndereco extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um endereço!");
         }
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonApagar;

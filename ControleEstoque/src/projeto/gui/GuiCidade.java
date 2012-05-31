@@ -19,7 +19,7 @@ import projeto.modelo.to.Cidade;
 
 /**
  *
- * @author Daniel
+ * @author DANIEL VALENÇA
  */
 public class GuiCidade extends javax.swing.JFrame {
 
@@ -71,7 +71,7 @@ public class GuiCidade extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cidades");
         setLocationByPlatform(true);
-        setName("frameCidade");
+        setName("frameCidade"); // NOI18N
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -102,7 +102,7 @@ public class GuiCidade extends javax.swing.JFrame {
                 .addGap(2, 2, 2)
                 .addComponent(jTextFieldCampoCidade, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonConsultCid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButtonConsultCid, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanelFiltroLayout.setVerticalGroup(
             jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +195,7 @@ public class GuiCidade extends javax.swing.JFrame {
                 .addComponent(jButtonAlterar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonExcluir)
-                .addGap(0, 164, Short.MAX_VALUE))
+                .addGap(0, 177, Short.MAX_VALUE))
             .addComponent(jScrollPaneListaCidades, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
@@ -224,47 +224,70 @@ public class GuiCidade extends javax.swing.JFrame {
         setBounds((screenSize.width-562)/2, (screenSize.height-428)/2, 562, 428);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Chama a tela para salvar cidade, 'GuiCidadeNova';
+     * @param evt
+     */
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         GuiCidadeNova cdSalvar = new GuiCidadeNova();
         cdSalvar.setVisible(true);
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
+    /**
+     * Chama o método para listar as cidades na tela;
+     * @param evt
+     */
     private void jTableListaCidadeComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTableListaCidadeComponentShown
-        //MOSTRAR TODOS OS REGISTRO DE PRODUTOS
-        Cidade cd = null;
-        //ArrayList<Produto> listaProduto = null;
-        int i = 0;
-        try {
-            listaCidade = (ArrayList<Cidade>) fachada.listarCidadeTudo();
-        } catch (GeralException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-        DefaultTableModel modelo = geramodelo(listaCidade);
-        jTableListaCidade.setModel(modelo);
+        listarTabelaCidade();
     }//GEN-LAST:event_jTableListaCidadeComponentShown
 
+    /**
+     * Atualiza a tela listando os registros da tabela;
+     * @param evt
+     */
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         jTextFieldCampoCidade.setText(null);
         atualizarTabela();
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
+    /**
+     * Carregamento inicial da tela, trazendo a lista de cidades;
+     * @param evt
+     */
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         jTextFieldCampoCidade.setText(null);
         atualizarTabela();
     }//GEN-LAST:event_formComponentShown
 
+    /**
+     * Chamada do método consultarCidadeNome();
+     * @param evt
+     */
     private void jButtonConsultCidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultCidActionPerformed
         pesquisarCidadeNome();
     }//GEN-LAST:event_jButtonConsultCidActionPerformed
 
+    /**
+     * Chamada do método excluirCidade();
+     * @param evt
+     */
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         excluirCidade();
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
+    /**
+     * Chamada do método alterarCidade();
+     * @param evt
+     */
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         alterarCidade();
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
+    /**
+     * Define o padrão da tabela e insere os dados da tabela Cidade em um ArrayList;
+     * @param listaCidade
+     * @return
+     */
     private DefaultTableModel geramodelo(ArrayList<Cidade> listaCidade) {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Código");
@@ -282,6 +305,9 @@ public class GuiCidade extends javax.swing.JFrame {
         return modelo;
     }
 
+    /**
+     * Método para atualizar a tela trazendo a lista atualizada;
+     */
     public void atualizarTabela() {
         try {
             listaCidade = (ArrayList<Cidade>) fachada.listarCidadeTudo();
@@ -292,6 +318,9 @@ public class GuiCidade extends javax.swing.JFrame {
         jTableListaCidade.setModel(modelo);
     }
 
+    /**
+     * Método que filtra a lista pelo nome da cidade informada;
+     */
     public void pesquisarCidadeNome() {
         try {
             if ((jTextFieldCampoCidade.getText() == null) || (jTextFieldCampoCidade.getText().equals(""))) {
@@ -306,6 +335,9 @@ public class GuiCidade extends javax.swing.JFrame {
         jTableListaCidade.setModel(modelo);
     }
 
+    /**
+     * Método para efetuar a alteração em um registro selecionado na lista;
+     */
     private void alterarCidade() {
         int resposta;
         try {
@@ -322,6 +354,9 @@ public class GuiCidade extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Método para efetuar a exclusão de um registro selecionado na lista;
+     */
     private void excluirCidade() {
         int resposta;
         try {
@@ -340,6 +375,19 @@ public class GuiCidade extends javax.swing.JFrame {
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
+    }
+
+    /**
+     * Método que cria um ArrayList para ser mostrado na tela;
+     */
+    private void listarTabelaCidade() {
+        try {
+            listaCidade = (ArrayList<Cidade>) fachada.listarCidadeTudo();
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaCidade);
+        jTableListaCidade.setModel(modelo);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;
