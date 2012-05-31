@@ -191,7 +191,7 @@ public class NegocioCidade {
         }
     }
 
-    public Collection<Cidade> listar() throws GeralException {
+    public Collection<Cidade> listarTudo() throws GeralException {
 
         ArrayList<Cidade> lista;
 
@@ -199,7 +199,7 @@ public class NegocioCidade {
             throw new GeralException("Digite o nome ou o códido da cidade!");
         }*/
         try {
-            lista = (ArrayList<Cidade>) new RepositorioCidade().listar();
+            lista = (ArrayList<Cidade>) new RepositorioCidade().listarTudo();
 
         } catch (RepositorioException ex) {
             throw new GeralException("Erro de programação!");
@@ -209,16 +209,13 @@ public class NegocioCidade {
         return lista;
     }
     
-    public Collection<Cidade> listarCidade(String cidades_Nome) throws GeralException {
-
+    public Collection<Cidade> listarCidadeNome(String cidades_Nome) throws GeralException {
         ArrayList<Cidade> lista;
-
-       /* if (cidades_Nome == null) {
-            throw new GeralException("Digite o nome ou o códido da cidade!");
-        }*/
+        if (cidades_Nome.equals("")){
+            throw new GeralException("Nome da cidade não informado!");
+        }
         try {
-            lista = (ArrayList<Cidade>) new RepositorioCidade().listarCidade(cidades_Nome);
-
+            lista = (ArrayList<Cidade>) new RepositorioCidade().listarCidadeNome(cidades_Nome);
         } catch (RepositorioException ex) {
             throw new GeralException("Erro de programação!");
         } catch (ConexaoException ex) {

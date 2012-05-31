@@ -72,7 +72,7 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jButtonConsultarCEP" pref="113" max="32767" attributes="0"/>
+                              <Component id="jButtonConsultarCEP" max="32767" attributes="0"/>
                               <Component id="jButtonIncluirCidade" max="32767" attributes="0"/>
                               <Component id="jButtonSalvar" alignment="1" max="32767" attributes="0"/>
                           </Group>
@@ -156,7 +156,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonIncluirCidade">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Incluir Cidade"/>
+            <Property name="text" type="java.lang.String" value="Gerenciar Cidade"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonIncluirCidadeActionPerformed"/>

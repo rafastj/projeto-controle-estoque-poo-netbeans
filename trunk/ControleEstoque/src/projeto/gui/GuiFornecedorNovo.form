@@ -28,8 +28,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanelFiltro" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanelFiltro" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -56,64 +56,65 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jLabelNumero" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jTextFieldEntradaNumero" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jLabelCidade" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="jLabelCNPJ" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jTextFieldEntradaCNPJ" min="-2" pref="125" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="jLabelCEP" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="jTextFieldEntradaCEP" min="-2" pref="125" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabelCNPJ" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelCEP" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jButtonPesquisaCNPJ" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabelRazaoSocial" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jTextFieldEntradaRS" min="-2" pref="329" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jTextFieldEntradaCEP" pref="111" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButtonPesquisaCEP" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jLabelLogradouro" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jTextFieldEntradaCNPJ" alignment="0" min="-2" pref="231" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jTextFieldEntradaLog" min="-2" pref="326" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButtonPesquisaLog" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                  <Component id="jLabelNumero" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldEntradaNumero" min="-2" pref="53" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jButtonPesquisaCNPJ" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jLabelRazaoSocial" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldEntradaRS" min="-2" pref="329" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButtonPesquisaRS" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jButtonPesquisaCEP" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabelLogradouro" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jButtonIncluirCidade" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="jButtonSalvarFornecedor" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jTextFieldEntradaLog" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabelCidade" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jComboBoxCidade" min="-2" pref="362" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButtonIncluirCidade" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButtonSalvarFornecedor" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jComboBoxCidade" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jButtonPesquisaRS" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonPesquisaLog" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jTextFieldEntradaCNPJ" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelCNPJ" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -123,35 +124,33 @@
                       <Component id="jButtonPesquisaRS" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabelCEP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldEntradaCEP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldEntradaLog" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonPesquisaCEP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelLogradouro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonPesquisaLog" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabelCEP" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextFieldEntradaCEP" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextFieldEntradaLog" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonPesquisaCEP" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonPesquisaLog" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelLogradouro" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonIncluirCidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonSalvarFornecedor" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jTextFieldEntradaNumero" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelCidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBoxCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButtonSalvarFornecedor" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabelCidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBoxCidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonIncluirCidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -185,7 +184,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonPesquisaCNPJ">
           <Properties>
-            <Property name="text" type="java.lang.String" value="..."/>
+            <Property name="text" type="java.lang.String" value="Filtrar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPesquisaCNPJActionPerformed"/>
@@ -193,12 +192,12 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonPesquisaRS">
           <Properties>
-            <Property name="text" type="java.lang.String" value="..."/>
+            <Property name="text" type="java.lang.String" value="Filtrar"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonPesquisaCEP">
           <Properties>
-            <Property name="text" type="java.lang.String" value="..."/>
+            <Property name="text" type="java.lang.String" value="Filtrar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPesquisaCEPActionPerformed"/>
@@ -218,7 +217,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonIncluirCidade">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Incluir Cidade"/>
+            <Property name="text" type="java.lang.String" value="Gerenciar Cidade"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonIncluirCidadeActionPerformed"/>
@@ -236,7 +235,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonPesquisaLog">
           <Properties>
-            <Property name="text" type="java.lang.String" value="..."/>
+            <Property name="text" type="java.lang.String" value="Filtrar"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelLogradouro">

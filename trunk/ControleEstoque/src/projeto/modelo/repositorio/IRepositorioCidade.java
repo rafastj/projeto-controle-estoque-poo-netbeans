@@ -77,7 +77,7 @@ public interface IRepositorioCidade {
      * @throws ConexaoException
      * @throws RepositorioException
      */
-    public Collection<Cidade> listar() throws ConexaoException, RepositorioException;
+    public Collection<Cidade> listarTudo() throws ConexaoException, RepositorioException;
     
     /**
      * 
@@ -86,5 +86,5 @@ public interface IRepositorioCidade {
      * @throws ConexaoException
      * @throws RepositorioException 
      */
-    public Collection<Cidade> listarCidade(String cidades_Nome) throws ConexaoException, RepositorioException;
+    public Collection<Cidade> listarCidadeNome(String cidades_Nome) throws ConexaoException, RepositorioException;
 }

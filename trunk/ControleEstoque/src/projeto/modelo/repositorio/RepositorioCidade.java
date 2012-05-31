@@ -138,7 +138,7 @@ public class RepositorioCidade implements IRepositorioCidade {
     }
 
     @Override
-   public Collection<Cidade> listar() throws ConexaoException, RepositorioException {
+   public Collection<Cidade> listarTudo() throws ConexaoException, RepositorioException {
         ArrayList<Cidade> lista = new ArrayList<Cidade>();
         Cidade cd;
         Connection c = g.conectar();
@@ -162,11 +162,11 @@ public class RepositorioCidade implements IRepositorioCidade {
     }
     
     @Override
-     public Collection<Cidade> listarCidade(String cidades_Nome) throws ConexaoException, RepositorioException {
+     public Collection<Cidade> listarCidadeNome(String cidades_Nome) throws ConexaoException, RepositorioException {
         ArrayList<Cidade> lista = new ArrayList<Cidade>();
         Cidade cd;
         Connection c = g.conectar();
-        String sqlLista = "SELECT cidades_Codigo,cidades_Nome FROM cidades where cidades_Nome like = ? ORDER BY cidades_Codigo";
+        String sqlLista = "SELECT cidades_Codigo,cidades_Nome FROM cidades where cidades_Nome like ? ORDER BY cidades_Codigo";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlLista);
             pstm.setString(1, cidades_Nome + "%");

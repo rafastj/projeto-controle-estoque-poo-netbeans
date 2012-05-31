@@ -81,7 +81,7 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
             }
         });
 
-        jButtonIncluirCidade.setText("Incluir Cidade");
+        jButtonIncluirCidade.setText("Gerenciar Cidade");
         jButtonIncluirCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonIncluirCidadeActionPerformed(evt);
@@ -106,7 +106,7 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
                             .addComponent(jComboBoxCidade, 0, 205, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanelNovoEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonConsultarCEP, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                            .addComponent(jButtonConsultarCEP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonIncluirCidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -156,17 +156,8 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        Cidade cid;
-        ArrayList<Cidade> listaCd;
-        try {
-            listaCd = (ArrayList<Cidade>) fachada.listarCidade();
-            for (Iterator<Cidade> it = listaCd.iterator(); it.hasNext();) {
-                cid = it.next();
-                jComboBoxCidade.addItem(cid.getCidades_Nome());
-            }
-        } catch (GeralException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        jTextFieldEntradaCEP.requestFocus();
+        listarComboBoxCidade();
     }//GEN-LAST:event_formComponentShown
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
@@ -188,7 +179,6 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
             resposta = JOptionPane.showConfirmDialog(null, "Registro salvo com sucesso!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.NO_OPTION) {
                 dispose();
-                guiEndereco.atualizarTabela();
             } else {
                 limparTodosCampos();
             }
@@ -200,28 +190,12 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonIncluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirCidadeActionPerformed
-        GuiCidadeNova cidade = new GuiCidadeNova();
+        GuiCidade cidade = new GuiCidade();
         cidade.setVisible(true);
     }//GEN-LAST:event_jButtonIncluirCidadeActionPerformed
 
     private void jButtonConsultarCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarCEPActionPerformed
-        jTextFieldEntradaLog.requestFocus();
-        jTextFieldEntradaLog.setText(null);
-        String enderecos_CEP;
-        String enderecos_Logradouro;
-        try {
-            enderecos_CEP = jTextFieldEntradaCEP.getText();
-            Endereco end = fachada.consultarEndCep(enderecos_CEP);
-            enderecos_Logradouro = end.getEnderecos_Logradouro();
-            if (end != null) {
-                jTextFieldEntradaCEP.setText(enderecos_CEP);
-                jTextFieldEntradaLog.setText(enderecos_Logradouro);
-            } else {
-                JOptionPane.showMessageDialog(null, "CEP não está cadastrado!");
-            }
-        } catch (GeralException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
+        consultarCep();
     }//GEN-LAST:event_jButtonConsultarCEPActionPerformed
 
     /**
@@ -272,6 +246,43 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
         jTextFieldEntradaCEP.setText("");
         jTextFieldEntradaLog.setText("");
     }
+    
+    private void consultarCep() {
+        String enderecos_CEP;
+        int resultado;
+        try {
+            enderecos_CEP = jTextFieldEntradaCEP.getText();
+            Endereco end = fachada.consultarEndCep(enderecos_CEP);
+            if (end != null) {
+                resultado = JOptionPane.showConfirmDialog(null, "CEP já está cadastrado!\nDeseja cadastrar outro?","",JOptionPane.YES_NO_OPTION);
+                if (resultado == JOptionPane.YES_OPTION) {
+                    jTextFieldEntradaCEP.setText("");
+                    jTextFieldEntradaCEP.requestFocus();
+                } else {
+                    dispose();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "CEP não está cadastrado!");
+            }
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+    
+    private void listarComboBoxCidade() {
+        Cidade cid;
+        ArrayList<Cidade> listaCd;
+        try {
+            listaCd = (ArrayList<Cidade>) fachada.listarCidadeTudo();
+            for (Iterator<Cidade> it = listaCd.iterator(); it.hasNext();) {
+                cid = it.next();
+                jComboBoxCidade.addItem(cid.getCidades_Nome());
+            }
+        } catch (GeralException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConsultarCEP;
     private javax.swing.JButton jButtonIncluirCidade;
