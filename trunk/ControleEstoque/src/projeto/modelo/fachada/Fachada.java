@@ -658,70 +658,75 @@ public class Fachada {
     /**
      * FIM DA ÁREA ESCRITA POR Thiago Evoa
      */
-    /**
-     * ÁREA ESCRITA POR Felipe RESPONSAVEL PELAS CLASSES Tipos, Marcas.
-     */
     //Marca
-    public void salvarMarca(Marca m) throws GeralException {
-        rnMarca.salvar(m);
-    }
+	
+	public void salvarMarca ( Marca m ) throws GeralException{
+		rnMarca.salvar(m); 
+	}
+	
+	public void excluirMarca ( int marcas_Codigo ) throws GeralException{
+		rnMarca.excluirMarcas(marcas_Codigo);
+	}
+	
+	public void excluirMarca ( String marcas_Descricao ) throws GeralException{
+		rnMarca.excluirMarcas(marcas_Descricao);
+	}
+	
+	public void alterarMarca ( Marca m) throws GeralException {
+		rnMarca.alterar(m);
+	}
+	
+	public Marca consultarMarcas( int marcas_Codigo) throws GeralException{		
+		return rnMarca.consultarMarcas(marcas_Codigo);
+	}
+	
+	public Marca consultarMarcas( String marcas_Descricao) throws GeralException{		
+		return rnMarca.consultarMarcas(marcas_Descricao);
+	}
+	
+	public Collection <Marca> listarMarca( String marcas_Descricao) throws GeralException {
+		return rnMarca.listarMarca(marcas_Descricao);
+	}
+	
+	//tipos
+	
+	public void salvarTipo ( Tipo  t ) throws GeralException{
+		rnTipo.salvar(t); 
+	}
+	
+	public void excluirTipo ( int tipos_Codigo ) throws GeralException{
+		rnTipo.excluirTipos(tipos_Codigo);
+	}
+	
+	public void excluirTipo ( String tipos_Descricao ) throws GeralException{
+		rnTipo.excluirTipos(tipos_Descricao);
+	}
+	
+	public void alterarTipo (Tipo t) throws GeralException {
+		rnTipo.alterar(t);
+	}
+	
+	public Tipo consultarTipos( int tipos_Codigo) throws GeralException{		
+		return rnTipo.consultarTipos(tipos_Codigo);
+	}
+	
 
-    public void excluirMarca(int marcas_Codigo) throws GeralException {
-        rnMarca.excluirMarcas(marcas_Codigo);
-    }
-
-    public void excluirMarca(String marcas_Descricao) throws GeralException {
-        rnMarca.excluirMarcas(marcas_Descricao);
-    }
-
-    public void alterarMarca(Marca m) throws GeralException {
-        rnMarca.alterar(m);
-    }
-
-    public Marca consultarMarcas(int marcas_Codigo) throws GeralException {
-        return rnMarca.consultarMarcas(marcas_Codigo);
-    }
-
-    public Marca consultarMarcas(String marcas_Descricao) throws GeralException {
-        return rnMarca.consultarMarcas(marcas_Descricao);
-    }
-
-    public Collection<Marca> listarMarca(String marcas_Descricao) throws GeralException {
-        return rnMarca.listarMarca(marcas_Descricao);
-    }
-
-    //tipos
-    public void salvarTipo(Tipo t) throws GeralException {
-        rnTipo.salvar(t);
-    }
-
-    public void excluirTipo(int tipos_Codigo) throws GeralException {
-        rnTipo.excluirTipos(tipos_Codigo);
-    }
-
-    public void excluirTipo(String tipos_Descricao) throws GeralException {
-        rnTipo.excluirTipos(tipos_Descricao);
-    }
-
-    public void alterarTipo(Tipo t) throws GeralException {
-        rnTipo.alterar(t);
-    }
-
-    public Tipo consultarTipos(int tipos_Codigo) throws GeralException {
-        return rnTipo.consultarTipos(tipos_Codigo);
-    }
-
-    public Tipo consultarTipos(String tipos_Descricao) throws GeralException {
-        return rnTipo.consultarTipos(tipos_Descricao);
-    }
-
-    public Collection<Tipo> listarTipo(String tipos_Descricao) throws GeralException {
-        return rnTipo.listarTipo(tipos_Descricao);
-    }
-
-    /**
-     * FIM DA ÁREA ESCRITA POR Felipe Carlos
-     */
+	public Tipo consultarTipos( String tipos_Descricao) throws GeralException{		
+		return rnTipo.consultarTipos(tipos_Descricao);
+	}
+	
+	
+	public Collection <Tipo> listarTipo( String tipos_Descricao) throws GeralException {
+		return rnTipo.listarTipo(tipos_Descricao);
+	}
+	public int Codigo()throws GeralException  {
+		 return rnTipo.Codigo();
+	 }
+	
+	/**
+	 * FIM DA �REA ESCRITA POR Felipe Carlos
+	 */
+	
     /**
      * ÁREA ESCRITA POR Bruno Pinheiro RESPONSAVEL PELAS CLASSES Segemento,
      * FormaPagamento.
