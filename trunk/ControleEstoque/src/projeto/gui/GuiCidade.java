@@ -102,7 +102,7 @@ public class GuiCidade extends javax.swing.JFrame {
                 .addGap(2, 2, 2)
                 .addComponent(jTextFieldCampoCidade, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonConsultCid, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButtonConsultCid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanelFiltroLayout.setVerticalGroup(
             jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +195,7 @@ public class GuiCidade extends javax.swing.JFrame {
                 .addComponent(jButtonAlterar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonExcluir)
-                .addGap(0, 177, Short.MAX_VALUE))
+                .addGap(0, 164, Short.MAX_VALUE))
             .addComponent(jScrollPaneListaCidades, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
@@ -238,7 +238,7 @@ public class GuiCidade extends javax.swing.JFrame {
      * @param evt
      */
     private void jTableListaCidadeComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTableListaCidadeComponentShown
-        listarTabelaCidade();
+        atualizarComboCidade();
     }//GEN-LAST:event_jTableListaCidadeComponentShown
 
     /**
@@ -247,7 +247,8 @@ public class GuiCidade extends javax.swing.JFrame {
      */
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         jTextFieldCampoCidade.setText(null);
-        atualizarTabela();
+        jTextFieldCampoCidade.requestFocus();
+        atualizarTabelaCidade();
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
     /**
@@ -256,7 +257,7 @@ public class GuiCidade extends javax.swing.JFrame {
      */
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         jTextFieldCampoCidade.setText(null);
-        atualizarTabela();
+        atualizarTabelaCidade();
     }//GEN-LAST:event_formComponentShown
 
     /**
@@ -265,6 +266,9 @@ public class GuiCidade extends javax.swing.JFrame {
      */
     private void jButtonConsultCidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultCidActionPerformed
         pesquisarCidadeNome();
+        jTextFieldCampoCidade.requestFocus();
+        jTextFieldCampoCidade.setText("");
+        
     }//GEN-LAST:event_jButtonConsultCidActionPerformed
 
     /**
@@ -272,7 +276,10 @@ public class GuiCidade extends javax.swing.JFrame {
      * @param evt
      */
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        jTextFieldCampoCidade.requestFocus();
+        jTextFieldCampoCidade.setText("");
         excluirCidade();
+        atualizarTabelaCidade();
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     /**
@@ -308,7 +315,7 @@ public class GuiCidade extends javax.swing.JFrame {
     /**
      * Método para atualizar a tela trazendo a lista atualizada;
      */
-    public void atualizarTabela() {
+    public void atualizarTabelaCidade() {
         try {
             listaCidade = (ArrayList<Cidade>) fachada.listarCidadeTudo();
         } catch (GeralException ex) {
@@ -367,7 +374,7 @@ public class GuiCidade extends javax.swing.JFrame {
                 Cidade cdConsult = fachada.consultarCidade(cd.getCidades_Nome());
                 if (cdConsult != null) {
                     fachada.excluirCidade(cdConsult.getCidades_Codigo());
-                    atualizarTabela();
+                    atualizarTabelaCidade();
                 }
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
@@ -380,7 +387,7 @@ public class GuiCidade extends javax.swing.JFrame {
     /**
      * Método que cria um ArrayList para ser mostrado na tela;
      */
-    private void listarTabelaCidade() {
+    private void atualizarComboCidade() {
         try {
             listaCidade = (ArrayList<Cidade>) fachada.listarCidadeTudo();
         } catch (GeralException ex) {

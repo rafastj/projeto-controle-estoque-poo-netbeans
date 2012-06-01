@@ -5,6 +5,7 @@ package projeto.modelo.negocio;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.swing.JOptionPane;
 import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.erro.RepositorioException;
@@ -78,14 +79,10 @@ public class NegocioEndereco {
     }
 
     public void excluir(String enderecos_Cep) throws GeralException {
-        if (enderecos_Cep == null) {
-            throw new GeralException("Digite o CEP!");
-        }
-
         try {
             Endereco end = rep.consultarCep(enderecos_Cep);
             if (end == null) {
-                throw new GeralException("Endereço não está cadastrado!");
+                JOptionPane.showMessageDialog(null, "Endereço não está cadastrado!");
             }
             rep.excluir(enderecos_Cep);
 
@@ -100,7 +97,7 @@ public class NegocioEndereco {
     public void alterar(Endereco end) throws GeralException {
 
         if ((end.getEnderecos_CEP() == null) || (end.getEnderecos_CEP().equals(""))) {
-            throw new GeralException("Digite o nome ou o códido da cidade!");
+            throw new GeralException("Digite o CEP!");
         }
 
         try {

@@ -306,7 +306,7 @@ public class GuiEndereco extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         jTextFieldEntradaCep.requestFocus();
         atualizarComboCidade();
-        listaTabelaEndereco();
+        atualizarTabelaEndereco();
     }//GEN-LAST:event_formComponentShown
 
     /**
@@ -315,7 +315,7 @@ public class GuiEndereco extends javax.swing.JFrame {
      */
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         jTextFieldEntradaCep.requestFocus();
-        listaTabelaEndereco();
+        atualizarTabelaEndereco();
         atualizarComboCidade();
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
@@ -331,9 +331,10 @@ public class GuiEndereco extends javax.swing.JFrame {
      * Chama o método 'apagarEndereco()';
      */
     private void jButtonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApagarActionPerformed
-        jTextFieldEntradaCep.requestFocus();
         apagarEndereco();
-        listaTabelaEndereco();
+        limparCampos();
+        jTextFieldEntradaCep.requestFocus();
+        atualizarTabelaEndereco();
         atualizarComboCidade();
     }//GEN-LAST:event_jButtonApagarActionPerformed
 
@@ -342,6 +343,8 @@ public class GuiEndereco extends javax.swing.JFrame {
      */
     private void jButtonPesquisaCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCEPActionPerformed
         pesquisarEndCEP();
+        limparCampos();
+        jTextFieldEntradaCep.requestFocus();
     }//GEN-LAST:event_jButtonPesquisaCEPActionPerformed
 
     /**
@@ -349,6 +352,8 @@ public class GuiEndereco extends javax.swing.JFrame {
      */
     private void jButtonPesquisaLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaLogActionPerformed
         pesquisarEndLog();
+        limparCampos();
+        jTextFieldEntradaLog.requestFocus();
     }//GEN-LAST:event_jButtonPesquisaLogActionPerformed
 
     /**
@@ -418,7 +423,7 @@ public class GuiEndereco extends javax.swing.JFrame {
     /**
      * Método para listar todos os registros da tabela Endereco;
      */
-    private void listaTabelaEndereco() {
+    private void atualizarTabelaEndereco() {
         //MOSTRAR TODOS OS REGISTRO DE PRODUTOS
         //ArrayList<Produto> listaProduto = null;
         try {
@@ -521,6 +526,11 @@ public class GuiEndereco extends javax.swing.JFrame {
         } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Selecione um endereço!");
         }
+    }
+    
+    private void limparCampos() {
+        jTextFieldEntradaCep.setText("");
+        jTextFieldEntradaLog.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;

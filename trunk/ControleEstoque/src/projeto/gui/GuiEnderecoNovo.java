@@ -241,7 +241,7 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
             if (resposta == JOptionPane.NO_OPTION) {
                 dispose();
             } else {
-                limparTodosCampos();
+                limparCampos();
             }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -253,7 +253,7 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
     /**
      * Método que limpa os campos dos filtros;
      */
-    private void limparTodosCampos() {
+    private void limparCampos() {
         //limpar os edits
         jTextFieldEntradaCEP.setText("");
         jTextFieldEntradaLog.setText("");
