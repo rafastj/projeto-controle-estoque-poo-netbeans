@@ -353,18 +353,21 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
             str_cep = jFormattedTextFieldEntradaCEP.getText();
             str_cep = str_cep.replace('-', ' ');
             str_cep = str_cep.replaceAll(" ", "");
-            Endereco end = fachada.consultarEndCep(str_cep);
-            if (end != null) {
-                jFormattedTextFieldEntradaCEP.setText(end.getEnderecos_CEP());
-                jTextFieldEntradaLog.setText(end.getEnderecos_Logradouro());
+            if ((str_cep == null) || (str_cep.equals(""))) {
+                JOptionPane.showMessageDialog(null, "Digite o CEP!");
+                jFormattedTextFieldEntradaCEP.requestFocus();
             } else {
-                jTextFieldEntradaLog.requestFocus();
+                Endereco end = fachada.consultarEndCep(str_cep);
+                if (end != null) {
+                    jFormattedTextFieldEntradaCEP.setText(end.getEnderecos_CEP());
+                    jTextFieldEntradaLog.setText(end.getEnderecos_Logradouro());
+                } else {
+                    jTextFieldEntradaLog.requestFocus();
+                }
             }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } finally {
-            jFormattedTextFieldEntradaCEP.requestFocus();
-        }
+        } 
     }
     
     private void pesquisarCNPJ() {
@@ -379,21 +382,26 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
             str_cnpj = str_cnpj.replace('-', ' ');
             str_cnpj = str_cnpj.replaceAll(" ", "");
             fornecedores_CNPJ = str_cnpj;
-            Fornecedor f = fachada.consultarForCNPJ(fornecedores_CNPJ);
-            if (f != null) {
-                resComCadastro = JOptionPane.showConfirmDialog(null, "CNPJ já está cadastrado!\nDeseja cadastrar outro?", "", JOptionPane.YES_NO_OPTION);
-                if (resComCadastro == JOptionPane.YES_OPTION) {
-                    jFormattedTextFieldEntradaCNPJ.setValue(null);
-                    jFormattedTextFieldEntradaCNPJ.requestFocus();
-                } else {
-                    dispose();
-                }
+            if ((fornecedores_CNPJ == null) || (fornecedores_CNPJ.equals(""))) {
+                JOptionPane.showMessageDialog(null, "Digite o CNPJ!");
+                jFormattedTextFieldEntradaCNPJ.requestFocus();
             } else {
-                resSemCadastro = JOptionPane.showConfirmDialog(null, "CEP não está cadastrado!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
-                if (resSemCadastro == JOptionPane.YES_OPTION) {
-                    jTextFieldEntradaRS.requestFocus();
+                Fornecedor f = fachada.consultarForCNPJ(fornecedores_CNPJ);
+                if (f != null) {
+                    resComCadastro = JOptionPane.showConfirmDialog(null, "CNPJ já está cadastrado!\nDeseja cadastrar outro?", "", JOptionPane.YES_NO_OPTION);
+                    if (resComCadastro == JOptionPane.YES_OPTION) {
+                        jFormattedTextFieldEntradaCNPJ.setValue(null);
+                        jFormattedTextFieldEntradaCNPJ.requestFocus();
+                    } else {
+                        dispose();
+                    }
                 } else {
-                    dispose();
+                    resSemCadastro = JOptionPane.showConfirmDialog(null, "CNPJ não está cadastrado!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
+                    if (resSemCadastro == JOptionPane.YES_OPTION) {
+                        jTextFieldEntradaRS.requestFocus();
+                    } else {
+                        dispose();
+                    }
                 }
             }
         } catch (GeralException ex) {

@@ -186,4 +186,136 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
             g.desconectar(c);
         }
     }
+
+    @Override
+    public Collection<Fornecedor> listarForCNPJ(String fornecedores_CNPJ) throws ConexaoException, RepositorioException {
+        ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
+        Fornecedor f;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE fornecedores_CNPJ = ? ORDER BY f.fornecedores_CNPJ";
+
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlLista);
+            pstm.setString(1, fornecedores_CNPJ);
+            ResultSet rs = pstm.executeQuery();
+            //verifica se retornou algum registro e cria os Objetos
+            while (rs.next()) {
+                f = new Fornecedor();
+                f.setFornecedores_Codigo(rs.getInt("fornecedores_Codigo"));
+                f.setFornecedores_CNPJ(rs.getString("fornecedores_CNPJ"));
+                f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
+                f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
+                f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                f.setEnderecos_CEP(rs.getString("enderecos_CEP"));
+                f.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
+                f.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.setCidades_Nome(rs.getString("cidades_Nome"));
+                lista.add(f);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar(c);
+        }
+    }
+
+    @Override
+    public Collection<Fornecedor> listarForRazaoSocial(String fornecedores_RazaoSocial) throws ConexaoException, RepositorioException {
+        ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
+        Fornecedor f;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE fornecedores_RazaoSocial LIKE ? ORDER BY f.fornecedores_CNPJ";
+
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlLista);
+            pstm.setString(1, fornecedores_RazaoSocial+"%");
+            ResultSet rs = pstm.executeQuery();
+            //verifica se retornou algum registro e cria os Objetos
+            while (rs.next()) {
+                f = new Fornecedor();
+                f.setFornecedores_Codigo(rs.getInt("fornecedores_Codigo"));
+                f.setFornecedores_CNPJ(rs.getString("fornecedores_CNPJ"));
+                f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
+                f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
+                f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                f.setEnderecos_CEP(rs.getString("enderecos_CEP"));
+                f.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
+                f.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.setCidades_Nome(rs.getString("cidades_Nome"));
+                lista.add(f);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar(c);
+        }
+    }
+
+    @Override
+    public Collection<Fornecedor> listarForCEP(String enderecos_CEP) throws ConexaoException, RepositorioException {
+        ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
+        Fornecedor f;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE enderecos_CEP = ? ORDER BY f.fornecedores_CNPJ";
+
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlLista);
+            pstm.setString(1, enderecos_CEP);
+            ResultSet rs = pstm.executeQuery();
+            //verifica se retornou algum registro e cria os Objetos
+            while (rs.next()) {
+                f = new Fornecedor();
+                f.setFornecedores_Codigo(rs.getInt("fornecedores_Codigo"));
+                f.setFornecedores_CNPJ(rs.getString("fornecedores_CNPJ"));
+                f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
+                f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
+                f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                f.setEnderecos_CEP(rs.getString("enderecos_CEP"));
+                f.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
+                f.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.setCidades_Nome(rs.getString("cidades_Nome"));
+                lista.add(f);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar(c);
+        }
+    }
+
+    @Override
+    public Collection<Fornecedor> listarForLog(String enderecos_Logradouro) throws ConexaoException, RepositorioException {
+        ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
+        Fornecedor f;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE enderecos_Logradouro LIKE ? ORDER BY f.fornecedores_CNPJ";
+
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlLista);
+            pstm.setString(1, "%"+enderecos_Logradouro+"%");
+            ResultSet rs = pstm.executeQuery();
+            //verifica se retornou algum registro e cria os Objetos
+            while (rs.next()) {
+                f = new Fornecedor();
+                f.setFornecedores_Codigo(rs.getInt("fornecedores_Codigo"));
+                f.setFornecedores_CNPJ(rs.getString("fornecedores_CNPJ"));
+                f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
+                f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
+                f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                f.setEnderecos_CEP(rs.getString("enderecos_CEP"));
+                f.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
+                f.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.setCidades_Nome(rs.getString("cidades_Nome"));
+                lista.add(f);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar(c);
+        }
+    }
 }

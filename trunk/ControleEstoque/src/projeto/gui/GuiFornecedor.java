@@ -140,6 +140,11 @@ public class GuiFornecedor extends javax.swing.JFrame {
         });
 
         jButtonPesquisaRS.setText("Filtrar");
+        jButtonPesquisaRS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisaRSActionPerformed(evt);
+            }
+        });
 
         jButtonPesquisaCEP.setText("Filtrar");
         jButtonPesquisaCEP.addActionListener(new java.awt.event.ActionListener() {
@@ -160,6 +165,11 @@ public class GuiFornecedor extends javax.swing.JFrame {
         jLabelNumero.setText("Nº.:");
 
         jButtonPesquisaLog.setText("Filtrar");
+        jButtonPesquisaLog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisaLogActionPerformed(evt);
+            }
+        });
 
         jLabelLogradouro.setText("Logradouro.:");
 
@@ -379,15 +389,31 @@ public class GuiFornecedor extends javax.swing.JFrame {
 
     private void jButtonPesquisaCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCEPActionPerformed
         pesquisarCEP();
+        limparCampos();
+        jFormattedTextFieldEntradaCEP.requestFocus();
     }//GEN-LAST:event_jButtonPesquisaCEPActionPerformed
 
     private void jButtonPesquisaCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCNPJActionPerformed
         pesquisarCNPJ();
+        limparCampos();
+        jFormattedTextFieldEntradaCNPJ.requestFocus();
     }//GEN-LAST:event_jButtonPesquisaCNPJActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         alterarFornecedor();
     }//GEN-LAST:event_jButtonAlterarActionPerformed
+
+    private void jButtonPesquisaRSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaRSActionPerformed
+        pesquisarRazaoSocial();
+        limparCampos();
+        jTextFieldEntradaRS.requestFocus();
+    }//GEN-LAST:event_jButtonPesquisaRSActionPerformed
+
+    private void jButtonPesquisaLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaLogActionPerformed
+        pesquisarLogradouro();
+        limparCampos();
+        jTextFieldEntradaLog.requestFocus();
+    }//GEN-LAST:event_jButtonPesquisaLogActionPerformed
 
     private DefaultTableModel geramodelo(ArrayList<Fornecedor> listaFornecedor) {
         DefaultTableModel modelo = new DefaultTableModel();
@@ -441,7 +467,7 @@ public class GuiFornecedor extends javax.swing.JFrame {
                 guiFornecedorAlterar.setVisible(true);
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
-            JOptionPane.showMessageDialog(null, "Selecione um endereço!");
+            JOptionPane.showMessageDialog(null, "Selecione um Registro!");
         }
     }
     
@@ -460,7 +486,7 @@ public class GuiFornecedor extends javax.swing.JFrame {
                 }
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
-            JOptionPane.showMessageDialog(null, "Selecione o Fornecedor!");
+            JOptionPane.showMessageDialog(null, "Selecione um Registro!");
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -481,45 +507,82 @@ public class GuiFornecedor extends javax.swing.JFrame {
         atualizarTabela();
     }
     
-    private void pesquisarCEP() {
-        String enderecos_CEP;
-        String enderecos_Logradouro;
-        try {
-            enderecos_CEP = jFormattedTextFieldEntradaCEP.getText();
-            Endereco end = fachada.consultarEndCep(enderecos_CEP);
-            enderecos_Logradouro = end.getEnderecos_Logradouro();
-            if (end != null) {
-                jFormattedTextFieldEntradaCEP.setText(enderecos_CEP);
-                jTextFieldEntradaLog.setText(enderecos_Logradouro);
-            } else {
-                jTextFieldEntradaLog.requestFocus();
-            }
-        } catch (GeralException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        } finally {
-            jFormattedTextFieldEntradaCEP.requestFocus();
-        }
-    }
-    
     private void pesquisarCNPJ() {
+        String str_cnpj;
         String fornecedores_CNPJ;
         try {
-            fornecedores_CNPJ = jFormattedTextFieldEntradaCNPJ.getText();
-            Fornecedor f = fachada.consultarForCNPJ(fornecedores_CNPJ);
-            if (f != null) {
-                jFormattedTextFieldEntradaCNPJ.setText(f.getFornecedores_CNPJ());
-                jTextFieldEntradaRS.setText(f.getFornecedores_RazaoSocial());
-                jFormattedTextFieldEntradaCEP.setText(f.getEnderecos_CEP());
-                jTextFieldEntradaLog.setText(f.getEnderecos_Logradouro());
-                jFormattedTextFieldEntradaNumero.setText(String.valueOf(f.getFornecedores_NumeroResidencia()));
+            str_cnpj = jFormattedTextFieldEntradaCNPJ.getText();
+            str_cnpj = str_cnpj.replace('.', ' ');
+            str_cnpj = str_cnpj.replace('/', ' ');
+            str_cnpj = str_cnpj.replace('-', ' ');
+            str_cnpj = str_cnpj.replaceAll(" ", "");
+            fornecedores_CNPJ = str_cnpj;
+            if ((fornecedores_CNPJ == null) || (fornecedores_CNPJ.equals(""))) {
+                listaFornecedor = (ArrayList<Fornecedor>) fachada.listarFornecedor();
             } else {
-                jButtonAtualizar.requestFocus();
+                listaFornecedor = (ArrayList<Fornecedor>) fachada.listarFornecedorCNPJ(fornecedores_CNPJ);
             }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } finally {
-            jFormattedTextFieldEntradaCNPJ.requestFocus();
         }
+        DefaultTableModel modelo = geramodelo(listaFornecedor);
+        jTableListaFornecedor.setModel(modelo);
+    }
+    
+    private void pesquisarRazaoSocial() {
+        try {
+            if ((jTextFieldEntradaRS.getText() == null) || (jTextFieldEntradaRS.getText().equals(""))) {
+                listaFornecedor = (ArrayList<Fornecedor>) fachada.listarFornecedor();
+            } else {
+                listaFornecedor = (ArrayList<Fornecedor>) fachada.listarFornecedorRazaoSocial(jTextFieldEntradaRS.getText());
+            }
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaFornecedor);
+        jTableListaFornecedor.setModel(modelo);
+    }
+    
+    private void pesquisarCEP() {
+        String str_cep;
+        String fornecedores_CEP;
+        try {
+            str_cep = jFormattedTextFieldEntradaCEP.getText();
+            str_cep = str_cep.replace('-', ' ');
+            str_cep = str_cep.replaceAll(" ", "");
+            fornecedores_CEP = str_cep;
+            if ((fornecedores_CEP == null) || (fornecedores_CEP.equals(""))) {
+                listaFornecedor = (ArrayList<Fornecedor>) fachada.listarFornecedor();
+            } else {
+                listaFornecedor = (ArrayList<Fornecedor>) fachada.listarFornecedorCEP(fornecedores_CEP);
+            }
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaFornecedor);
+        jTableListaFornecedor.setModel(modelo);
+    }
+    
+    private void pesquisarLogradouro() {
+        try {
+            if ((jTextFieldEntradaLog.getText() == null) || (jTextFieldEntradaLog.getText().equals(""))) {
+                listaFornecedor = (ArrayList<Fornecedor>) fachada.listarFornecedor();
+            } else {
+                listaFornecedor = (ArrayList<Fornecedor>) fachada.listarFornecedorLog(jTextFieldEntradaLog.getText());
+            }
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaFornecedor);
+        jTableListaFornecedor.setModel(modelo);
+    }
+    
+    private void limparCampos() {
+        jFormattedTextFieldEntradaCNPJ.setValue(null);
+        jFormattedTextFieldEntradaCEP.setValue(null);
+        jTextFieldEntradaRS.setText("");
+        jTextFieldEntradaLog.setText("");
+        jFormattedTextFieldEntradaNumero.setValue(null);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;
