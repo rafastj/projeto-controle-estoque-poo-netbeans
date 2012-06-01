@@ -152,6 +152,22 @@ public class Fachada {
     public Collection<Fornecedor> listarFornecedor() throws GeralException {
         return rnFornecedor.listar();
     }
+    
+    public Collection<Fornecedor> listarFornecedorCNPJ(String fornecedores_CNPJ) throws GeralException {
+        return rnFornecedor.listarForCNPJ(fornecedores_CNPJ);
+    }
+    
+    public Collection<Fornecedor> listarFornecedorRazaoSocial(String fornecedores_RazaoSocial) throws GeralException {
+        return rnFornecedor.listarForRazaoSocial(fornecedores_RazaoSocial);
+    }
+    
+    public Collection<Fornecedor> listarFornecedorCEP(String enderecos_CEP) throws GeralException {
+        return rnFornecedor.listarForCEP(enderecos_CEP);
+    }
+    
+    public Collection<Fornecedor> listarFornecedorLog(String enderecos_Logradouro) throws GeralException {
+        return rnFornecedor.listarForLog(enderecos_Logradouro);
+    }
 
     /**
      * FIM DA ÁREA ESCRITA POR DANIEL VALENÇA

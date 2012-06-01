@@ -5,6 +5,7 @@ package projeto.modelo.negocio;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.swing.JOptionPane;
 import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.erro.RepositorioException;
@@ -51,7 +52,7 @@ public class NegocioFornecedor {
             if (cnpjConsult == null) {
                 rep.salvar(f);
             } else {
-                throw new GeralException("Fornecedor já está cadastrado!");
+                JOptionPane.showMessageDialog(null, "Fornecedor já está cadastrado!");
             }
 
         } catch (RepositorioException e) {
@@ -64,14 +65,11 @@ public class NegocioFornecedor {
 
     public Fornecedor consultarCNPJ(String fornecedores_CNPJ) throws GeralException {
         Fornecedor f = null;
-        if (fornecedores_CNPJ == null) {
-            throw new GeralException("Digite um CNPJ!");
-        }
-
+        
         try {
             f = rep.consultarCNPJ(fornecedores_CNPJ);
             if (f == null) {
-                throw new GeralException("Fornecedor não está cadastrado!");
+                JOptionPane.showMessageDialog(null, "Fornecedor não está cadastrado!");
             }
 
         } catch (RepositorioException e) {
@@ -85,14 +83,10 @@ public class NegocioFornecedor {
 
     public Fornecedor consultarRazaoSocial(String fornecedores_RazaoSocial) throws GeralException {
         Fornecedor f = null;
-        if (fornecedores_RazaoSocial == null) {
-            throw new GeralException("Digite um CNPJ!");
-        }
-
         try {
             f = rep.consultarRazaoSocial(fornecedores_RazaoSocial);
             if (f == null) {
-                throw new GeralException("Fornecedor não está cadastrado!");
+                JOptionPane.showMessageDialog(null, "Fornecedor não está cadastrado!");
             }
 
         } catch (RepositorioException e) {
@@ -152,6 +146,70 @@ public class NegocioFornecedor {
         
         try {
             lista = (ArrayList<Fornecedor>) new RepositorioFornecedor().listar();
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível no momento");
+        }
+        return lista;
+    }
+    
+    public Collection<Fornecedor> listarForCNPJ(String fornecedores_CNPJ) throws GeralException {
+
+        ArrayList<Fornecedor> lista;
+        
+        try {
+            lista = (ArrayList<Fornecedor>) new RepositorioFornecedor().listarForCNPJ(fornecedores_CNPJ);
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível no momento");
+        }
+        return lista;
+    }
+    
+    public Collection<Fornecedor> listarForRazaoSocial(String fornecedores_RazaoSocial) throws GeralException {
+
+        ArrayList<Fornecedor> lista;
+        
+        try {
+            lista = (ArrayList<Fornecedor>) new RepositorioFornecedor().listarForRazaoSocial(fornecedores_RazaoSocial);
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível no momento");
+        }
+        return lista;
+    }
+    
+    public Collection<Fornecedor> listarForCEP(String enderecos_CEP) throws GeralException {
+
+        ArrayList<Fornecedor> lista;
+        
+        try {
+            lista = (ArrayList<Fornecedor>) new RepositorioFornecedor().listarForCEP(enderecos_CEP);
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível no momento");
+        }
+        return lista;
+    }
+    
+    public Collection<Fornecedor> listarForLog(String enderecos_Logradouro) throws GeralException {
+
+        ArrayList<Fornecedor> lista;
+        
+        try {
+            lista = (ArrayList<Fornecedor>) new RepositorioFornecedor().listarForLog(enderecos_Logradouro);
 
         } catch (RepositorioException ex) {
             throw new GeralException("Erro de programação!");

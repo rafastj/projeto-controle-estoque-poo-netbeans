@@ -78,4 +78,39 @@ public interface IRepositorioFornecedor {
      * @throws RepositorioException
      */
     public Collection<Fornecedor> listar() throws ConexaoException, RepositorioException;
+    
+    /**
+     * 
+     * @param fornecedores_CNPJ
+     * @return
+     * @throws ConexaoException
+     * @throws RepositorioException 
+     */
+    public Collection<Fornecedor> listarForCNPJ(String fornecedores_CNPJ) throws ConexaoException, RepositorioException;
+    
+    /**
+     * 
+     * @param fornecedores_RazaoSocial
+     * @return
+     * @throws ConexaoException
+     * @throws RepositorioException 
+     */
+    public Collection<Fornecedor> listarForRazaoSocial(String fornecedores_RazaoSocial) throws ConexaoException, RepositorioException;
+    /**
+     * 
+     * @param enderecos_CEP
+     * @return
+     * @throws ConexaoException
+     * @throws RepositorioException 
+     */
+    public Collection<Fornecedor> listarForCEP(String enderecos_CEP) throws ConexaoException, RepositorioException;
+    
+    /**
+     * 
+     * @param enderecos_Logradouro
+     * @return
+     * @throws ConexaoException
+     * @throws RepositorioException 
+     */
+    public Collection<Fornecedor> listarForLog(String enderecos_Logradouro) throws ConexaoException, RepositorioException;
 }
