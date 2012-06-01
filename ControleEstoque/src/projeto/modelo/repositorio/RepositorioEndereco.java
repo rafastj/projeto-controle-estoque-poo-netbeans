@@ -189,7 +189,7 @@ public class RepositorioEndereco implements IRepositorioEndereco {
         String sqlLista = "SELECT end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from Enderecos as end inner join Cidades as cd On end.cidades_Codigo = cd.cidades_Codigo where end.Enderecos_Logradouro LIKE ? ORDER BY end.enderecos_CEP";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlLista);
-            pstm.setString(1, enderecos_Logradouro+"%");
+            pstm.setString(1, "%"+enderecos_Logradouro+"%");
             ResultSet rs = pstm.executeQuery();
             //verifica se retornou algum registro e cria os Objetos
             while (rs.next()) {

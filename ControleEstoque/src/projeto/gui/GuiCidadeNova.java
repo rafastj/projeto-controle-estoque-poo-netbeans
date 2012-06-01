@@ -182,7 +182,7 @@ public class GuiCidadeNova extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         } finally {
-            guiCidade.atualizarTabela();
+            guiCidade.atualizarTabelaCidade();
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

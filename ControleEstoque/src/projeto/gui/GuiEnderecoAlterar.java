@@ -287,7 +287,7 @@ public class GuiEnderecoAlterar extends javax.swing.JFrame {
      * @param evt
      */
     private void jButtonPesquisaCEPNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCEPNewActionPerformed
-        // TODO add your handling code here:
+        consultaCEP();
     }//GEN-LAST:event_jButtonPesquisaCEPNewActionPerformed
 
     /**
@@ -367,6 +367,11 @@ public class GuiEnderecoAlterar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
+    
+    private void consultaCEP() {
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonGerenciarCidade;
