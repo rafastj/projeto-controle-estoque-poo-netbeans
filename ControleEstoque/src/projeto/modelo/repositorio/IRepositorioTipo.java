@@ -30,26 +30,28 @@ public interface IRepositorioTipo {
 		
 	
 	/**
-	 * Metodo padr�o de altera��o da tabela Tipo
+	 * Metodo padrão para alterar a tabela Tipo
 	 */
 	public void alterar(Tipo t) throws ConexaoException,RepositorioException;
 	
 		
 	/**
-	 * Metodo padr�o para consultar
+	 * Metodo padrão para consultar
 	 */
 	public Tipo consultarTipos (String tipos_Descricao)throws ConexaoException,RepositorioException;
 	
 	/**
-	 * Metodo padr�o para consultar
+	 * Metodo padrão para consultar
 	 */
 	public Tipo consultarTipos (int tipos_Codigo)throws ConexaoException,RepositorioException;
 	
 	
 	/**
-	 * Metodo Padr�o para lista os dados
+	 * Metodo Padrão para lista os dados
 	 */
-	public Collection <Tipo> listarTipo(String Tipos_Descricao)throws ConexaoException, RepositorioException;
+	public Collection <Tipo> listarTipo()throws ConexaoException, RepositorioException;
+        
+        public Collection <Tipo> listarTipoDescricao(String tipos_Descrico)throws ConexaoException, RepositorioException;
 
 	public int Codigo()throws ConexaoException,RepositorioException ;
 }
