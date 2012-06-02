@@ -486,8 +486,12 @@ public class Fachada {
         return rnCliente.listarPessoaFisica();
     }
     
-      public Collection<PessoaJuridica> listarPessoaJuridica() throws GeralException, ConexaoException{
+    public Collection<PessoaJuridica> listarPessoaJuridica() throws GeralException, ConexaoException{
         return rnCliente.listarPessoaJuridica();
+    }
+    
+    public Collection<Cliente> listarTodosCliente() throws GeralException, ConexaoException{
+        return rnCliente.listarTodosCliente();
     }
 
     /**
