@@ -47,6 +47,7 @@ public class GuiAlterarTipo extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
+        setResizable(false);
 
         jTCodTipo.setEditable(false);
         jTCodTipo.addActionListener(new java.awt.event.ActionListener() {
