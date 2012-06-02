@@ -17,17 +17,24 @@ import projeto.modelo.to.Fornecedor;
  *
  * @author Daniel
  */
-public class GuiFornecedorNovo extends javax.swing.JFrame {
+public class GuiFornecedorNovoJD extends javax.swing.JDialog {
+
     public static Fachada fachada = new Fachada();
+    
     /**
-     * Creates new form GuiFornecedorNovo
+     * Creates new form GuiFornecedorNovoJD
      */
-    public GuiFornecedorNovo() {
+    public GuiFornecedorNovoJD(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
     }
     
-    
+    public GuiFornecedorNovoJD(){
+        initComponents();
+        setLocationRelativeTo(null);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -49,28 +56,36 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiFornecedorNovo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiFornecedorNovoJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiFornecedorNovo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiFornecedorNovoJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiFornecedorNovo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiFornecedorNovoJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiFornecedorNovo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiFornecedorNovoJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /*
-         * Create and display the form
+         * Create and display the dialog
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             @Override
             public void run() {
-                new GuiFornecedorNovo().setVisible(true);
+                GuiFornecedorNovoJD dialog = new GuiFornecedorNovoJD(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -99,7 +114,8 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
         jFormattedTextFieldEntradaCEP = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Novo Fornecedor");
+        setTitle("Salvar novo fornecedor");
+        setModal(true);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -212,7 +228,7 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
                         .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelFiltroLayout.createSequentialGroup()
                                 .addComponent(jButtonGerenciarCidade)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButtonSalvarFornecedor))
                             .addComponent(jTextFieldEntradaLog))))
                 .addContainerGap())
@@ -248,7 +264,7 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
                             .addComponent(jLabelLogradouro))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonSalvarFornecedor)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -271,7 +287,33 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextFieldEntradaLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEntradaLogActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldEntradaLogActionPerformed
+
+    private void jButtonPesquisaCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCNPJActionPerformed
+        pesquisarCNPJ();
+    }//GEN-LAST:event_jButtonPesquisaCNPJActionPerformed
+
+    private void jButtonPesquisaCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCEPActionPerformed
+        pesquisarCEP();
+    }//GEN-LAST:event_jButtonPesquisaCEPActionPerformed
+
+    private void jButtonGerenciarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerenciarCidadeActionPerformed
+        GuiCidade cidade = new GuiCidade();
+        cidade.setVisible(true);
+    }//GEN-LAST:event_jButtonGerenciarCidadeActionPerformed
+
+    private void jButtonSalvarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarFornecedorActionPerformed
+        salvarFornecedor();
+    }//GEN-LAST:event_jButtonSalvarFornecedorActionPerformed
+
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        atualizarComboCidade();
+        jFormattedTextFieldEntradaCNPJ.requestFocus();
+    }//GEN-LAST:event_formComponentShown
+
+    private void atualizarComboCidade() {
         Cidade cid;
         ArrayList<Cidade> listaCd;
         try {
@@ -283,28 +325,7 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
         } catch (GeralException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-    }//GEN-LAST:event_formComponentShown
-
-    private void jTextFieldEntradaLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEntradaLogActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldEntradaLogActionPerformed
-
-    private void jButtonGerenciarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerenciarCidadeActionPerformed
-        GuiCidade cidade = new GuiCidade();
-        cidade.setVisible(true);
-    }//GEN-LAST:event_jButtonGerenciarCidadeActionPerformed
-
-    private void jButtonPesquisaCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCEPActionPerformed
-        pesquisarCEP();
-    }//GEN-LAST:event_jButtonPesquisaCEPActionPerformed
-
-    private void jButtonPesquisaCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCNPJActionPerformed
-        pesquisarCNPJ();
-    }//GEN-LAST:event_jButtonPesquisaCNPJActionPerformed
-
-    private void jButtonSalvarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarFornecedorActionPerformed
-        salvarFornecedor();
-    }//GEN-LAST:event_jButtonSalvarFornecedorActionPerformed
+    }
     
     private void salvarFornecedor() {
         int resposta;
