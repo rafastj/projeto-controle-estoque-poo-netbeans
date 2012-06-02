@@ -46,6 +46,7 @@ public class GuiAlterarTipo extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Alterar Tipo");
         setModal(true);
         setResizable(false);
 
