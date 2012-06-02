@@ -229,7 +229,7 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
 
         try {
             PreparedStatement pstm = c.prepareStatement(sqlLista);
-            pstm.setString(1, fornecedores_RazaoSocial+"%");
+            pstm.setString(1, "%"+fornecedores_RazaoSocial+"%");
             ResultSet rs = pstm.executeQuery();
             //verifica se retornou algum registro e cria os Objetos
             while (rs.next()) {

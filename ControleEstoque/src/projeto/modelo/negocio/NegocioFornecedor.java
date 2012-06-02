@@ -67,11 +67,7 @@ public class NegocioFornecedor {
         Fornecedor f = null;
         
         try {
-            f = rep.consultarCNPJ(fornecedores_CNPJ);
-            if (f == null) {
-                JOptionPane.showMessageDialog(null, "Fornecedor não está cadastrado!");
-            }
-
+            f = rep.consultarCNPJ(fornecedores_CNPJ);            
         } catch (RepositorioException e) {
             throw new GeralException("Erro de programação!");
 
