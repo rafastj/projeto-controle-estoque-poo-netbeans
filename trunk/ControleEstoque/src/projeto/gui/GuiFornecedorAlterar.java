@@ -17,15 +17,20 @@ import projeto.modelo.to.Fornecedor;
  *
  * @author Daniel
  */
-public class GuiFornecedorAlterarJD extends javax.swing.JDialog {
+public class GuiFornecedorAlterar extends javax.swing.JDialog {
 
     public static Fachada fachada = new Fachada();
     
     /**
-     * Creates new form GuiFornecedorAlterarJD
+     * Creates new form GuiFornecedorAlterar
      */
-    public GuiFornecedorAlterarJD(java.awt.Frame parent, boolean modal) {
+    public GuiFornecedorAlterar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
+        setLocationRelativeTo(null);
+    }
+    
+    GuiFornecedorAlterar() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -51,13 +56,13 @@ public class GuiFornecedorAlterarJD extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiFornecedorAlterarJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiFornecedorAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiFornecedorAlterarJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiFornecedorAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiFornecedorAlterarJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiFornecedorAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiFornecedorAlterarJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiFornecedorAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -68,7 +73,7 @@ public class GuiFornecedorAlterarJD extends javax.swing.JDialog {
 
             @Override
             public void run() {
-                GuiFornecedorAlterarJD dialog = new GuiFornecedorAlterarJD(new javax.swing.JFrame(), true);
+                GuiFornecedorAlterar dialog = new GuiFornecedorAlterar(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override
@@ -177,17 +182,9 @@ public class GuiFornecedorAlterarJD extends javax.swing.JDialog {
         jFormattedTextFieldEntradaNumero.setEditable(false);
         jFormattedTextFieldEntradaNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("0"))));
 
-        try {
-            jFormattedTextFieldEntradaCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        jFormattedTextFieldEntradaCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
 
-        try {
-            jFormattedTextFieldEntradaCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        jFormattedTextFieldEntradaCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
 
         jTextFieldEntradaLog.setEditable(false);
 
@@ -286,18 +283,10 @@ public class GuiFornecedorAlterarJD extends javax.swing.JDialog {
         jFormattedTextFieldSaidaNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("0"))));
 
         jFormattedTextFieldSaidaCNPJ.setEditable(false);
-        try {
-            jFormattedTextFieldSaidaCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        jFormattedTextFieldSaidaCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
 
         jFormattedTextFieldSaidaCEP.setEditable(false);
-        try {
-            jFormattedTextFieldSaidaCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        jFormattedTextFieldSaidaCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
 
         jTextFieldSaidaLog.setEditable(false);
 
