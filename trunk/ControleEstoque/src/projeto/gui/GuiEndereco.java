@@ -31,7 +31,9 @@ public class GuiEndereco extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }
     
-    public GuiEndereco() {        
+    public GuiEndereco() {
+        initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -103,17 +105,19 @@ public class GuiEndereco extends javax.swing.JDialog {
         jTableListaEndereco = new javax.swing.JTable();
         jPanelFiltro = new javax.swing.JPanel();
         jLabelCEP = new javax.swing.JLabel();
-        jTextFieldEntradaCep = new javax.swing.JTextField();
         jLabelLogradouro = new javax.swing.JLabel();
         jTextFieldEntradaLog = new javax.swing.JTextField();
         jLabelCidade = new javax.swing.JLabel();
-        jButtonPesquisaLog = new javax.swing.JButton();
-        jButtonPesquisaCEP = new javax.swing.JButton();
         jComboBoxCidade = new javax.swing.JComboBox();
-        jButtonPesquisarCidade = new javax.swing.JButton();
+        jFormattedTextFieldCEP = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanelEndereco.setBorder(javax.swing.BorderFactory.createTitledBorder("Endereço"));
 
@@ -163,6 +167,8 @@ public class GuiEndereco extends javax.swing.JDialog {
             }
         ));
         jTableListaEndereco.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTableListaEndereco.setShowHorizontalLines(false);
+        jTableListaEndereco.setShowVerticalLines(false);
         jScrollPane1.setViewportView(jTableListaEndereco);
 
         javax.swing.GroupLayout jPanelEnderecoLayout = new javax.swing.GroupLayout(jPanelEndereco);
@@ -201,27 +207,13 @@ public class GuiEndereco extends javax.swing.JDialog {
 
         jLabelLogradouro.setText("Logradouro.:");
 
+        jTextFieldEntradaLog.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldEntradaLogKeyReleased(evt);
+            }
+        });
+
         jLabelCidade.setText("Cidade.:");
-
-        jButtonPesquisaLog.setText("Filtrar");
-        jButtonPesquisaLog.setMaximumSize(new java.awt.Dimension(75, 23));
-        jButtonPesquisaLog.setMinimumSize(new java.awt.Dimension(75, 23));
-        jButtonPesquisaLog.setPreferredSize(new java.awt.Dimension(75, 23));
-        jButtonPesquisaLog.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPesquisaLogActionPerformed(evt);
-            }
-        });
-
-        jButtonPesquisaCEP.setText("Filtrar");
-        jButtonPesquisaCEP.setMaximumSize(new java.awt.Dimension(75, 23));
-        jButtonPesquisaCEP.setMinimumSize(new java.awt.Dimension(75, 23));
-        jButtonPesquisaCEP.setPreferredSize(new java.awt.Dimension(75, 23));
-        jButtonPesquisaCEP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPesquisaCEPActionPerformed(evt);
-            }
-        });
 
         jComboBoxCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -229,10 +221,14 @@ public class GuiEndereco extends javax.swing.JDialog {
             }
         });
 
-        jButtonPesquisarCidade.setText("Filtrar");
-        jButtonPesquisarCidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPesquisarCidadeActionPerformed(evt);
+        try {
+            jFormattedTextFieldCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextFieldCEP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jFormattedTextFieldCEPKeyReleased(evt);
             }
         });
 
@@ -242,41 +238,30 @@ public class GuiEndereco extends javax.swing.JDialog {
             jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFiltroLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelCEP, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelFiltroLayout.createSequentialGroup()
-                        .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelCidade)
-                            .addComponent(jLabelLogradouro))
-                        .addGap(8, 8, 8)
-                        .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldEntradaCep, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
-                            .addComponent(jTextFieldEntradaLog)
-                            .addComponent(jComboBoxCidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelCidade)
+                    .addComponent(jLabelLogradouro)
+                    .addComponent(jLabelCEP))
+                .addGap(8, 8, 8)
                 .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonPesquisaCEP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonPesquisaLog, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonPesquisarCidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(179, Short.MAX_VALUE))
+                    .addComponent(jTextFieldEntradaLog)
+                    .addComponent(jComboBoxCidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jFormattedTextFieldCEP, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelFiltroLayout.setVerticalGroup(
             jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFiltroLayout.createSequentialGroup()
                 .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCEP)
-                    .addComponent(jTextFieldEntradaCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonPesquisaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
+                    .addComponent(jFormattedTextFieldCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
                 .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelLogradouro)
-                    .addComponent(jTextFieldEntradaLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonPesquisaLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldEntradaLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonPesquisarCidade))
+                    .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelCidade))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -299,14 +284,14 @@ public class GuiEndereco extends javax.swing.JDialog {
                 .addComponent(jPanelFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
-        jTextFieldEntradaCep.requestFocus();
+        jFormattedTextFieldCEP.requestFocus();
         atualizarTabelaEndereco();
         atualizarComboCidade();
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
@@ -323,30 +308,27 @@ public class GuiEndereco extends javax.swing.JDialog {
     private void jButtonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApagarActionPerformed
         apagarEndereco();
         limparCampos();
-        jTextFieldEntradaCep.requestFocus();
+        jFormattedTextFieldCEP.requestFocus();
         atualizarTabelaEndereco();
         atualizarComboCidade();
     }//GEN-LAST:event_jButtonApagarActionPerformed
 
-    private void jButtonPesquisaLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaLogActionPerformed
-        pesquisarEndLog();
-        limparCampos();
-        jTextFieldEntradaLog.requestFocus();
-    }//GEN-LAST:event_jButtonPesquisaLogActionPerformed
-
-    private void jButtonPesquisaCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCEPActionPerformed
-        pesquisarEndCEP();
-        limparCampos();
-        jTextFieldEntradaCep.requestFocus();
-    }//GEN-LAST:event_jButtonPesquisaCEPActionPerformed
-
     private void jComboBoxCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCidadeActionPerformed
-        //
+        pesquisarCidade((String) jComboBoxCidade.getSelectedItem());
     }//GEN-LAST:event_jComboBoxCidadeActionPerformed
 
-    private void jButtonPesquisarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarCidadeActionPerformed
-        pesquisarEndCidade((String) jButtonPesquisarCidade.getSelectedObjects().toString());
-    }//GEN-LAST:event_jButtonPesquisarCidadeActionPerformed
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        atualizarComboCidade();
+        atualizarTabelaEndereco();        
+    }//GEN-LAST:event_formComponentShown
+
+    private void jFormattedTextFieldCEPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCEPKeyReleased
+        pesquisarEndCEP();
+    }//GEN-LAST:event_jFormattedTextFieldCEPKeyReleased
+
+    private void jTextFieldEntradaLogKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldEntradaLogKeyReleased
+        pesquisarEndLog();
+    }//GEN-LAST:event_jTextFieldEntradaLogKeyReleased
     
     /**
      * Define o padrão da tabela e insere os dados da tabela Endereco em um ArrayList;
@@ -393,8 +375,6 @@ public class GuiEndereco extends javax.swing.JDialog {
      * Método para listar todos os registros da tabela Endereco;
      */
     private void atualizarTabelaEndereco() {
-        //MOSTRAR TODOS OS REGISTRO DE PRODUTOS
-        //ArrayList<Produto> listaProduto = null;
         try {
             listaEndereco = (ArrayList<Endereco>) fachada.listarEndTudo();
         } catch (GeralException ex) {
@@ -432,11 +412,17 @@ public class GuiEndereco extends javax.swing.JDialog {
      * Lista completa caso o campo seja nulo;
      */
     private void pesquisarEndCEP() {
+        String str_cep;
+        String enderecos_CEP;
         try {
-            if ((jTextFieldEntradaCep.getText() == null) || (jTextFieldEntradaCep.getText().equals(""))) {
+            str_cep = jFormattedTextFieldCEP.getText();
+            str_cep = str_cep.replace('-', ' ');
+            str_cep = str_cep.replaceAll(" ", "");
+            enderecos_CEP = str_cep;
+            if ((jFormattedTextFieldCEP.getText() == null) || (jFormattedTextFieldCEP.getText().equals(""))) {
                 listaEndereco = (ArrayList<Endereco>) fachada.listarEndTudo();
             } else {
-                listaEndereco = (ArrayList<Endereco>) fachada.listarEndCEP(jTextFieldEntradaCep.getText());
+                listaEndereco = (ArrayList<Endereco>) fachada.listarEndCEP(enderecos_CEP);
             }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -497,8 +483,18 @@ public class GuiEndereco extends javax.swing.JDialog {
         }
     }
     
+    private void pesquisarCidade(String cidades_Nome) {
+        try{
+            listaEndereco = ( ArrayList<Endereco>)fachada.listarEndCidade(cidades_Nome);
+        } catch (GeralException ex){
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaEndereco);
+        jTableListaEndereco.setModel(modelo);
+    }
+    
     private void limparCampos() {
-        jTextFieldEntradaCep.setText("");
+        jFormattedTextFieldCEP.setText("");
         jTextFieldEntradaLog.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -506,10 +502,8 @@ public class GuiEndereco extends javax.swing.JDialog {
     private javax.swing.JButton jButtonApagar;
     private javax.swing.JButton jButtonAtualizar;
     private javax.swing.JButton jButtonNovo;
-    private javax.swing.JButton jButtonPesquisaCEP;
-    private javax.swing.JButton jButtonPesquisaLog;
-    private javax.swing.JButton jButtonPesquisarCidade;
     private javax.swing.JComboBox jComboBoxCidade;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCEP;
     private javax.swing.JLabel jLabelCEP;
     private javax.swing.JLabel jLabelCidade;
     private javax.swing.JLabel jLabelLogradouro;
@@ -517,7 +511,6 @@ public class GuiEndereco extends javax.swing.JDialog {
     private javax.swing.JPanel jPanelFiltro;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableListaEndereco;
-    private javax.swing.JTextField jTextFieldEntradaCep;
     private javax.swing.JTextField jTextFieldEntradaLog;
     // End of variables declaration//GEN-END:variables
 }

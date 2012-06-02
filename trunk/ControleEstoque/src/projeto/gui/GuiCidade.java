@@ -26,7 +26,7 @@ public class GuiCidade extends javax.swing.JDialog {
     public GuiCidade(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+        atualizarTabelaCidade();
     }
     
     public GuiCidade() {
@@ -96,8 +96,8 @@ public class GuiCidade extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanelFiltro = new javax.swing.JPanel();
-        label2Cidade = new java.awt.Label();
-        jTextFieldCampoCidade = new javax.swing.JTextField();
+        labelCidade = new java.awt.Label();
+        jTextFieldCidade = new javax.swing.JTextField();
         jPanelLista = new javax.swing.JPanel();
         jButtonSalvar = new javax.swing.JButton();
         jButtonAtualizar = new javax.swing.JButton();
@@ -111,11 +111,11 @@ public class GuiCidade extends javax.swing.JDialog {
 
         jPanelFiltro.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtro"));
 
-        label2Cidade.setText("Cidade.:");
+        labelCidade.setText("Cidade.:");
 
-        jTextFieldCampoCidade.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextFieldCidade.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldCampoCidadeKeyReleased(evt);
+                jTextFieldCidadeKeyReleased(evt);
             }
         });
 
@@ -125,17 +125,17 @@ public class GuiCidade extends javax.swing.JDialog {
             jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFiltroLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label2Cidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(jTextFieldCampoCidade)
-                .addContainerGap())
+                .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelFiltroLayout.setVerticalGroup(
             jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFiltroLayout.createSequentialGroup()
                 .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label2Cidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCampoCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -181,6 +181,8 @@ public class GuiCidade extends javax.swing.JDialog {
         jTableListaCidade.setColumnSelectionAllowed(true);
         jTableListaCidade.setDragEnabled(true);
         jTableListaCidade.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTableListaCidade.setShowHorizontalLines(false);
+        jTableListaCidade.setShowVerticalLines(false);
         jTableListaCidade.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 jTableListaCidadeComponentShown(evt);
@@ -246,24 +248,20 @@ public class GuiCidade extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldCampoCidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCampoCidadeKeyReleased
-        pesquisarCidadeNome();
-    }//GEN-LAST:event_jTextFieldCampoCidadeKeyReleased
-
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         GuiCidadeNova cdSalvar = new GuiCidadeNova();
         cdSalvar.setVisible(true);
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
-        jTextFieldCampoCidade.setText(null);
-        jTextFieldCampoCidade.requestFocus();
+        jTextFieldCidade.setText(null);
+        jTextFieldCidade.requestFocus();
         atualizarTabelaCidade();
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        jTextFieldCampoCidade.requestFocus();
-        jTextFieldCampoCidade.setText("");
+        jTextFieldCidade.requestFocus();
+        jTextFieldCidade.setText("");
         excluirCidade();
         atualizarTabelaCidade();
     }//GEN-LAST:event_jButtonExcluirActionPerformed
@@ -275,6 +273,10 @@ public class GuiCidade extends javax.swing.JDialog {
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         alterarCidade();
     }//GEN-LAST:event_jButtonAlterarActionPerformed
+
+    private void jTextFieldCidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCidadeKeyReleased
+        pesquisarCidadeNome();
+    }//GEN-LAST:event_jTextFieldCidadeKeyReleased
 
     
     /**
@@ -317,10 +319,10 @@ public class GuiCidade extends javax.swing.JDialog {
      */
     private void pesquisarCidadeNome() {
         try {
-            if ((jTextFieldCampoCidade.getText() == null) || (jTextFieldCampoCidade.getText().equals(""))) {
+            if ((jTextFieldCidade.getText() == null) || (jTextFieldCidade.getText().equals(""))) {
                 listaCidade = (ArrayList<Cidade>) fachada.listarCidadeTudo();
             } else {
-                listaCidade = (ArrayList<Cidade>) fachada.listarCidadeNome(jTextFieldCampoCidade.getText());
+                listaCidade = (ArrayList<Cidade>) fachada.listarCidadeNome(jTextFieldCidade.getText());
             }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -392,7 +394,7 @@ public class GuiCidade extends javax.swing.JDialog {
     private javax.swing.JPanel jPanelLista;
     private javax.swing.JScrollPane jScrollPaneListaCidades;
     public javax.swing.JTable jTableListaCidade;
-    private javax.swing.JTextField jTextFieldCampoCidade;
-    private java.awt.Label label2Cidade;
+    private javax.swing.JTextField jTextFieldCidade;
+    private java.awt.Label labelCidade;
     // End of variables declaration//GEN-END:variables
 }
