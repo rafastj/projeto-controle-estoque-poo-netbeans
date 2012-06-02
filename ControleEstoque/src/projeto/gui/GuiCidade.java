@@ -59,7 +59,6 @@ public class GuiCidade extends javax.swing.JFrame {
         jPanelFiltro = new javax.swing.JPanel();
         label2Cidade = new java.awt.Label();
         jTextFieldCampoCidade = new javax.swing.JTextField();
-        jButtonConsultCid = new javax.swing.JButton();
         jPanelLista = new javax.swing.JPanel();
         jButtonSalvar = new javax.swing.JButton();
         jButtonAtualizar = new javax.swing.JButton();
@@ -82,13 +81,9 @@ public class GuiCidade extends javax.swing.JFrame {
 
         label2Cidade.setText("Cidade.:");
 
-        jButtonConsultCid.setText("Filtrar");
-        jButtonConsultCid.setMaximumSize(new java.awt.Dimension(75, 23));
-        jButtonConsultCid.setMinimumSize(new java.awt.Dimension(75, 23));
-        jButtonConsultCid.setPreferredSize(new java.awt.Dimension(75, 23));
-        jButtonConsultCid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonConsultCidActionPerformed(evt);
+        jTextFieldCampoCidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldCampoCidadeKeyReleased(evt);
             }
         });
 
@@ -100,19 +95,16 @@ public class GuiCidade extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(label2Cidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(jTextFieldCampoCidade, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonConsultCid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTextFieldCampoCidade)
+                .addContainerGap())
         );
         jPanelFiltroLayout.setVerticalGroup(
             jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFiltroLayout.createSequentialGroup()
                 .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label2Cidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextFieldCampoCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonConsultCid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTextFieldCampoCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jPanelLista.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista das cidades"));
@@ -177,7 +169,7 @@ public class GuiCidade extends javax.swing.JFrame {
         jPanelListaLayout.setHorizontalGroup(
             jPanelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelListaLayout.createSequentialGroup()
-                .addComponent(jScrollPaneListaCidades, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPaneListaCidades, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -195,7 +187,7 @@ public class GuiCidade extends javax.swing.JFrame {
                 .addComponent(jButtonAlterar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonExcluir)
-                .addGap(0, 164, Short.MAX_VALUE))
+                .addGap(0, 165, Short.MAX_VALUE))
             .addComponent(jScrollPaneListaCidades, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
@@ -225,11 +217,11 @@ public class GuiCidade extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Chama a tela para salvar cidade, 'GuiCidadeNova';
+     * Chama a tela para salvar cidade, 'GuiCidadeNova1';
      * @param evt
      */
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        GuiCidadeNova cdSalvar = new GuiCidadeNova();
+        GuiCidadeNova1 cdSalvar = new GuiCidadeNova1();
         cdSalvar.setVisible(true);
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
@@ -261,17 +253,6 @@ public class GuiCidade extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
 
     /**
-     * Chamada do método consultarCidadeNome();
-     * @param evt
-     */
-    private void jButtonConsultCidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultCidActionPerformed
-        pesquisarCidadeNome();
-        jTextFieldCampoCidade.requestFocus();
-        jTextFieldCampoCidade.setText("");
-        
-    }//GEN-LAST:event_jButtonConsultCidActionPerformed
-
-    /**
      * Chamada do método excluirCidade();
      * @param evt
      */
@@ -289,6 +270,10 @@ public class GuiCidade extends javax.swing.JFrame {
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         alterarCidade();
     }//GEN-LAST:event_jButtonAlterarActionPerformed
+
+    private void jTextFieldCampoCidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCampoCidadeKeyReleased
+        pesquisarCidadeNome();
+    }//GEN-LAST:event_jTextFieldCampoCidadeKeyReleased
 
     /**
      * Define o padrão da tabela e insere os dados da tabela Cidade em um ArrayList;
@@ -399,7 +384,6 @@ public class GuiCidade extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonAtualizar;
-    private javax.swing.JButton jButtonConsultCid;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JPanel jPanelFiltro;

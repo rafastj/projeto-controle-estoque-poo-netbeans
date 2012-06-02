@@ -673,7 +673,7 @@ public class Main {
      * JOptionPane.showMessageDialog(null, "Fim teste de alterar"); }
      */
     //teste listar
-    public static void testarListarTipo() {
+   /* public static void testarListarTipo() {
         Tipo t;
         String tp = "";
         ArrayList<Tipo> lista;
@@ -691,7 +691,7 @@ public class Main {
         }
         JOptionPane.showMessageDialog(null, tp);
         System.out.println("Fim teste de listagem");
-    }
+    }*/
 
     public static void testarExcluirTipo() {
         /*

@@ -142,7 +142,7 @@ public class RepositorioCidade implements IRepositorioCidade {
         ArrayList<Cidade> lista = new ArrayList<Cidade>();
         Cidade cd;
         Connection c = g.conectar();
-        String sqlLista = "SELECT cidades_Codigo,cidades_Nome FROM cidades ORDER BY cidades_Codigo";
+        String sqlLista = "SELECT cidades_Codigo,cidades_Nome FROM cidades ORDER BY cidades_Nome";
         try {
             Statement stm = c.createStatement();
             ResultSet rs = stm.executeQuery(sqlLista);
@@ -166,10 +166,10 @@ public class RepositorioCidade implements IRepositorioCidade {
         ArrayList<Cidade> lista = new ArrayList<Cidade>();
         Cidade cd;
         Connection c = g.conectar();
-        String sqlLista = "SELECT cidades_Codigo,cidades_Nome FROM cidades where cidades_Nome like ? ORDER BY cidades_Codigo";
+        String sqlLista = "SELECT cidades_Codigo,cidades_Nome FROM cidades where cidades_Nome = ? ORDER BY cidades_Nome";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlLista);
-            pstm.setString(1, cidades_Nome + "%");
+            pstm.setString(1, cidades_Nome);
             ResultSet rs = pstm.executeQuery();
             //verifica se retornou algum registro e cria os Objetos
             while (rs.next()) {

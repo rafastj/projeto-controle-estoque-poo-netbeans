@@ -192,12 +192,7 @@ public class NegocioCidade {
     }
 
     public Collection<Cidade> listarTudo() throws GeralException {
-
         ArrayList<Cidade> lista;
-
-       /* if (cidades_Nome == null) {
-            throw new GeralException("Digite o nome ou o códido da cidade!");
-        }*/
         try {
             lista = (ArrayList<Cidade>) new RepositorioCidade().listarTudo();
 
