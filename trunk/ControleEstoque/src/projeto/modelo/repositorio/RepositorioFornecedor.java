@@ -77,15 +77,14 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
     @Override
     public void alterar(Fornecedor f) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
-        String sqlAlterar = "UPDATE fornecedores SET ENDERECOS_CODIGO = ?, FORNECEDORES_CNPJ = ?, FORNECEDORES_RAZAOSOCIAL = ?, FORNECEDORES_NUMERORESIDENCIA = ?, ENDERECOS_CODIGO = ? WHERE FORNECEDORES_CODIGO = ?";
+        String sqlAlterar = "UPDATE fornecedores SET ENDERECOS_CODIGO = ?, FORNECEDORES_CNPJ = ?, FORNECEDORES_RAZAOSOCIAL = ?, FORNECEDORES_NUMERORESIDENCIA = ? WHERE FORNECEDORES_CODIGO = ?";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlAlterar);
             pstm.setInt(1, f.getEnderecos_Codigo());
             pstm.setString(2, f.getFornecedores_CNPJ());
             pstm.setString(3, f.getFornecedores_RazaoSocial());
             pstm.setInt(4, f.getFornecedores_NumeroResidencia());
-            pstm.setInt(5, f.getEnderecos_Codigo());
-            pstm.setInt(6, f.getFornecedores_Codigo());
+            pstm.setInt(5, f.getFornecedores_Codigo());
             pstm.executeUpdate();
             pstm.close();
         } catch (SQLException ex) {

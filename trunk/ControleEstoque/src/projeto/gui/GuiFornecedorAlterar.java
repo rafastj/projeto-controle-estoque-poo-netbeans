@@ -188,6 +188,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
             ex.printStackTrace();
         }
 
+        jFormattedTextFieldEntradaCEP.setEditable(false);
         try {
             jFormattedTextFieldEntradaCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
@@ -409,6 +410,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         atualizarComboCidade();
+        jFormattedTextFieldEntradaCNPJ.requestFocus();
     }//GEN-LAST:event_formComponentShown
 
     private void pesquisarCNPJ() {
@@ -425,15 +427,23 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
             fornecedores_CNPJ = str_cnpj;
             if ((fornecedores_CNPJ == null) || (fornecedores_CNPJ.equals(""))) {
                 JOptionPane.showMessageDialog(null, "Digite o CNPJ!");
-                jFormattedTextFieldSaidaCNPJ.requestFocus();
+                jFormattedTextFieldEntradaCNPJ.requestFocus();
             } else {
                 Fornecedor f = fachada.consultarForCNPJ(fornecedores_CNPJ);
                 if (f != null) {
-                    resComCadastro = JOptionPane.showConfirmDialog(null, "CNPJ já está cadastrado!\nDeseja alterar?", "", JOptionPane.YES_NO_OPTION);
+                    resComCadastro = JOptionPane.showConfirmDialog(null, "CNPJ já está cadastrado!\nDeseja continuar?\nSe não informe outro CNPJ.", "", JOptionPane.YES_NO_OPTION);
                     if (resComCadastro == JOptionPane.YES_OPTION) {
-                        jFormattedTextFieldSaidaCNPJ.requestFocus();
+                        jTextFieldEntradaRS.setText(f.getFornecedores_RazaoSocial());
+                        jFormattedTextFieldEntradaCEP.setText(f.getEnderecos_CEP());
+                        jTextFieldEntradaLog.setText(f.getEnderecos_Logradouro());
+                        jFormattedTextFieldEntradaNumero.setText(String.valueOf(f.getFornecedores_NumeroResidencia()));
+                        jTextFieldEntradaRS.setEnabled(true);
+                        jTextFieldEntradaRS.requestFocus();
+                        jFormattedTextFieldEntradaCEP.setEditable(true);
+                        jTextFieldEntradaLog.setEnabled(true);
+                        jFormattedTextFieldEntradaNumero.setEnabled(true);                        
                     } else {
-                        jTextFieldSaidaRS.requestFocus();
+                        limparCampos();
                     }
                 } else {
                     resSemCadastro = JOptionPane.showConfirmDialog(null, "CNPJ não está cadastrado!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
@@ -488,6 +498,15 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
         } catch (GeralException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
+    }
+    
+    private void limparCampos(){
+        jFormattedTextFieldEntradaCNPJ.setValue(null);
+        jFormattedTextFieldEntradaCEP.setValue(null);
+        jFormattedTextFieldEntradaNumero.setValue(null);
+        jTextFieldEntradaLog.setText("");
+        jTextFieldEntradaRS.setText("");
+        jFormattedTextFieldEntradaCNPJ.requestFocus();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
