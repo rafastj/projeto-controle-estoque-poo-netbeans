@@ -13,7 +13,7 @@ import projeto.erro.RepositorioException;
 import projeto.modelo.repositorio.IRepositorioCliente;
 import projeto.modelo.repositorio.RepositorioCliente;
 import projeto.modelo.repositorio.RepositorioProduto;
-import projeto.modelo.to.PessoaFisica;
+import projeto.modelo.to.*;
 import projeto.modelo.to.PessoaJuridica;
 import projeto.modelo.to.Produto;
 import projeto.validaCampo.ValidaCampo;
@@ -133,22 +133,44 @@ public class NegocioCliente {
 
         return lista;
        }
-       /* public PessoaFisica consultar(int cliente_Codigo) throws GeralException {
-        PessoaFisica pf = null;
-        if (cliente_Codigo <= 0) {
-            throw new GeralException("Digite o codigo do Cliente!");
-        }
+       
+       public Collection<Cliente> listarTodosCliente() throws ConexaoException{
+           
+        ArrayList<Cliente> lista = null;
         try {
-            pf = rep.consultar(cliente_Codigo);
-            if (pf == null) {
-                throw new GeralException("Não existe Cliente com esse código!");
-            }
-        } catch (RepositorioException e) {
-            throw new GeralException("Erro de programação!");
-        } catch (ConexaoException e) {
-            throw new GeralException("O banco de dados não está acessível no momento");
+            lista = (ArrayList<Cliente>) new RepositorioCliente().listarTodosCliente();
+        } catch (RepositorioException ex) {
+            Logger.getLogger(NegocioCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return fu;
+
+        return lista;
+       }
+
+        public void excluirCliente(Cliente cli) throws GeralException {
+        /*if (codigo < 1) {
+            throw new GeralException("Digite o CEP!");
         }*/
+        String tipo = cli.getClientes_Tipo();
+        int codigo = cli.getClientes_Codigo();
+        try {
+            boolean verificaCliente = rep.consultarCliente(codigo);
+            if (verificaCliente == false) {
+                throw new GeralException("Cliente nÃ£o existe");
+            }
+            if (("f".equals(tipo)) || ("F".equals(tipo))){
+                rep.excluirPF(codigo);
+            }
+            else{
+                rep.excluirPJ(codigo);
+            }
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Registro nÃ£o pode ser excluÃ­do!\nMotivo: Existem um ou mais cadastros vinculados a este endereÃ§o.");
+
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados nÃ£o estÃ¡ acessÃ­vel no momento");
+        }
+            
+    }
 
 }

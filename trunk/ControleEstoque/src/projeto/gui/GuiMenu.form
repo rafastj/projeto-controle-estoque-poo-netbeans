@@ -49,8 +49,11 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuClienteNovo">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Novo Cliente"/>
+                    <Property name="text" type="java.lang.String" value="Gerenciar Cliente"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuClienteNovoActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>

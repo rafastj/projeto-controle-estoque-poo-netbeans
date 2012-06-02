@@ -34,7 +34,9 @@ public interface IRepositorioCliente {
      * @throws ConexaoException
      * @throws RepositorioException
      */
-    public void excluir(int clientes_Codigo) throws ConexaoException, RepositorioException;
+    public void excluirPF(int clientes_Codigo) throws ConexaoException, RepositorioException;
+    
+    public void excluirPJ(int clientes_Codigo) throws ConexaoException, RepositorioException;
 
     /**
      * Altera um registro/fornecedor no banco de dados
@@ -62,6 +64,8 @@ public interface IRepositorioCliente {
     public PessoaFisica consultarPF_Nome(String pf_Nome) throws ConexaoException, RepositorioException;
 
     public PessoaJuridica consultarPJ_RSocial(String pj_RSocial) throws ConexaoException, RepositorioException;
+    
+    public boolean consultarCliente(int codigo) throws ConexaoException, RepositorioException;
 
     /**
      * Retorna um registro/endereco baseado no nome informado
@@ -82,4 +86,6 @@ public interface IRepositorioCliente {
     public Collection<PessoaFisica> listarPessoaFisica() throws ConexaoException, RepositorioException;
     
     public Collection<PessoaJuridica> listarPessoaJuridica() throws ConexaoException, RepositorioException;
+    
+    public Collection<Cliente> listarTodosCliente() throws ConexaoException, RepositorioException;
 }

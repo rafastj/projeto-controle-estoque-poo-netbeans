@@ -13,6 +13,15 @@ public class Cliente {
     private String clientes_NumeroResidencia;
     private String clientes_Tipo;
     private int enderecos_Codigo;
+    private String nome;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
     private Endereco endereco = new Endereco();
 
     public Cliente() {
