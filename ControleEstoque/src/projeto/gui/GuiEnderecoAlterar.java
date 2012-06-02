@@ -113,6 +113,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
         jFormattedTextFieldSaidaCEP = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Alterar endereço");
         setModal(true);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -309,6 +310,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         atualizarComboCidade();
+        jFormattedTextFieldEntradaCEP.requestFocus();
     }//GEN-LAST:event_formComponentShown
     
     private void alterarEndereco() {
@@ -322,12 +324,12 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
             str_cepOld = str_cepOld.replace('-', ' ');
             str_cepOld = str_cepOld.replaceAll(" ", "");
             cepOld = str_cepOld;
-            end = fachada.consultarEndCep(cepOld);
             Cidade cd = fachada.consultarCidade((String) jComboBoxCidade.getSelectedItem());
             str_cepNew = jFormattedTextFieldEntradaCEP.getText();
             str_cepNew = str_cepNew.replace('-', ' ');
             str_cepNew = str_cepNew.replaceAll(" ", "");
             enderecos_CEP = str_cepNew;
+            end = fachada.consultarEndCep(cepOld);
             Endereco endAlterar = new Endereco();
             endAlterar.setEnderecos_Codigo(end.getEnderecos_Codigo());
             endAlterar.setEnderecos_Logradouro(jTextFieldEntradaLog.getText());
@@ -345,6 +347,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
     
     private void consultarCEP() {
         int resComCadastro;
+        int resSemCadastro;
         String str_cep;
         String enderecos_CEP;
         try {
@@ -354,15 +357,29 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
             enderecos_CEP = str_cep;
             Endereco end = fachada.consultarEndCep(enderecos_CEP);
             if (end != null) {
-                resComCadastro = JOptionPane.showConfirmDialog(null, "CEP já está existe!\nDeseja consultar outro CEP?", "", JOptionPane.YES_NO_OPTION);
-                if (resComCadastro == JOptionPane.YES_OPTION) {
+                resComCadastro = JOptionPane.showConfirmDialog(null, "CEP já está existe!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
+                if (resComCadastro == JOptionPane.NO_OPTION) {
                     jFormattedTextFieldEntradaCEP.setValue(null);
                     jFormattedTextFieldEntradaCEP.requestFocus();
                 } else {
-                    jTextFieldEntradaLog.setText(end.getEnderecos_Logradouro());
-                    jButtonAlterar.requestFocus();
+                    jFormattedTextFieldEntradaCEP.setText(end.getEnderecos_CEP());
+                    jTextFieldEntradaLog.setEditable(true);
+                    jTextFieldEntradaLog.requestFocus();
+                    jTextFieldEntradaLog.setText(end.getEnderecos_Logradouro());                    
                 }
-            } 
+            } else {
+                resSemCadastro = JOptionPane.showConfirmDialog(null, "CEP não está cadastrado!\nDeseja cadastrar?", "", JOptionPane.YES_NO_OPTION);
+                if (resSemCadastro == JOptionPane.YES_OPTION) {
+                    GuiEnderecoNovo guiEnderecoNovo = new GuiEnderecoNovo();
+                    guiEnderecoNovo.jFormattedTextFieldCEP.setText(enderecos_CEP);
+                    guiEnderecoNovo.jTextFieldEntradaLog.requestFocus();
+                    guiEnderecoNovo.setVisible(true);
+                    jButtonPesquisaCEPNew.requestFocus();
+                } else {
+                    jTextFieldEntradaLog.setEditable(true);
+                    jTextFieldEntradaLog.requestFocus();
+                }
+            }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }

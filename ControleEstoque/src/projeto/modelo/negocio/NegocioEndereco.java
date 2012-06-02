@@ -102,12 +102,9 @@ public class NegocioEndereco {
 
         try {
             Endereco endConsul = rep.consultarCep(end.getEnderecos_CEP());
-            if (endConsul == null) {
+            if (endConsul != null) {
                 rep.alterar(end);
-            } else {
-                throw new GeralException("Endereço não está cadastrado!");
             }
-
         } catch (RepositorioException ex) {
             throw new GeralException("Erro de programação!");
 

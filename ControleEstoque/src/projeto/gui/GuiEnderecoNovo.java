@@ -108,6 +108,7 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
         jFormattedTextFieldCEP = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Salvar novo endereço");
         setModal(true);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -336,11 +337,11 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
     private javax.swing.JButton jButtonIncluirCidade;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox jComboBoxCidade;
-    private javax.swing.JFormattedTextField jFormattedTextFieldCEP;
+    public javax.swing.JFormattedTextField jFormattedTextFieldCEP;
     private javax.swing.JLabel jLabelCEP;
     private javax.swing.JLabel jLabelCidade;
     private javax.swing.JLabel jLabelLogradouro;
     private javax.swing.JPanel jPanelNovoEndereco;
-    private javax.swing.JTextField jTextFieldEntradaLog;
+    public javax.swing.JTextField jTextFieldEntradaLog;
     // End of variables declaration//GEN-END:variables
 }

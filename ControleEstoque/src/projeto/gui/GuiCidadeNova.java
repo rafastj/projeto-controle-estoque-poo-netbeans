@@ -100,6 +100,7 @@ public class GuiCidadeNova extends javax.swing.JDialog {
         jButtonSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Salvar nova cidade");
         setModal(true);
 
         jLabel1.setText("Nome da Cidade.:");
