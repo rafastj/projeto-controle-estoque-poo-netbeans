@@ -112,6 +112,7 @@ public class GuiEndereco extends javax.swing.JDialog {
         jFormattedTextFieldCEP = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de endereços");
         setModal(true);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {

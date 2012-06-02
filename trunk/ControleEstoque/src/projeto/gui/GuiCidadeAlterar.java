@@ -99,6 +99,7 @@ public class GuiCidadeAlterar extends javax.swing.JDialog {
         jButtonAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Alterar cidade");
         setModal(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
