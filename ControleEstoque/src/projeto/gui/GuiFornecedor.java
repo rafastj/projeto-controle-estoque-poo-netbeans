@@ -17,16 +17,21 @@ import projeto.modelo.to.Fornecedor;
  *
  * @author Daniel
  */
-public class GuiFornecedorJD extends javax.swing.JDialog {
+public class GuiFornecedor extends javax.swing.JDialog {
 
     ArrayList<Fornecedor> listaFornecedor = null;
     public static Fachada fachada = new Fachada();
     
     /**
-     * Creates new form GuiFornecedorJD
+     * Creates new form GuiFornecedor
      */
-    public GuiFornecedorJD(java.awt.Frame parent, boolean modal) {
+    public GuiFornecedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
+        setLocationRelativeTo(null);
+    }
+    
+    GuiFornecedor() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -52,13 +57,13 @@ public class GuiFornecedorJD extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiFornecedorJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiFornecedorJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiFornecedorJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiFornecedorJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -69,7 +74,7 @@ public class GuiFornecedorJD extends javax.swing.JDialog {
 
             @Override
             public void run() {
-                GuiFornecedorJD dialog = new GuiFornecedorJD(new javax.swing.JFrame(), true);
+                GuiFornecedor dialog = new GuiFornecedor(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override
