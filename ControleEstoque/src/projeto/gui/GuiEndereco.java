@@ -475,7 +475,7 @@ public class GuiEndereco extends javax.swing.JDialog {
                 GuiEnderecoAlterar guiEnderecoAlterar = new GuiEnderecoAlterar();
                 guiEnderecoAlterar.jTextFieldSaidaLogOld.setText(endOld.getEnderecos_Logradouro());
                 guiEnderecoAlterar.jTextFieldSaidaCidadeOld.setText(endOld.getCidades_Nome());
-                guiEnderecoAlterar.jTextFieldSaidaCepOld.setText(endOld.getEnderecos_CEP());
+                guiEnderecoAlterar.jFormattedTextFieldSaidaCEP.setText(endOld.getEnderecos_CEP());
                 guiEnderecoAlterar.setVisible(true);
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
