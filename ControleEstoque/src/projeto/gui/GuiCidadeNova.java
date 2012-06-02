@@ -28,7 +28,7 @@ public class GuiCidadeNova extends javax.swing.JDialog {
         jTextFieldEntradaCidade.requestFocus();
     }
     
-    GuiCidadeNova() {
+    public GuiCidadeNova() {
         initComponents();
         setLocationRelativeTo(null);//mostra no centro da tela
         jTextFieldEntradaCidade.requestFocus();
