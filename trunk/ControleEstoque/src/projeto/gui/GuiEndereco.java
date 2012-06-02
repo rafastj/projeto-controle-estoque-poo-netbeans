@@ -30,6 +30,9 @@ public class GuiEndereco extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
     }
+    
+    public GuiEndereco() {        
+    }
 
     /**
      * @param args the command line arguments
