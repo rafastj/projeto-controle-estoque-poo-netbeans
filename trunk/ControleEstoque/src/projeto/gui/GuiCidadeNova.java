@@ -189,8 +189,6 @@ public class GuiCidadeNova extends javax.swing.JDialog {
             } catch (GeralException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
-        } finally {
-            guiCidade.atualizarTabelaCidade();
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

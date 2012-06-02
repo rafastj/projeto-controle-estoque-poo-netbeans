@@ -166,10 +166,10 @@ public class RepositorioCidade implements IRepositorioCidade {
         ArrayList<Cidade> lista = new ArrayList<Cidade>();
         Cidade cd;
         Connection c = g.conectar();
-        String sqlLista = "SELECT cidades_Codigo,cidades_Nome FROM cidades where cidades_Nome = ? ORDER BY cidades_Nome";
+        String sqlLista = "SELECT cidades_Codigo,cidades_Nome FROM cidades where cidades_Nome LIKE ? ORDER BY cidades_Nome";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlLista);
-            pstm.setString(1, cidades_Nome);
+            pstm.setString(1, cidades_Nome+"%");
             ResultSet rs = pstm.executeQuery();
             //verifica se retornou algum registro e cria os Objetos
             while (rs.next()) {
