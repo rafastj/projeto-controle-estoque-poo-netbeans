@@ -17,8 +17,8 @@ public class Fornecedor {
     private String enderecos_Logradouro;
     private int cidades_Codigo;
     private String cidades_Nome;
-    private Endereco end = new Endereco();
-    private Cidade cd = new Cidade();
+    private Endereco endereco = new Endereco();
+    private Cidade cidade = new Cidade();
     
     public Fornecedor() {
     }
@@ -69,15 +69,15 @@ public class Fornecedor {
     }
 
     public Endereco getCodigo() {
-        return end;
+        return endereco;
     }
     
      public void setCodigo(Endereco codigo) {
-        this.end = codigo;
+        this.endereco = codigo;
     }
 
     public void setEndereco_Codigo(Endereco codigo) {
-        this.end = codigo;
+        this.endereco = codigo;
     }
 
     public void setEnderecos_Codigo(int enderecos_Codigo) {
@@ -88,12 +88,12 @@ public class Fornecedor {
         return enderecos_Codigo;
     }
     
-    public Cidade getCd() {
-        return cd;
+    public Cidade getCidade() {
+        return cidade;
     }
 
-    public void setCd(Cidade cd) {
-        this.cd = cd;
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
     }
 
     public int getCidades_Codigo() {
@@ -112,12 +112,12 @@ public class Fornecedor {
         this.cidades_Nome = cidades_Nome;
     }
 
-    public Endereco getEnd() {
-        return end;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public void setEnd(Endereco end) {
-        this.end = end;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     public String getEnderecos_CEP() {

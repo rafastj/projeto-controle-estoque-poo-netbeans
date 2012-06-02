@@ -168,6 +168,10 @@ public class Fachada {
     public Collection<Fornecedor> listarFornecedorLog(String enderecos_Logradouro) throws GeralException {
         return rnFornecedor.listarForLog(enderecos_Logradouro);
     }
+    
+    public Collection<Fornecedor> listarFornecedorCidade(String cidades_Nome) throws GeralException {
+        return rnFornecedor.listarForCidade(cidades_Nome);
+    }
 
     /**
      * FIM DA ÁREA ESCRITA POR DANIEL VALENÇA

@@ -113,4 +113,13 @@ public interface IRepositorioFornecedor {
      * @throws RepositorioException 
      */
     public Collection<Fornecedor> listarForLog(String enderecos_Logradouro) throws ConexaoException, RepositorioException;
+    
+    /**
+     * 
+     * @param cidades_Nome
+     * @return
+     * @throws ConexaoException
+     * @throws RepositorioException 
+     */
+    public Collection<Fornecedor> listarForCidade(String cidades_Nome) throws ConexaoException, RepositorioException;
 }

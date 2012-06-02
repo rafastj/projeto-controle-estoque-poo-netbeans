@@ -101,7 +101,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jButtonIncluirCidade" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButtonGerenciarCidade" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace pref="94" max="32767" attributes="0"/>
                                   <Component id="jButtonSalvarFornecedor" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -134,7 +134,7 @@
                               <Component id="jLabelNumero" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jComboBoxCidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonIncluirCidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonGerenciarCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jFormattedTextFieldEntradaNumero" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -169,6 +169,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldEntradaRS">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelCEP">
           <Properties>
@@ -176,6 +179,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldEntradaLog">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldEntradaLogActionPerformed"/>
           </Events>
@@ -208,12 +214,12 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonIncluirCidade">
+        <Component class="javax.swing.JButton" name="jButtonGerenciarCidade">
           <Properties>
             <Property name="text" type="java.lang.String" value="Gerenciar Cidade"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonIncluirCidadeActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGerenciarCidadeActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelNumero">

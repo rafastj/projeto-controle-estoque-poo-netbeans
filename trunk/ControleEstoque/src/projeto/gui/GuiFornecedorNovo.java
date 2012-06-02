@@ -90,7 +90,7 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
         jButtonPesquisaCEP = new javax.swing.JButton();
         jLabelCidade = new javax.swing.JLabel();
         jComboBoxCidade = new javax.swing.JComboBox();
-        jButtonIncluirCidade = new javax.swing.JButton();
+        jButtonGerenciarCidade = new javax.swing.JButton();
         jLabelNumero = new javax.swing.JLabel();
         jLabelLogradouro = new javax.swing.JLabel();
         jButtonSalvarFornecedor = new javax.swing.JButton();
@@ -112,8 +112,11 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
 
         jLabelRazaoSocial.setText("Razão Social.:");
 
+        jTextFieldEntradaRS.setEditable(false);
+
         jLabelCEP.setText("CEP.:");
 
+        jTextFieldEntradaLog.setEditable(false);
         jTextFieldEntradaLog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldEntradaLogActionPerformed(evt);
@@ -136,10 +139,10 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
 
         jLabelCidade.setText("Cidade.:");
 
-        jButtonIncluirCidade.setText("Gerenciar Cidade");
-        jButtonIncluirCidade.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGerenciarCidade.setText("Gerenciar Cidade");
+        jButtonGerenciarCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonIncluirCidadeActionPerformed(evt);
+                jButtonGerenciarCidadeActionPerformed(evt);
             }
         });
 
@@ -208,7 +211,7 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelFiltroLayout.createSequentialGroup()
-                                .addComponent(jButtonIncluirCidade)
+                                .addComponent(jButtonGerenciarCidade)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                                 .addComponent(jButtonSalvarFornecedor))
                             .addComponent(jTextFieldEntradaLog))))
@@ -233,7 +236,7 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
                             .addComponent(jLabelNumero)
                             .addComponent(jLabelCidade)
                             .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonIncluirCidade)
+                            .addComponent(jButtonGerenciarCidade)
                             .addComponent(jFormattedTextFieldEntradaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelFiltroLayout.createSequentialGroup()
                         .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -286,10 +289,10 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldEntradaLogActionPerformed
 
-    private void jButtonIncluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirCidadeActionPerformed
+    private void jButtonGerenciarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerenciarCidadeActionPerformed
         GuiCidade cidade = new GuiCidade();
         cidade.setVisible(true);
-    }//GEN-LAST:event_jButtonIncluirCidadeActionPerformed
+    }//GEN-LAST:event_jButtonGerenciarCidadeActionPerformed
 
     private void jButtonPesquisaCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCEPActionPerformed
         pesquisarCEP();
@@ -362,6 +365,7 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
                     jFormattedTextFieldEntradaCEP.setText(end.getEnderecos_CEP());
                     jTextFieldEntradaLog.setText(end.getEnderecos_Logradouro());
                 } else {
+                    jTextFieldEntradaLog.setEditable(true);
                     jTextFieldEntradaLog.requestFocus();
                 }
             }
@@ -398,6 +402,7 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
                 } else {
                     resSemCadastro = JOptionPane.showConfirmDialog(null, "CNPJ não está cadastrado!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
                     if (resSemCadastro == JOptionPane.YES_OPTION) {
+                        jTextFieldEntradaRS.setEditable(true);
                         jTextFieldEntradaRS.requestFocus();
                     } else {
                         dispose();
@@ -419,7 +424,7 @@ public class GuiFornecedorNovo extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonIncluirCidade;
+    private javax.swing.JButton jButtonGerenciarCidade;
     private javax.swing.JButton jButtonPesquisaCEP;
     private javax.swing.JButton jButtonPesquisaCNPJ;
     private javax.swing.JButton jButtonSalvarFornecedor;

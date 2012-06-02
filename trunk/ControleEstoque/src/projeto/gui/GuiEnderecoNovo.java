@@ -151,7 +151,7 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
                             .addComponent(jButtonIncluirCidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTextFieldEntradaLog))
+                    .addComponent(jTextFieldEntradaLog, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelNovoEnderecoLayout.setVerticalGroup(

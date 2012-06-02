@@ -219,6 +219,22 @@ public class NegocioFornecedor {
         }
         return lista;
     }
+    
+    public Collection<Fornecedor> listarForCidade(String cidades_Nome) throws GeralException {
+
+        ArrayList<Fornecedor> lista;
+        
+        try {
+            lista = (ArrayList<Fornecedor>) new RepositorioFornecedor().listarForCidade(cidades_Nome);
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível no momento");
+        }
+        return lista;
+    }
 
     /**
      * Método para Validação de CNPJ

@@ -28,11 +28,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanelFiltro" max="32767" attributes="0"/>
                   <Component id="jPanelLista" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -68,40 +68,27 @@
                       <Component id="jLabelCEP" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jFormattedTextFieldEntradaCNPJ" pref="157" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jFormattedTextFieldEntradaCNPJ" pref="161" max="32767" attributes="0"/>
                       <Component id="jFormattedTextFieldEntradaCEP" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jButtonPesquisaCEP" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jButtonPesquisaCNPJ" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabelRazaoSocial" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelLogradouro" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelCidade" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jTextFieldEntradaLog" min="-2" pref="245" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jLabelNumero" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jFormattedTextFieldEntradaNumero" pref="60" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="jComboBoxCidade" max="32767" attributes="0"/>
+                      <Component id="jTextFieldEntradaRS" alignment="1" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jTextFieldEntradaLog" min="-2" pref="250" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jLabelNumero" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jFormattedTextFieldEntradaNumero" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jTextFieldEntradaRS" min="-2" pref="353" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="jButtonIncluirCidade" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jButtonPesquisaLog" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jButtonPesquisaRS" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jComboBoxCidade" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -116,37 +103,28 @@
                               <Component id="jLabelCNPJ" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelRazaoSocial" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jTextFieldEntradaRS" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonPesquisaRS" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabelCEP" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextFieldEntradaLog" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonPesquisaLog" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelLogradouro" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelNumero" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jFormattedTextFieldEntradaNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFieldEntradaLog" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jComboBoxCidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonIncluirCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButtonPesquisaCNPJ" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jFormattedTextFieldEntradaCNPJ" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jFormattedTextFieldEntradaCNPJ" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButtonPesquisaCEP" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jFormattedTextFieldEntradaCEP" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jFormattedTextFieldEntradaCEP" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -163,40 +141,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldEntradaRS">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldEntradaRSKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelCEP">
           <Properties>
             <Property name="text" type="java.lang.String" value="CEP.:"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldEntradaLog">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldEntradaLogActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButtonPesquisaCNPJ">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Filtrar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPesquisaCNPJActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButtonPesquisaRS">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Filtrar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPesquisaRSActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButtonPesquisaCEP">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Filtrar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPesquisaCEPActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelCidade">
           <Properties>
@@ -209,27 +161,14 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButtonIncluirCidade">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Filtrar"/>
-          </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonIncluirCidadeActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxCidadeActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelNumero">
           <Properties>
             <Property name="text" type="java.lang.String" value="N&#xba;.:"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButtonPesquisaLog">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Filtrar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPesquisaLogActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelLogradouro">
           <Properties>
@@ -249,6 +188,9 @@
               <Format format="##.###.###/####-##" subtype="-1" type="5"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jFormattedTextFieldEntradaCNPJKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldEntradaCEP">
           <Properties>
@@ -256,6 +198,14 @@
               <Format format="#####-###" subtype="-1" type="5"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jFormattedTextFieldEntradaCEPKeyReleased"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextFieldEntradaLog">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldEntradaLogKeyReleased"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -273,15 +223,15 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPaneFornecedor" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPaneFornecedor" min="-2" pref="645" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jButtonAtualizar" max="32767" attributes="0"/>
                       <Component id="jButtonNovo" max="32767" attributes="0"/>
                       <Component id="jButtonAlterar" max="32767" attributes="0"/>
-                      <Component id="jButtonApagar" max="32767" attributes="0"/>
+                      <Component id="jButtonApagar" min="-2" pref="75" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -297,7 +247,7 @@
                           <Component id="jButtonAlterar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jButtonApagar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="102" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="109" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jScrollPaneFornecedor" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -362,6 +312,8 @@
                     <Column editable="true" title="CEP" type="java.lang.Object"/>
                   </Table>
                 </Property>
+                <Property name="showHorizontalLines" type="boolean" value="false"/>
+                <Property name="showVerticalLines" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
