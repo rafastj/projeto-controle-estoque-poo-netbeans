@@ -14,9 +14,10 @@ import projeto.modelo.to.Cidade;
 import projeto.modelo.to.Endereco;
 
 /**
- *@author DANIEL VALENÇA
+ *
+ * @author Daniel
  */
-public class GuiEndereco extends javax.swing.JFrame {
+public class GuiEndereco extends javax.swing.JDialog {
 
     ArrayList<Endereco> listaEndereco = null;
     public static Fachada fachada = new Fachada();
@@ -24,11 +25,63 @@ public class GuiEndereco extends javax.swing.JFrame {
     /**
      * Creates new form GuiEndereco
      */
-    public GuiEndereco() {
+    public GuiEndereco(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
     }
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /*
+         * Set the Nimbus look and feel
+         */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the
+         * default look and feel. For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(GuiEndereco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(GuiEndereco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(GuiEndereco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(GuiEndereco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /*
+         * Create and display the dialog
+         */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                GuiEndereco dialog = new GuiEndereco(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,6 +91,13 @@ public class GuiEndereco extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanelEndereco = new javax.swing.JPanel();
+        jButtonAtualizar = new javax.swing.JButton();
+        jButtonNovo = new javax.swing.JButton();
+        jButtonAlterar = new javax.swing.JButton();
+        jButtonApagar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableListaEndereco = new javax.swing.JTable();
         jPanelFiltro = new javax.swing.JPanel();
         jLabelCEP = new javax.swing.JLabel();
         jTextFieldEntradaCep = new javax.swing.JTextField();
@@ -48,22 +108,89 @@ public class GuiEndereco extends javax.swing.JFrame {
         jButtonPesquisaCEP = new javax.swing.JButton();
         jComboBoxCidade = new javax.swing.JComboBox();
         jButtonPesquisarCidade = new javax.swing.JButton();
-        jPanelEndereco = new javax.swing.JPanel();
-        jButtonAtualizar = new javax.swing.JButton();
-        jButtonNovo = new javax.swing.JButton();
-        jButtonAlterar = new javax.swing.JButton();
-        jButtonApagar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableListaEndereco = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Endereço");
-        setName("frameEndereco"); // NOI18N
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
+        setModal(true);
+
+        jPanelEndereco.setBorder(javax.swing.BorderFactory.createTitledBorder("Endereço"));
+
+        jButtonAtualizar.setText("Atualizar");
+        jButtonAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtualizarActionPerformed(evt);
             }
         });
+
+        jButtonNovo.setText("Novo");
+        jButtonNovo.setMaximumSize(new java.awt.Dimension(75, 23));
+        jButtonNovo.setMinimumSize(new java.awt.Dimension(75, 23));
+        jButtonNovo.setPreferredSize(new java.awt.Dimension(75, 23));
+        jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNovoActionPerformed(evt);
+            }
+        });
+
+        jButtonAlterar.setText("Alterar");
+        jButtonAlterar.setMaximumSize(new java.awt.Dimension(75, 23));
+        jButtonAlterar.setMinimumSize(new java.awt.Dimension(75, 23));
+        jButtonAlterar.setPreferredSize(new java.awt.Dimension(75, 23));
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
+
+        jButtonApagar.setText("Apagar");
+        jButtonApagar.setMaximumSize(new java.awt.Dimension(75, 23));
+        jButtonApagar.setMinimumSize(new java.awt.Dimension(75, 23));
+        jButtonApagar.setPreferredSize(new java.awt.Dimension(75, 23));
+        jButtonApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonApagarActionPerformed(evt);
+            }
+        });
+
+        jTableListaEndereco.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null}
+            },
+            new String [] {
+                "CEP", "Logradouro", "Cidade"
+            }
+        ));
+        jTableListaEndereco.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(jTableListaEndereco);
+
+        javax.swing.GroupLayout jPanelEnderecoLayout = new javax.swing.GroupLayout(jPanelEndereco);
+        jPanelEndereco.setLayout(jPanelEnderecoLayout);
+        jPanelEnderecoLayout.setHorizontalGroup(
+            jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelEnderecoLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonAtualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonAlterar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonApagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonNovo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanelEnderecoLayout.setVerticalGroup(
+            jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelEnderecoLayout.createSequentialGroup()
+                .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelEnderecoLayout.createSequentialGroup()
+                        .addComponent(jButtonAtualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonApagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         jPanelFiltro.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtro"));
 
@@ -126,9 +253,9 @@ public class GuiEndereco extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonPesquisaCEP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonPesquisaLog, 0, 0, Short.MAX_VALUE)
+                    .addComponent(jButtonPesquisaLog, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonPesquisarCidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(179, Short.MAX_VALUE))
         );
         jPanelFiltroLayout.setVerticalGroup(
             jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,87 +276,6 @@ public class GuiEndereco extends javax.swing.JFrame {
                         .addComponent(jButtonPesquisarCidade))
                     .addComponent(jLabelCidade))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanelEndereco.setBorder(javax.swing.BorderFactory.createTitledBorder("Endereço"));
-
-        jButtonAtualizar.setText("Atualizar");
-        jButtonAtualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAtualizarActionPerformed(evt);
-            }
-        });
-
-        jButtonNovo.setText("Novo");
-        jButtonNovo.setMaximumSize(new java.awt.Dimension(75, 23));
-        jButtonNovo.setMinimumSize(new java.awt.Dimension(75, 23));
-        jButtonNovo.setPreferredSize(new java.awt.Dimension(75, 23));
-        jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNovoActionPerformed(evt);
-            }
-        });
-
-        jButtonAlterar.setText("Alterar");
-        jButtonAlterar.setMaximumSize(new java.awt.Dimension(75, 23));
-        jButtonAlterar.setMinimumSize(new java.awt.Dimension(75, 23));
-        jButtonAlterar.setPreferredSize(new java.awt.Dimension(75, 23));
-        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAlterarActionPerformed(evt);
-            }
-        });
-
-        jButtonApagar.setText("Apagar");
-        jButtonApagar.setMaximumSize(new java.awt.Dimension(75, 23));
-        jButtonApagar.setMinimumSize(new java.awt.Dimension(75, 23));
-        jButtonApagar.setPreferredSize(new java.awt.Dimension(75, 23));
-        jButtonApagar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonApagarActionPerformed(evt);
-            }
-        });
-
-        jTableListaEndereco.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null}
-            },
-            new String [] {
-                "CEP", "Logradouro", "Cidade"
-            }
-        ));
-        jTableListaEndereco.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jTableListaEndereco);
-
-        javax.swing.GroupLayout jPanelEnderecoLayout = new javax.swing.GroupLayout(jPanelEndereco);
-        jPanelEndereco.setLayout(jPanelEnderecoLayout);
-        jPanelEnderecoLayout.setHorizontalGroup(
-            jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelEnderecoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonAtualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonAlterar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonApagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonNovo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanelEnderecoLayout.setVerticalGroup(
-            jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelEnderecoLayout.createSequentialGroup()
-                .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelEnderecoLayout.createSequentialGroup()
-                        .addComponent(jButtonAtualizar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonApagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -256,80 +302,21 @@ public class GuiEndereco extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiEndereco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiEndereco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiEndereco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiEndereco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /*
-         * Create and display the form
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                new GuiEndereco().setVisible(true);
-            }
-        });
-    }
-
-    /**
-     * Ao ser exibido, o formulário seta o foco no 'jTextField' do CEP, e atualiza a tabela e o comboBox;
-     * @param evt
-     */
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        jTextFieldEntradaCep.requestFocus();
-        atualizarComboCidade();
-        atualizarTabelaEndereco();
-    }//GEN-LAST:event_formComponentShown
-
-    /**
-     * Atualiza a tela GuiEndereco;
-     * @param evt
-     */
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         jTextFieldEntradaCep.requestFocus();
         atualizarTabelaEndereco();
         atualizarComboCidade();
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
-    /**
-     * Chama a GuiEnderecoNovo;
-     */
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         GuiEnderecoNovo novoEnd = new GuiEnderecoNovo();
         novoEnd.setVisible(true);
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
-    /**
-     * Chama o método 'apagarEndereco()';
-     */
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        alterarEndereco();
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
+
     private void jButtonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApagarActionPerformed
         apagarEndereco();
         limparCampos();
@@ -338,47 +325,26 @@ public class GuiEndereco extends javax.swing.JFrame {
         atualizarComboCidade();
     }//GEN-LAST:event_jButtonApagarActionPerformed
 
-    /**
-     * Filtra os registros da tabela pelo CEP;
-     */
-    private void jButtonPesquisaCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCEPActionPerformed
-        pesquisarEndCEP();
-        limparCampos();
-        jTextFieldEntradaCep.requestFocus();
-    }//GEN-LAST:event_jButtonPesquisaCEPActionPerformed
-
-    /**
-     * Filtra os registros da tabela pelo Logradouro;
-     */
     private void jButtonPesquisaLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaLogActionPerformed
         pesquisarEndLog();
         limparCampos();
         jTextFieldEntradaLog.requestFocus();
     }//GEN-LAST:event_jButtonPesquisaLogActionPerformed
 
-    /**
-     * Chama a GuiEnderecoAlterar;
-     */
-    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-        alterarEndereco();
-    }//GEN-LAST:event_jButtonAlterarActionPerformed
+    private void jButtonPesquisaCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCEPActionPerformed
+        pesquisarEndCEP();
+        limparCampos();
+        jTextFieldEntradaCep.requestFocus();
+    }//GEN-LAST:event_jButtonPesquisaCEPActionPerformed
 
-    /**
-     * AINDA SERÁ TRATADO!!!!!!!!!
-     * @param evt
-     */
     private void jComboBoxCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCidadeActionPerformed
         //
     }//GEN-LAST:event_jComboBoxCidadeActionPerformed
 
-    /**
-     * AINDA SERÁ TRATADO!!!!!!!!!
-     * @param evt
-     */
     private void jButtonPesquisarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarCidadeActionPerformed
         pesquisarEndCidade((String) jButtonPesquisarCidade.getSelectedObjects().toString());
     }//GEN-LAST:event_jButtonPesquisarCidadeActionPerformed
-
+    
     /**
      * Define o padrão da tabela e insere os dados da tabela Endereco em um ArrayList;
      * @param listaEndereco
