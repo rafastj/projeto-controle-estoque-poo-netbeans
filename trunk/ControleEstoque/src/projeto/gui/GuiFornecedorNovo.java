@@ -17,20 +17,20 @@ import projeto.modelo.to.Fornecedor;
  *
  * @author Daniel
  */
-public class GuiFornecedorNovoJD extends javax.swing.JDialog {
+public class GuiFornecedorNovo extends javax.swing.JDialog {
 
     public static Fachada fachada = new Fachada();
     
     /**
-     * Creates new form GuiFornecedorNovoJD
+     * Creates new form GuiFornecedorNovo
      */
-    public GuiFornecedorNovoJD(java.awt.Frame parent, boolean modal) {
+    public GuiFornecedorNovo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
     }
     
-    public GuiFornecedorNovoJD(){
+    public GuiFornecedorNovo(){
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -56,13 +56,13 @@ public class GuiFornecedorNovoJD extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiFornecedorNovoJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiFornecedorNovo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiFornecedorNovoJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiFornecedorNovo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiFornecedorNovoJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiFornecedorNovo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiFornecedorNovoJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiFornecedorNovo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -73,7 +73,7 @@ public class GuiFornecedorNovoJD extends javax.swing.JDialog {
 
             @Override
             public void run() {
-                GuiFornecedorNovoJD dialog = new GuiFornecedorNovoJD(new javax.swing.JFrame(), true);
+                GuiFornecedorNovo dialog = new GuiFornecedorNovo(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override
@@ -173,7 +173,7 @@ public class GuiFornecedorNovoJD extends javax.swing.JDialog {
             }
         });
 
-        jFormattedTextFieldEntradaNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("0"))));
+        jFormattedTextFieldEntradaNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
 
         try {
             jFormattedTextFieldEntradaCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
@@ -182,7 +182,7 @@ public class GuiFornecedorNovoJD extends javax.swing.JDialog {
         }
 
         try {
-            jFormattedTextFieldEntradaCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+            jFormattedTextFieldEntradaCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
