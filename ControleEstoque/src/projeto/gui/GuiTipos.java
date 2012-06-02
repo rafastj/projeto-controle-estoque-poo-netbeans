@@ -285,10 +285,10 @@ public class GuiTipos extends javax.swing.JFrame {
 
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
-               GuiAlterarTipo guiAlterarTipo= new GuiAlterarTipo();
-               guiAlterarTipo.jTDescTipo.setText(tOld.getTipos_Descricao());
-               guiAlterarTipo.jTCodTipo.setText(String.valueOf(tOld.getTipos_Codigo()));
-               guiAlterarTipo.setVisible(true);
+               GuiAlterarTipo guiAlterarTiposTeste= new GuiAlterarTipo();
+               guiAlterarTiposTeste.jTDescTipo.setText(tOld.getTipos_Descricao());
+               guiAlterarTiposTeste.jTCodTipo.setText(String.valueOf(tOld.getTipos_Codigo()));
+               guiAlterarTiposTeste.setVisible(true);
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Selecione um endereço!");
