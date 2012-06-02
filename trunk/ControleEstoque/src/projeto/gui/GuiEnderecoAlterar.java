@@ -16,16 +16,22 @@ import projeto.modelo.to.Endereco;
  *
  * @author Daniel
  */
-public class GuiEnderecoAlterarJD extends javax.swing.JDialog {
+public class GuiEnderecoAlterar extends javax.swing.JDialog {
     
     public static Fachada fachada = new Fachada();
 
     /**
-     * Creates new form GuiEnderecoAlterarJD
+     * Creates new form GuiEnderecoAlterar
      */
-    public GuiEnderecoAlterarJD(java.awt.Frame parent, boolean modal) {
+    public GuiEnderecoAlterar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+    }
+    
+    GuiEnderecoAlterar() {
+        initComponents();
+        setLocationRelativeTo(null);
     }
     
     /**
@@ -49,13 +55,13 @@ public class GuiEnderecoAlterarJD extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiEnderecoAlterarJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiEnderecoAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiEnderecoAlterarJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiEnderecoAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiEnderecoAlterarJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiEnderecoAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiEnderecoAlterarJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiEnderecoAlterar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -66,7 +72,7 @@ public class GuiEnderecoAlterarJD extends javax.swing.JDialog {
 
             @Override
             public void run() {
-                GuiEnderecoAlterarJD dialog = new GuiEnderecoAlterarJD(new javax.swing.JFrame(), true);
+                GuiEnderecoAlterar dialog = new GuiEnderecoAlterar(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override
@@ -78,7 +84,7 @@ public class GuiEnderecoAlterarJD extends javax.swing.JDialog {
             }
         });
     }
-    
+      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,6 +123,8 @@ public class GuiEnderecoAlterarJD extends javax.swing.JDialog {
         jPanelEndNew.setBorder(javax.swing.BorderFactory.createTitledBorder("Endereço Novo"));
 
         jLabelLogradouroNew.setText("Logradouro.:");
+
+        jTextFieldEntradaLog.setEditable(false);
 
         jLabelCidadeNew.setText("Cidade.:");
 
@@ -184,12 +192,13 @@ public class GuiEnderecoAlterarJD extends javax.swing.JDialog {
             jPanelEndNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEndNewLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelEndNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCEPNew)
-                    .addComponent(jLabelLogradouroNew)
-                    .addComponent(jTextFieldEntradaLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextFieldEntradaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonPesquisaCEPNew, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanelEndNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonPesquisaCEPNew, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanelEndNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelCEPNew)
+                        .addComponent(jLabelLogradouroNew)
+                        .addComponent(jTextFieldEntradaLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jFormattedTextFieldEntradaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelEndNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -244,12 +253,13 @@ public class GuiEnderecoAlterarJD extends javax.swing.JDialog {
             jPanelEndOldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEndOldLayout.createSequentialGroup()
                 .addContainerGap(43, Short.MAX_VALUE)
-                .addGroup(jPanelEndOldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldSaidaCidadeOld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelEndOldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelEndOldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabelCEP)
                         .addComponent(jFormattedTextFieldSaidaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabelCidadeOld))
+                    .addGroup(jPanelEndOldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldSaidaCidadeOld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelCidadeOld)))
                 .addGap(22, 22, 22))
             .addGroup(jPanelEndOldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelEndOldLayout.createSequentialGroup()
@@ -349,7 +359,8 @@ public class GuiEnderecoAlterarJD extends javax.swing.JDialog {
                     jFormattedTextFieldEntradaCEP.setValue(null);
                     jFormattedTextFieldEntradaCEP.requestFocus();
                 } else {
-                    jTextFieldEntradaLog.requestFocus();
+                    jTextFieldEntradaLog.setText(end.getEnderecos_Logradouro());
+                    jButtonAlterar.requestFocus();
                 }
             } 
         } catch (GeralException ex) {
@@ -376,7 +387,7 @@ public class GuiEnderecoAlterarJD extends javax.swing.JDialog {
     private javax.swing.JButton jButtonPesquisaCEPNew;
     private javax.swing.JComboBox jComboBoxCidade;
     private javax.swing.JFormattedTextField jFormattedTextFieldEntradaCEP;
-    private javax.swing.JFormattedTextField jFormattedTextFieldSaidaCEP;
+    public javax.swing.JFormattedTextField jFormattedTextFieldSaidaCEP;
     private javax.swing.JLabel jLabelCEP;
     private javax.swing.JLabel jLabelCEPNew;
     private javax.swing.JLabel jLabelCidadeNew;
