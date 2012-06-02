@@ -3,6 +3,7 @@
 <Form version="1.6" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="title" type="java.lang.String" value="Cadastro de fornecedores"/>
     <Property name="modal" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
@@ -29,8 +30,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanelFiltro" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jPanelLista" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jPanelLista" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jPanelFiltro" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -186,23 +190,17 @@
                       <Component id="jFormattedTextFieldEntradaCNPJ" alignment="0" pref="161" max="32767" attributes="0"/>
                       <Component id="jFormattedTextFieldEntradaCEP" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabelRazaoSocial" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelLogradouro" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelCidade" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jComboBoxCidade" alignment="0" pref="311" max="32767" attributes="0"/>
+                      <Component id="jTextFieldEntradaLog" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTextFieldEntradaRS" alignment="1" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jTextFieldEntradaLog" min="-2" pref="250" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabelNumero" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jFormattedTextFieldEntradaNumero" max="32767" attributes="0"/>
-                      </Group>
-                      <Component id="jComboBoxCidade" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -222,8 +220,6 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabelCEP" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelLogradouro" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelNumero" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jFormattedTextFieldEntradaNumero" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jTextFieldEntradaLog" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -279,21 +275,9 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxCidadeActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabelNumero">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="N&#xba;.:"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabelLogradouro">
           <Properties>
             <Property name="text" type="java.lang.String" value="Logradouro.:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldEntradaNumero">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format format="0" subtype="-1" type="0"/>
-            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldEntradaCNPJ">
