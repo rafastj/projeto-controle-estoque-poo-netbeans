@@ -277,7 +277,7 @@ public class GuiFornecedorAlterar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonGerenciarCidadeActionPerformed
 
     private void jButtonAlterarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarFornecedorActionPerformed
-        alterarFornecedor();
+        //alterarFornecedor();
     }//GEN-LAST:event_jButtonAlterarFornecedorActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -344,7 +344,7 @@ public class GuiFornecedorAlterar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         } 
     }
-    
+   /* 
     private void alterarFornecedor() {
         Endereco end;
         String cepOld;
@@ -367,7 +367,7 @@ public class GuiFornecedorAlterar extends javax.swing.JFrame {
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-    }
+    }*/
     
     private void atualizarComboCidade() {
         Cidade cid;
