@@ -13,13 +13,18 @@ import projeto.modelo.to.Cidade;
  *
  * @author Daniel
  */
-public class GuiCidadeAlterar extends javax.swing.JFrame {
+public class GuiCidadeAlterar extends javax.swing.JDialog {
 
     Fachada fachada = new Fachada();
-
+    
     /**
      * Creates new form GuiCidadeAlterar
      */
+    public GuiCidadeAlterar(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+    }
+    
     public GuiCidadeAlterar() {
         initComponents();
         setLocationRelativeTo(null);
@@ -58,17 +63,25 @@ public class GuiCidadeAlterar extends javax.swing.JFrame {
         //</editor-fold>
 
         /*
-         * Create and display the form
+         * Create and display the dialog
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             @Override
             public void run() {
-                new GuiCidadeAlterar().setVisible(true);
+                GuiCidadeAlterar dialog = new GuiCidadeAlterar(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,7 +99,7 @@ public class GuiCidadeAlterar extends javax.swing.JFrame {
         jButtonAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Alterar Cidade");
+        setModal(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -155,14 +168,10 @@ public class GuiCidadeAlterar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Chamada do método alterarCidade();
-     * @param evt
-     */
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         alterarCidade();
     }//GEN-LAST:event_jButtonAlterarActionPerformed
-
+    
     /**
      * Método que altera um registro selecionado;
      */
