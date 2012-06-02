@@ -221,7 +221,7 @@ public class GuiCidade extends javax.swing.JFrame {
      * @param evt
      */
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        GuiCidadeNova1 cdSalvar = new GuiCidadeNova1();
+        GuiCidadeNova cdSalvar = new GuiCidadeNova();
         cdSalvar.setVisible(true);
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
