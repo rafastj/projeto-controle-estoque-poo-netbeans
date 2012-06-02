@@ -87,8 +87,6 @@ public class GuiSalvarTipo extends JFrame {
         button_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                GuiTipos tela=new GuiTipos();
-                tela.setVisible(true);
             }
         });
         

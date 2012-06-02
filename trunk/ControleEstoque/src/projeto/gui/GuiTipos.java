@@ -11,6 +11,7 @@ import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Tipo;
 
+
 /**
  *
  * @author Felipe Carlos
@@ -50,6 +51,13 @@ public class GuiTipos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tipo");
         setPreferredSize(new java.awt.Dimension(525, 340));
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel1.setPreferredSize(new java.awt.Dimension(480, 82));
@@ -166,18 +174,12 @@ public class GuiTipos extends javax.swing.JFrame {
         // TODO add your handling code here:
         GuiSalvarTipo tela = new GuiSalvarTipo();
         tela.setVisible(true);
-        btnAlterar.setEnabled(false);
-        btnSalvar.setEnabled(false);
-        btnExcluir.setEnabled(false);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-       alterarTipo();
-       btnAlterar.setEnabled(false);
-       btnSalvar.setEnabled(false);
-       btnExcluir.setEnabled(false);
-       
+       alterarTipo();  
+        
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -190,6 +192,11 @@ public class GuiTipos extends javax.swing.JFrame {
         // TODO add your handling code here:
         pesquisarTipo();
     }//GEN-LAST:event_jTPesqKeyReleased
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        listaTabelaTipo();
+    }//GEN-LAST:event_formWindowGainedFocus
     /**
      * Define o padrão da tabela e insere os dados da tabela Tipos em um
      * ArrayList;
