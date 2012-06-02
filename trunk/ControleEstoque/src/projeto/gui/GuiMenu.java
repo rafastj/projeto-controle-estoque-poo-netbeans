@@ -65,7 +65,8 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMovimentacao = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
         jMenuItemLogoff = new javax.swing.JMenuItem();
         jMenuItemSair = new javax.swing.JMenuItem();
@@ -222,8 +223,17 @@ public class GuiMenu extends javax.swing.JFrame {
 
         jMenuBarra.add(jMenuCadastro);
 
-        jMenu2.setText("Movimentação");
-        jMenuBarra.add(jMenu2);
+        jMovimentacao.setText("Movimentação");
+
+        jMenuItem2.setText("Nota Fiscal");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMovimentacao.add(jMenuItem2);
+
+        jMenuBarra.add(jMovimentacao);
 
         jMenu9.setText("Sistema");
 
@@ -383,6 +393,12 @@ public class GuiMenu extends javax.swing.JFrame {
         gFuncionario.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        GuiNotaFiscal nf = new GuiNotaFiscal();
+        nf.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -428,7 +444,6 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jLoginField;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu9;
@@ -446,6 +461,7 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItemLogoff;
@@ -455,6 +471,7 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemSobre;
     private javax.swing.JMenu jMenuProduto;
     private javax.swing.JMenuItem jMenuTabelaCidade;
+    private javax.swing.JMenu jMovimentacao;
     private javax.swing.JPanel jPGuiLogin;
     private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JButton jbAcessar;
