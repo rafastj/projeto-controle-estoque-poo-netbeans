@@ -136,7 +136,7 @@ public class RepositorioTipo implements IRepositorioTipo {
     }
     
     
-    public Collection<Tipo> listarTipo(String Tipos_Descricao) throws ConexaoException,RepositorioException {
+    public Collection<Tipo> listarTipo() throws ConexaoException,RepositorioException {
         ArrayList <Tipo> lista = new ArrayList <Tipo>();
         Tipo t;
         Connection c = g.conectar();
@@ -144,6 +144,29 @@ public class RepositorioTipo implements IRepositorioTipo {
         try{
             Statement stm = c.createStatement();
             ResultSet rs = stm.executeQuery(sqlLista);
+            //verifica se retornou algum registro e cria os Objetos
+            while( rs.next() ){
+                t = new Tipo();
+                t.setTipos_Codigo( rs.getInt( "tipos_Codigo" ) );
+                t.setTipos_Descricao( rs.getString( "tipos_Descricao" ) );
+                lista.add( t );
+            } return lista;
+        } catch( SQLException e ) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar( c );
+        }
+    }
+    
+    public Collection<Tipo> listarTipoDescricao(String tipos_Descricao) throws ConexaoException,RepositorioException {
+        ArrayList <Tipo> lista = new ArrayList <Tipo>();
+        Tipo t;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT tipos_Codigo,tipos_Descricao FROM tipos where tipos_Descricao LIKE ? ORDER BY tipos_Codigo";
+        try{
+            PreparedStatement pstm = c.prepareStatement(sqlLista);
+            pstm.setString(1, tipos_Descricao+"%");
+            ResultSet rs = pstm.executeQuery();
             //verifica se retornou algum registro e cria os Objetos
             while( rs.next() ){
                 t = new Tipo();

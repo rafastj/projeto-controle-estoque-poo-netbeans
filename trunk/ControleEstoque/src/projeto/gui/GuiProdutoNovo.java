@@ -248,7 +248,7 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
         Tipo tp;
         ArrayList<Tipo> listatp;
         try {
-            listatp = (ArrayList<Tipo>) fachada.listarTipo("");
+            listatp = (ArrayList<Tipo>) fachada.listarTipo();
             for (Iterator<Tipo> it = listatp.iterator(); it.hasNext();) {
                 tp = it.next();
                 jTipoBox.addItem(tp.getTipos_Descricao());

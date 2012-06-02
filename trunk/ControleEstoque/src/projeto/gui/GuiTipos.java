@@ -4,17 +4,28 @@
  */
 package projeto.gui;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import projeto.erro.GeralException;
+import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.Tipo;
+
 /**
  *
  * @author Felipe Carlos
  */
 public class GuiTipos extends javax.swing.JFrame {
+    
+       ArrayList<Tipo> listaTipo = null;
+       public static Fachada fachada = new Fachada();
 
     /**
      * Creates new form GuiTipos
      */
     public GuiTipos() {
         initComponents();
+        listaTabelaTipo();
     }
 
     /**
@@ -27,9 +38,8 @@ public class GuiTipos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        JcFuncionario = new javax.swing.JTextField();
+        jTPesq = new javax.swing.JTextField();
         JlFuncionario = new javax.swing.JLabel();
-        btnPesquisar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JtListarTipos = new javax.swing.JTable();
@@ -38,18 +48,19 @@ public class GuiTipos extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Tipo");
         setPreferredSize(new java.awt.Dimension(525, 340));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtro"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel1.setPreferredSize(new java.awt.Dimension(480, 82));
 
-        JlFuncionario.setText("Tipo");
-
-        btnPesquisar.setText("...");
-        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarActionPerformed(evt);
+        jTPesq.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTPesqKeyReleased(evt);
             }
         });
+
+        JlFuncionario.setText("Descrição");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -59,38 +70,47 @@ public class GuiTipos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(JlFuncionario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JcFuncionario)
-                .addGap(20, 20, 20)
-                .addComponent(btnPesquisar)
-                .addGap(61, 61, 61))
+                .addComponent(jTPesq, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(3, 3, 3)
+                .addGap(5, 5, 5)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(JlFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JcFuncionario)
-                    .addComponent(btnPesquisar))
-                .addGap(30, 30, 30))
+                    .addComponent(jTPesq, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JlFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         JtListarTipos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null}
+
             },
             new String [] {
                 "Codigo", "Descrição"
             }
-        ));
-        JtListarTipos.setColumnSelectionAllowed(true);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        JtListarTipos.setShowHorizontalLines(false);
+        JtListarTipos.setShowVerticalLines(false);
+        JtListarTipos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(JtListarTipos);
-        JtListarTipos.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        JtListarTipos.getColumnModel().getColumn(0).setMinWidth(70);
+        JtListarTipos.getColumnModel().getColumn(0).setResizable(false);
         JtListarTipos.getColumnModel().getColumn(0).setPreferredWidth(70);
-        JtListarTipos.getColumnModel().getColumn(0).setMaxWidth(70);
+        JtListarTipos.getColumnModel().getColumn(1).setResizable(false);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 376, 180));
 
         btnAlterar.setText("Alterar");
         btnAlterar.setMaximumSize(new java.awt.Dimension(63, 23));
@@ -101,6 +121,7 @@ public class GuiTipos extends javax.swing.JFrame {
                 btnAlterarActionPerformed(evt);
             }
         });
+        jPanel2.add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 56, 70, 30));
 
         btnSalvar.setText("Novo");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +129,7 @@ public class GuiTipos extends javax.swing.JFrame {
                 btnSalvarActionPerformed(evt);
             }
         });
+        jPanel2.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 20, 70, 30));
 
         btnExcluir.setText("Excluir");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -115,61 +137,26 @@ public class GuiTipos extends javax.swing.JFrame {
                 btnExcluirActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                    .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 37, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(0, 121, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
+        jPanel2.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 92, 70, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel1, 489, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(3, 3, 3)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -177,24 +164,130 @@ public class GuiTipos extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
-        GuiFuncionarioNovo fu = new GuiFuncionarioNovo();
-        fu.setVisible(true);
+        GuiSalvarTipo tela = new GuiSalvarTipo();
+        tela.setVisible(true);
+        btnAlterar.setEnabled(false);
+        btnSalvar.setEnabled(false);
+        btnExcluir.setEnabled(false);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-        GuiFuncionarioAlterar fu = new GuiFuncionarioAlterar();
-        fu.setVisible(true);
+       alterarTipo();
+       btnAlterar.setEnabled(false);
+       btnSalvar.setEnabled(false);
+       btnExcluir.setEnabled(false);
+       
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
+        apagarTipo();
+        listaTabelaTipo();
     }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+    private void jTPesqKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPesqKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnPesquisarActionPerformed
+        pesquisarTipo();
+    }//GEN-LAST:event_jTPesqKeyReleased
+    /**
+     * Define o padrão da tabela e insere os dados da tabela Tipos em um
+     * ArrayList;
+     *
+     * @param listaTipo
+     * @return
+     */
+    private DefaultTableModel geramodelo(ArrayList<Tipo> listaTipo) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Código");
+        modelo.addColumn("Descrição");
+      
+        ArrayList<String> valores;
+        int i = 0;
+        for (Tipo t : listaTipo) {
+            valores = new ArrayList<String>();
+            valores.add(String.valueOf(t.getTipos_Codigo()));
+            valores.add(t.getTipos_Descricao());
+            modelo.insertRow(i, valores.toArray());
+            i++;
+        }
+        return modelo;
+    }
+    
+      /**
+     * Método para listar todos os registros de Tipo;
+     */
+    private void listaTabelaTipo() {
+        //MOSTRAR TODOS OS REGISTRO DE TIPOS
+        
+        try {
+            listaTipo = (ArrayList<Tipo>) fachada.listarTipo();
+        }catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaTipo);
+            JtListarTipos.setModel(modelo);
+    }
 
+    /**
+     * Método para apagar um registro selecionado na tabela;
+     */
+    private void apagarTipo() {
+        int resposta;
+        try {
+            Tipo t = listaTipo.get(JtListarTipos.getSelectedRow());
+
+            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Apagar ?", "", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+                Tipo tConsult = fachada.consultarTipos(t.getTipos_Codigo());
+                if (tConsult != null) {
+                    fachada.excluirTipo(t.getTipos_Codigo());
+                    JOptionPane.showMessageDialog(null, "Registro excluído!");
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione o Tipo!");
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    private void pesquisarTipo() {
+        
+        try {
+            
+            if ((jTPesq.getText() == "")||( jTPesq.getText() == null)) {
+               listaTipo = (ArrayList<Tipo>) fachada.listarTipo();
+               DefaultTableModel modelo = geramodelo(listaTipo);
+            }
+            else{
+                listaTipo = (ArrayList<Tipo>) fachada.listarTiposDescricao(jTPesq.getText());
+                DefaultTableModel modelo = geramodelo(listaTipo);
+                JtListarTipos.setModel(modelo);
+            }
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+       
+    }
+    
+     private void alterarTipo() {
+        int resposta;
+        try {
+            Tipo tOld = listaTipo.get(JtListarTipos.getSelectedRow());
+
+            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar?", "", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+               GuiAlterarTipo guiAlterarTipo= new GuiAlterarTipo();
+               guiAlterarTipo.jTDescTipo.setText(tOld.getTipos_Descricao());
+               guiAlterarTipo.jTCodTipo.setText(String.valueOf(tOld.getTipos_Codigo()));
+               guiAlterarTipo.setVisible(true);
+            }
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione um endereço!");
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -237,15 +330,14 @@ public class GuiTipos extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField JcFuncionario;
     private javax.swing.JLabel JlFuncionario;
     private javax.swing.JTable JtListarTipos;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnExcluir;
-    private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTPesq;
     // End of variables declaration//GEN-END:variables
 }
