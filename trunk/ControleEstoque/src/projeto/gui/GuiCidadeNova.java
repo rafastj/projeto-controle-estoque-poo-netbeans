@@ -27,6 +27,12 @@ public class GuiCidadeNova extends javax.swing.JDialog {
         setLocationRelativeTo(null);//mostra no centro da tela
         jTextFieldEntradaCidade.requestFocus();
     }
+    
+    GuiCidadeNova() {
+        initComponents();
+        setLocationRelativeTo(null);//mostra no centro da tela
+        jTextFieldEntradaCidade.requestFocus();
+    }
         
     /**
      * @param args the command line arguments
@@ -94,6 +100,7 @@ public class GuiCidadeNova extends javax.swing.JDialog {
         jButtonSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setModal(true);
 
         jLabel1.setText("Nome da Cidade.:");
 
