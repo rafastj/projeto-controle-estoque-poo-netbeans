@@ -4,6 +4,10 @@
  */
 package projeto.gui;
 
+import javax.swing.JOptionPane;
+import projeto.erro.GeralException;
+import projeto.modelo.fachada.Fachada;
+
 /**
  *
  * @author Thiago Evoa
@@ -45,6 +49,11 @@ public class GuiUsuarioNovo extends javax.swing.JFrame {
         JlSenhaUsuario.setText("Senha usuário.:");
 
         JbSalvar.setText("Salvar");
+        JbSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -112,6 +121,11 @@ public class GuiUsuarioNovo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbSalvarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_JbSalvarActionPerformed
 
     /**
      * @param args the command line arguments
