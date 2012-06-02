@@ -26,11 +26,13 @@ public class GuiCidade extends javax.swing.JDialog {
     public GuiCidade(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
     }
     
     public GuiCidade() {
         initComponents();
         setLocationRelativeTo(null);
+        atualizarTabelaCidade();
     }
  
     /**
@@ -300,7 +302,7 @@ public class GuiCidade extends javax.swing.JDialog {
     /**
      * Método para atualizar a tela trazendo a lista atualizada;
      */
-    public void atualizarTabelaCidade() {
+    private void atualizarTabelaCidade() {
         try {
             listaCidade = (ArrayList<Cidade>) fachada.listarCidadeTudo();
         } catch (GeralException ex) {
@@ -313,7 +315,7 @@ public class GuiCidade extends javax.swing.JDialog {
     /**
      * Método que filtra a lista pelo nome da cidade informada;
      */
-    public void pesquisarCidadeNome() {
+    private void pesquisarCidadeNome() {
         try {
             if ((jTextFieldCampoCidade.getText() == null) || (jTextFieldCampoCidade.getText().equals(""))) {
                 listaCidade = (ArrayList<Cidade>) fachada.listarCidadeTudo();
