@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.6" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="Fornecedor"/>
+    <Property name="modal" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -26,13 +26,13 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jPanelLista" max="32767" attributes="0"/>
-                  <Component id="jPanelFiltro" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jPanelFiltro" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jPanelLista" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -49,6 +49,120 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanelLista">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Lista dos Fornecedores"/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPaneFornecedor" min="-2" pref="645" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jButtonAtualizar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButtonNovo" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButtonAlterar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButtonApagar" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jButtonAtualizar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jButtonNovo" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jButtonAlterar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jButtonApagar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="111" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="jScrollPaneFornecedor" alignment="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="jButtonAtualizar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Atualizar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Atualizar lista de fornecedores"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAtualizarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonNovo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Novo"/>
+            <Property name="toolTipText" type="java.lang.String" value="Salvar novo fornecedor"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonNovoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonAlterar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Alterar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Alterar o registro selecionado"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAlterarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonApagar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Apagar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Excluir o registro selecionado"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonApagarActionPerformed"/>
+          </Events>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPaneFornecedor">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTable" name="jTableListaFornecedor">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="6" rowCount="1">
+                    <Column editable="true" title="CNPJ" type="java.lang.Object"/>
+                    <Column editable="true" title="Raz&#xe3;o Social" type="java.lang.Object"/>
+                    <Column editable="true" title="Logradouro" type="java.lang.Object"/>
+                    <Column editable="true" title="N&#xfa;mero" type="java.lang.Object"/>
+                    <Column editable="true" title="Cidade" type="java.lang.Object"/>
+                    <Column editable="true" title="CEP" type="java.lang.Object"/>
+                  </Table>
+                </Property>
+                <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
+                  <JTableSelectionModel selectionMode="0"/>
+                </Property>
+                <Property name="showHorizontalLines" type="boolean" value="false"/>
+                <Property name="showVerticalLines" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
     <Container class="javax.swing.JPanel" name="jPanelFiltro">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -61,7 +175,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabelCNPJ" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -69,14 +183,14 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jFormattedTextFieldEntradaCNPJ" pref="161" max="32767" attributes="0"/>
-                      <Component id="jFormattedTextFieldEntradaCEP" max="32767" attributes="0"/>
+                      <Component id="jFormattedTextFieldEntradaCNPJ" alignment="0" pref="161" max="32767" attributes="0"/>
+                      <Component id="jFormattedTextFieldEntradaCEP" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabelRazaoSocial" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelLogradouro" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelCidade" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelRazaoSocial" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelLogradouro" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelCidade" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -88,7 +202,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jFormattedTextFieldEntradaNumero" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jComboBoxCidade" max="32767" attributes="0"/>
+                      <Component id="jComboBoxCidade" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -96,9 +210,9 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabelCNPJ" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelRazaoSocial" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -118,7 +232,7 @@
                               <Component id="jLabelCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Component id="jFormattedTextFieldEntradaCNPJ" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jFormattedTextFieldEntradaCEP" min="-2" max="-2" attributes="0"/>
@@ -207,117 +321,6 @@
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldEntradaLogKeyReleased"/>
           </Events>
         </Component>
-      </SubComponents>
-    </Container>
-    <Container class="javax.swing.JPanel" name="jPanelLista">
-      <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Lista dos Fornecedores"/>
-          </Border>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPaneFornecedor" min="-2" pref="645" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jButtonAtualizar" max="32767" attributes="0"/>
-                      <Component id="jButtonNovo" max="32767" attributes="0"/>
-                      <Component id="jButtonAlterar" max="32767" attributes="0"/>
-                      <Component id="jButtonApagar" min="-2" pref="75" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="jButtonAtualizar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButtonNovo" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButtonAlterar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButtonApagar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="109" max="32767" attributes="0"/>
-                      </Group>
-                      <Component id="jScrollPaneFornecedor" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JButton" name="jButtonAtualizar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Atualizar"/>
-            <Property name="toolTipText" type="java.lang.String" value="Atualizar lista de fornecedores"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAtualizarActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButtonNovo">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Novo"/>
-            <Property name="toolTipText" type="java.lang.String" value="Salvar novo fornecedor"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonNovoActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButtonAlterar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Alterar"/>
-            <Property name="toolTipText" type="java.lang.String" value="Alterar o registro selecionado"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAlterarActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButtonApagar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Apagar"/>
-            <Property name="toolTipText" type="java.lang.String" value="Excluir o registro selecionado"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonApagarActionPerformed"/>
-          </Events>
-        </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPaneFornecedor">
-          <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-          </AuxValues>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-          <SubComponents>
-            <Component class="javax.swing.JTable" name="jTableListaFornecedor">
-              <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="6" rowCount="1">
-                    <Column editable="true" title="CNPJ" type="java.lang.Object"/>
-                    <Column editable="true" title="Raz&#xe3;o Social" type="java.lang.Object"/>
-                    <Column editable="true" title="Logradouro" type="java.lang.Object"/>
-                    <Column editable="true" title="N&#xfa;mero" type="java.lang.Object"/>
-                    <Column editable="true" title="Cidade" type="java.lang.Object"/>
-                    <Column editable="true" title="CEP" type="java.lang.Object"/>
-                  </Table>
-                </Property>
-                <Property name="showHorizontalLines" type="boolean" value="false"/>
-                <Property name="showVerticalLines" type="boolean" value="false"/>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
       </SubComponents>
     </Container>
   </SubComponents>
