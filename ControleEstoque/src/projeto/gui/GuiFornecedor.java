@@ -413,12 +413,12 @@ public class GuiFornecedor extends javax.swing.JFrame {
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
                 GuiFornecedorAlterar guiFornecedorAlterar = new GuiFornecedorAlterar();
-                guiFornecedorAlterar.jFormattedTextFieldEntradaCNPJ.setText(fOld.getFornecedores_CNPJ());
-                guiFornecedorAlterar.jTextFieldEntradaRS.setText(fOld.getFornecedores_RazaoSocial());
-                guiFornecedorAlterar.jFormattedTextFieldEntradaCEP.setText(fOld.getEnderecos_CEP());
-                guiFornecedorAlterar.jTextFieldEntradaLog.setText(fOld.getEnderecos_Logradouro());
-                guiFornecedorAlterar.jFormattedTextFieldEntradaNumero.setText(String.valueOf(fOld.getFornecedores_NumeroResidencia()));
-                //guiFornecedorAlterar.jTextFieldEntradaCidade.setText(fOld.getCidades_Nome());
+                guiFornecedorAlterar.jFormattedTextFieldSaidaCNPJ.setText(fOld.getFornecedores_CNPJ());
+                guiFornecedorAlterar.jTextFieldSaidaRS.setText(fOld.getFornecedores_RazaoSocial());
+                guiFornecedorAlterar.jFormattedTextFieldSaidaCEP.setText(fOld.getEnderecos_CEP());
+                guiFornecedorAlterar.jTextFieldSaidaLog.setText(fOld.getEnderecos_Logradouro());
+                guiFornecedorAlterar.jFormattedTextFieldSaidaNumero.setText(String.valueOf(fOld.getFornecedores_NumeroResidencia()));
+                guiFornecedorAlterar.jTextFieldSaidaCidade.setText(fOld.getCidades_Nome());
                 guiFornecedorAlterar.setVisible(true);
             }
         } catch (ArrayIndexOutOfBoundsException ex) {

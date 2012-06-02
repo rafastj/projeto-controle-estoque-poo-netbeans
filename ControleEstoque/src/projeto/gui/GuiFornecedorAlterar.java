@@ -80,18 +80,31 @@ public class GuiFornecedorAlterar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelFiltro = new javax.swing.JPanel();
+        jPanelForAntigo = new javax.swing.JPanel();
         jLabelCNPJ = new javax.swing.JLabel();
         jLabelRazaoSocial = new javax.swing.JLabel();
-        jTextFieldEntradaRS = new javax.swing.JTextField();
+        jTextFieldSaidaRS = new javax.swing.JTextField();
         jLabelCEP = new javax.swing.JLabel();
-        jButtonPesquisaCNPJ = new javax.swing.JButton();
-        jButtonPesquisaCEP = new javax.swing.JButton();
         jLabelCidade = new javax.swing.JLabel();
-        jComboBoxCidade = new javax.swing.JComboBox();
-        jButtonGerenciarCidade = new javax.swing.JButton();
         jLabelNumero = new javax.swing.JLabel();
         jLabelLogradouro = new javax.swing.JLabel();
+        jFormattedTextFieldSaidaNumero = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldSaidaCNPJ = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldSaidaCEP = new javax.swing.JFormattedTextField();
+        jTextFieldSaidaLog = new javax.swing.JTextField();
+        jTextFieldSaidaCidade = new javax.swing.JTextField();
+        jPanelForAtual = new javax.swing.JPanel();
+        jLabelCNPJ1 = new javax.swing.JLabel();
+        jLabelRazaoSocial1 = new javax.swing.JLabel();
+        jTextFieldEntradaRS = new javax.swing.JTextField();
+        jLabelCEP1 = new javax.swing.JLabel();
+        jButtonPesquisaCNPJ = new javax.swing.JButton();
+        jButtonPesquisaCEP = new javax.swing.JButton();
+        jLabelCidade1 = new javax.swing.JLabel();
+        jComboBoxCidade = new javax.swing.JComboBox();
+        jButtonGerenciarCidade = new javax.swing.JButton();
+        jLabelNumero1 = new javax.swing.JLabel();
+        jLabelLogradouro1 = new javax.swing.JLabel();
         jButtonAlterarFornecedor = new javax.swing.JButton();
         jFormattedTextFieldEntradaNumero = new javax.swing.JFormattedTextField();
         jFormattedTextFieldEntradaCNPJ = new javax.swing.JFormattedTextField();
@@ -105,13 +118,108 @@ public class GuiFornecedorAlterar extends javax.swing.JFrame {
             }
         });
 
-        jPanelFiltro.setBorder(javax.swing.BorderFactory.createTitledBorder("Alterar"));
+        jPanelForAntigo.setBorder(javax.swing.BorderFactory.createTitledBorder("Fornecedor Antigo"));
 
         jLabelCNPJ.setText("CNPJ.:");
 
         jLabelRazaoSocial.setText("Razão Social.:");
 
+        jTextFieldSaidaRS.setEditable(false);
+
         jLabelCEP.setText("CEP.:");
+
+        jLabelCidade.setText("Cidade.:");
+
+        jLabelNumero.setText("Número.:");
+
+        jLabelLogradouro.setText("Logradouro.:");
+
+        jFormattedTextFieldSaidaNumero.setEditable(false);
+        jFormattedTextFieldSaidaNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("0"))));
+
+        jFormattedTextFieldSaidaCNPJ.setEditable(false);
+        try {
+            jFormattedTextFieldSaidaCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jFormattedTextFieldSaidaCEP.setEditable(false);
+        try {
+            jFormattedTextFieldSaidaCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jTextFieldSaidaLog.setEditable(false);
+
+        jTextFieldSaidaCidade.setEditable(false);
+
+        javax.swing.GroupLayout jPanelForAntigoLayout = new javax.swing.GroupLayout(jPanelForAntigo);
+        jPanelForAntigo.setLayout(jPanelForAntigoLayout);
+        jPanelForAntigoLayout.setHorizontalGroup(
+            jPanelForAntigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelForAntigoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelForAntigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelNumero)
+                    .addComponent(jLabelCEP)
+                    .addComponent(jLabelCNPJ))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelForAntigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jFormattedTextFieldSaidaCNPJ, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                    .addComponent(jFormattedTextFieldSaidaCEP)
+                    .addComponent(jFormattedTextFieldSaidaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(jPanelForAntigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelRazaoSocial)
+                    .addComponent(jLabelLogradouro)
+                    .addComponent(jLabelCidade))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelForAntigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldSaidaCidade)
+                    .addComponent(jTextFieldSaidaLog)
+                    .addComponent(jTextFieldSaidaRS))
+                .addContainerGap())
+        );
+        jPanelForAntigoLayout.setVerticalGroup(
+            jPanelForAntigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelForAntigoLayout.createSequentialGroup()
+                .addGroup(jPanelForAntigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelForAntigoLayout.createSequentialGroup()
+                        .addGroup(jPanelForAntigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelCNPJ)
+                            .addComponent(jFormattedTextFieldSaidaCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelForAntigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelCEP)
+                            .addComponent(jFormattedTextFieldSaidaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelForAntigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelNumero)
+                            .addComponent(jFormattedTextFieldSaidaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanelForAntigoLayout.createSequentialGroup()
+                        .addGroup(jPanelForAntigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelRazaoSocial)
+                            .addComponent(jTextFieldSaidaRS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelForAntigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelLogradouro)
+                            .addComponent(jTextFieldSaidaLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelForAntigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelCidade)
+                            .addComponent(jTextFieldSaidaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+
+        jPanelForAtual.setBorder(javax.swing.BorderFactory.createTitledBorder("Fornecedor Atual"));
+
+        jLabelCNPJ1.setText("CNPJ.:");
+
+        jLabelRazaoSocial1.setText("Razão Social.:");
+
+        jLabelCEP1.setText("CEP.:");
 
         jButtonPesquisaCNPJ.setText("Pesquisar");
         jButtonPesquisaCNPJ.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +235,7 @@ public class GuiFornecedorAlterar extends javax.swing.JFrame {
             }
         });
 
-        jLabelCidade.setText("Cidade.:");
+        jLabelCidade1.setText("Cidade.:");
 
         jButtonGerenciarCidade.setText("Gerenciar Cidade");
         jButtonGerenciarCidade.addActionListener(new java.awt.event.ActionListener() {
@@ -136,9 +244,9 @@ public class GuiFornecedorAlterar extends javax.swing.JFrame {
             }
         });
 
-        jLabelNumero.setText("Número.:");
+        jLabelNumero1.setText("Número.:");
 
-        jLabelLogradouro.setText("Logradouro.:");
+        jLabelLogradouro1.setText("Logradouro.:");
 
         jButtonAlterarFornecedor.setText("Alterar Fornecedor");
         jButtonAlterarFornecedor.addActionListener(new java.awt.event.ActionListener() {
@@ -161,82 +269,82 @@ public class GuiFornecedorAlterar extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        javax.swing.GroupLayout jPanelFiltroLayout = new javax.swing.GroupLayout(jPanelFiltro);
-        jPanelFiltro.setLayout(jPanelFiltroLayout);
-        jPanelFiltroLayout.setHorizontalGroup(
-            jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelFiltroLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelForAtualLayout = new javax.swing.GroupLayout(jPanelForAtual);
+        jPanelForAtual.setLayout(jPanelForAtualLayout);
+        jPanelForAtualLayout.setHorizontalGroup(
+            jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelForAtualLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelNumero)
-                    .addComponent(jLabelCEP)
-                    .addComponent(jLabelCNPJ))
+                .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelNumero1)
+                    .addComponent(jLabelCEP1)
+                    .addComponent(jLabelCNPJ1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFiltroLayout.createSequentialGroup()
+                .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelForAtualLayout.createSequentialGroup()
                         .addComponent(jFormattedTextFieldEntradaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                        .addComponent(jLabelCidade))
+                        .addComponent(jLabelCidade1))
                     .addComponent(jFormattedTextFieldEntradaCNPJ)
                     .addComponent(jFormattedTextFieldEntradaCEP))
-                .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelFiltroLayout.createSequentialGroup()
+                .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelForAtualLayout.createSequentialGroup()
                         .addGap(103, 103, 103)
-                        .addComponent(jLabelRazaoSocial)
+                        .addComponent(jLabelRazaoSocial1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldEntradaRS))
-                    .addGroup(jPanelFiltroLayout.createSequentialGroup()
-                        .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelFiltroLayout.createSequentialGroup()
+                    .addGroup(jPanelForAtualLayout.createSequentialGroup()
+                        .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelForAtualLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButtonPesquisaCNPJ)
-                                    .addGroup(jPanelFiltroLayout.createSequentialGroup()
+                                    .addGroup(jPanelForAtualLayout.createSequentialGroup()
                                         .addComponent(jButtonPesquisaCEP)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabelLogradouro))))
-                            .addGroup(jPanelFiltroLayout.createSequentialGroup()
+                                        .addComponent(jLabelLogradouro1))))
+                            .addGroup(jPanelForAtualLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelFiltroLayout.createSequentialGroup()
+                        .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelForAtualLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonGerenciarCidade)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                                 .addComponent(jButtonAlterarFornecedor))
-                            .addGroup(jPanelFiltroLayout.createSequentialGroup()
+                            .addGroup(jPanelForAtualLayout.createSequentialGroup()
                                 .addGap(5, 5, 5)
                                 .addComponent(jTextFieldEntradaLog)))))
                 .addContainerGap())
         );
-        jPanelFiltroLayout.setVerticalGroup(
-            jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelFiltroLayout.createSequentialGroup()
-                .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelFiltroLayout.createSequentialGroup()
-                        .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelCNPJ)
+        jPanelForAtualLayout.setVerticalGroup(
+            jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelForAtualLayout.createSequentialGroup()
+                .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelForAtualLayout.createSequentialGroup()
+                        .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelCNPJ1)
                             .addComponent(jButtonPesquisaCNPJ)
                             .addComponent(jFormattedTextFieldEntradaCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelCEP)
+                        .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelCEP1)
                             .addComponent(jButtonPesquisaCEP)
                             .addComponent(jFormattedTextFieldEntradaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelNumero)
-                            .addComponent(jLabelCidade)
+                        .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelNumero1)
+                            .addComponent(jLabelCidade1)
                             .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonGerenciarCidade)
                             .addComponent(jFormattedTextFieldEntradaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanelFiltroLayout.createSequentialGroup()
-                        .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelRazaoSocial)
+                    .addGroup(jPanelForAtualLayout.createSequentialGroup()
+                        .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelRazaoSocial1)
                             .addComponent(jTextFieldEntradaRS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelLogradouro)
+                        .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelLogradouro1)
                             .addComponent(jTextFieldEntradaLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonAlterarFornecedor)))
@@ -249,40 +357,47 @@ public class GuiFornecedorAlterar extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelFiltro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelForAtual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelForAntigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelFiltro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanelForAntigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanelForAtual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonPesquisaCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCNPJActionPerformed
-        pesquisarCNPJ();
-    }//GEN-LAST:event_jButtonPesquisaCNPJActionPerformed
-
-    private void jButtonPesquisaCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCEPActionPerformed
-        pesquisarCEP();
-    }//GEN-LAST:event_jButtonPesquisaCEPActionPerformed
-
-    private void jButtonGerenciarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerenciarCidadeActionPerformed
-        GuiCidade cidade = new GuiCidade();
-        cidade.setVisible(true);
-    }//GEN-LAST:event_jButtonGerenciarCidadeActionPerformed
-
-    private void jButtonAlterarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarFornecedorActionPerformed
-        //alterarFornecedor();
-    }//GEN-LAST:event_jButtonAlterarFornecedorActionPerformed
-
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         atualizarComboCidade();
     }//GEN-LAST:event_formComponentShown
+
+    private void jButtonPesquisaCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCNPJActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonPesquisaCNPJActionPerformed
+
+    private void jButtonPesquisaCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisaCEPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonPesquisaCEPActionPerformed
+
+    private void jButtonGerenciarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerenciarCidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonGerenciarCidadeActionPerformed
+
+    private void jButtonAlterarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarFornecedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAlterarFornecedorActionPerformed
+
+    private void jTextFieldEntradaRSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEntradaRSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldEntradaRSActionPerformed
     
     private void pesquisarCNPJ() {
         String str_cnpj;
@@ -290,7 +405,7 @@ public class GuiFornecedorAlterar extends javax.swing.JFrame {
         int resComCadastro;
         int resSemCadastro;
         try {
-            str_cnpj = jFormattedTextFieldEntradaCNPJ.getText();
+            str_cnpj = jFormattedTextFieldSaidaCNPJ.getText();
             str_cnpj = str_cnpj.replace('.', ' ');
             str_cnpj = str_cnpj.replace('/', ' ');
             str_cnpj = str_cnpj.replace('-', ' ');
@@ -298,20 +413,20 @@ public class GuiFornecedorAlterar extends javax.swing.JFrame {
             fornecedores_CNPJ = str_cnpj;
             if ((fornecedores_CNPJ == null) || (fornecedores_CNPJ.equals(""))) {
                 JOptionPane.showMessageDialog(null, "Digite o CNPJ!");
-                jFormattedTextFieldEntradaCNPJ.requestFocus();
+                jFormattedTextFieldSaidaCNPJ.requestFocus();
             } else {
                 Fornecedor f = fachada.consultarForCNPJ(fornecedores_CNPJ);
                 if (f != null) {
                     resComCadastro = JOptionPane.showConfirmDialog(null, "CNPJ já está cadastrado!\nDeseja alterar?", "", JOptionPane.YES_NO_OPTION);
                     if (resComCadastro == JOptionPane.YES_OPTION) {
-                        jFormattedTextFieldEntradaCNPJ.requestFocus();
+                        jFormattedTextFieldSaidaCNPJ.requestFocus();
                     } else {
-                        jTextFieldEntradaRS.requestFocus();
+                        jTextFieldSaidaRS.requestFocus();
                     }
                 } else {
                     resSemCadastro = JOptionPane.showConfirmDialog(null, "CNPJ não está cadastrado!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
                     if (resSemCadastro == JOptionPane.YES_OPTION) {
-                        jTextFieldEntradaRS.requestFocus();
+                        jTextFieldSaidaRS.requestFocus();
                     } else {
                         dispose();
                     }
@@ -325,49 +440,29 @@ public class GuiFornecedorAlterar extends javax.swing.JFrame {
     private void pesquisarCEP() {
         String str_cep;
         try {
-            str_cep = jFormattedTextFieldEntradaCEP.getText();
+            str_cep = jFormattedTextFieldSaidaCEP.getText();
             str_cep = str_cep.replace('-', ' ');
             str_cep = str_cep.replaceAll(" ", "");
             if ((str_cep == null) || (str_cep.equals(""))) {
                 JOptionPane.showMessageDialog(null, "Digite o CEP!");
-                jFormattedTextFieldEntradaCEP.requestFocus();
+                jFormattedTextFieldSaidaCEP.requestFocus();
             } else {
                 Endereco end = fachada.consultarEndCep(str_cep);
                 if (end != null) {
-                    jFormattedTextFieldEntradaCEP.setText(end.getEnderecos_CEP());
-                    jTextFieldEntradaLog.setText(end.getEnderecos_Logradouro());
+                    jFormattedTextFieldSaidaCEP.setText(end.getEnderecos_CEP());
+                    jTextFieldSaidaLog.setText(end.getEnderecos_Logradouro());
                 } else {
-                    jTextFieldEntradaLog.requestFocus();
+                    jTextFieldSaidaLog.requestFocus();
                 }
             }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         } 
     }
-   /* 
+   
     private void alterarFornecedor() {
-        Endereco end;
-        String cepOld;
-        int enderecos_Codigo;
-        try {
-            cepOld = jTextFieldSaidaCepOld.getText();
-            end = fachada.consultarEndCep(cepOld);
-            Cidade cd = fachada.consultarCidade((String) jComboBoxCidadeNew.getSelectedItem());
-            Endereco fAlterar = new Endereco();
-            enderecos_Codigo = end.getEnderecos_Codigo();
-            fAlterar.setEnderecos_Codigo(enderecos_Codigo);
-            fAlterar.setEnderecos_Logradouro(jTextFieldEntradaLogNew.getText());
-            fAlterar.setEnderecos_CEP(jTextFieldEntradaCepNew.getText());
-            fAlterar.setCidades_Codigo(cd.getCidades_Codigo());
-            fachada.alterarFornecedor(fAlterar);
-
-            JOptionPane.showMessageDialog(null, "Endereço alterado!");
-            dispose();
-
-        } catch (GeralException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-    }*/
+        
+    }
     
     private void atualizarComboCidade() {
         Cidade cid;
@@ -391,14 +486,27 @@ public class GuiFornecedorAlterar extends javax.swing.JFrame {
     public javax.swing.JFormattedTextField jFormattedTextFieldEntradaCEP;
     public javax.swing.JFormattedTextField jFormattedTextFieldEntradaCNPJ;
     public javax.swing.JFormattedTextField jFormattedTextFieldEntradaNumero;
+    public javax.swing.JFormattedTextField jFormattedTextFieldSaidaCEP;
+    public javax.swing.JFormattedTextField jFormattedTextFieldSaidaCNPJ;
+    public javax.swing.JFormattedTextField jFormattedTextFieldSaidaNumero;
     private javax.swing.JLabel jLabelCEP;
+    private javax.swing.JLabel jLabelCEP1;
     private javax.swing.JLabel jLabelCNPJ;
+    private javax.swing.JLabel jLabelCNPJ1;
     private javax.swing.JLabel jLabelCidade;
+    private javax.swing.JLabel jLabelCidade1;
     private javax.swing.JLabel jLabelLogradouro;
+    private javax.swing.JLabel jLabelLogradouro1;
     private javax.swing.JLabel jLabelNumero;
+    private javax.swing.JLabel jLabelNumero1;
     private javax.swing.JLabel jLabelRazaoSocial;
-    private javax.swing.JPanel jPanelFiltro;
+    private javax.swing.JLabel jLabelRazaoSocial1;
+    private javax.swing.JPanel jPanelForAntigo;
+    private javax.swing.JPanel jPanelForAtual;
     public javax.swing.JTextField jTextFieldEntradaLog;
     public javax.swing.JTextField jTextFieldEntradaRS;
+    public javax.swing.JTextField jTextFieldSaidaCidade;
+    public javax.swing.JTextField jTextFieldSaidaLog;
+    public javax.swing.JTextField jTextFieldSaidaRS;
     // End of variables declaration//GEN-END:variables
 }

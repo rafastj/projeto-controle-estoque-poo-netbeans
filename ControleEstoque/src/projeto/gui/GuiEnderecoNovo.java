@@ -14,21 +14,28 @@ import projeto.modelo.to.Endereco;
 
 /**
  *
- * @author DANIEL VALENÇA
+ * @author Daniel
  */
-public class GuiEnderecoNovo extends javax.swing.JFrame {
-
+public class GuiEnderecoNovo extends javax.swing.JDialog {
+    
     public static Fachada fachada = new Fachada();
 
     /**
      * Creates new form GuiEnderecoNovo
      */
-    public GuiEnderecoNovo() {
+    public GuiEnderecoNovo(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        jTextFieldEntradaCEP.requestFocus();
+        jFormattedTextFieldCEP.requestFocus();
     }
-
+    
+    GuiEnderecoNovo() {
+        initComponents();
+        setLocationRelativeTo(null);
+        jFormattedTextFieldCEP.requestFocus();
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -61,13 +68,21 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
         //</editor-fold>
 
         /*
-         * Create and display the form
+         * Create and display the dialog
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             @Override
             public void run() {
-                new GuiEnderecoNovo().setVisible(true);
+                GuiEnderecoNovo dialog = new GuiEnderecoNovo(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -85,15 +100,15 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
         jLabelCEP = new javax.swing.JLabel();
         jLabelLogradouro = new javax.swing.JLabel();
         jLabelCidade = new javax.swing.JLabel();
-        jTextFieldEntradaCEP = new javax.swing.JTextField();
         jTextFieldEntradaLog = new javax.swing.JTextField();
         jComboBoxCidade = new javax.swing.JComboBox();
         jButtonConsultarCEP = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
         jButtonIncluirCidade = new javax.swing.JButton();
+        jFormattedTextFieldCEP = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Novo Endereço");
+        setModal(true);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -129,6 +144,12 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
             }
         });
 
+        try {
+            jFormattedTextFieldCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanelNovoEnderecoLayout = new javax.swing.GroupLayout(jPanelNovoEndereco);
         jPanelNovoEndereco.setLayout(jPanelNovoEnderecoLayout);
         jPanelNovoEnderecoLayout.setHorizontalGroup(
@@ -142,16 +163,16 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelNovoEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelNovoEnderecoLayout.createSequentialGroup()
-                        .addGroup(jPanelNovoEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextFieldEntradaCEP)
-                            .addComponent(jComboBoxCidade, 0, 205, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelNovoEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextFieldCEP))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanelNovoEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonConsultarCEP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonIncluirCidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTextFieldEntradaLog, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE))
+                    .addComponent(jTextFieldEntradaLog))
                 .addContainerGap())
         );
         jPanelNovoEnderecoLayout.setVerticalGroup(
@@ -160,8 +181,8 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelNovoEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCEP)
-                    .addComponent(jTextFieldEntradaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonConsultarCEP))
+                    .addComponent(jButtonConsultarCEP)
+                    .addComponent(jFormattedTextFieldCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelNovoEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelLogradouro)
@@ -189,22 +210,17 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelNovoEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanelNovoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        jTextFieldEntradaCEP.requestFocus();
-        listarComboBoxCidade();
-    }//GEN-LAST:event_formComponentShown
+    private void jButtonConsultarCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarCEPActionPerformed
+        consultarCep();
+    }//GEN-LAST:event_jButtonConsultarCEPActionPerformed
 
-    /**
-     * Chamada do médoto salvarEndereco();
-     * @param evt
-     */
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         salvarEndereco();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
@@ -214,10 +230,11 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
         cidade.setVisible(true);
     }//GEN-LAST:event_jButtonIncluirCidadeActionPerformed
 
-    private void jButtonConsultarCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarCEPActionPerformed
-        consultarCep();
-    }//GEN-LAST:event_jButtonConsultarCEPActionPerformed
-
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        jFormattedTextFieldCEP.requestFocus();
+        listarComboBoxCidade();
+    }//GEN-LAST:event_formComponentShown
+    
     /**
      * Método que salva um novo registro Endereco;
      */
@@ -225,17 +242,21 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
         int resposta;
         int enderecos_Codigo;
         int cidades_Codigo;
-        String enderecos_Cep;
+        String enderecos_CEP;
         String enderecos_Logradouro;
         String cidades_Nome;
+        String str_cep;
         try {
+            str_cep = jFormattedTextFieldCEP.getText();
+            str_cep = str_cep.replace('-', ' ');
+            str_cep = str_cep.replaceAll(" ", "");
+            enderecos_CEP = str_cep;
             enderecos_Codigo = 0;
-            enderecos_Cep = jTextFieldEntradaCEP.getText();
             enderecos_Logradouro = jTextFieldEntradaLog.getText();
             cidades_Nome = jComboBoxCidade.getSelectedItem().toString();
             Cidade cd = fachada.consultarCidade(cidades_Nome);
             cidades_Codigo = cd.getCidades_Codigo();
-            Endereco end = new Endereco(enderecos_Codigo, enderecos_Cep, enderecos_Logradouro, cidades_Codigo, cidades_Nome);
+            Endereco end = new Endereco(enderecos_Codigo, enderecos_CEP, enderecos_Logradouro, cidades_Codigo, cidades_Nome);
             fachada.salvarEndereco(end);
             resposta = JOptionPane.showConfirmDialog(null, "Registro salvo com sucesso!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.NO_OPTION) {
@@ -246,7 +267,7 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         } finally {
-            jTextFieldEntradaCEP.requestFocus();
+            jFormattedTextFieldCEP.requestFocus();
         }
     }
 
@@ -255,7 +276,7 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
      */
     private void limparCampos() {
         //limpar os edits
-        jTextFieldEntradaCEP.setText("");
+        jFormattedTextFieldCEP.setText("");
         jTextFieldEntradaLog.setText("");
     }
 
@@ -263,17 +284,21 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
      * Método que verifica se já existe o CEP cadastrado, caso exista, escolha se quer consultar outro ou sair;
      */
     private void consultarCep() {
-        String enderecos_CEP;
         int resComCadastro;
         int resSemCadastro;
+        String str_cep;
+        String enderecos_CEP;
         try {
-            enderecos_CEP = jTextFieldEntradaCEP.getText();
+            str_cep = jFormattedTextFieldCEP.getText();
+            str_cep = str_cep.replace('-', ' ');
+            str_cep = str_cep.replaceAll(" ", "");
+            enderecos_CEP = str_cep;
             Endereco end = fachada.consultarEndCep(enderecos_CEP);
             if (end != null) {
                 resComCadastro = JOptionPane.showConfirmDialog(null, "CEP já está cadastrado!\nDeseja cadastrar outro?", "", JOptionPane.YES_NO_OPTION);
                 if (resComCadastro == JOptionPane.YES_OPTION) {
-                    jTextFieldEntradaCEP.setText("");
-                    jTextFieldEntradaCEP.requestFocus();
+                    jFormattedTextFieldCEP.setValue(null);
+                    jFormattedTextFieldCEP.requestFocus();
                 } else {
                     dispose();
                 }
@@ -311,11 +336,11 @@ public class GuiEnderecoNovo extends javax.swing.JFrame {
     private javax.swing.JButton jButtonIncluirCidade;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox jComboBoxCidade;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCEP;
     private javax.swing.JLabel jLabelCEP;
     private javax.swing.JLabel jLabelCidade;
     private javax.swing.JLabel jLabelLogradouro;
     private javax.swing.JPanel jPanelNovoEndereco;
-    private javax.swing.JTextField jTextFieldEntradaCEP;
     private javax.swing.JTextField jTextFieldEntradaLog;
     // End of variables declaration//GEN-END:variables
 }
