@@ -11,23 +11,23 @@ import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Cidade;
 
 /**
- *@author DANIEL VALENÇA
+ *
+ * @author Daniel
  */
-public class GuiCidadeNova extends javax.swing.JFrame {
-
+public class GuiCidadeNova extends javax.swing.JDialog {
     public static Fachada fachada = new Fachada();
     ArrayList<Cidade> listaCidade = null;
     GuiCidade guiCidade = new GuiCidade();
-
     /**
-     * Creates new form GuiCidade
+     * Creates new form GuiCidadeNova
      */
-    public GuiCidadeNova() {
+    public GuiCidadeNova(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);//mostra no centro da tela
         jTextFieldEntradaCidade.requestFocus();
     }
-
+        
     /**
      * @param args the command line arguments
      */
@@ -60,13 +60,21 @@ public class GuiCidadeNova extends javax.swing.JFrame {
         //</editor-fold>
 
         /*
-         * Create and display the form
+         * Create and display the dialog
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             @Override
             public void run() {
-                new GuiCidadeNova().setVisible(true);
+                GuiCidadeNova dialog = new GuiCidadeNova(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -86,8 +94,6 @@ public class GuiCidadeNova extends javax.swing.JFrame {
         jButtonSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Salvar Cidade");
-        setName("frameCidadeNova");
 
         jLabel1.setText("Nome da Cidade.:");
 
@@ -144,18 +150,13 @@ public class GuiCidadeNova extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-294)/2, (screenSize.height-125)/2, 294, 125);
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Chamada do método salvarCidade();
-     * @param evt
-     */
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         salvarCidade();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
-
+    
     /**
      * Método que salva um novo registro na tabela Cidade;
      */
