@@ -10,6 +10,7 @@ import projeto.conexao.GerenciadorConexao;
 import projeto.conexao.IGerenciadorConexao;
 import projeto.erro.ConexaoException;
 import projeto.erro.RepositorioException;
+import projeto.modelo.to.Cliente;
 import projeto.modelo.to.PessoaFisica;
 import projeto.modelo.to.PessoaJuridica;
 
@@ -85,24 +86,31 @@ public class RepositorioCliente implements IRepositorioCliente {
     @Override
     public void alterar(PessoaFisica pf) throws ConexaoException, RepositorioException {
          /**
-         * conectar faz a conexão com o banco de dados
+         * conectar faz a conexÃ£o com o banco de dados
          */
         Connection c = g.conectar();
         /**
-         * variavel do tipo String da Instrução de inserção SQL
+         * variavel do tipo String da InstruÃ§Ã£o de inserÃ§Ã£o SQL
          */
-        String sqlAlterarPF = "UPDATE PessoaFisica SET PessoasFisica_CPF = ? ,PessoasFisica_Nome = ?, PessoasFisica_Sexo = ? WHERE PessoasFisica_CPF = ?";
-
+        String sqlAlterarPF = "UPDATE PessoasFisica SET PessoasFisica_CPF = ? ,PessoasFisica_Nome = ?, PessoasFisica_Sexo = ? WHERE CLIENTES_CODIGO = ?";
+        String sqlAlterarCli = "UPDATE CLENTES SET CLIENTES_NUMERORESIDENCIA = ?, CLIENTES_TIPO = ? WHERE CLIENTES_CODIGO = ?";
+        
         try {
-            PreparedStatement pstm = c.prepareStatement(sqlAlterarPF);
+            PreparedStatement pstm = c.prepareStatement(sqlAlterarCli);
+            pstm.setString(1, pf.getClientes_NumeroResidencia());
+            pstm.setString(2, pf.getClientes_Tipo());
+            pstm.setInt(3, pf.getClientes_Codigo());
+            pstm.executeUpdate();
+            pstm.close();
+            
+            pstm = c.prepareStatement(sqlAlterarPF);
             pstm.setString(1, pf.getPessoasFisica_CPF());
             pstm.setString(2, pf.getPessoasFisica_Nome());
             pstm.setString(3, pf.getPessoasFisica_Sexo());
-            pstm.setString(5, pf.getClientes_NumeroResidencia());
-            //pstm.setDouble(6, pf.getProdutos_ValorVenda());
-           // pstm.setInt(7, pf.getProdutos_Codigo());
+            pstm.setInt(4, pf.getClientes_Codigo());
             pstm.executeUpdate();
             pstm.close();
+            
         } catch (SQLException ex) {
             throw new RepositorioException(ex.getMessage());
         } finally {
@@ -113,25 +121,30 @@ public class RepositorioCliente implements IRepositorioCliente {
     @Override
     public void alterar(PessoaJuridica pj) throws ConexaoException, RepositorioException {
               /**
-         * conectar faz a conexão com o banco de dados
+         * conectar faz a conexÃ£o com o banco de dados
          */
         Connection c = g.conectar();
         /**
-         * variavel do tipo String da Instrução de inserção SQL
+         * variavel do tipo String da InstruÃ§Ã£o de inserÃ§Ã£o SQL
          */
-        String sqlAlterar = "UPDATE Produtos SET Segmentos_Codigo = ? ,Tipos_Codigo = ?, Marcas_Codigo = ?, Produtos_Descricao = ?, Produtos_Quantidade = ?, Produtos_ValorVenda = ? WHERE produtos_Codigo = ?";
-
+        String sqlAlterarPJ = "UPDATE PESSOASJURIDICA SET PESSOASJURIDICA_CNPJ = ? ,PESSOASFISICA_RAZAOSOCIAL = ?, WHERE CLIENTES_CODIGO = ?";
+        String sqlAlterarCli = "UPDATE CLENTES SET CLIENTES_NUMERORESIDENCIA = ?, CLIENTES_TIPO = ? WHERE CLIENTES_CODIGO = ?";
+        
         try {
-            PreparedStatement pstm = c.prepareStatement(sqlAlterar);
-            pstm.setInt(1, pj.getClientes_Codigo());
-            pstm.setString(2, pj.getPessoasJuridica_RazaoSocial());
-            pstm.setString(3, pj.getPessoasJuridica_CNPJ());
-            pstm.setString(4, pj.getClientes_NumeroResidencia());
-//            pstm.setString(5, pj.getClientes_NumeroResidencia());
-            //pstm.setDouble(6, pf.getProdutos_ValorVenda());
-           // pstm.setInt(7, pf.getProdutos_Codigo());
+            PreparedStatement pstm = c.prepareStatement(sqlAlterarCli);
+            pstm.setString(1, pj.getClientes_NumeroResidencia());
+            pstm.setString(2, pj.getClientes_Tipo());
+            pstm.setInt(3, pj.getClientes_Codigo());
             pstm.executeUpdate();
             pstm.close();
+            
+            pstm = c.prepareStatement(sqlAlterarPJ);
+            pstm.setString(1, pj.getPessoasJuridica_CNPJ());
+            pstm.setString(2, pj.getPessoasJuridica_RazaoSocial());
+            pstm.setInt(3, pj.getClientes_Codigo());
+            pstm.executeUpdate();
+            pstm.close();
+            
         } catch (SQLException ex) {
             throw new RepositorioException(ex.getMessage());
         } finally {
@@ -139,18 +152,49 @@ public class RepositorioCliente implements IRepositorioCliente {
         }
     }
 
- 
- 
-    
+     
+   
     @Override
-    public void excluir(int id) throws ConexaoException, RepositorioException {
+    public void excluirPF(int codigo) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
-        String sqlExcluir = "DELETE FROM produto WHERE (id=?)";
+        String sqlExcluirPF = "DELETE FROM PessoasFisica WHERE (clientes_codogo = ?)";
+        String sqlExcluirCli = "DELETE FROM Clientes WHERE (clientes_codogo = ?)";
         try {
-            PreparedStatement pstm = c.prepareStatement(sqlExcluir);
-            pstm.setInt(1, id);
+            PreparedStatement pstm = c.prepareStatement(sqlExcluirPF);
+            pstm.setInt(1, codigo);
             pstm.executeUpdate();
             pstm.close();
+            
+            pstm = c.prepareStatement(sqlExcluirCli);
+            pstm.setInt(1, codigo);
+            pstm.executeUpdate();
+            pstm.close();
+            
+            
+        } catch (SQLException ex) {
+            throw new RepositorioException();
+        } finally {
+            g.desconectar(c);
+        }
+    }
+
+    @Override
+       public void excluirPJ(int codigo) throws ConexaoException, RepositorioException {
+        Connection c = g.conectar();
+        String sqlExcluirPF = "DELETE FROM PessoasJuridica WHERE (clientes_codogo = ?)";
+        String sqlExcluirCli = "DELETE FROM Clientes WHERE (clientes_codogo = ?)";
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlExcluirPF);
+            pstm.setInt(1, codigo);
+            pstm.executeUpdate();
+            pstm.close();
+            
+            pstm = c.prepareStatement(sqlExcluirCli);
+            pstm.setInt(1, codigo);
+            pstm.executeUpdate();
+            pstm.close();
+            
+            
         } catch (SQLException ex) {
             throw new RepositorioException();
         } finally {
@@ -286,6 +330,25 @@ public class RepositorioCliente implements IRepositorioCliente {
         return pj;
     }
 
+    @Override
+        public boolean consultarCliente(int codigo) throws ConexaoException, RepositorioException {
+        Connection c = g.conectar();
+        String sqlConsulta = "select * from clientes where (clientes_codigo = ?)";
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlConsulta);
+            pstm.setInt(1, codigo);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RepositorioException(e.getMessage());
+        } finally {
+            g.desconectar(c);
+        }
+        return false;
+    }
+
     
     
     @Override
@@ -338,6 +401,35 @@ public class RepositorioCliente implements IRepositorioCliente {
                 pj.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
                 pj.setClientes_Tipo(rs.getString("clientes_tipo"));
                 lista.add(pj);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar(c);
+        }
+    }
+
+    @Override
+        public Collection<Cliente> listarTodosCliente() throws ConexaoException, RepositorioException {
+        ArrayList<Cliente> lista = new ArrayList<Cliente>();
+        Cliente cli;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT pj.clientes_Codigo, pj.PessoasJuridica_CNPJ, pj.PessoasJuridica_RazaoSocial,cli.clientes_tipo, cli.clientes_numeroresidencia, cli.enderecos_Codigo from PessoasJuridica AS pj, clientes as cli ORDER BY pj.clientes_Codigo";
+
+        try {
+            Statement stm = c.createStatement();
+            ResultSet rs = stm.executeQuery(sqlLista);
+            //verifica se retornou algum registro e cria os Objetos
+            while (rs.next()) {
+                cli = new Cliente();
+                cli.setClientes_Codigo(rs.getInt("clientes_Codigo"));
+                cli.setNome(rs.getString("PessoasJuridica_CNPJ"));
+                cli.setEnderecos_Codigo(rs.getInt("PessoasJuridica_RazaoSocial"));
+                cli.setClientes_NumeroResidencia(rs.getString("clientes_NumeroResidencia"));
+                cli.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                cli.setClientes_Tipo(rs.getString("clientes_tipo"));
+                lista.add(cli);
             }
             return lista;
         } catch (SQLException e) {
