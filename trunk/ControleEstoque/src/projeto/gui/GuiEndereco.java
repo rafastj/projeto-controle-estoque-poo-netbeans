@@ -28,12 +28,14 @@ public class GuiEndereco extends javax.swing.JDialog {
     public GuiEndereco(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setLocationRelativeTo(null);
     }
-    
+
     public GuiEndereco() {
         initComponents();
         setLocationRelativeTo(null);
+        limparCampos();
+        atualizarComboCidade();
+        atualizarTabelaEndereco();
     }
 
     /**
@@ -86,7 +88,7 @@ public class GuiEndereco extends javax.swing.JDialog {
             }
         });
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -292,7 +294,7 @@ public class GuiEndereco extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
-        jFormattedTextFieldCEP.requestFocus();
+        limparCampos();
         atualizarTabelaEndereco();
         atualizarComboCidade();
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
@@ -300,20 +302,21 @@ public class GuiEndereco extends javax.swing.JDialog {
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         GuiEnderecoNovo novoEnd = new GuiEnderecoNovo();
         novoEnd.setVisible(true);
+        limparCampos();
         atualizarTabelaEndereco();
         atualizarComboCidade();
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         alterarEndereco();
+        limparCampos();
         atualizarTabelaEndereco();
         atualizarComboCidade();
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApagarActionPerformed
-        apagarEndereco();
+        excluirEndereco();
         limparCampos();
-        jFormattedTextFieldCEP.requestFocus();
         atualizarTabelaEndereco();
         atualizarComboCidade();
     }//GEN-LAST:event_jButtonApagarActionPerformed
@@ -323,8 +326,7 @@ public class GuiEndereco extends javax.swing.JDialog {
     }//GEN-LAST:event_jComboBoxCidadeActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        atualizarComboCidade();
-        atualizarTabelaEndereco();        
+        //        
     }//GEN-LAST:event_formComponentShown
 
     private void jFormattedTextFieldCEPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCEPKeyReleased
@@ -334,29 +336,106 @@ public class GuiEndereco extends javax.swing.JDialog {
     private void jTextFieldEntradaLogKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldEntradaLogKeyReleased
         pesquisarEndLog();
     }//GEN-LAST:event_jTextFieldEntradaLogKeyReleased
-    
-    /**
-     * Define o padrão da tabela e insere os dados da tabela Endereco em um ArrayList;
-     * @param listaEndereco
-     * @return
-     */
-    private DefaultTableModel geramodelo(ArrayList<Endereco> listaEndereco) {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("CEP");
-        modelo.addColumn("Logradouro");
-        modelo.addColumn("Cidade");
 
-        ArrayList<String> valores;
-        int i = 0;
-        for (Endereco end : listaEndereco) {
-            valores = new ArrayList<String>();
-            valores.add(end.getEnderecos_CEP());
-            valores.add(end.getEnderecos_Logradouro());
-            valores.add(end.getCidades_Nome());
-            modelo.insertRow(i, valores.toArray());
-            i++;
+    /**
+     * Método para alterar um endereço;
+     */
+    private void alterarEndereco() {
+        int resposta;
+        Endereco endOld;
+        try {
+            endOld = listaEndereco.get(jTableListaEndereco.getSelectedRow());
+
+            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar?", "", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+                GuiEnderecoAlterar guiEnderecoAlterar = new GuiEnderecoAlterar();
+                guiEnderecoAlterar.jTextFieldSaidaLogOld.setText(endOld.getEnderecos_Logradouro());
+                guiEnderecoAlterar.jTextFieldSaidaCidadeOld.setText(endOld.getCidades_Nome());
+                guiEnderecoAlterar.jFormattedTextFieldSaidaCEP.setText(endOld.getEnderecos_CEP());
+                guiEnderecoAlterar.setVisible(true);
+            }
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione um endereço!");
         }
-        return modelo;
+    }
+
+    /**
+     * Método para apagar um registro selecionado na tabela;
+     */
+    private void excluirEndereco() {
+        int resposta;
+        Endereco end;
+        Endereco endConsult;
+        try {
+            end = listaEndereco.get(jTableListaEndereco.getSelectedRow());
+
+            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Apagar ?", "", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+                endConsult = fachada.consultarEndCep(end.getEnderecos_CEP());
+                if (endConsult != null) {
+                    fachada.excluirEndereco(endConsult.getEnderecos_CEP());
+                    JOptionPane.showMessageDialog(null, "Registro excluído!");
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione o endereço!");
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    /**
+     * Filtra a lista pelo CEP passado; Lista completa caso o campo seja nulo;
+     */
+    private void pesquisarEndCEP() {
+        String str_cep;
+        String enderecos_CEP;
+        try {
+            str_cep = jFormattedTextFieldCEP.getText();
+            str_cep = str_cep.replace('-', ' ');
+            str_cep = str_cep.replaceAll(" ", "");
+            enderecos_CEP = str_cep;
+            if ((jFormattedTextFieldCEP.getText() == null) || (jFormattedTextFieldCEP.getText().equals(""))) {
+                listaEndereco = (ArrayList<Endereco>) fachada.listarEndTudo();
+            } else {
+                listaEndereco = (ArrayList<Endereco>) fachada.listarEndCEP(enderecos_CEP);
+            }
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaEndereco);
+        jTableListaEndereco.setModel(modelo);
+    }
+
+    /**
+     * Filtra a lista pelo Logradouro passado; Lista completa caso o campo seja
+     * nulo;
+     */
+    private void pesquisarEndLog() {
+        try {
+            if ((jTextFieldEntradaLog.getText() == null) || (jTextFieldEntradaLog.getText().equals(""))) {
+                listaEndereco = (ArrayList<Endereco>) fachada.listarEndTudo();
+            } else {
+                listaEndereco = (ArrayList<Endereco>) fachada.listarEndLog(jTextFieldEntradaLog.getText());
+            }
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaEndereco);
+        jTableListaEndereco.setModel(modelo);
+    }
+
+    /**
+     * Filtra a lista pela cidade selecionada no ComboBox;
+     */
+    private void pesquisarCidade(String cidades_Nome) {
+        try {
+            listaEndereco = (ArrayList<Endereco>) fachada.listarEndCidade(cidades_Nome);
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaEndereco);
+        jTableListaEndereco.setModel(modelo);
     }
 
     /**
@@ -389,108 +468,36 @@ public class GuiEndereco extends javax.swing.JDialog {
         jTableListaEndereco.setModel(modelo);
     }
 
-    /**
-     * Método para apagar um registro selecionado na tabela;
-     */
-    private void apagarEndereco() {
-        int resposta;
-        try {
-            Endereco end = listaEndereco.get(jTableListaEndereco.getSelectedRow());
-
-            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Apagar ?", "", JOptionPane.YES_NO_OPTION);
-            if (resposta == JOptionPane.YES_OPTION) {
-                Endereco endConsult = fachada.consultarEndCep(end.getEnderecos_CEP());
-                if (endConsult != null) {
-                    fachada.excluirEndereco(endConsult.getEnderecos_CEP());
-                    JOptionPane.showMessageDialog(null, "Registro excluído!");
-                }
-            }
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            JOptionPane.showMessageDialog(null, "Selecione o endereço!");
-        } catch (GeralException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-    }
-
-    /**
-     * Filtra a lista pelo CEP passado;
-     * Lista completa caso o campo seja nulo;
-     */
-    private void pesquisarEndCEP() {
-        String str_cep;
-        String enderecos_CEP;
-        try {
-            str_cep = jFormattedTextFieldCEP.getText();
-            str_cep = str_cep.replace('-', ' ');
-            str_cep = str_cep.replaceAll(" ", "");
-            enderecos_CEP = str_cep;
-            if ((jFormattedTextFieldCEP.getText() == null) || (jFormattedTextFieldCEP.getText().equals(""))) {
-                listaEndereco = (ArrayList<Endereco>) fachada.listarEndTudo();
-            } else {
-                listaEndereco = (ArrayList<Endereco>) fachada.listarEndCEP(enderecos_CEP);
-            }
-        } catch (GeralException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-        DefaultTableModel modelo = geramodelo(listaEndereco);
-        jTableListaEndereco.setModel(modelo);
-    }
-
-    /**
-     * Filtra a lista pelo Logradouro passado;
-     * Lista completa caso o campo seja nulo;
-     */
-    private void pesquisarEndLog() {
-        try {
-            if ((jTextFieldEntradaLog.getText() == null) || (jTextFieldEntradaLog.getText().equals(""))) {
-                listaEndereco = (ArrayList<Endereco>) fachada.listarEndTudo();
-            } else {
-                listaEndereco = (ArrayList<Endereco>) fachada.listarEndLog(jTextFieldEntradaLog.getText());
-            }
-        } catch (GeralException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-        DefaultTableModel modelo = geramodelo(listaEndereco);
-        jTableListaEndereco.setModel(modelo);
-    }
-
-    /**
-     * Método para alterar um endereço;
-     */
-    private void alterarEndereco() {
-        int resposta;
-        try {
-            Endereco endOld = listaEndereco.get(jTableListaEndereco.getSelectedRow());
-
-            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar?", "", JOptionPane.YES_NO_OPTION);
-            if (resposta == JOptionPane.YES_OPTION) {
-                GuiEnderecoAlterar guiEnderecoAlterar = new GuiEnderecoAlterar();
-                guiEnderecoAlterar.jTextFieldSaidaLogOld.setText(endOld.getEnderecos_Logradouro());
-                guiEnderecoAlterar.jTextFieldSaidaCidadeOld.setText(endOld.getCidades_Nome());
-                guiEnderecoAlterar.jFormattedTextFieldSaidaCEP.setText(endOld.getEnderecos_CEP());
-                guiEnderecoAlterar.setVisible(true);
-            }
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            JOptionPane.showMessageDialog(null, "Selecione um endereço!");
-        }
-    }
-    
-    /**
-     * Filtra a lista pela cidade selecionada no ComboBox;
-     */
-    private void pesquisarCidade(String cidades_Nome) {
-        try{
-            listaEndereco = ( ArrayList<Endereco>)fachada.listarEndCidade(cidades_Nome);
-        } catch (GeralException ex){
-                JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-        DefaultTableModel modelo = geramodelo(listaEndereco);
-        jTableListaEndereco.setModel(modelo);
-    }
-    
     private void limparCampos() {
         jFormattedTextFieldCEP.setText("");
         jTextFieldEntradaLog.setText("");
+        jFormattedTextFieldCEP.requestFocus();
+    }
+
+    /**
+     * Define o padrão da tabela e insere os dados da tabela Endereco em um
+     * ArrayList;
+     *
+     * @param listaEndereco
+     * @return
+     */
+    private DefaultTableModel geramodelo(ArrayList<Endereco> listaEndereco) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("CEP");
+        modelo.addColumn("Logradouro");
+        modelo.addColumn("Cidade");
+
+        ArrayList<String> valores;
+        int i = 0;
+        for (Endereco end : listaEndereco) {
+            valores = new ArrayList<String>();
+            valores.add(end.getEnderecos_CEP());
+            valores.add(end.getEnderecos_Logradouro());
+            valores.add(end.getCidades_Nome());
+            modelo.insertRow(i, valores.toArray());
+            i++;
+        }
+        return modelo;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;
