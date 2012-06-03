@@ -300,10 +300,14 @@ public class GuiEndereco extends javax.swing.JDialog {
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         GuiEnderecoNovo novoEnd = new GuiEnderecoNovo();
         novoEnd.setVisible(true);
+        atualizarTabelaEndereco();
+        atualizarComboCidade();
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         alterarEndereco();
+        atualizarTabelaEndereco();
+        atualizarComboCidade();
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApagarActionPerformed
@@ -451,19 +455,6 @@ public class GuiEndereco extends javax.swing.JDialog {
     }
 
     /**
-     * Filtra a lista pela cidade selecionada no ComboBox;
-     */
-    private void pesquisarEndCidade(String cidades_Nome) {
-        try {
-            listaEndereco = (ArrayList<Endereco>) fachada.listarEndCidade(cidades_Nome);
-        } catch (GeralException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-        DefaultTableModel modelo = geramodelo(listaEndereco);
-        jTableListaEndereco.setModel(modelo);
-    }
-
-    /**
      * Método para alterar um endereço;
      */
     private void alterarEndereco() {
@@ -484,6 +475,9 @@ public class GuiEndereco extends javax.swing.JDialog {
         }
     }
     
+    /**
+     * Filtra a lista pela cidade selecionada no ComboBox;
+     */
     private void pesquisarCidade(String cidades_Nome) {
         try{
             listaEndereco = ( ArrayList<Endereco>)fachada.listarEndCidade(cidades_Nome);

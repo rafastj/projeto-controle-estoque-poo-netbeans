@@ -28,7 +28,6 @@ public class GuiFornecedor extends javax.swing.JDialog {
     public GuiFornecedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setLocationRelativeTo(null);
     }
     
     GuiFornecedor() {
@@ -332,21 +331,28 @@ public class GuiFornecedor extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
-        atualizarTabela();
         limparCampos();
+        atualizarComboCidade();
+        atualizarTabela();
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         GuiFornecedorNovo fornecedor = new GuiFornecedorNovo();
         fornecedor.setVisible(true);
+        atualizarComboCidade();
+        atualizarTabela();
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         alterarFornecedor();
+        atualizarComboCidade();
+        atualizarTabela();
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApagarActionPerformed
         excluirFornecedor();
+        atualizarComboCidade();
+        atualizarTabela();
     }//GEN-LAST:event_jButtonApagarActionPerformed
 
     private void jTextFieldEntradaRSKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldEntradaRSKeyReleased
@@ -373,41 +379,6 @@ public class GuiFornecedor extends javax.swing.JDialog {
         atualizarComboCidade();
         atualizarTabela();
     }//GEN-LAST:event_formComponentShown
-
-    private DefaultTableModel geramodelo(ArrayList<Fornecedor> listaFornecedor) {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("CNPJ");
-        modelo.addColumn("Razão Social");
-        modelo.addColumn("Logradouro");
-        modelo.addColumn("Número");
-        modelo.addColumn("Cidade");
-        modelo.addColumn("CEP");
-
-        ArrayList<String> valores;
-        int i = 0;
-        for (Fornecedor f : listaFornecedor) {
-            valores = new ArrayList<String>();
-            valores.add(f.getFornecedores_CNPJ());
-            valores.add(f.getFornecedores_RazaoSocial());
-            valores.add(f.getEnderecos_Logradouro());
-            valores.add(String.valueOf(f.getFornecedores_NumeroResidencia()));
-            valores.add(f.getCidades_Nome());
-            valores.add(f.getEnderecos_CEP());
-            modelo.insertRow(i, valores.toArray());
-            i++;
-        }
-        return modelo;
-    }
-
-    public void atualizarTabela() {
-        try {
-            listaFornecedor = (ArrayList<Fornecedor>) fachada.listarFornecedor();
-        } catch (GeralException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-        DefaultTableModel modelo = geramodelo(listaFornecedor);
-        jTableListaFornecedor.setModel(modelo);
-    }
 
     private void alterarFornecedor() {
         int resposta;
@@ -441,27 +412,12 @@ public class GuiFornecedor extends javax.swing.JDialog {
                 Fornecedor fConsult = fachada.consultarForCNPJ(f.getFornecedores_CNPJ());
                 if (fConsult != null) {
                     fachada.excluirFornecedor(fConsult.getFornecedores_CNPJ());
-                    atualizarTabela();
                 }
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Selecione um Registro!");
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex);
-        }
-    }
-    
-    private void atualizarComboCidade() {
-        Cidade cid;
-        ArrayList<Cidade> listaCd;
-        try {
-            listaCd = (ArrayList<Cidade>) fachada.listarCidadeTudo();
-            for (Iterator<Cidade> it = listaCd.iterator(); it.hasNext();) {
-                cid = it.next();
-                jComboBoxCidade.addItem(cid.getCidades_Nome());
-            }
-        } catch (GeralException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
     
@@ -545,11 +501,60 @@ public class GuiFornecedor extends javax.swing.JDialog {
         jTableListaFornecedor.setModel(modelo);
     }
     
+    public void atualizarTabela() {
+        try {
+            listaFornecedor = (ArrayList<Fornecedor>) fachada.listarFornecedor();
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaFornecedor);
+        jTableListaFornecedor.setModel(modelo);
+    }
+    
+    private void atualizarComboCidade() {
+        Cidade cid;
+        ArrayList<Cidade> listaCd;
+        try {
+            listaCd = (ArrayList<Cidade>) fachada.listarCidadeTudo();
+            for (Iterator<Cidade> it = listaCd.iterator(); it.hasNext();) {
+                cid = it.next();
+                jComboBoxCidade.addItem(cid.getCidades_Nome());
+            }
+        } catch (GeralException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+    
     private void limparCampos() {
         jFormattedTextFieldEntradaCNPJ.setValue(null);
         jFormattedTextFieldEntradaCEP.setValue(null);
         jTextFieldEntradaRS.setText("");
         jTextFieldEntradaLog.setText("");
+    }
+    
+    private DefaultTableModel geramodelo(ArrayList<Fornecedor> listaFornecedor) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("CNPJ");
+        modelo.addColumn("Razão Social");
+        modelo.addColumn("Logradouro");
+        modelo.addColumn("Número");
+        modelo.addColumn("Cidade");
+        modelo.addColumn("CEP");
+
+        ArrayList<String> valores;
+        int i = 0;
+        for (Fornecedor f : listaFornecedor) {
+            valores = new ArrayList<String>();
+            valores.add(f.getFornecedores_CNPJ());
+            valores.add(f.getFornecedores_RazaoSocial());
+            valores.add(f.getEnderecos_Logradouro());
+            valores.add(String.valueOf(f.getFornecedores_NumeroResidencia()));
+            valores.add(f.getCidades_Nome());
+            valores.add(f.getEnderecos_CEP());
+            modelo.insertRow(i, valores.toArray());
+            i++;
+        }
+        return modelo;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
