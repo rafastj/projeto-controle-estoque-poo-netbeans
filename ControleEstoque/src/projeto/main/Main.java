@@ -820,7 +820,7 @@ public class Main {
      * }
      */
     //teste listar
-    public static void testarListarMarca() {
+    /*public static void testarListarMarca() {
         Marca m;
         String ma = "";
         ArrayList<Marca> lista;
@@ -838,7 +838,7 @@ public class Main {
         }
         JOptionPane.showMessageDialog(null, ma);
         System.out.println("Fim teste de listagem");
-    }
+    }*/
 
     public static void testarExcluirMarca() {
         /*
