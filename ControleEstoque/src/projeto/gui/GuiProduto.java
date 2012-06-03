@@ -1,5 +1,6 @@
 package projeto.gui;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
@@ -134,6 +135,12 @@ import projeto.modelo.to.Tipo;
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtro"));
 
         jLabel8.setText("Descrição.:");
+
+        jcDescricaoField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jcDescricaoFieldKeyPressed(evt);
+            }
+        });
 
         jconsulDescricao.setText("...");
         jconsulDescricao.addActionListener(new java.awt.event.ActionListener() {
@@ -420,6 +427,13 @@ import projeto.modelo.to.Tipo;
             // TODO add your handling code here:
             pesquisarSegmento((String) jSegmentoBox.getSelectedItem());
         }//GEN-LAST:event_jSegmentoBoxActionPerformed
+
+        private void jcDescricaoFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jcDescricaoFieldKeyPressed
+            // TODO add your handling code here:
+             if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                  pesquisarDescricao();
+            }  
+        }//GEN-LAST:event_jcDescricaoFieldKeyPressed
     
     //CONVERTE O VALOR DOUBLE PARA SALVAR DO BD
     private String converterValorReal(String valorx) {
