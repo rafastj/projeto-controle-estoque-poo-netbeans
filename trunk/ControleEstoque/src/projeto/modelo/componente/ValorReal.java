@@ -43,7 +43,6 @@ public class ValorReal extends JTextField{
                   if(str.equals(",") || str.equals(".")){ //aqui ele irar permitir ponto e virgula
                       
                   }else if(Character.isDigit(str.charAt(i))== false){ //aqui ele verificar se for numero 
-                      System.out.println(str.charAt(i));
                       return;  
                   }  
               }  
