@@ -214,4 +214,19 @@ public class NegocioMarca {
         }
         return lista;
     }
+    
+    public int CodigoMarca()throws GeralException{
+		 int t = 0;
+		try {
+			t = rep.CodigoMarca();
+		} catch (ConexaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RepositorioException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 return t;
+	 }
+
 }

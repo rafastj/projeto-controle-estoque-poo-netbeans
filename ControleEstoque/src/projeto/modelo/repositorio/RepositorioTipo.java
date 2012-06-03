@@ -184,9 +184,6 @@ public class RepositorioTipo implements IRepositorioTipo {
     	int cod = 0;
     	Connection c = g.conectar();
 		String sqlAuto="SELECT Auto_increment as tipos_codigo FROM information_schema.tables WHERE table_name='tipos'";
-    	//String sqlAuto="SELECT tipos_Codigo FROM tipos ORDER BY tipos_Codigo DESC LIMIT 1 ";
-    	//String sqlAuto="SELECT max(tipos_Codigo) as tipos_codigo FROM tipos ";
-
         try {
         	Statement stm = c.createStatement();
             ResultSet rs = stm.executeQuery(sqlAuto);

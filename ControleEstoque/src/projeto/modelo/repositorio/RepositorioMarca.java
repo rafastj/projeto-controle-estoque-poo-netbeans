@@ -160,4 +160,21 @@ public class RepositorioMarca implements IRepositorioMarca {
             g.desconectar(c);
         }
     }
+    public int CodigoMarca()throws ConexaoException,RepositorioException {
+    	int cod = 0;
+    	Connection c = g.conectar();
+		String sqlAuto="SELECT Auto_increment as tipos_codigo FROM information_schema.tables WHERE table_name='tipos'";
+        try {
+        	Statement stm = c.createStatement();
+            ResultSet rs = stm.executeQuery(sqlAuto);
+            while( rs.next() ){
+                cod= rs.getInt( "tipos_codigo" );
+                
+            	}return cod;
+            } catch( SQLException e ) {
+                throw new RepositorioException(e);
+            } finally {
+                g.desconectar( c );
+            }
+        }
 }
