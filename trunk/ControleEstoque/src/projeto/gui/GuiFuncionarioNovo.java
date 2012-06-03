@@ -4,12 +4,20 @@
  */
 package projeto.gui;
 
+import javax.swing.JOptionPane;
+import projeto.erro.GeralException;
+import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.Funcionario;
+
 /**
  *
  * @author Thiago Evoa
  */
 public class GuiFuncionarioNovo extends javax.swing.JFrame {
 
+    public static Fachada fachada = new Fachada();
+    
+    private GuiFuncionario guiFu = new GuiFuncionario();
     /**
      * Creates new form GuiFuncionarioNovo
      */
@@ -44,6 +52,11 @@ public class GuiFuncionarioNovo extends javax.swing.JFrame {
         JlNumeroResidencia.setText("Número da Residência.:");
 
         JbSalvar.setText("Salvar");
+        JbSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbSalvarActionPerformed(evt);
+            }
+        });
 
         JbConsultarCEP.setText("Consultar CEP");
 
@@ -119,6 +132,23 @@ public class GuiFuncionarioNovo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbSalvarActionPerformed
+        // TODO add your handling code here:
+        try{
+            Funcionario fuSalvar = new Funcionario();
+           
+            Funcionario fusalvar = fachada.consultarFuncionario((String) JcNomeFuncionario.getSelectedText());
+            fuSalvar.setFuncionarios_Nome(fusalvar.getFuncionarios_Nome());            
+                     
+            fachada.salvarFuncionario(fusalvar);
+            JOptionPane.showMessageDialog(null, "Funcionario Salvo!");
+            dispose();
+                     
+        }catch(GeralException ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());            
+        }
+    }//GEN-LAST:event_JbSalvarActionPerformed
 
     /**
      * @param args the command line arguments
