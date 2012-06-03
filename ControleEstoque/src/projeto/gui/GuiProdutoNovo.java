@@ -51,7 +51,7 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jMarcaBox = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
-        jValorUnitarioField = new javax.swing.JFormattedTextField();
+        jValorUnitarioField = new projeto.modelo.componente.ValorReal();
         jQtdeField = new projeto.modelo.componente.SoNumero();
         jbSalvar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -79,7 +79,7 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
 
         jLabel3.setText("Valor Unitário R$.:");
 
-        jValorUnitarioField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        jValorUnitarioField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.##"))));
         jValorUnitarioField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jValorUnitarioField.setToolTipText("");
 
@@ -124,10 +124,10 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTipoBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 184, Short.MAX_VALUE)
+                            .addComponent(jTipoBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 176, Short.MAX_VALUE)
                             .addComponent(jSegmentoBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jMarcaBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6))))
         );
