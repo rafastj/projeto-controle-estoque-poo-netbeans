@@ -310,7 +310,7 @@ public class GuiMenu extends javax.swing.JFrame {
     private void jbAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAcessarActionPerformed
         // TODO add your handling code here:
         //AUTENTICAÇÃO DO LOGIN ADMIN
-        if (jLoginField.getText().equals("000") && jPasswordField.getText().toString().equals("000")) {
+        if (jLoginField.getText().equals("") && jPasswordField.getText().toString().equals("")) {
 
             //metodo responsável por libera o acesso ao menu
             acessoLiberado();

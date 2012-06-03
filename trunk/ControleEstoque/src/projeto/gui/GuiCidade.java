@@ -254,9 +254,10 @@ public class GuiCidade extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        limparCampos();
+        atualizarTabelaCidade();
         GuiCidadeNova cdSalvar = new GuiCidadeNova();
         cdSalvar.setVisible(true);
-        limparCampos();
         atualizarTabelaCidade();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
@@ -318,7 +319,7 @@ public class GuiCidade extends javax.swing.JDialog {
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
                 GuiCidadeAlterar guiCidadeAlterar = new GuiCidadeAlterar();
-                guiCidadeAlterar.jTextFieldCidadeOld.setText(cdOld.getCidades_Nome());
+                GuiCidadeAlterar.jTextFieldCidadeOld.setText(cdOld.getCidades_Nome());
                 guiCidadeAlterar.setVisible(true);
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
