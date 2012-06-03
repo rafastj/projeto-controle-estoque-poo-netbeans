@@ -26,14 +26,13 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
     public GuiEnderecoNovo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setLocationRelativeTo(null);
-        jFormattedTextFieldCEP.requestFocus();
     }
     
     GuiEnderecoNovo() {
         initComponents();
         setLocationRelativeTo(null);
-        jFormattedTextFieldCEP.requestFocus();
+        limparCampos();
+        atualizarComboCidade();
     }
     
     /**
@@ -220,20 +219,24 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
 
     private void jButtonConsultarCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarCEPActionPerformed
         consultarCep();
+        limparCampos();
     }//GEN-LAST:event_jButtonConsultarCEPActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         salvarEndereco();
+        limparCampos();
+        atualizarComboCidade();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonIncluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirCidadeActionPerformed
         GuiCidade cidade = new GuiCidade();
         cidade.setVisible(true);
+        limparCampos();
+        atualizarComboCidade();
     }//GEN-LAST:event_jButtonIncluirCidadeActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        jFormattedTextFieldCEP.requestFocus();
-        listarComboBoxCidade();
+        //
     }//GEN-LAST:event_formComponentShown
     
     /**
@@ -241,23 +244,23 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
      */
     private void salvarEndereco() {
         int resposta;
-        int enderecos_Codigo;
+        int enderecos_Codigo = 0;
         int cidades_Codigo;
         String enderecos_CEP;
         String enderecos_Logradouro;
         String cidades_Nome;
         String str_cep;
+        Endereco end;
         try {
             str_cep = jFormattedTextFieldCEP.getText();
             str_cep = str_cep.replace('-', ' ');
             str_cep = str_cep.replaceAll(" ", "");
             enderecos_CEP = str_cep;
-            enderecos_Codigo = 0;
             enderecos_Logradouro = jTextFieldEntradaLog.getText();
             cidades_Nome = jComboBoxCidade.getSelectedItem().toString();
             Cidade cd = fachada.consultarCidade(cidades_Nome);
             cidades_Codigo = cd.getCidades_Codigo();
-            Endereco end = new Endereco(enderecos_Codigo, enderecos_CEP, enderecos_Logradouro, cidades_Codigo, cidades_Nome);
+            end = new Endereco(enderecos_Codigo, enderecos_CEP, enderecos_Logradouro, cidades_Codigo, cidades_Nome);
             fachada.salvarEndereco(end);
             resposta = JOptionPane.showConfirmDialog(null, "Registro salvo com sucesso!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.NO_OPTION) {
@@ -268,17 +271,8 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         } finally {
-            jFormattedTextFieldCEP.requestFocus();
+            limparCampos();
         }
-    }
-
-    /**
-     * Método que limpa os campos dos filtros;
-     */
-    private void limparCampos() {
-        //limpar os edits
-        jFormattedTextFieldCEP.setText("");
-        jTextFieldEntradaLog.setText("");
     }
 
     /**
@@ -289,17 +283,17 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
         int resSemCadastro;
         String str_cep;
         String enderecos_CEP;
+        Endereco end;
         try {
             str_cep = jFormattedTextFieldCEP.getText();
             str_cep = str_cep.replace('-', ' ');
             str_cep = str_cep.replaceAll(" ", "");
             enderecos_CEP = str_cep;
-            Endereco end = fachada.consultarEndCep(enderecos_CEP);
+            end = fachada.consultarEndCep(enderecos_CEP);
             if (end != null) {
                 resComCadastro = JOptionPane.showConfirmDialog(null, "CEP já está cadastrado!\nDeseja cadastrar outro?", "", JOptionPane.YES_NO_OPTION);
                 if (resComCadastro == JOptionPane.YES_OPTION) {
-                    jFormattedTextFieldCEP.setValue(null);
-                    jFormattedTextFieldCEP.requestFocus();
+                    limparCampos();
                 } else {
                     dispose();
                 }
@@ -319,7 +313,7 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
     /**
      * Método que cria um ArrayList de Cidade, para ser inserido no ComboBox Cidade;
      */
-    private void listarComboBoxCidade() {
+    private void atualizarComboCidade() {
         Cidade cid;
         ArrayList<Cidade> listaCd;
         try {
@@ -331,6 +325,16 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
         } catch (GeralException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
+    }
+    
+    /**
+     * Método que limpa os campos dos filtros;
+     */
+    private void limparCampos(){
+        //limpar os edits
+        jFormattedTextFieldCEP.setText("");
+        jTextFieldEntradaLog.setText("");
+        jFormattedTextFieldCEP.requestFocus();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConsultarCEP;

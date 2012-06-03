@@ -26,12 +26,13 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
     public GuiEnderecoAlterar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setLocationRelativeTo(null);
     }
     
     GuiEnderecoAlterar() {
         initComponents();
         setLocationRelativeTo(null);
+        atualizarComboCidade();
+        bloquearTela();
     }
     
     /**
@@ -125,9 +126,11 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
 
         jLabelLogradouroNew.setText("Logradouro.:");
 
-        jTextFieldEntradaLog.setEditable(false);
+        jTextFieldEntradaLog.setEnabled(false);
 
         jLabelCidadeNew.setText("Cidade.:");
+
+        jComboBoxCidade.setEnabled(false);
 
         jButtonPesquisaCEPNew.setText("Consultar");
         jButtonPesquisaCEPNew.setMaximumSize(new java.awt.Dimension(75, 23));
@@ -142,6 +145,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
         jLabelCEPNew.setText("CEP.:");
 
         jButtonAlterar.setText("Alterar Endereço");
+        jButtonAlterar.setEnabled(false);
         jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAlterarActionPerformed(evt);
@@ -149,6 +153,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
         });
 
         jButtonGerenciarCidade.setText("Gerenciar Cidade");
+        jButtonGerenciarCidade.setEnabled(false);
         jButtonGerenciarCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGerenciarCidadeActionPerformed(evt);
@@ -213,20 +218,20 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
 
         jLabelLogradouroOld.setText("Logradouro.:");
 
-        jTextFieldSaidaLogOld.setEditable(false);
+        jTextFieldSaidaLogOld.setEnabled(false);
 
         jLabelCidadeOld.setText("Cidade.:");
 
-        jTextFieldSaidaCidadeOld.setEditable(false);
+        jTextFieldSaidaCidadeOld.setEnabled(false);
 
         jLabelCEP.setText("CEP.:");
 
-        jFormattedTextFieldSaidaCEP.setEditable(false);
         try {
             jFormattedTextFieldSaidaCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextFieldSaidaCEP.setEnabled(false);
 
         javax.swing.GroupLayout jPanelEndOldLayout = new javax.swing.GroupLayout(jPanelEndOld);
         jPanelEndOld.setLayout(jPanelEndOldLayout);
@@ -309,8 +314,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonGerenciarCidadeActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        atualizarComboCidade();
-        jFormattedTextFieldEntradaCEP.requestFocus();
+        //
     }//GEN-LAST:event_formComponentShown
     
     private void alterarEndereco() {
@@ -319,18 +323,20 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
         String str_cepOld;
         String str_cepNew;
         String enderecos_CEP;
+        Cidade cd;
+        Endereco endAlterar;
         try {
             str_cepOld = jFormattedTextFieldSaidaCEP.getText();
             str_cepOld = str_cepOld.replace('-', ' ');
             str_cepOld = str_cepOld.replaceAll(" ", "");
             cepOld = str_cepOld;
-            Cidade cd = fachada.consultarCidade((String) jComboBoxCidade.getSelectedItem());
+            end = fachada.consultarEndCep(cepOld);
+            cd = fachada.consultarCidade((String) jComboBoxCidade.getSelectedItem());
             str_cepNew = jFormattedTextFieldEntradaCEP.getText();
             str_cepNew = str_cepNew.replace('-', ' ');
             str_cepNew = str_cepNew.replaceAll(" ", "");
             enderecos_CEP = str_cepNew;
-            end = fachada.consultarEndCep(cepOld);
-            Endereco endAlterar = new Endereco();
+            endAlterar = new Endereco();
             endAlterar.setEnderecos_Codigo(end.getEnderecos_Codigo());
             endAlterar.setEnderecos_Logradouro(jTextFieldEntradaLog.getText());
             endAlterar.setEnderecos_CEP(enderecos_CEP);
@@ -350,22 +356,23 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
         int resSemCadastro;
         String str_cep;
         String enderecos_CEP;
+        Endereco end;
         try {
             str_cep = jFormattedTextFieldEntradaCEP.getText();
             str_cep = str_cep.replace('-', ' ');
             str_cep = str_cep.replaceAll(" ", "");
             enderecos_CEP = str_cep;
-            Endereco end = fachada.consultarEndCep(enderecos_CEP);
+            end = fachada.consultarEndCep(enderecos_CEP);
             if (end != null) {
                 resComCadastro = JOptionPane.showConfirmDialog(null, "CEP já está existe!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
                 if (resComCadastro == JOptionPane.NO_OPTION) {
-                    jFormattedTextFieldEntradaCEP.setValue(null);
-                    jFormattedTextFieldEntradaCEP.requestFocus();
+                    limparCampos();
+                    bloquearTela();
                 } else {
+                    liberarTela();
                     jFormattedTextFieldEntradaCEP.setText(end.getEnderecos_CEP());
-                    jTextFieldEntradaLog.setEditable(true);
-                    jTextFieldEntradaLog.requestFocus();
-                    jTextFieldEntradaLog.setText(end.getEnderecos_Logradouro());                    
+                    jTextFieldEntradaLog.setText(end.getEnderecos_Logradouro());
+                    jButtonAlterar.requestFocus();                    
                 }
             } else {
                 resSemCadastro = JOptionPane.showConfirmDialog(null, "CEP não está cadastrado!\nDeseja cadastrar?", "", JOptionPane.YES_NO_OPTION);
@@ -376,7 +383,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
                     guiEnderecoNovo.setVisible(true);
                     jButtonPesquisaCEPNew.requestFocus();
                 } else {
-                    jTextFieldEntradaLog.setEditable(true);
+                    liberarTela();
                     jTextFieldEntradaLog.requestFocus();
                 }
             }
@@ -397,6 +404,26 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
         } catch (GeralException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
+    }
+    
+    private void liberarTela(){
+        jTextFieldEntradaLog.setEnabled(true);
+        jComboBoxCidade.setEnabled(true);
+        jButtonGerenciarCidade.setEnabled(true);
+        jButtonAlterar.setEnabled(true);
+    }
+    
+    private void bloquearTela(){
+        jFormattedTextFieldEntradaCEP.requestFocus();
+        jTextFieldEntradaLog.setEnabled(false);
+        jComboBoxCidade.setEnabled(false);
+        jButtonGerenciarCidade.setEnabled(false);
+        jButtonAlterar.setEnabled(false);
+    }
+    
+    private void limparCampos(){
+        jFormattedTextFieldEntradaCEP.setValue(null);
+        jTextFieldEntradaLog.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;

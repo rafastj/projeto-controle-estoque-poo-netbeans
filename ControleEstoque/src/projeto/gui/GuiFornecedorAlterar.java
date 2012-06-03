@@ -442,7 +442,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         atualizarComboCidade();
         jFormattedTextFieldEntradaCNPJ.requestFocus();
-        bloqueiaTela();
+        bloquearTela();
     }//GEN-LAST:event_formComponentShown
 
     private void jButtonLimparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparCamposActionPerformed
@@ -473,14 +473,14 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
                         jFormattedTextFieldEntradaCEP.setText(f.getEnderecos_CEP());
                         jTextFieldEntradaLog.setText(f.getEnderecos_Logradouro());
                         jFormattedTextFieldEntradaNumero.setText(String.valueOf(f.getFornecedores_NumeroResidencia()));
-                        liberaTela();                        
+                        liberarTela();                        
                     } else {
                         limparCampos();
                     }
                 } else {
                     resSemCadastro = JOptionPane.showConfirmDialog(null, "CNPJ não está cadastrado!\nDeseja continuar?\nSe não informe outro CNPJ.", "", JOptionPane.YES_NO_OPTION);
                     if (resSemCadastro == JOptionPane.YES_OPTION) {
-                        liberaTela();
+                        liberarTela();
                         jTextFieldEntradaRS.requestFocus();                        
                     } else {
                         limparCampos();
@@ -604,10 +604,10 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
         jTextFieldEntradaLog.setText("");
         jTextFieldEntradaRS.setText("");
         jFormattedTextFieldEntradaCNPJ.requestFocus();
-        bloqueiaTela();
+        bloquearTela();
     }
     
-    private void liberaTela(){
+    private void liberarTela(){
         jFormattedTextFieldEntradaCEP.setEnabled(true);
         jFormattedTextFieldEntradaNumero.setEnabled(true);
         jTextFieldEntradaLog.setEnabled(true);
@@ -617,7 +617,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
         jButtonPesquisaCEP.setEnabled(true);
     }
     
-    private void bloqueiaTela(){
+    private void bloquearTela(){
         jFormattedTextFieldEntradaCEP.setEnabled(false);
         jFormattedTextFieldEntradaNumero.setEnabled(false);
         jTextFieldEntradaLog.setEnabled(false);
