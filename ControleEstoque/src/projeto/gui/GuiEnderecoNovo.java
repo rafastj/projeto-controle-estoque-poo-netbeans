@@ -33,6 +33,7 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         limparCampos();
         atualizarComboCidade();
+        bloquearTela();
     }
     
     /**
@@ -103,7 +104,7 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
         jComboBoxCidade = new javax.swing.JComboBox();
         jButtonConsultarCEP = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
-        jButtonIncluirCidade = new javax.swing.JButton();
+        jButtonGerenciarCidade = new javax.swing.JButton();
         jFormattedTextFieldCEP = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -123,6 +124,10 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
 
         jLabelCidade.setText("Cidade.:");
 
+        jTextFieldEntradaLog.setEnabled(false);
+
+        jComboBoxCidade.setEnabled(false);
+
         jButtonConsultarCEP.setText("Consultar CEP");
         jButtonConsultarCEP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,16 +136,18 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
         });
 
         jButtonSalvar.setText("Salvar Endereço");
+        jButtonSalvar.setEnabled(false);
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalvarActionPerformed(evt);
             }
         });
 
-        jButtonIncluirCidade.setText("Gerenciar Cidade");
-        jButtonIncluirCidade.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGerenciarCidade.setText("Gerenciar Cidade");
+        jButtonGerenciarCidade.setEnabled(false);
+        jButtonGerenciarCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonIncluirCidadeActionPerformed(evt);
+                jButtonGerenciarCidadeActionPerformed(evt);
             }
         });
 
@@ -169,7 +176,7 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(jPanelNovoEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonConsultarCEP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonIncluirCidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonGerenciarCidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jTextFieldEntradaLog))
@@ -191,7 +198,7 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
                 .addGroup(jPanelNovoEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCidade)
                     .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonIncluirCidade))
+                    .addComponent(jButtonGerenciarCidade))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonSalvar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -219,7 +226,6 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
 
     private void jButtonConsultarCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarCEPActionPerformed
         consultarCep();
-        limparCampos();
     }//GEN-LAST:event_jButtonConsultarCEPActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
@@ -228,12 +234,12 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
         atualizarComboCidade();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
-    private void jButtonIncluirCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirCidadeActionPerformed
+    private void jButtonGerenciarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerenciarCidadeActionPerformed
         GuiCidade cidade = new GuiCidade();
         cidade.setVisible(true);
         limparCampos();
         atualizarComboCidade();
-    }//GEN-LAST:event_jButtonIncluirCidadeActionPerformed
+    }//GEN-LAST:event_jButtonGerenciarCidadeActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         //
@@ -289,20 +295,25 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
             str_cep = str_cep.replace('-', ' ');
             str_cep = str_cep.replaceAll(" ", "");
             enderecos_CEP = str_cep;
-            end = fachada.consultarEndCep(enderecos_CEP);
-            if (end != null) {
-                resComCadastro = JOptionPane.showConfirmDialog(null, "CEP já está cadastrado!\nDeseja cadastrar outro?", "", JOptionPane.YES_NO_OPTION);
-                if (resComCadastro == JOptionPane.YES_OPTION) {
-                    limparCampos();
-                } else {
-                    dispose();
-                }
+            if((enderecos_CEP == null) || (enderecos_CEP.equals(""))){
+                JOptionPane.showMessageDialog(null, "Digite um CEP!");
+                bloquearTela();
             } else {
-                resSemCadastro = JOptionPane.showConfirmDialog(null, "CEP não está cadastrado!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
-                if (resSemCadastro == JOptionPane.YES_OPTION) {
-                    jTextFieldEntradaLog.requestFocus();
+                end = fachada.consultarEndCep(enderecos_CEP);
+                if (end != null) {
+                    resComCadastro = JOptionPane.showConfirmDialog(null, "CEP já está cadastrado!\nDeseja cadastrar outro?", "", JOptionPane.YES_NO_OPTION);
+                    if (resComCadastro == JOptionPane.YES_OPTION) {
+                        limparCampos();
+                    } else {
+                        dispose();
+                    }
                 } else {
-                    dispose();
+                    resSemCadastro = JOptionPane.showConfirmDialog(null, "CEP não está cadastrado!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
+                    if (resSemCadastro == JOptionPane.YES_OPTION) {
+                        liberarTela();
+                    } else {
+                        dispose();
+                    }
                 }
             }
         } catch (GeralException ex) {
@@ -336,9 +347,25 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
         jTextFieldEntradaLog.setText("");
         jFormattedTextFieldCEP.requestFocus();
     }
+    
+    private void liberarTela(){
+        jTextFieldEntradaLog.setEnabled(true);
+        jComboBoxCidade.setEnabled(true);
+        jButtonGerenciarCidade.setEnabled(true);
+        jButtonSalvar.setEnabled(true);
+        jTextFieldEntradaLog.requestFocus();
+    }
+    
+    private void bloquearTela(){
+        jTextFieldEntradaLog.setEnabled(false);
+        jComboBoxCidade.setEnabled(false);
+        jButtonGerenciarCidade.setEnabled(false);
+        jButtonSalvar.setEnabled(false);
+        jFormattedTextFieldCEP.requestFocus();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConsultarCEP;
-    private javax.swing.JButton jButtonIncluirCidade;
+    private javax.swing.JButton jButtonGerenciarCidade;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox jComboBoxCidade;
     public javax.swing.JFormattedTextField jFormattedTextFieldCEP;
