@@ -136,28 +136,50 @@ public class RepositorioMarca implements IRepositorioMarca {
         }
         return m;
     }
-
-    @Override
-    public Collection<Marca> listarMarca(String marcas_Descricao) throws ConexaoException, RepositorioException {
-        ArrayList<Marca> lista = new ArrayList<Marca>();
+    
+    public Collection<Marca> listarMarca() throws ConexaoException,RepositorioException {
+        ArrayList <Marca> lista = new ArrayList <Marca>();
         Marca m;
         Connection c = g.conectar();
         String sqlLista = "SELECT marcas_Codigo,marcas_Descricao FROM marcas ORDER BY marcas_Codigo";
-        try {
+        try{
             Statement stm = c.createStatement();
             ResultSet rs = stm.executeQuery(sqlLista);
             //verifica se retornou algum registro e cria os Objetos
-            while (rs.next()) {
+            while( rs.next() ){
                 m = new Marca();
-                m.setMarcas_Codigo(rs.getInt("marcas_Codigo"));
-                m.setMarcas_Descricao(rs.getString("marcas_Descricao"));
-                lista.add(m);
-            }
-            return lista;
-        } catch (SQLException e) {
+                m.setMarcas_Codigo( rs.getInt( "marcas_Codigo" ) );
+                m.setMarcas_Descricao( rs.getString( "marcas_Descricao" ) );
+                lista.add( m );
+            } return lista;
+        } catch( SQLException e ) {
             throw new RepositorioException(e);
         } finally {
-            g.desconectar(c);
+            g.desconectar( c );
+        }
+    }
+    
+    
+    public Collection<Marca> listarMarcasDescricao(String marcas_Descricao) throws ConexaoException,RepositorioException {
+        ArrayList <Marca> lista = new ArrayList <Marca>();
+        Marca m;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT marcas_Codigo,marcas_Descricao FROM marcas where marcas_Descricao LIKE ? ORDER BY marcas_Codigo";
+        try{
+            PreparedStatement pstm = c.prepareStatement(sqlLista);
+            pstm.setString(1, marcas_Descricao+"%");
+            ResultSet rs = pstm.executeQuery();
+            //verifica se retornou algum registro e cria os Objetos
+            while( rs.next() ){
+                m = new Marca();
+                m.setMarcas_Codigo( rs.getInt( "marcas_Codigo" ) );
+                m.setMarcas_Descricao( rs.getString( "marcas_Descricao" ) );
+                lista.add( m );
+            } return lista;
+        } catch( SQLException e ) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar( c );
         }
     }
     public int CodigoMarca()throws ConexaoException,RepositorioException {
