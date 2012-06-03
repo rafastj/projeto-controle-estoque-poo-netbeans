@@ -332,7 +332,7 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
      */
     private void limparCampos(){
         //limpar os edits
-        jFormattedTextFieldCEP.setText("");
+        jFormattedTextFieldCEP.setValue(null);
         jTextFieldEntradaLog.setText("");
         jFormattedTextFieldCEP.requestFocus();
     }

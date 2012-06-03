@@ -101,10 +101,7 @@ public class NegocioEndereco {
         }
 
         try {
-            Endereco endConsul = rep.consultarCep(end.getEnderecos_CEP());
-            if (endConsul != null) {
-                rep.alterar(end);
-            }
+            rep.alterar(end);
         } catch (RepositorioException ex) {
             throw new GeralException("Erro de programação!");
 
