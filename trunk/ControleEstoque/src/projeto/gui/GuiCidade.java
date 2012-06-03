@@ -319,7 +319,7 @@ public class GuiCidade extends javax.swing.JDialog {
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
                 GuiCidadeAlterar guiCidadeAlterar = new GuiCidadeAlterar();
-                GuiCidadeAlterar.jTextFieldCidadeOld.setText(cdOld.getCidades_Nome());
+                GuiCidadeAlterar.jTextFieldSaidaCidade.setText(cdOld.getCidades_Nome());
                 guiCidadeAlterar.setVisible(true);
             }
         } catch (ArrayIndexOutOfBoundsException ex) {

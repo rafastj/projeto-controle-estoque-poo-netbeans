@@ -303,6 +303,8 @@ public class GuiEndereco extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
+        limparCampos();
+        dispose();
         GuiEnderecoNovo novoEnd = new GuiEnderecoNovo();
         novoEnd.setVisible(true);
         limparCampos();
@@ -311,6 +313,8 @@ public class GuiEndereco extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        limparCampos();
+        dispose();
         alterarEndereco();
         limparCampos();
         atualizarTabelaEndereco();
@@ -352,8 +356,8 @@ public class GuiEndereco extends javax.swing.JDialog {
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
                 GuiEnderecoAlterar guiEnderecoAlterar = new GuiEnderecoAlterar();
-                guiEnderecoAlterar.jTextFieldSaidaLogOld.setText(endOld.getEnderecos_Logradouro());
-                guiEnderecoAlterar.jTextFieldSaidaCidadeOld.setText(endOld.getCidades_Nome());
+                guiEnderecoAlterar.jTextFieldSaidaLog.setText(endOld.getEnderecos_Logradouro());
+                guiEnderecoAlterar.jTextFieldSaidaCidade.setText(endOld.getCidades_Nome());
                 guiEnderecoAlterar.jFormattedTextFieldSaidaCEP.setText(endOld.getEnderecos_CEP());
                 guiEnderecoAlterar.setVisible(true);
             }

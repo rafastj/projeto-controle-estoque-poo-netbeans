@@ -519,7 +519,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
                 if (resSemCadastro == JOptionPane.YES_OPTION) {
                     GuiEnderecoNovo guiEnderecoNovo = new GuiEnderecoNovo();
                     guiEnderecoNovo.jFormattedTextFieldCEP.setText(enderecos_CEP);
-                    guiEnderecoNovo.jTextFieldEntradaLog.requestFocus();
+                    GuiEnderecoNovo.jTextFieldEntradaLog.requestFocus();
                     guiEnderecoNovo.setVisible(true);
                     jButtonPesquisaCEP.requestFocus();
                 } else {

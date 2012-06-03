@@ -31,7 +31,6 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
     GuiEnderecoNovo() {
         initComponents();
         setLocationRelativeTo(null);
-        limparCampos();
         atualizarComboCidade();
         bloquearTela();
     }
@@ -124,10 +123,6 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
 
         jLabelCidade.setText("Cidade.:");
 
-        jTextFieldEntradaLog.setEnabled(false);
-
-        jComboBoxCidade.setEnabled(false);
-
         jButtonConsultarCEP.setText("Consultar CEP");
         jButtonConsultarCEP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,7 +131,6 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
         });
 
         jButtonSalvar.setText("Salvar Endereço");
-        jButtonSalvar.setEnabled(false);
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalvarActionPerformed(evt);
@@ -144,7 +138,6 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
         });
 
         jButtonGerenciarCidade.setText("Gerenciar Cidade");
-        jButtonGerenciarCidade.setEnabled(false);
         jButtonGerenciarCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGerenciarCidadeActionPerformed(evt);
@@ -235,10 +228,7 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonGerenciarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerenciarCidadeActionPerformed
-        GuiCidade cidade = new GuiCidade();
-        cidade.setVisible(true);
-        limparCampos();
-        atualizarComboCidade();
+        gerenciarCidadeEnd();        
     }//GEN-LAST:event_jButtonGerenciarCidadeActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -271,6 +261,8 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
             resposta = JOptionPane.showConfirmDialog(null, "Registro salvo com sucesso!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.NO_OPTION) {
                 dispose();
+                GuiEndereco guiEndereco = new GuiEndereco();
+                guiEndereco.setVisible(true);
             } else {
                 limparCampos();
             }
@@ -320,6 +312,21 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
+    
+    private void gerenciarCidadeEnd(){
+        String cep = jFormattedTextFieldCEP.getText();
+        String log = jTextFieldEntradaLog.getText();
+        dispose();
+        GuiCidade cidade = new GuiCidade();
+        cidade.setVisible(true);
+        GuiEnderecoNovo guiEnderecoNovo = new GuiEnderecoNovo();
+        guiEnderecoNovo.jFormattedTextFieldCEP.setText(cep);
+        GuiEnderecoNovo.jTextFieldEntradaLog.setText(log);
+        liberarTela();
+        jComboBoxCidade.requestFocus();
+        guiEnderecoNovo.setVisible(true);
+        
+    }
 
     /**
      * Método que cria um ArrayList de Cidade, para ser inserido no ComboBox Cidade;
@@ -348,7 +355,7 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
         jFormattedTextFieldCEP.requestFocus();
     }
     
-    private void liberarTela(){
+    private static void liberarTela(){
         jTextFieldEntradaLog.setEnabled(true);
         jComboBoxCidade.setEnabled(true);
         jButtonGerenciarCidade.setEnabled(true);
@@ -365,14 +372,14 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConsultarCEP;
-    private javax.swing.JButton jButtonGerenciarCidade;
-    private javax.swing.JButton jButtonSalvar;
-    private javax.swing.JComboBox jComboBoxCidade;
+    private static javax.swing.JButton jButtonGerenciarCidade;
+    private static javax.swing.JButton jButtonSalvar;
+    public static javax.swing.JComboBox jComboBoxCidade;
     public javax.swing.JFormattedTextField jFormattedTextFieldCEP;
     private javax.swing.JLabel jLabelCEP;
     private javax.swing.JLabel jLabelCidade;
     private javax.swing.JLabel jLabelLogradouro;
     private javax.swing.JPanel jPanelNovoEndereco;
-    public javax.swing.JTextField jTextFieldEntradaLog;
+    public static javax.swing.JTextField jTextFieldEntradaLog;
     // End of variables declaration//GEN-END:variables
 }

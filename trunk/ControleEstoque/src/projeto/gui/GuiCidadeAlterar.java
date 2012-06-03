@@ -92,7 +92,7 @@ public class GuiCidadeAlterar extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabelCidade = new javax.swing.JLabel();
-        jTextFieldCidadeOld = new javax.swing.JTextField();
+        jTextFieldSaidaCidade = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jTextFieldCidadeNova = new javax.swing.JTextField();
         jButtonAlterar = new javax.swing.JButton();
@@ -105,8 +105,8 @@ public class GuiCidadeAlterar extends javax.swing.JDialog {
 
         jLabelCidade.setText("Cidade.:");
 
-        jTextFieldCidadeOld.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldCidadeOld.setEditable(false);
+        jTextFieldSaidaCidade.setBackground(new java.awt.Color(204, 204, 204));
+        jTextFieldSaidaCidade.setEditable(false);
 
         jLabel1.setText("Nova Cidade.:");
 
@@ -129,7 +129,7 @@ public class GuiCidadeAlterar extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelCidade)
                     .addComponent(jLabel1)
-                    .addComponent(jTextFieldCidadeOld)
+                    .addComponent(jTextFieldSaidaCidade)
                     .addComponent(jTextFieldCidadeNova, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -139,7 +139,7 @@ public class GuiCidadeAlterar extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabelCidade)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldCidadeOld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldSaidaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addGap(1, 1, 1)
@@ -180,7 +180,7 @@ public class GuiCidadeAlterar extends javax.swing.JDialog {
         Cidade cdOld;
         Cidade cd;
         try {
-            cdOld = fachada.consultarCidade(jTextFieldCidadeOld.getText());
+            cdOld = fachada.consultarCidade(jTextFieldSaidaCidade.getText());
             cd = new Cidade();
             cd.setCidades_Codigo(cdOld.getCidades_Codigo());
             cd.setCidades_Nome(jTextFieldCidadeNova.getText());
@@ -200,6 +200,6 @@ public class GuiCidadeAlterar extends javax.swing.JDialog {
     private javax.swing.JLabel jLabelCidade;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JTextField jTextFieldCidadeNova;
-    public static javax.swing.JTextField jTextFieldCidadeOld;
+    public static javax.swing.JTextField jTextFieldSaidaCidade;
     // End of variables declaration//GEN-END:variables
 }
