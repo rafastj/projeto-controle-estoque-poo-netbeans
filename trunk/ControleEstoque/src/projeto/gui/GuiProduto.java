@@ -109,6 +109,7 @@ import projeto.modelo.to.Tipo;
                 return canEdit [columnIndex];
             }
         });
+        jtabelaProduto.setEditingColumn(0);
         jtabelaProduto.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jtabelaProduto);
 
