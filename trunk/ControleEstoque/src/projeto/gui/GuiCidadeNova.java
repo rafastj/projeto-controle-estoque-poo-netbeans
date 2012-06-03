@@ -4,7 +4,6 @@
  */
 package projeto.gui;
 
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
@@ -12,20 +11,18 @@ import projeto.modelo.to.Cidade;
 
 /**
  *
- * @author Daniel
+ * @author DANIEL VALENÇA
  */
 public class GuiCidadeNova extends javax.swing.JDialog {
+    
     public static Fachada fachada = new Fachada();
-    ArrayList<Cidade> listaCidade = null;
-    GuiCidade guiCidade = new GuiCidade();
+    
     /**
      * Creates new form GuiCidadeNova
      */
     public GuiCidadeNova(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setLocationRelativeTo(null);//mostra no centro da tela
-        jTextFieldEntradaCidade.requestFocus();
     }
     
     public GuiCidadeNova() {
@@ -170,11 +167,11 @@ public class GuiCidadeNova extends javax.swing.JDialog {
      */
     private void salvarCidade() {
         int resposta;
-        int validoString;
+        double validoString;
         String cdSalvar = null;
         try {
             cdSalvar = jTextFieldEntradaCidade.getText();
-            validoString = Integer.parseInt(cdSalvar);
+            validoString = Double.parseDouble(cdSalvar);
             JOptionPane.showMessageDialog(null, "Digite apenas o nome da cidade!");
         } catch (NumberFormatException x) {
             Cidade cd = new Cidade(cdSalvar);
@@ -190,7 +187,7 @@ public class GuiCidadeNova extends javax.swing.JDialog {
             } catch (GeralException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
-        }
+        } 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSalvar;

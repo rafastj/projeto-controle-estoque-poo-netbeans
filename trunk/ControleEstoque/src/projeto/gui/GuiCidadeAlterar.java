@@ -178,14 +178,14 @@ public class GuiCidadeAlterar extends javax.swing.JDialog {
      */
     private void alterarCidade() {
         String cdOld;
-        int validoString;
+        double validoString;
         int cidades_Codigo;
         try {
             cdOld = jTextFieldCidadeOld.getText();
             Cidade cd;
             cd = fachada.consultarCidade(cdOld);
             try {
-                validoString = Integer.parseInt(jTextFieldCidadeNova.getText());
+                validoString = Double.parseDouble(jTextFieldCidadeNova.getText());
                 JOptionPane.showMessageDialog(null, "Digita apenas o nome da cidade!");
                 jTextFieldCidadeNova.requestFocus();
                 jTextFieldCidadeNova.setText("");

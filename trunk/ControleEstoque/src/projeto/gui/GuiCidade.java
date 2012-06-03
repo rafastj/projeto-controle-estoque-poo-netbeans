@@ -13,28 +13,27 @@ import projeto.modelo.to.Cidade;
 
 /**
  *
- * @author Daniel
+ * @author DANIEL VALENÇA
  */
 public class GuiCidade extends javax.swing.JDialog {
-    
-    ArrayList<Cidade> listaCidade = null;
+
+    static ArrayList<Cidade> listaCidade = null;
     public static Fachada fachada = new Fachada();
-    
+
     /**
      * Creates new form GuiCidade
      */
     public GuiCidade(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        atualizarTabelaCidade();
+
     }
-    
+
     public GuiCidade() {
         initComponents();
         setLocationRelativeTo(null);
-        atualizarTabelaCidade();
     }
- 
+
     /**
      * @param args the command line arguments
      */
@@ -85,7 +84,7 @@ public class GuiCidade extends javax.swing.JDialog {
             }
         });
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -109,6 +108,11 @@ public class GuiCidade extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de cidades");
         setModal(true);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanelFiltro.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtro"));
 
@@ -179,8 +183,8 @@ public class GuiCidade extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jTableListaCidade.setColumnSelectionAllowed(true);
-        jTableListaCidade.setDragEnabled(true);
+        jTableListaCidade.setCellSelectionEnabled(false);
+        jTableListaCidade.setRowSelectionAllowed(true);
         jTableListaCidade.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableListaCidade.setShowHorizontalLines(false);
         jTableListaCidade.setShowVerticalLines(false);
@@ -252,6 +256,7 @@ public class GuiCidade extends javax.swing.JDialog {
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         GuiCidadeNova cdSalvar = new GuiCidadeNova();
         cdSalvar.setVisible(true);
+        atualizarTabelaCidade();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
@@ -268,7 +273,7 @@ public class GuiCidade extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jTableListaCidadeComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTableListaCidadeComponentShown
-        atualizarComboCidade();
+        //
     }//GEN-LAST:event_jTableListaCidadeComponentShown
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
@@ -279,41 +284,9 @@ public class GuiCidade extends javax.swing.JDialog {
         pesquisarCidadeNome();
     }//GEN-LAST:event_jTextFieldCidadeKeyReleased
 
-    
-    /**
-     * Define o padrão da tabela e insere os dados da tabela Cidade em um ArrayList;
-     * @param listaCidade
-     * @return
-     */
-    private DefaultTableModel geramodelo(ArrayList<Cidade> listaCidade) {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Código");
-        modelo.addColumn("Nome da Cidade");
-
-        ArrayList<String> valores;
-        int i = 0;
-        for (Cidade cd : listaCidade) {
-            valores = new ArrayList<String>();
-            valores.add(Integer.toString(cd.getCidades_Codigo()));
-            valores.add(cd.getCidades_Nome());
-            modelo.insertRow(i, valores.toArray());
-            i++;
-        }
-        return modelo;
-    }
-
-    /**
-     * Método para atualizar a tela trazendo a lista atualizada;
-     */
-    private void atualizarTabelaCidade() {
-        try {
-            listaCidade = (ArrayList<Cidade>) fachada.listarCidadeTudo();
-        } catch (GeralException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-        DefaultTableModel modelo = geramodelo(listaCidade);
-        jTableListaCidade.setModel(modelo);
-    }
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        atualizarTabelaCidade();
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * Método que filtra a lista pelo nome da cidade informada;
@@ -345,6 +318,7 @@ public class GuiCidade extends javax.swing.JDialog {
                 GuiCidadeAlterar guiCidadeAlterar = new GuiCidadeAlterar();
                 guiCidadeAlterar.jTextFieldCidadeOld.setText(cdOld.getCidades_Nome());
                 guiCidadeAlterar.setVisible(true);
+                atualizarTabelaCidade();
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Selecione a cidade!");
@@ -364,7 +338,6 @@ public class GuiCidade extends javax.swing.JDialog {
                 Cidade cdConsult = fachada.consultarCidade(cd.getCidades_Nome());
                 if (cdConsult != null) {
                     fachada.excluirCidade(cdConsult.getCidades_Codigo());
-                    atualizarTabelaCidade();
                 }
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
@@ -373,11 +346,11 @@ public class GuiCidade extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-
+    
     /**
-     * Método que cria um ArrayList para ser mostrado na tela;
+     * Método para atualizar a tela trazendo a lista atualizada;
      */
-    private void atualizarComboCidade() {
+    private static void atualizarTabelaCidade() {
         try {
             listaCidade = (ArrayList<Cidade>) fachada.listarCidadeTudo();
         } catch (GeralException ex) {
@@ -385,6 +358,30 @@ public class GuiCidade extends javax.swing.JDialog {
         }
         DefaultTableModel modelo = geramodelo(listaCidade);
         jTableListaCidade.setModel(modelo);
+    }
+    
+    /**
+     * Define o padrão da tabela e insere os dados da tabela Cidade em um
+     * ArrayList;
+     *
+     * @param listaCidade
+     * @return
+     */
+    private static DefaultTableModel geramodelo(ArrayList<Cidade> listaCidade) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Código");
+        modelo.addColumn("Nome da Cidade");
+
+        ArrayList<String> valores;
+        int i = 0;
+        for (Cidade cd : listaCidade) {
+            valores = new ArrayList<String>();
+            valores.add(Integer.toString(cd.getCidades_Codigo()));
+            valores.add(cd.getCidades_Nome());
+            modelo.insertRow(i, valores.toArray());
+            i++;
+        }
+        return modelo;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;
@@ -394,7 +391,7 @@ public class GuiCidade extends javax.swing.JDialog {
     private javax.swing.JPanel jPanelFiltro;
     private javax.swing.JPanel jPanelLista;
     private javax.swing.JScrollPane jScrollPaneListaCidades;
-    public javax.swing.JTable jTableListaCidade;
+    private static javax.swing.JTable jTableListaCidade;
     private javax.swing.JTextField jTextFieldCidade;
     private java.awt.Label labelCidade;
     // End of variables declaration//GEN-END:variables
