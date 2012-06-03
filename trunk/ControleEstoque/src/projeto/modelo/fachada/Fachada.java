@@ -25,7 +25,7 @@ public class Fachada {
     private NegocioUsuario rnUsuario;//Thiago Evoa
     private NegocioFuncionario rnFuncionario;//Thiago Evoa
     private NegocioNotaFiscal rnNotaFiscal;//Thiago Evoa
-    private NegocioMarca rnMarca; // Felipe Carlos
+    private static NegocioMarca rnMarca; // Felipe Carlos
     private static NegocioTipo rnTipo; // Felipe Carlos
     private NegocioFormaPagamento rnFormaPagamento; // Bruno Pinheiro
     private NegocioSegmento rnSegmento; // Bruno Pinheiro
@@ -711,7 +711,10 @@ public class Fachada {
 	public Collection <Marca> listarMarca( String marcas_Descricao) throws GeralException {
 		return rnMarca.listarMarca(marcas_Descricao);
 	}
-	
+        
+        public static int CodigoMarca()throws GeralException  {
+		 return rnMarca.CodigoMarca();
+        }
 	//tipos
 	
 	public void salvarTipo ( Tipo  t ) throws GeralException{

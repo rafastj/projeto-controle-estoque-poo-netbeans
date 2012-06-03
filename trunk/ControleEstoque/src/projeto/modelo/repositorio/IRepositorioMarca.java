@@ -42,4 +42,6 @@ public interface IRepositorioMarca {
      * Metodo Padrão para lista os dados
      */
     public Collection<Marca> listarMarca(String marcas_Descricao) throws ConexaoException, RepositorioException;
+    
+    public int CodigoMarca()throws ConexaoException,RepositorioException ;
 }

@@ -9,9 +9,7 @@ import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.erro.RepositorioException;
 import projeto.modelo.repositorio.IRepositorioTipo;
-import projeto.modelo.repositorio.RepositorioEndereco;
 import projeto.modelo.repositorio.RepositorioTipo;
-import projeto.modelo.to.Endereco;
 import projeto.modelo.to.Tipo;
 
 /**
