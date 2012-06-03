@@ -4,12 +4,21 @@
  */
 package projeto.gui;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import projeto.erro.GeralException;
+import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.Usuario;
+
 /**
  *
  * @author Thiago Evoa
  */
 public class GuiUsuario extends javax.swing.JFrame {
 
+    ArrayList<Usuario> listaUsuario = null;
+    
+    public static Fachada fachada = new Fachada(); 
     /**
      * Creates new form GuiUsuario
      */
@@ -33,10 +42,10 @@ public class GuiUsuario extends javax.swing.JFrame {
         JbPesquisar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JtListarUsuario = new javax.swing.JTable();
-        JbSalvar = new javax.swing.JButton();
-        JbAlterar = new javax.swing.JButton();
-        JbExcluir = new javax.swing.JButton();
+        jtListarUsuario = new javax.swing.JTable();
+        jbSalvar = new javax.swing.JButton();
+        jbAlterar = new javax.swing.JButton();
+        jbExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -71,7 +80,7 @@ public class GuiUsuario extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        JtListarUsuario.setModel(new javax.swing.table.DefaultTableModel(
+        jtListarUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null}
             },
@@ -79,23 +88,28 @@ public class GuiUsuario extends javax.swing.JFrame {
                 "Funcionario", "Login"
             }
         ));
-        jScrollPane1.setViewportView(JtListarUsuario);
+        jScrollPane1.setViewportView(jtListarUsuario);
 
-        JbSalvar.setText("Salvar");
-        JbSalvar.addActionListener(new java.awt.event.ActionListener() {
+        jbSalvar.setText("Salvar");
+        jbSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JbSalvarActionPerformed(evt);
+                jbSalvarActionPerformed(evt);
             }
         });
 
-        JbAlterar.setText("Alterar");
-        JbAlterar.addActionListener(new java.awt.event.ActionListener() {
+        jbAlterar.setText("Alterar");
+        jbAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JbAlterarActionPerformed(evt);
+                jbAlterarActionPerformed(evt);
             }
         });
 
-        JbExcluir.setText("Excluir");
+        jbExcluir.setText("Excluir");
+        jbExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -106,19 +120,19 @@ public class GuiUsuario extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(JbSalvar)
-                    .addComponent(JbAlterar)
-                    .addComponent(JbExcluir)))
+                    .addComponent(jbSalvar)
+                    .addComponent(jbAlterar)
+                    .addComponent(jbExcluir)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(JbSalvar)
+                .addComponent(jbSalvar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JbAlterar)
+                .addComponent(jbAlterar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JbExcluir)
+                .addComponent(jbExcluir)
                 .addContainerGap(199, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
         );
@@ -148,17 +162,43 @@ public class GuiUsuario extends javax.swing.JFrame {
         setBounds((screenSize.width-502)/2, (screenSize.height-448)/2, 502, 448);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbSalvarActionPerformed
+    private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
         // TODO add your handling code here:
         GuiUsuarioNovo us = new GuiUsuarioNovo();
         us.setVisible(true);
-    }//GEN-LAST:event_JbSalvarActionPerformed
+    }//GEN-LAST:event_jbSalvarActionPerformed
 
-    private void JbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbAlterarActionPerformed
+    private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
         // TODO add your handling code here:
         GuiUsuarioAlterar us = new GuiUsuarioAlterar();
         us.setVisible(true);
-    }//GEN-LAST:event_JbAlterarActionPerformed
+    }//GEN-LAST:event_jbAlterarActionPerformed
+
+    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
+        // TODO add your handling code here:
+        int resposta;
+
+        try {
+            //pegar o os dados do produto selecionado
+            Usuario us = listaUsuario.get(jtListarUsuario.getSelectedRow());
+
+            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Apagar ?", "", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+
+                //consulta a descrição do produto selecionado
+                Usuario usconsul = fachada.consultarUsuario(us.getFuncionarios_Nome());
+
+                if (usconsul != null) {       //seta o codigo do produto selecionado da consulta
+                    fachada.excluirProduto(usconsul.getFuncionarios_Codigo());
+                    //atualizarTabela();//atalizar a tabela
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione o usuário!");
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_jbExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,15 +243,15 @@ public class GuiUsuario extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JbAlterar;
-    private javax.swing.JButton JbExcluir;
     private javax.swing.JButton JbPesquisar;
-    private javax.swing.JButton JbSalvar;
     private javax.swing.JTextField JcUsuario;
     private javax.swing.JLabel JlUsuario;
-    private javax.swing.JTable JtListarUsuario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbAlterar;
+    private javax.swing.JButton jbExcluir;
+    private javax.swing.JButton jbSalvar;
+    private javax.swing.JTable jtListarUsuario;
     // End of variables declaration//GEN-END:variables
 }
