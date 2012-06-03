@@ -16,7 +16,7 @@ import projeto.modelo.to.Cidade;
 public class GuiCidadeAlterar extends javax.swing.JDialog {
 
     Fachada fachada = new Fachada();
-    
+
     /**
      * Creates new form GuiCidadeAlterar
      */
@@ -24,11 +24,11 @@ public class GuiCidadeAlterar extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    
+
     public GuiCidadeAlterar() {
         initComponents();
         setLocationRelativeTo(null);
-        jTextFieldCidadeNova.requestFocus();
+        limparCampos();
     }
 
     /**
@@ -81,7 +81,7 @@ public class GuiCidadeAlterar extends javax.swing.JDialog {
             }
         });
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -172,27 +172,26 @@ public class GuiCidadeAlterar extends javax.swing.JDialog {
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         alterarCidade();
     }//GEN-LAST:event_jButtonAlterarActionPerformed
-    
+
     /**
      * Método que altera um registro selecionado;
      */
     private void alterarCidade() {
         String cdOld;
         double validoString;
-        int cidades_Codigo;
+        Cidade cd;
+        Cidade cdAlterar;
         try {
             cdOld = jTextFieldCidadeOld.getText();
-            Cidade cd;
+
             cd = fachada.consultarCidade(cdOld);
             try {
                 validoString = Double.parseDouble(jTextFieldCidadeNova.getText());
                 JOptionPane.showMessageDialog(null, "Digita apenas o nome da cidade!");
-                jTextFieldCidadeNova.requestFocus();
-                jTextFieldCidadeNova.setText("");
+                limparCampos();
             } catch (NumberFormatException e) {
-                Cidade cdAlterar = new Cidade();
-                cidades_Codigo = cd.getCidades_Codigo();
-                cdAlterar.setCidades_Codigo(cidades_Codigo);
+                cdAlterar = new Cidade();
+                cdAlterar.setCidades_Codigo(cd.getCidades_Codigo());
                 cdAlterar.setCidades_Nome(jTextFieldCidadeNova.getText());
                 fachada.alterarCidade(cdAlterar);
                 JOptionPane.showMessageDialog(null, "Cidade Alterada!");
@@ -201,6 +200,11 @@ public class GuiCidadeAlterar extends javax.swing.JDialog {
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+    }
+    
+    private void limparCampos() {
+        jTextFieldCidadeNova.requestFocus();
+        jTextFieldCidadeNova.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;

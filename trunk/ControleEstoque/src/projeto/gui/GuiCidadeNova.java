@@ -28,7 +28,7 @@ public class GuiCidadeNova extends javax.swing.JDialog {
     public GuiCidadeNova() {
         initComponents();
         setLocationRelativeTo(null);//mostra no centro da tela
-        jTextFieldEntradaCidade.requestFocus();
+        limparCampos();
     }
         
     /**
@@ -169,25 +169,30 @@ public class GuiCidadeNova extends javax.swing.JDialog {
         int resposta;
         double validoString;
         String cdSalvar = null;
+        Cidade cd;
         try {
             cdSalvar = jTextFieldEntradaCidade.getText();
             validoString = Double.parseDouble(cdSalvar);
             JOptionPane.showMessageDialog(null, "Digite apenas o nome da cidade!");
         } catch (NumberFormatException x) {
-            Cidade cd = new Cidade(cdSalvar);
+            cd = new Cidade(cdSalvar);
             try {
                 fachada.salvarCidade(cd);
                 resposta = JOptionPane.showConfirmDialog(null, "Registro salvo com sucesso!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
                 if (resposta == JOptionPane.NO_OPTION) {
                     dispose();
                 } else {
-                    jTextFieldEntradaCidade.setText(null);
-                    jTextFieldEntradaCidade.requestFocus();
+                    limparCampos();
                 }
             } catch (GeralException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         } 
+    }
+    
+    private void limparCampos() {
+        jTextFieldEntradaCidade.setText(null);
+        jTextFieldEntradaCidade.requestFocus();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSalvar;
