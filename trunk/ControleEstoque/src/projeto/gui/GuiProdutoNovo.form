@@ -65,11 +65,11 @@
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jTipoBox" alignment="0" pref="184" max="32767" attributes="0"/>
+                          <Component id="jTipoBox" alignment="0" pref="176" max="32767" attributes="0"/>
                           <Component id="jSegmentoBox" alignment="0" max="32767" attributes="0"/>
                           <Component id="jMarcaBox" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jbSalvar" min="-2" pref="67" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   </Group>
@@ -164,11 +164,14 @@
     <Component class="javax.swing.JFormattedTextField" name="jValorUnitarioField">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format format="#,##0.00" subtype="-1" type="4"/>
+          <Format format="#,###.##" subtype="-1" type="4"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new projeto.modelo.componente.ValorReal()"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="jQtdeField">
       <AuxValues>
