@@ -4,12 +4,22 @@
  */
 package projeto.gui;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import projeto.erro.GeralException;
+import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.Funcionario;
+
 /**
  *
  * @author Thiago Evoa
  */
 public class GuiFuncionario extends javax.swing.JFrame {
 
+    ArrayList<Funcionario> listaFuncionario = null;
+    
+    public static Fachada fachada = new Fachada();
+    
     /**
      * Creates new form GuiFuncionario
      */
@@ -96,6 +106,11 @@ public class GuiFuncionario extends javax.swing.JFrame {
         });
 
         JbExcluir.setText("Excluir");
+        JbExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -164,6 +179,29 @@ public class GuiFuncionario extends javax.swing.JFrame {
         GuiFuncionarioAlterar fu = new GuiFuncionarioAlterar();
         fu.setVisible(true);
     }//GEN-LAST:event_JbAlterarActionPerformed
+
+    private void JbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbExcluirActionPerformed
+        // TODO add your handling code here:
+        int resposta;
+        
+        try{
+            Funcionario fu = listaFuncionario.get(JtListarFuncionario.getSelectedRow());
+            
+            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Apagar ?", "", JOptionPane.YES_NO_OPTION);
+            if(resposta == JOptionPane.YES_OPTION){
+            Funcionario fuconsul = fachada.consultarFuncionario(fu.getFuncionarios_Nome());
+            
+                if(fuconsul != null){
+                fachada.excluirFuncionario(fuconsul.getFuncionarios_Codigo());
+                
+                }
+            }
+        }catch (ArrayIndexOutOfBoundsException ex){
+           JOptionPane.showMessageDialog(null, "Selecione o usuário!");
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_JbExcluirActionPerformed
 
     /**
      * @param args the command line arguments
