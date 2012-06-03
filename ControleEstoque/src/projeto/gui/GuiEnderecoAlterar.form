@@ -73,7 +73,7 @@
                       <Group type="102" attributes="0">
                           <Component id="jLabelCEPNew" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jFormattedTextFieldEntradaCEP" min="-2" pref="137" max="-2" attributes="0"/>
+                          <Component id="jFormattedTextFieldCEP" min="-2" pref="137" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButtonPesquisaCEPNew" min="-2" pref="84" max="-2" attributes="1"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -103,7 +103,7 @@
                           <Component id="jLabelCEPNew" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelLogradouroNew" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldEntradaLog" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jFormattedTextFieldEntradaCEP" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jFormattedTextFieldCEP" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -125,9 +125,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldEntradaLog">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelCidadeNew">
           <Properties>
@@ -139,8 +139,10 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonPesquisaCEPNew">
           <Properties>
@@ -167,22 +169,26 @@
         <Component class="javax.swing.JButton" name="jButtonAlterar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Alterar Endere&#xe7;o"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAlterarActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonGerenciarCidade">
           <Properties>
             <Property name="text" type="java.lang.String" value="Gerenciar Cidade"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGerenciarCidadeActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldEntradaCEP">
+        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldCEP">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="#####-###" subtype="-1" type="5"/>
@@ -207,7 +213,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabelCidadeOld" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jTextFieldSaidaCidadeOld" min="-2" pref="356" max="-2" attributes="0"/>
+                  <Component id="jTextFieldSaidaCidade" min="-2" pref="356" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabelCEP" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -219,7 +225,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabelLogradouroOld" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextFieldSaidaLogOld" pref="540" max="32767" attributes="0"/>
+                      <Component id="jTextFieldSaidaLog" pref="540" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -235,7 +241,7 @@
                           <Component id="jFormattedTextFieldSaidaCEP" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextFieldSaidaCidadeOld" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldSaidaCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelCidadeOld" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -245,7 +251,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jTextFieldSaidaLogOld" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldSaidaLog" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelLogradouroOld" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="53" max="32767" attributes="0"/>
@@ -260,7 +266,7 @@
             <Property name="text" type="java.lang.String" value="Logradouro.:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldSaidaLogOld">
+        <Component class="javax.swing.JTextField" name="jTextFieldSaidaLog">
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -273,7 +279,7 @@
             <Property name="text" type="java.lang.String" value="Cidade.:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldSaidaCidadeOld">
+        <Component class="javax.swing.JTextField" name="jTextFieldSaidaCidade">
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>

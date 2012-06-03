@@ -104,12 +104,12 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
         jLabelCEPNew = new javax.swing.JLabel();
         jButtonAlterar = new javax.swing.JButton();
         jButtonGerenciarCidade = new javax.swing.JButton();
-        jFormattedTextFieldEntradaCEP = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldCEP = new javax.swing.JFormattedTextField();
         jPanelEndOld = new javax.swing.JPanel();
         jLabelLogradouroOld = new javax.swing.JLabel();
-        jTextFieldSaidaLogOld = new javax.swing.JTextField();
+        jTextFieldSaidaLog = new javax.swing.JTextField();
         jLabelCidadeOld = new javax.swing.JLabel();
-        jTextFieldSaidaCidadeOld = new javax.swing.JTextField();
+        jTextFieldSaidaCidade = new javax.swing.JTextField();
         jLabelCEP = new javax.swing.JLabel();
         jFormattedTextFieldSaidaCEP = new javax.swing.JFormattedTextField();
 
@@ -126,11 +126,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
 
         jLabelLogradouroNew.setText("Logradouro.:");
 
-        jTextFieldEntradaLog.setEnabled(false);
-
         jLabelCidadeNew.setText("Cidade.:");
-
-        jComboBoxCidade.setEnabled(false);
 
         jButtonPesquisaCEPNew.setText("Consultar");
         jButtonPesquisaCEPNew.setMaximumSize(new java.awt.Dimension(75, 23));
@@ -145,7 +141,6 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
         jLabelCEPNew.setText("CEP.:");
 
         jButtonAlterar.setText("Alterar Endereço");
-        jButtonAlterar.setEnabled(false);
         jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAlterarActionPerformed(evt);
@@ -153,7 +148,6 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
         });
 
         jButtonGerenciarCidade.setText("Gerenciar Cidade");
-        jButtonGerenciarCidade.setEnabled(false);
         jButtonGerenciarCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGerenciarCidadeActionPerformed(evt);
@@ -161,7 +155,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
         });
 
         try {
-            jFormattedTextFieldEntradaCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+            jFormattedTextFieldCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -180,7 +174,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
                     .addGroup(jPanelEndNewLayout.createSequentialGroup()
                         .addComponent(jLabelCEPNew)
                         .addGap(18, 18, 18)
-                        .addComponent(jFormattedTextFieldEntradaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jFormattedTextFieldCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonPesquisaCEPNew, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -204,7 +198,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
                         .addComponent(jLabelCEPNew)
                         .addComponent(jLabelLogradouroNew)
                         .addComponent(jTextFieldEntradaLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jFormattedTextFieldEntradaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jFormattedTextFieldCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelEndNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -218,11 +212,11 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
 
         jLabelLogradouroOld.setText("Logradouro.:");
 
-        jTextFieldSaidaLogOld.setEnabled(false);
+        jTextFieldSaidaLog.setEnabled(false);
 
         jLabelCidadeOld.setText("Cidade.:");
 
-        jTextFieldSaidaCidadeOld.setEnabled(false);
+        jTextFieldSaidaCidade.setEnabled(false);
 
         jLabelCEP.setText("CEP.:");
 
@@ -241,7 +235,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabelCidadeOld)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextFieldSaidaCidadeOld, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldSaidaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelCEP)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -252,7 +246,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
                     .addContainerGap()
                     .addComponent(jLabelLogradouroOld)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jTextFieldSaidaLogOld, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+                    .addComponent(jTextFieldSaidaLog, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         jPanelEndOldLayout.setVerticalGroup(
@@ -264,14 +258,14 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
                         .addComponent(jLabelCEP)
                         .addComponent(jFormattedTextFieldSaidaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelEndOldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextFieldSaidaCidadeOld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldSaidaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelCidadeOld)))
                 .addGap(22, 22, 22))
             .addGroup(jPanelEndOldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelEndOldLayout.createSequentialGroup()
                     .addGap(12, 12, 12)
                     .addGroup(jPanelEndOldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jTextFieldSaidaLogOld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldSaidaLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelLogradouroOld))
                     .addContainerGap(53, Short.MAX_VALUE)))
         );
@@ -309,9 +303,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonGerenciarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerenciarCidadeActionPerformed
-        GuiCidade cd = new GuiCidade();
-        cd.setVisible(true);
-        atualizarComboCidade();
+        gerenciarCidade();
     }//GEN-LAST:event_jButtonGerenciarCidadeActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -333,7 +325,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
             cepOld = str_cepOld;
             end = fachada.consultarEndCep(cepOld);
             cd = fachada.consultarCidade((String) jComboBoxCidade.getSelectedItem());
-            str_cepNew = jFormattedTextFieldEntradaCEP.getText();
+            str_cepNew = jFormattedTextFieldCEP.getText();
             str_cepNew = str_cepNew.replace('-', ' ');
             str_cepNew = str_cepNew.replaceAll(" ", "");
             enderecos_CEP = str_cepNew;
@@ -346,6 +338,8 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
 
             JOptionPane.showMessageDialog(null, "Endereço alterado!");
             dispose();
+            GuiEndereco guiEndereco = new GuiEndereco();
+            guiEndereco.setVisible(true);
 
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -359,7 +353,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
         String enderecos_CEP;
         Endereco end;
         try {
-            str_cep = jFormattedTextFieldEntradaCEP.getText();
+            str_cep = jFormattedTextFieldCEP.getText();
             str_cep = str_cep.replace('-', ' ');
             str_cep = str_cep.replaceAll(" ", "");
             enderecos_CEP = str_cep;
@@ -371,7 +365,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
                     bloquearTela();
                 } else {
                     liberarTela();
-                    jFormattedTextFieldEntradaCEP.setText(end.getEnderecos_CEP());
+                    jFormattedTextFieldCEP.setText(end.getEnderecos_CEP());
                     jTextFieldEntradaLog.setText(end.getEnderecos_Logradouro());
                     jButtonAlterar.requestFocus();                    
                 }
@@ -388,6 +382,26 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+    }
+    
+    private void gerenciarCidade(){
+        String logOld = jTextFieldSaidaLog.getText();
+        String cdOld = jTextFieldSaidaCidade.getText();
+        String cepOld = jFormattedTextFieldSaidaCEP.getText();
+        String cep = jFormattedTextFieldCEP.getText();
+        String log = jTextFieldEntradaLog.getText();
+        dispose();
+        GuiCidade cidade = new GuiCidade();
+        cidade.setVisible(true);
+        GuiEnderecoAlterar guiEnderecoAlterar = new GuiEnderecoAlterar();
+        guiEnderecoAlterar.jFormattedTextFieldCEP.setText(cep);
+        GuiEnderecoAlterar.jTextFieldEntradaLog.setText(log);
+        guiEnderecoAlterar.jTextFieldSaidaLog.setText(logOld);
+        guiEnderecoAlterar.jTextFieldSaidaCidade.setText(cdOld);
+        guiEnderecoAlterar.jFormattedTextFieldSaidaCEP.setText(cepOld);
+        liberarTela();
+        jComboBoxCidade.requestFocus();
+        guiEnderecoAlterar.setVisible(true);
     }
     
     private void atualizarComboCidade() {
@@ -412,7 +426,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
     }
     
     private void bloquearTela(){
-        jFormattedTextFieldEntradaCEP.requestFocus();
+        jFormattedTextFieldCEP.requestFocus();
         jTextFieldEntradaLog.setEnabled(false);
         jComboBoxCidade.setEnabled(false);
         jButtonGerenciarCidade.setEnabled(false);
@@ -420,15 +434,15 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
     }
     
     private void limparCampos(){
-        jFormattedTextFieldEntradaCEP.setValue(null);
+        jFormattedTextFieldCEP.setValue(null);
         jTextFieldEntradaLog.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAlterar;
-    private javax.swing.JButton jButtonGerenciarCidade;
+    private static javax.swing.JButton jButtonAlterar;
+    private static javax.swing.JButton jButtonGerenciarCidade;
     private javax.swing.JButton jButtonPesquisaCEPNew;
-    private javax.swing.JComboBox jComboBoxCidade;
-    private javax.swing.JFormattedTextField jFormattedTextFieldEntradaCEP;
+    public static javax.swing.JComboBox jComboBoxCidade;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCEP;
     public javax.swing.JFormattedTextField jFormattedTextFieldSaidaCEP;
     private javax.swing.JLabel jLabelCEP;
     private javax.swing.JLabel jLabelCEPNew;
@@ -438,8 +452,8 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
     private javax.swing.JLabel jLabelLogradouroOld;
     private javax.swing.JPanel jPanelEndNew;
     private javax.swing.JPanel jPanelEndOld;
-    private javax.swing.JTextField jTextFieldEntradaLog;
-    public javax.swing.JTextField jTextFieldSaidaCidadeOld;
-    public javax.swing.JTextField jTextFieldSaidaLogOld;
+    public static javax.swing.JTextField jTextFieldEntradaLog;
+    public javax.swing.JTextField jTextFieldSaidaCidade;
+    public javax.swing.JTextField jTextFieldSaidaLog;
     // End of variables declaration//GEN-END:variables
 }
