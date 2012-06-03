@@ -15,7 +15,7 @@ public class ValidaCampo {
      * @param str_cnpj
      * @return
      */
-    public boolean validaCNPJ(String str_cnpj) {
+    public static boolean validaCNPJ(String str_cnpj) {
         if (!str_cnpj.substring(0, 1).equals("")) {
             try {
                 int soma = 0, dig;
