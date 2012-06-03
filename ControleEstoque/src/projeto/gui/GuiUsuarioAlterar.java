@@ -4,17 +4,26 @@
  */
 package projeto.gui;
 
+import javax.swing.JOptionPane;
+import projeto.erro.GeralException;
+import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.Usuario;
+
 /**
  *
  * @author Thiago Evoa
  */
 public class GuiUsuarioAlterar extends javax.swing.JFrame {
 
+    Fachada fachada = new Fachada();
+    private GuiUsuario guiUs;
+    String usuarioNome;
     /**
      * Creates new form GuiUsuarioAlterar
      */
     public GuiUsuarioAlterar() {
         initComponents();
+        guiUs = new GuiUsuario();
         setLocationRelativeTo(null);
     }
 
@@ -46,7 +55,12 @@ public class GuiUsuarioAlterar extends javax.swing.JFrame {
 
         JlSenhaUsuario2.setText("Senha usuário.:");
 
-        JbAlterar.setText("Salvar");
+        JbAlterar.setText("Alterar");
+        JbAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbAlterarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -114,6 +128,25 @@ public class GuiUsuarioAlterar extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbAlterarActionPerformed
+        // TODO add your handling code here:
+        try{
+            Usuario usAlterar = new Usuario();
+            
+            usAlterar.setFuncionarios_Nome(usuarioNome);
+            
+            Usuario ussalvar = fachada.consultarUsuario((String) JcNomeUsuario2.getSelectedText());
+            usAlterar.setFuncionarios_Nome(ussalvar.getFuncionarios_Nome());
+            
+            fachada.alterarUsuario(ussalvar);
+            JOptionPane.showMessageDialog(null, "Usuario Alterado!");            
+                     
+        }catch (GeralException ex){
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_JbAlterarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -7,6 +7,7 @@ package projeto.gui;
 import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.Usuario;
 
 /**
  *
@@ -14,6 +15,9 @@ import projeto.modelo.fachada.Fachada;
  */
 public class GuiUsuarioNovo extends javax.swing.JFrame {
 
+    public static Fachada fachada = new Fachada();
+    
+    private GuiUsuario guiUs = new GuiUsuario();
     /**
      * Creates new form GuiUsuarioNovo
      */
@@ -124,6 +128,19 @@ public class GuiUsuarioNovo extends javax.swing.JFrame {
 
     private void JbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbSalvarActionPerformed
         // TODO add your handling code here:
+        try{
+            Usuario usSalvar = new Usuario();
+           
+            Usuario ussalvar = fachada.consultarUsuario((String) JcNomeUsuario.getSelectedText());
+            usSalvar.setFuncionarios_Nome(ussalvar.getFuncionarios_Nome());            
+                     
+            fachada.salvarUsuario(ussalvar);
+            JOptionPane.showMessageDialog(null, "Usuario Salvo!");
+            dispose();
+                     
+        }catch(GeralException ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());            
+        }
         
     }//GEN-LAST:event_JbSalvarActionPerformed
 

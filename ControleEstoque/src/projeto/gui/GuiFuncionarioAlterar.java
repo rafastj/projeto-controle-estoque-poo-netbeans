@@ -4,17 +4,26 @@
  */
 package projeto.gui;
 
+import javax.swing.JOptionPane;
+import projeto.erro.GeralException;
+import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.Funcionario;
+
 /**
  *
  * @author Thiago Evoa
  */
 public class GuiFuncionarioAlterar extends javax.swing.JFrame {
 
+    Fachada fachada = new Fachada();
+    private GuiFuncionario guiFu;
+    String funcionarioNome;
     /**
      * Creates new form GuiFuncionarioAlterar
      */
     public GuiFuncionarioAlterar() {
         initComponents();
+        guiFu = new GuiFuncionario();
         setLocationRelativeTo(null);
     }
 
@@ -46,6 +55,11 @@ public class GuiFuncionarioAlterar extends javax.swing.JFrame {
         JlNumeroResidencia.setText("Número da Residência.:");
 
         JbAlterar.setText("Alterar");
+        JbAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbAlterarActionPerformed(evt);
+            }
+        });
 
         JbConsultarCEP.setText("Consultar CEP");
 
@@ -120,6 +134,25 @@ public class GuiFuncionarioAlterar extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbAlterarActionPerformed
+        // TODO add your handling code here:
+        try{
+            Funcionario fuAlterar = new Funcionario();
+            
+            fuAlterar.setFuncionarios_Nome(funcionarioNome);
+            
+            Funcionario fusalvar = fachada.consultarFuncionario((String) JcNomeFuncionario.getSelectedText());
+            fuAlterar.setFuncionarios_Nome(fusalvar.getFuncionarios_Nome());
+            
+            fachada.alterarFuncionario(fusalvar);
+            JOptionPane.showMessageDialog(null, "Funcionario Alterado!");            
+                     
+        }catch (GeralException ex){
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_JbAlterarActionPerformed
 
     /**
      * @param args the command line arguments
