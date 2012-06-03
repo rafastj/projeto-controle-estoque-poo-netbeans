@@ -493,21 +493,38 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
     }
     
     private void pesquisarCEP() {
+        int resComCadastro;
+        int resSemCadastro;
         String str_cep;
+        String enderecos_CEP;
         try {
-            str_cep = jFormattedTextFieldSaidaCEP.getText();
+            str_cep = jFormattedTextFieldEntradaCEP.getText();
             str_cep = str_cep.replace('-', ' ');
             str_cep = str_cep.replaceAll(" ", "");
-            if ((str_cep == null) || (str_cep.equals(""))) {
-                JOptionPane.showMessageDialog(null, "Digite o CEP!");
-                jFormattedTextFieldSaidaCEP.requestFocus();
-            } else {
-                Endereco end = fachada.consultarEndCep(str_cep);
-                if (end != null) {
-                    jFormattedTextFieldSaidaCEP.setText(end.getEnderecos_CEP());
-                    jTextFieldSaidaLog.setText(end.getEnderecos_Logradouro());
+            enderecos_CEP = str_cep;
+            Endereco end = fachada.consultarEndCep(enderecos_CEP);
+            if (end != null) {
+                resComCadastro = JOptionPane.showConfirmDialog(null, "CEP já está existe!\nDeseja continuar?\nSe não informe outro CEP.", "", JOptionPane.YES_NO_OPTION);
+                if (resComCadastro == JOptionPane.NO_OPTION) {
+                    jFormattedTextFieldEntradaCEP.setValue(null);
+                    jFormattedTextFieldEntradaCEP.requestFocus();
                 } else {
-                    jTextFieldSaidaLog.requestFocus();
+                    jFormattedTextFieldEntradaCEP.setText(end.getEnderecos_CEP());
+                    jTextFieldEntradaLog.setEditable(true);
+                    jTextFieldEntradaLog.requestFocus();
+                    jTextFieldEntradaLog.setText(end.getEnderecos_Logradouro());                    
+                }
+            } else {
+                resSemCadastro = JOptionPane.showConfirmDialog(null, "CEP não está cadastrado!\nDeseja cadastrar?", "", JOptionPane.YES_NO_OPTION);
+                if (resSemCadastro == JOptionPane.YES_OPTION) {
+                    GuiEnderecoNovo guiEnderecoNovo = new GuiEnderecoNovo();
+                    guiEnderecoNovo.jFormattedTextFieldCEP.setText(enderecos_CEP);
+                    guiEnderecoNovo.jTextFieldEntradaLog.requestFocus();
+                    guiEnderecoNovo.setVisible(true);
+                    jButtonPesquisaCEP.requestFocus();
+                } else {
+                    jTextFieldEntradaLog.setEditable(true);
+                    jTextFieldEntradaLog.requestFocus();
                 }
             }
         } catch (GeralException ex) {
@@ -516,7 +533,54 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
     }
    
     private void alterarFornecedor() {
-        
+        int resposta;
+        String fornecedores_CNPJ;
+        String str_cep;
+        String str_cnpjOld;
+        String str_cnpjNew;
+        String CNPJ_Old;
+        Fornecedor fOld;
+        try {
+            //Faz a consulta do objeto através do CNPJ antigo para retirada do código do fornecedor.
+            str_cnpjOld = jFormattedTextFieldSaidaCNPJ.getText();
+            str_cnpjOld = str_cnpjOld.replace('.', ' ');
+            str_cnpjOld = str_cnpjOld.replace('/', ' ');
+            str_cnpjOld = str_cnpjOld.replace('-', ' ');
+            str_cnpjOld = str_cnpjOld.replaceAll(" ", "");
+            CNPJ_Old = str_cnpjOld;
+            fOld = fachada.consultarForCNPJ(CNPJ_Old);
+            
+            //Captura o CNPJ novo para ser enviado no objeto UPDATE
+            str_cnpjNew = jFormattedTextFieldSaidaCNPJ.getText();
+            str_cnpjNew = str_cnpjNew.replace('.', ' ');
+            str_cnpjNew = str_cnpjNew.replace('/', ' ');
+            str_cnpjNew = str_cnpjNew.replace('-', ' ');
+            str_cnpjNew = str_cnpjNew.replaceAll(" ", "");
+            fornecedores_CNPJ = str_cnpjNew;
+            
+            //Faz a consulta do objeto através do CEP para retirada do código do endereço.
+            str_cep = jFormattedTextFieldEntradaCEP.getText();
+            str_cep = str_cep.replace('-', ' ');
+            str_cep = str_cep.replaceAll(" ", "");
+            Endereco end = fachada.consultarEndCep(str_cep);
+            
+            //Cria o objeto para fazer o UPDATE.
+            Fornecedor fAlterar = new Fornecedor();
+            fAlterar.setFornecedores_Codigo(fOld.getFornecedores_Codigo());
+            fAlterar.setFornecedores_CNPJ(fornecedores_CNPJ);
+            fAlterar.setFornecedores_RazaoSocial(jTextFieldEntradaRS.getText());
+            fAlterar.setEnderecos_Codigo(end.getEnderecos_Codigo());
+            fAlterar.setFornecedores_NumeroResidencia(Integer.parseInt(jFormattedTextFieldEntradaNumero.getText()));
+            fachada.alterarFornecedor(fAlterar);
+            resposta = JOptionPane.showConfirmDialog(null, "Registro alterado com sucesso!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.NO_OPTION) {
+                dispose();
+            } else {
+                limparCampos();
+            }
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }
     
     private void atualizarComboCidade() {
@@ -551,8 +615,6 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
         jButtonAlterarFornecedor.setEnabled(true);
         jButtonAlterarFornecedor.setEnabled(true);
         jButtonPesquisaCEP.setEnabled(true);
-        jComboBoxCidade.setEnabled(true);
-        jButtonGerenciarCidade.setEnabled(true);
     }
     
     private void bloqueiaTela(){
