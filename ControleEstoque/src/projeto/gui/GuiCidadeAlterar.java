@@ -4,7 +4,6 @@
  */
 package projeto.gui;
 
-import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Cidade;
@@ -176,33 +175,22 @@ public class GuiCidadeAlterar extends javax.swing.JDialog {
     /**
      * Método que altera um registro selecionado;
      */
+    
     private void alterarCidade() {
-        String cdOld;
-        double validoString;
+        Cidade cdOld;
         Cidade cd;
-        Cidade cdAlterar;
         try {
-            cdOld = jTextFieldCidadeOld.getText();
-
-            cd = fachada.consultarCidade(cdOld);
-            try {
-                validoString = Double.parseDouble(jTextFieldCidadeNova.getText());
-                JOptionPane.showMessageDialog(null, "Digita apenas o nome da cidade!");
-                limparCampos();
-            } catch (NumberFormatException e) {
-                cdAlterar = new Cidade();
-                cdAlterar.setCidades_Codigo(cd.getCidades_Codigo());
-                cdAlterar.setCidades_Nome(jTextFieldCidadeNova.getText());
-                fachada.alterarCidade(cdAlterar);
-                JOptionPane.showMessageDialog(null, "Cidade Alterada!");
-                dispose();
-            }
+            cdOld = fachada.consultarCidade(jTextFieldCidadeOld.getText());
+            cd = new Cidade();
+            cd.setCidades_Codigo(cdOld.getCidades_Codigo());
+            cd.setCidades_Nome(jTextFieldCidadeNova.getText());
+            fachada.alterarCidade(cd);
         } catch (GeralException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+            dispose();
         }
     }
     
-    private void limparCampos() {
+    public static void limparCampos() {
         jTextFieldCidadeNova.requestFocus();
         jTextFieldCidadeNova.setText("");
     }
@@ -211,7 +199,7 @@ public class GuiCidadeAlterar extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelCidade;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextFieldCidadeNova;
-    public javax.swing.JTextField jTextFieldCidadeOld;
+    public static javax.swing.JTextField jTextFieldCidadeNova;
+    public static javax.swing.JTextField jTextFieldCidadeOld;
     // End of variables declaration//GEN-END:variables
 }

@@ -33,28 +33,4 @@ public class Cidade {
     public void setCidades_Nome(String cidades_Nome) {
         this.cidades_Nome = cidades_Nome;
     }
-
-    /**
-     * Verifica se todos os campos obrigatórios estão OK.
-     *
-     * @return true Se não houver problemas.
-     */
-    public boolean isValido() {
-        if ((getCidades_Nome().equals("")) || (getCidades_Nome() == null) || (getCidades_Codigo() == 0)) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * Verifica se todos os campos obrigatórios estão OK.
-     *
-     * @return null, ou o nome do primeiro campo inválido.
-     */
-    public String getValidoString() {
-        if ((getCidades_Nome().equals("")) || (getCidades_Nome()) == null) {
-            return "cidades_Nome";
-        }
-        return null;
-    }
 }

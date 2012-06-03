@@ -12,6 +12,7 @@ import projeto.erro.RepositorioException;
 import projeto.modelo.repositorio.IRepositorioFornecedor;
 import projeto.modelo.repositorio.RepositorioFornecedor;
 import projeto.modelo.to.Fornecedor;
+import projeto.validaCampo.ValidaCampo;
 
 /**
  * @author Daniel
@@ -25,7 +26,7 @@ public class NegocioFornecedor {
     }
 
     public void salvar(Fornecedor f) throws GeralException {
-        boolean cnpj = validaCNPJ(f.getFornecedores_CNPJ());
+        boolean cnpj = ValidaCampo.ValidaCPF(f.getFornecedores_CNPJ());
 
         if (cnpj == false) {
             throw new GeralException("CNPJ inválido!");

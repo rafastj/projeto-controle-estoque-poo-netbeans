@@ -4,7 +4,6 @@
  */
 package projeto.gui;
 
-import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Cidade;
@@ -16,6 +15,7 @@ import projeto.modelo.to.Cidade;
 public class GuiCidadeNova extends javax.swing.JDialog {
     
     public static Fachada fachada = new Fachada();
+    
     
     /**
      * Creates new form GuiCidadeNova
@@ -71,7 +71,7 @@ public class GuiCidadeNova extends javax.swing.JDialog {
             public void run() {
                 GuiCidadeNova dialog = new GuiCidadeNova(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-
+                
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
@@ -162,42 +162,26 @@ public class GuiCidadeNova extends javax.swing.JDialog {
         salvarCidade();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
     
-    /**
-     * Método que salva um novo registro na tabela Cidade;
-     */
     private void salvarCidade() {
-        int resposta;
-        double validoString;
-        String cdSalvar = null;
+        String cdSalvar;
         Cidade cd;
         try {
             cdSalvar = jTextFieldEntradaCidade.getText();
-            validoString = Double.parseDouble(cdSalvar);
-            JOptionPane.showMessageDialog(null, "Digite apenas o nome da cidade!");
-        } catch (NumberFormatException x) {
             cd = new Cidade(cdSalvar);
-            try {
-                fachada.salvarCidade(cd);
-                resposta = JOptionPane.showConfirmDialog(null, "Registro salvo com sucesso!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
-                if (resposta == JOptionPane.NO_OPTION) {
-                    dispose();
-                } else {
-                    limparCampos();
-                }
-            } catch (GeralException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage());
-            }
-        } 
+            fachada.salvarCidade(cd);
+        } catch (GeralException ex) {
+            dispose();
+        }
     }
     
-    private void limparCampos() {
+    public static void limparCampos() {
         jTextFieldEntradaCidade.setText(null);
         jTextFieldEntradaCidade.requestFocus();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonSalvar;
+    private static javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextFieldEntradaCidade;
+    private static javax.swing.JTextField jTextFieldEntradaCidade;
     // End of variables declaration//GEN-END:variables
 }

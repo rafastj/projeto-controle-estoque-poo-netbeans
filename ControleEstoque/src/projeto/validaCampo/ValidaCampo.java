@@ -15,13 +15,9 @@ public class ValidaCampo {
      * @param str_cnpj
      * @return
      */
-    public boolean validaCnpj(String str_cnpj) {
+    public boolean validaCNPJ(String str_cnpj) {
         if (!str_cnpj.substring(0, 1).equals("")) {
             try {
-                str_cnpj = str_cnpj.replace('.', ' ');
-                str_cnpj = str_cnpj.replace('/', ' ');
-                str_cnpj = str_cnpj.replace('-', ' ');
-                str_cnpj = str_cnpj.replaceAll(" ", "");
                 int soma = 0, dig;
                 String cnpj_calc = str_cnpj.substring(0, 12);
 
