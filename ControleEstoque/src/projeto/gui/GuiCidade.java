@@ -32,6 +32,8 @@ public class GuiCidade extends javax.swing.JDialog {
     public GuiCidade() {
         initComponents();
         setLocationRelativeTo(null);
+        limparCampos();
+        atualizarTabelaCidade();
     }
 
     /**
@@ -256,19 +258,18 @@ public class GuiCidade extends javax.swing.JDialog {
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         GuiCidadeNova cdSalvar = new GuiCidadeNova();
         cdSalvar.setVisible(true);
+        limparCampos();
         atualizarTabelaCidade();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
-        jTextFieldCidade.setText(null);
-        jTextFieldCidade.requestFocus();
+        limparCampos();
         atualizarTabelaCidade();
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        jTextFieldCidade.requestFocus();
-        jTextFieldCidade.setText("");
         excluirCidade();
+        limparCampos();
         atualizarTabelaCidade();
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
@@ -278,6 +279,8 @@ public class GuiCidade extends javax.swing.JDialog {
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         alterarCidade();
+        limparCampos();
+        atualizarTabelaCidade();
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jTextFieldCidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCidadeKeyReleased
@@ -285,7 +288,7 @@ public class GuiCidade extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldCidadeKeyReleased
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        atualizarTabelaCidade();
+        //
     }//GEN-LAST:event_formComponentShown
 
     /**
@@ -310,15 +313,15 @@ public class GuiCidade extends javax.swing.JDialog {
      */
     private void alterarCidade() {
         int resposta;
+        Cidade cdOld;
         try {
-            Cidade cdOld = listaCidade.get(jTableListaCidade.getSelectedRow());
+            cdOld = listaCidade.get(jTableListaCidade.getSelectedRow());
 
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
                 GuiCidadeAlterar guiCidadeAlterar = new GuiCidadeAlterar();
                 guiCidadeAlterar.jTextFieldCidadeOld.setText(cdOld.getCidades_Nome());
                 guiCidadeAlterar.setVisible(true);
-                atualizarTabelaCidade();
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Selecione a cidade!");
@@ -330,12 +333,14 @@ public class GuiCidade extends javax.swing.JDialog {
      */
     private void excluirCidade() {
         int resposta;
+        Cidade cd;
+        Cidade cdConsult;
         try {
-            Cidade cd = listaCidade.get(jTableListaCidade.getSelectedRow());
+            cd = listaCidade.get(jTableListaCidade.getSelectedRow());
 
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Apagar ?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
-                Cidade cdConsult = fachada.consultarCidade(cd.getCidades_Nome());
+                cdConsult = fachada.consultarCidade(cd.getCidades_Nome());
                 if (cdConsult != null) {
                     fachada.excluirCidade(cdConsult.getCidades_Codigo());
                 }
@@ -382,6 +387,11 @@ public class GuiCidade extends javax.swing.JDialog {
             i++;
         }
         return modelo;
+    }
+    
+    private void limparCampos() {
+        jTextFieldCidade.requestFocus();
+        jTextFieldCidade.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;
