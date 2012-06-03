@@ -197,20 +197,31 @@ public class NegocioMarca {
     /**
      * Verificar os dados antes de consultar a lista
      */
-    public Collection<Marca> listarMarca(String marcas_Descricao) throws GeralException {
+       public Collection<Marca> listarMarca() throws GeralException {
 
         ArrayList<Marca> lista;
-
-        if (marcas_Descricao == null) {
-            throw new GeralException("Descrição do produto não informada");
-        }
         try {
-            lista = (ArrayList<Marca>) new RepositorioMarca().listarMarca(marcas_Descricao);
+            lista = (ArrayList<Marca>) new RepositorioMarca().listarMarca();
 
         } catch (RepositorioException ex) {
-            throw new GeralException("Felipe fez algo de errado!");
+            throw new GeralException("Erro de programação!");
+
         } catch (ConexaoException ex) {
-            throw new GeralException("O banco de dados não está acessível!");
+            throw new GeralException("O banco de dados não está acessível no momento");
+        }
+        return lista;
+    }
+    
+     public Collection<Marca> listarMarcasDescricao(String marcas_Descricao)throws GeralException{
+       ArrayList<Marca> lista;
+        try {
+            lista = (ArrayList<Marca>) new RepositorioMarca().listarMarcasDescricao(marcas_Descricao);
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível no momento");
         }
         return lista;
     }

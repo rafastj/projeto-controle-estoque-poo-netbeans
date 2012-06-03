@@ -707,9 +707,13 @@ public class Fachada {
 	public Marca consultarMarcas( String marcas_Descricao) throws GeralException{		
 		return rnMarca.consultarMarcas(marcas_Descricao);
 	}
+        
+        public Collection <Marca> listarMarca() throws GeralException {
+		return rnMarca.listarMarca();
 	
-	public Collection <Marca> listarMarca( String marcas_Descricao) throws GeralException {
-		return rnMarca.listarMarca(marcas_Descricao);
+        }
+	public Collection <Marca> listarMarcasDescricao( String marcas_Descricao) throws GeralException {
+		return rnMarca.listarMarcasDescricao(marcas_Descricao);
 	}
         
         public static int CodigoMarca()throws GeralException  {

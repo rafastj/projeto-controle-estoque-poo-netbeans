@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
-import projeto.modelo.to.Tipo;
+import projeto.modelo.to.Marca;
 
 /**
  *
@@ -17,7 +17,7 @@ import projeto.modelo.to.Tipo;
  */
 public class GuiMarcas extends javax.swing.JDialog {
 
-    ArrayList<Tipo> listaTipo = null;
+    ArrayList<Marca> listaMarca = null;
         public static Fachada fachada = new Fachada();
         
     /**
@@ -30,7 +30,7 @@ public class GuiMarcas extends javax.swing.JDialog {
     
     public GuiMarcas(){
         initComponents();
-        listaTabelaTipo();
+        listaTabelaMarca();
     }
 
     /**
@@ -47,10 +47,10 @@ public class GuiMarcas extends javax.swing.JDialog {
         JlFuncionario = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JtListarTipos = new javax.swing.JTable();
-        btnAlterar = new javax.swing.JButton();
-        btnSalvar = new javax.swing.JButton();
-        btnExcluir = new javax.swing.JButton();
+        JtListarMarcas = new javax.swing.JTable();
+        btnAlterarM = new javax.swing.JButton();
+        btnSalvarM = new javax.swing.JButton();
+        btnExcluirM = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Marcas");
@@ -97,7 +97,7 @@ public class GuiMarcas extends javax.swing.JDialog {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        JtListarTipos.setModel(new javax.swing.table.DefaultTableModel(
+        JtListarMarcas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -113,39 +113,39 @@ public class GuiMarcas extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        JtListarTipos.setShowHorizontalLines(false);
-        JtListarTipos.setShowVerticalLines(false);
-        JtListarTipos.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(JtListarTipos);
+        JtListarMarcas.setShowHorizontalLines(false);
+        JtListarMarcas.setShowVerticalLines(false);
+        JtListarMarcas.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(JtListarMarcas);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 376, 180));
 
-        btnAlterar.setText("Alterar");
-        btnAlterar.setMaximumSize(new java.awt.Dimension(63, 23));
-        btnAlterar.setMinimumSize(new java.awt.Dimension(63, 23));
-        btnAlterar.setPreferredSize(new java.awt.Dimension(63, 23));
-        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+        btnAlterarM.setText("Alterar");
+        btnAlterarM.setMaximumSize(new java.awt.Dimension(63, 23));
+        btnAlterarM.setMinimumSize(new java.awt.Dimension(63, 23));
+        btnAlterarM.setPreferredSize(new java.awt.Dimension(63, 23));
+        btnAlterarM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarActionPerformed(evt);
+                btnAlterarMActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 56, 70, 30));
+        jPanel2.add(btnAlterarM, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 56, 70, 30));
 
-        btnSalvar.setText("Novo");
-        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvarM.setText("Novo");
+        btnSalvarM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarActionPerformed(evt);
+                btnSalvarMActionPerformed(evt);
             }
         });
-        jPanel2.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 20, 70, 30));
+        jPanel2.add(btnSalvarM, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 20, 70, 30));
 
-        btnExcluir.setText("Excluir");
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluirM.setText("Excluir");
+        btnExcluirM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
+                btnExcluirMActionPerformed(evt);
             }
         });
-        jPanel2.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 92, 70, 30));
+        jPanel2.add(btnExcluirM, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 92, 70, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,42 +173,42 @@ public class GuiMarcas extends javax.swing.JDialog {
 
     private void jTPesqKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPesqKeyReleased
         // TODO add your handling code here:
-        pesquisarTipo();
+        pesquisarMarca();
     }//GEN-LAST:event_jTPesqKeyReleased
 
-    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+    private void btnAlterarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarMActionPerformed
         // TODO add your handling code here:
-        alterarTipo();
-    }//GEN-LAST:event_btnAlterarActionPerformed
+        alterarMarca();
+    }//GEN-LAST:event_btnAlterarMActionPerformed
 
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+    private void btnSalvarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarMActionPerformed
         // TODO add your handling code here:
-        GuiSalvarTipo tela = new GuiSalvarTipo();
-        tela.setVisible(true);
-    }//GEN-LAST:event_btnSalvarActionPerformed
+        // GuiSalvarMarca tela = new GuiSalvarMarca();
+        //tela.setVisible(true);
+    }//GEN-LAST:event_btnSalvarMActionPerformed
 
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+    private void btnExcluirMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirMActionPerformed
         // TODO add your handling code here:
-        apagarTipo();
-        listaTabelaTipo();
-    }//GEN-LAST:event_btnExcluirActionPerformed
+        apagarMarca();
+        listaTabelaMarca();
+    }//GEN-LAST:event_btnExcluirMActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
-        listaTabelaTipo();
+        listaTabelaMarca();
     }//GEN-LAST:event_formWindowGainedFocus
 
-     private DefaultTableModel geramodelo(ArrayList<Tipo> listaTipo) {
+     private DefaultTableModel geramodelo(ArrayList<Marca> listaTipo) {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Código");
         modelo.addColumn("Descrição");
       
         ArrayList<String> valores;
         int i = 0;
-        for (Tipo t : listaTipo) {
+        for (Marca m : listaMarca) {
             valores = new ArrayList<String>();
-            valores.add(String.valueOf(t.getTipos_Codigo()));
-            valores.add(t.getTipos_Descricao());
+            valores.add(String.valueOf(m.getMarcas_Codigo()));
+            valores.add(m.getMarcas_Descricao());
             modelo.insertRow(i, valores.toArray());
             i++;
         }
@@ -218,31 +218,31 @@ public class GuiMarcas extends javax.swing.JDialog {
       /**
      * Método para listar todos os registros de Tipo;
      */
-    private void listaTabelaTipo() {
+    private void listaTabelaMarca() {
         //MOSTRAR TODOS OS REGISTRO DE TIPOS
         
         try {
-            listaTipo = (ArrayList<Tipo>) fachada.listarTipo();
+            listaMarca = (ArrayList<Marca>) fachada.listarMarca();
         }catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        DefaultTableModel modelo = geramodelo(listaTipo);
-            JtListarTipos.setModel(modelo);
+        DefaultTableModel modelo = geramodelo(listaMarca);
+            JtListarMarcas.setModel(modelo);
     }
 
     /**
      * Método para apagar um registro selecionado na tabela;
      */
-    private void apagarTipo() {
+    private void apagarMarca() {
         int resposta;
         try {
-            Tipo t = listaTipo.get(JtListarTipos.getSelectedRow());
+            Marca m = listaMarca.get(JtListarMarcas.getSelectedRow());
 
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Apagar ?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
-                Tipo tConsult = fachada.consultarTipos(t.getTipos_Codigo());
-                if (tConsult != null) {
-                    fachada.excluirTipo(t.getTipos_Codigo());
+                Marca mConsult = fachada.consultarMarcas(m.getMarcas_Codigo());
+                if (mConsult != null) {
+                    fachada.excluirTipo(m.getMarcas_Codigo());
                     JOptionPane.showMessageDialog(null, "Registro excluído!");
                 }
             }
@@ -253,18 +253,18 @@ public class GuiMarcas extends javax.swing.JDialog {
         }
     }
 
-    private void pesquisarTipo() {
+    private void pesquisarMarca() {
         
         try {
             
             if ((jTPesq.getText() == "")||( jTPesq.getText() == null)) {
-               listaTipo = (ArrayList<Tipo>) fachada.listarTipo();
-               DefaultTableModel modelo = geramodelo(listaTipo);
+               listaMarca = (ArrayList<Marca>) fachada.listarMarca();
+               DefaultTableModel modelo = geramodelo(listaMarca);
             }
             else{
-                listaTipo = (ArrayList<Tipo>) fachada.listarTiposDescricao(jTPesq.getText());
-                DefaultTableModel modelo = geramodelo(listaTipo);
-                JtListarTipos.setModel(modelo);
+                listaMarca = (ArrayList<Marca>) fachada.listarMarcasDescricao(jTPesq.getText());
+                DefaultTableModel modelo = geramodelo(listaMarca);
+                JtListarMarcas.setModel(modelo);
             }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -272,17 +272,17 @@ public class GuiMarcas extends javax.swing.JDialog {
        
     }
     
-     private void alterarTipo() {
+     private void alterarMarca() {
         int resposta;
         try {
-            Tipo tOld = listaTipo.get(JtListarTipos.getSelectedRow());
+            Marca mOld = listaMarca.get(JtListarMarcas.getSelectedRow());
 
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
-               GuiAlterarTipo guiAlterarTiposTeste= new GuiAlterarTipo();
-               guiAlterarTiposTeste.jTDescTipo.setText(tOld.getTipos_Descricao());
-               guiAlterarTiposTeste.jTCodTipo.setText(String.valueOf(tOld.getTipos_Codigo()));
-               guiAlterarTiposTeste.setVisible(true);
+              // GuiAlterarTipo guiAlterarTiposTeste= new GuiAlterarTipo();
+               //guiAlterarTiposTeste.jTDescTipo.setText(tOld.getTipos_Descricao());
+               //guiAlterarTiposTeste.jTCodTipo.setText(String.valueOf(tOld.getTipos_Codigo()));
+               //guiAlterarTiposTeste.setVisible(true);
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Selecione um endereço!");
@@ -340,10 +340,10 @@ public class GuiMarcas extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JlFuncionario;
-    private javax.swing.JTable JtListarTipos;
-    private javax.swing.JButton btnAlterar;
-    private javax.swing.JButton btnExcluir;
-    private javax.swing.JButton btnSalvar;
+    private javax.swing.JTable JtListarMarcas;
+    private javax.swing.JButton btnAlterarM;
+    private javax.swing.JButton btnExcluirM;
+    private javax.swing.JButton btnSalvarM;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
