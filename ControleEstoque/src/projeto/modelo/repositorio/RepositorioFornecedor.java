@@ -98,10 +98,10 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
     public Fornecedor consultarRazaoSocial(String fornecedores_RazaoSocial) throws ConexaoException, RepositorioException {
         Fornecedor f = null;
         Connection c = g.conectar();
-        String sqlConsultar = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE FORNECEDORES_RazaoSocial LIKE ?";
+        String sqlConsultar = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE FORNECEDORES_RazaoSocial = ?";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsultar);
-            pstm.setString(1, fornecedores_RazaoSocial + "%");
+            pstm.setString(1, fornecedores_RazaoSocial);
             ResultSet rs = pstm.executeQuery();
             //verifica se retornou algum registro e cria o Objeto
             if (rs.next()) {

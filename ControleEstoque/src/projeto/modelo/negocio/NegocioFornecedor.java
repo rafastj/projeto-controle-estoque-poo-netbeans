@@ -102,7 +102,7 @@ public class NegocioFornecedor {
 
         try {
             Fornecedor fConsult = rep.consultarCNPJ(f.getFornecedores_CNPJ());
-            if (fConsult == null) {
+            if (fConsult != null) {
                 rep.alterar(f);
             } else {
                 throw new GeralException("Fornecedor não está cadastrado!");
