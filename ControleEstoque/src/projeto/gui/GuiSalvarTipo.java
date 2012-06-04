@@ -4,9 +4,12 @@
  */
 package projeto.gui;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.*;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Tipo;
@@ -51,7 +54,15 @@ public class GuiSalvarTipo extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTcod = new javax.swing.JTextField();
-        jTDesTip = new projeto.modelo.componente.SoStrings();
+        jTDesTip = new JTextField();
+        jTDesTip.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                if ((!Character.isLetter(e.getKeyChar())) && (e.getKeyChar() != e.VK_SPACE)){
+                    e.consume();
+                }
+            }
+        });
+        ;
         btnSalvar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
 

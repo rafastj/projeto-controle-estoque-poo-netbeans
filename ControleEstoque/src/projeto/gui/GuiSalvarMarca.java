@@ -4,6 +4,8 @@
  */
 package projeto.gui;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -49,7 +51,14 @@ public class GuiSalvarMarca extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTDesMar = new projeto.modelo.componente.SoStrings();
+        jTDesMar =  new JTextField();
+        jTDesMar.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                if ((!Character.isLetter(e.getKeyChar())) && (e.getKeyChar() != e.VK_SPACE)){
+                    e.consume();
+                }
+            }
+        });  ;
         jTcodM = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
