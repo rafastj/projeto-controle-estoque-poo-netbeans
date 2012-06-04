@@ -7,6 +7,7 @@ package projeto.gui;
 import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.Endereco;
 import projeto.modelo.to.Funcionario;
 
 /**
@@ -59,8 +60,15 @@ public class GuiFuncionarioNovo extends javax.swing.JFrame {
         });
 
         JbConsultarCEP.setText("Consultar CEP");
+        JbConsultarCEP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbConsultarCEPActionPerformed(evt);
+            }
+        });
 
         JlCEP.setText("CEP.:");
+
+        JcCEP.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -135,20 +143,13 @@ public class GuiFuncionarioNovo extends javax.swing.JFrame {
 
     private void JbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbSalvarActionPerformed
         // TODO add your handling code here:
-        try{
-            Funcionario fuSalvar = new Funcionario();
-           
-            Funcionario fusalvar = fachada.consultarFuncionario((String) JcNomeFuncionario.getSelectedText());
-            fuSalvar.setFuncionarios_Nome(fusalvar.getFuncionarios_Nome());            
-                     
-            fachada.salvarFuncionario(fusalvar);
-            JOptionPane.showMessageDialog(null, "Funcionario Salvo!");
-            dispose();
-                     
-        }catch(GeralException ex){
-            JOptionPane.showMessageDialog(null, ex.getMessage());            
-        }
+        salvarFuncionario();
     }//GEN-LAST:event_JbSalvarActionPerformed
+
+    private void JbConsultarCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbConsultarCEPActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_JbConsultarCEPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,4 +203,25 @@ public class GuiFuncionarioNovo extends javax.swing.JFrame {
     private javax.swing.JLabel JlNumeroResidencia;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    private void salvarFuncionario() {
+    int funcionarios_Codigo = 0;
+    int enderecos_Codigo = 0;    
+    String funcionarios_Nome;
+    String funcionarios_NumeroResidencia;
+    int fu_cod = 0;
+    String end_cod = "";
+    try{
+        Funcionario fu = fachada.consultarFuncionario(fu_cod);
+        funcionarios_Codigo = fu.getEnderecos_Codigo();
+        Endereco end = fachada.consultarEndCep(end_cod);
+        enderecos_Codigo = end.getEnderecos_Codigo();
+        funcionarios_Nome = JcNomeFuncionario.getText();
+        funcionarios_NumeroResidencia = JcNumeroResidencia.getText();
+        //Funcionario fu = new Funcionario (int funcionario_Codigo, int enderecos_Codigo, String funcionarios_Nome, String funcionarios_NumeroResidencia);
+        fachada.salvarFuncionario(fu);
+    }catch (GeralException ex){
+        JOptionPane.showMessageDialog(null, ex.getMessage());
+    }
+    }
 }

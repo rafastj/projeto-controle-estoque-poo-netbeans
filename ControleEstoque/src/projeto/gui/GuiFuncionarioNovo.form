@@ -134,6 +134,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Consultar CEP"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbConsultarCEPActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="JlCEP">
           <Properties>
@@ -141,6 +144,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="JcCEP">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
