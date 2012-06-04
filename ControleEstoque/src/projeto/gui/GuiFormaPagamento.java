@@ -26,6 +26,7 @@ public class GuiFormaPagamento extends javax.swing.JDialog {
     public GuiFormaPagamento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     public GuiFormaPagamento() {

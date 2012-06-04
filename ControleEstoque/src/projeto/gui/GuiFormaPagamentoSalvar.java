@@ -25,6 +25,7 @@ public class GuiFormaPagamentoSalvar extends javax.swing.JDialog {
     public GuiFormaPagamentoSalvar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     public GuiFormaPagamentoSalvar() {

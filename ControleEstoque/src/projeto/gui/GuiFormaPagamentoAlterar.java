@@ -21,6 +21,7 @@ public class GuiFormaPagamentoAlterar extends javax.swing.JDialog {
     public GuiFormaPagamentoAlterar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
     
     public GuiFormaPagamentoAlterar(){
