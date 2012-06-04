@@ -323,10 +323,15 @@ public Funcionario fSelecionado(){
    
     //MODELO DA TABELA
 private DefaultTableModel geramodelo(ArrayList<Funcionario> listaFuncionarios) {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Funcionário");
-        modelo.addColumn("Endereço");
-        modelo.addColumn("Número Residência");
+       DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Funcionário", "Endereço", "Número Residência"}, 0) {
+
+            public boolean isCellEditable(int rowIndex, int mColIndex) {
+                return false;
+            }
+       };
+        //modelo.addColumn("Funcionário");
+       // modelo.addColumn("Endereço");
+        //modelo.addColumn("Número Residência");
 
         ArrayList<String> valores;
         int i = 0;
