@@ -110,6 +110,13 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Salvar novo endereço");
         setModal(true);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -233,9 +240,7 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonConsultarCEPActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        salvarEndereco();
-        limparCampos();
-        atualizarComboCidade();
+        salvarEndereco();        
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonGerenciarCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerenciarCidadeActionPerformed
@@ -248,9 +253,11 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
         dispose();
-        GuiEndereco guiEndereco = new GuiEndereco();
-        guiEndereco.setVisible(true);
     }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        atualizarComboCidade();
+    }//GEN-LAST:event_formWindowGainedFocus
     
     /**
      * Método que salva um novo registro Endereco;
@@ -275,18 +282,15 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
             cidades_Codigo = cd.getCidades_Codigo();
             end = new Endereco(enderecos_Codigo, enderecos_CEP, enderecos_Logradouro, cidades_Codigo, cidades_Nome);
             fachada.salvarEndereco(end);
-            resposta = JOptionPane.showConfirmDialog(null, "Registro salvo com sucesso!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
+            resposta = JOptionPane.showConfirmDialog(null, "Registro salvo com sucesso!\nDeseja cadastrar outro endereço?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.NO_OPTION) {
-                dispose();
-                GuiEndereco guiEndereco = new GuiEndereco();
-                guiEndereco.setVisible(true);
+                dispose();                
             } else {
                 limparCampos();
+                bloquearTela();
             }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } finally {
-            limparCampos();
         }
     }
 
@@ -316,8 +320,6 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
                         bloquearTela();
                     } else {
                         dispose();
-                        GuiEndereco guiEndereco = new GuiEndereco();
-                        guiEndereco.setVisible(true);
                     }
                 } else {
                     resSemCadastro = JOptionPane.showConfirmDialog(null, "CEP não está cadastrado!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
@@ -346,7 +348,6 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
         liberarTela();
         jComboBoxCidade.requestFocus();
         guiEnderecoNovo.setVisible(true);
-        
     }
 
     /**

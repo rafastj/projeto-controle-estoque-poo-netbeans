@@ -273,7 +273,7 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonPesquisaCEPActionPerformed
 
     private void jButtonSalvarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarFornecedorActionPerformed
-        salvarFornecedor();        
+        salvarFornecedor();
     }//GEN-LAST:event_jButtonSalvarFornecedorActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -286,8 +286,8 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void salvarFornecedor() {
-        try{
-            try{
+        try {
+            try {
                 Fornecedor fSalvar = new Fornecedor();
                 fSalvar.setFornecedores_CNPJ(jFormattedTextFieldEntradaCNPJ.getText());
                 fSalvar.setFornecedores_RazaoSocial(jTextFieldEntradaRS.getText());
@@ -298,11 +298,11 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
                 dispose();
                 fachada.salvarFornecedor(fSalvar);
                 dispose();
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Digite o número!");
                 jTextFieldEntradaNumero.requestFocus();
             }
-        }catch (GeralException ex) {
+        } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
@@ -349,7 +349,7 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
         } catch (GeralException ex) {
         }
     }
-    
+
     private void pesquisarCEP() {
         int resComCep;
         int resSemCep;
@@ -370,20 +370,20 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
                 end = fachada.consultarEndCep(enderecos_CEP);
                 if (end != null) {
                     resComCep = JOptionPane.showConfirmDialog(null, "CEP já cadastrado. Deseja utilizá-lo?\nSe não informe outro CEP.", "", JOptionPane.YES_NO_OPTION);
-                    if (resComCep == JOptionPane.YES_OPTION){
+                    if (resComCep == JOptionPane.YES_OPTION) {
                         jFormattedTextFieldEntradaCEP.setText(end.getEnderecos_CEP());
                         jTextFieldEntradaLog.setText(end.getEnderecos_Logradouro());
                         jTextFieldCidade.setText(end.getCidades_Nome());
                         jTextFieldEntradaNumero.requestFocus();
-                    }else{
+                    } else {
                         jFormattedTextFieldEntradaCEP.requestFocus();
                         jFormattedTextFieldEntradaCEP.setValue(null);
-                    }                    
+                    }
                 } else {
                     resSemCep = JOptionPane.showConfirmDialog(null, "CEP não está cadastrado. Deseja cadastrar?\nSe não informe outro CEP.", "", JOptionPane.YES_NO_OPTION);
                     cnpj = jFormattedTextFieldEntradaCNPJ.getText();
                     rs = jTextFieldEntradaRS.getText();
-                    if(resSemCep == JOptionPane.YES_OPTION){
+                    if (resSemCep == JOptionPane.YES_OPTION) {
                         dispose();
                         GuiEnderecoNovo guiEnderecoNovo = new GuiEnderecoNovo();
                         GuiEnderecoNovo.jFormattedTextFieldCEP.setText(enderecos_CEP);
@@ -400,7 +400,7 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
                         GuiFornecedorNovo.jTextFieldCidade.setText(end.getCidades_Nome());
                         jTextFieldEntradaNumero.requestFocus();
                         guiFornecedorNovo.setVisible(true);
-                    }else {
+                    } else {
                         dispose();
                         GuiFornecedorNovo guiFornecedorNovo = new GuiFornecedorNovo();
                         GuiFornecedorNovo.jFormattedTextFieldEntradaCNPJ.setText(cnpj);
@@ -445,7 +445,8 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
         jFormattedTextFieldEntradaCNPJ.requestFocus();
         jFormattedTextFieldEntradaCNPJ.setValue(null);
     }
-    public static void voltar(){
+
+    public static void voltar() {
         GuiFornecedor guiFornecedor = new GuiFornecedor();
         guiFornecedor.setVisible(true);
     }
