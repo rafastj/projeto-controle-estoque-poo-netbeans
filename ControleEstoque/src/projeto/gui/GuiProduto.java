@@ -14,7 +14,7 @@ import projeto.modelo.to.Tipo;
 
 /**
  *
- * @author diego
+ * @author diego Silva
  */
     public class GuiProduto extends javax.swing.JFrame {
 
