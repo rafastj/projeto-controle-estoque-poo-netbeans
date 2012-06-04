@@ -494,6 +494,10 @@ public class Fachada {
         return rnCliente.listarTodosCliente();
     }
 
+    public Collection<PessoaFisica> listarPfCidade(String cidade_nome) throws GeralException, ConexaoException{
+        return rnCliente.listarPfCidade(cidade_nome);
+    }
+
     /**
      * FIM DA ÁREA ESCRITA POR SANDRO
      */

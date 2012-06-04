@@ -122,6 +122,18 @@ public class NegocioCliente {
         return lista;
     }
        
+    public Collection<PessoaFisica> listarPfCidade(String cidade_nome) throws GeralException, ConexaoException {
+
+        ArrayList<PessoaFisica> lista = null;
+        try {
+            lista = (ArrayList<PessoaFisica>) new RepositorioCliente().listarPfCidade(cidade_nome);
+        } catch (RepositorioException ex) {
+            Logger.getLogger(NegocioCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return lista;
+    }
+       
        public Collection<PessoaJuridica> listarPessoaJuridica() throws ConexaoException{
            
         ArrayList<PessoaJuridica> lista = null;

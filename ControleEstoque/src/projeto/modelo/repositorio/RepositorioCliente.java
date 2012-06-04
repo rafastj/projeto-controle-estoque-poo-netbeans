@@ -10,9 +10,8 @@ import projeto.conexao.GerenciadorConexao;
 import projeto.conexao.IGerenciadorConexao;
 import projeto.erro.ConexaoException;
 import projeto.erro.RepositorioException;
-import projeto.modelo.to.Cliente;
-import projeto.modelo.to.PessoaFisica;
-import projeto.modelo.to.PessoaJuridica;
+import projeto.erro.TerminalException;
+import projeto.modelo.to.*;
 
 /**
  * @author Sandro
@@ -424,12 +423,61 @@ public class RepositorioCliente implements IRepositorioCliente {
             while (rs.next()) {
                 cli = new Cliente();
                 cli.setClientes_Codigo(rs.getInt("clientes_Codigo"));
-                cli.setNome(rs.getString("PessoasJuridica_CNPJ"));
                 cli.setEnderecos_Codigo(rs.getInt("PessoasJuridica_RazaoSocial"));
                 cli.setClientes_NumeroResidencia(rs.getString("clientes_NumeroResidencia"));
                 cli.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
                 cli.setClientes_Tipo(rs.getString("clientes_tipo"));
                 lista.add(cli);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar(c);
+        }
+    }
+
+        public Collection<PessoaFisica> listarPfCidade(String cidades_Nome) throws ConexaoException, RepositorioException {
+        ArrayList<PessoaFisica> lista = new ArrayList<PessoaFisica>();
+        PessoaFisica pf;
+        Endereco end;
+        Cidade cid;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT pf.clientes_Codigo, pf.pessoasfisica_CPF, pf.pessoasFisica_nome, pf.pessoasfisica_sexo,"
+                + " end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome,"
+                + " cli.clientes_numeroresidencia, cli.clientes_tipo from ((PessoasFisica AS pf INNER JOIN clientes as cli"
+                + " on pf.clientes_codigo = cli.clientes_codigo) INNER JOIN ENDERECOS AS end ON CLI.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE cidades_Nome = ? ORDER BY pf.pessoasfisica_CPF";
+
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlLista);
+            pstm.setString(1, cidades_Nome);
+            ResultSet rs = pstm.executeQuery();
+            //verifica se retornou algum registro e cria os Objetos
+            while (rs.next()) {
+                pf = new PessoaFisica();
+                end = new Endereco();
+                cid = new Cidade();
+                
+                
+                pf.getEndereco().getCidade().setCidades_Codigo(rs.getInt("cidades_codigo"));
+                pf.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_nome"));
+                pf.getEndereco().setCidades_Codigo(cidades_Codigo);
+                
+                cid.setCidades_Codigo(rs.getInt("cidades_codigo"));
+                cid.setCidades_Nome(rs.getString("cidades_nome"));
+                end.setCidade(cid);
+                end.setCidades_Codigo(rs.getInt("cidades_codigo"));
+                end.setEnderecos_Codigo(rs.getInt("enderecos_codigo"));
+                end.setEnderecos_CEP(rs.getString("enderecos_cep"));
+                end.setEnderecos_Logradouro("enderecos_logradouro");
+                pf.setEndereco(end);
+                pf.setClientes_Codigo(rs.getInt("clientes_Codigo"));
+                pf.setPessoasFisica_CPF(rs.getString("pessoasfisica_CPF"));
+                pf.setPessoasFisica_Nome(rs.getString("pessoasFisica_nome"));
+                pf.setPessoasFisica_Sexo(rs.getString("pessoasFisica_Sexo"));
+                pf.setClientes_NumeroResidencia(rs.getString("clientes_NumeroResidencia"));
+                pf.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                lista.add(pf);
             }
             return lista;
         } catch (SQLException e) {
