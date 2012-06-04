@@ -7,25 +7,24 @@ package projeto.gui;
 import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
-import projeto.modelo.to.Tipo;
-
+import projeto.modelo.to.Marca;
 
 /**
  *
  * @author Felipe Carlos
  */
-public class GuiAlterarTipo extends javax.swing.JDialog {
+public class GuiAlterarMarca extends javax.swing.JDialog {
 
     /**
-     * Creates new form GuiAlterarTiposTeste
+     * Creates new form GuiAlterarMarca
      */
-    public GuiAlterarTipo(java.awt.Frame parent, boolean modal) {
+    public GuiAlterarMarca(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-
-    public GuiAlterarTipo() {
-        initComponents();
+    
+    public GuiAlterarMarca(){
+         initComponents();
     }
 
     /**
@@ -37,42 +36,46 @@ public class GuiAlterarTipo extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTCodTipo = new javax.swing.JTextField();
-        jTDescTipo = new javax.swing.JTextField();
-        jTAltTipo = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTCodMarca = new javax.swing.JTextField();
+        jTDescMarca = new javax.swing.JTextField();
+        jTAltMarca = new javax.swing.JTextField();
         btnAlterar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Alterar Tipo");
+        setTitle("Alterar Marca");
         setModal(true);
-        setResizable(false);
 
-        jTCodTipo.setEditable(false);
-        jTCodTipo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jTCodTipo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jTCodTipo.setEnabled(false);
-        jTCodTipo.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setText("Código");
+
+        jLabel3.setText("Descrição");
+
+        jTCodMarca.setEditable(false);
+        jTCodMarca.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTCodMarca.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTCodMarca.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTCodMarca.setEnabled(false);
+        jTCodMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTCodTipoActionPerformed(evt);
+                jTCodMarcaActionPerformed(evt);
             }
         });
 
-        jTDescTipo.setEditable(false);
-        jTDescTipo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jTDescTipo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jTDescTipo.setEnabled(false);
-        jTDescTipo.addActionListener(new java.awt.event.ActionListener() {
+        jTDescMarca.setEditable(false);
+        jTDescMarca.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTDescMarca.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTDescMarca.setEnabled(false);
+        jTDescMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTDescTipoActionPerformed(evt);
+                jTDescMarcaActionPerformed(evt);
             }
         });
 
-        jTAltTipo.addActionListener(new java.awt.event.ActionListener() {
+        jTAltMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTAltTipoActionPerformed(evt);
+                jTAltMarcaActionPerformed(evt);
             }
         });
 
@@ -90,36 +93,38 @@ public class GuiAlterarTipo extends javax.swing.JDialog {
             }
         });
 
-        jLabel3.setText("Descrição");
-
-        jLabel2.setText("Código");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAlterar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTCodTipo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jTDescTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jTAltTipo))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTCodMarca))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jTDescMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jTAltMarca)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(btnAlterar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAlterar, btnSair});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -129,10 +134,10 @@ public class GuiAlterarTipo extends javax.swing.JDialog {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTCodTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTDescTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTCodMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTDescMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jTAltTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTAltMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterar)
@@ -143,40 +148,40 @@ public class GuiAlterarTipo extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTCodTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCodTipoActionPerformed
+    private void jTCodMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCodMarcaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCodTipoActionPerformed
+    }//GEN-LAST:event_jTCodMarcaActionPerformed
 
-    private void jTDescTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTDescTipoActionPerformed
+    private void jTDescMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTDescMarcaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTDescTipoActionPerformed
+    }//GEN-LAST:event_jTDescMarcaActionPerformed
 
-    private void jTAltTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTAltTipoActionPerformed
+    private void jTAltMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTAltMarcaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTAltTipoActionPerformed
+    }//GEN-LAST:event_jTAltMarcaActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
         Fachada fachada = new Fachada();
-        String tAlterar = jTAltTipo.getText();
+        String mAlterar = jTAltMarca.getText();
 
         try {
-            if (tAlterar.equals("")) {
+            if (mAlterar.equals("")) {
                 JOptionPane.showMessageDialog(null, "Favor digitar uma descrição");
-                jTAltTipo.setText(null);
+                jTAltMarca.setText(null);
             } else {
-                int validoString = Integer.parseInt(tAlterar);
+                int validoString = Integer.parseInt(mAlterar);
                 JOptionPane.showMessageDialog(null, "Favor digitar uma descrição");
-                jTAltTipo.setText(null);
+                jTAltMarca.setText(null);
             }
         } catch (NumberFormatException x) {
-            Tipo t = new Tipo();
-            int tipos_Codigo = Integer.parseInt(jTCodTipo.getText());
-            String tAlt = jTAltTipo.getText();
-            t.setTipos_Codigo(tipos_Codigo);
-            t.setTipos_Descricao(tAlt);
+            Marca m = new Marca();
+            int marcas_Codigo = Integer.parseInt(jTCodMarca.getText());
+            String mAlt = jTAltMarca.getText();
+            m.setMarcas_Codigo(marcas_Codigo);
+            m.setMarcas_Descricao(mAlt);
             try {
-                fachada.alterarTipo(t);
+                fachada.alterarMarca(m);
             } catch (GeralException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
@@ -188,7 +193,6 @@ public class GuiAlterarTipo extends javax.swing.JDialog {
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         // TODO add your handling code here:
         dispose();
-
     }//GEN-LAST:event_btnSairActionPerformed
 
     /**
@@ -212,13 +216,13 @@ public class GuiAlterarTipo extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiAlterarTipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiAlterarMarca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiAlterarTipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiAlterarMarca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiAlterarTipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiAlterarMarca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiAlterarTipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiAlterarMarca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -228,7 +232,7 @@ public class GuiAlterarTipo extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                GuiAlterarTipo dialog = new GuiAlterarTipo(new javax.swing.JFrame(), true);
+                GuiAlterarMarca dialog = new GuiAlterarMarca(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override
@@ -245,8 +249,8 @@ public class GuiAlterarTipo extends javax.swing.JDialog {
     private javax.swing.JButton btnSair;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTAltTipo;
-    public javax.swing.JTextField jTCodTipo;
-    public javax.swing.JTextField jTDescTipo;
+    private javax.swing.JTextField jTAltMarca;
+    public javax.swing.JTextField jTCodMarca;
+    public javax.swing.JTextField jTDescMarca;
     // End of variables declaration//GEN-END:variables
 }

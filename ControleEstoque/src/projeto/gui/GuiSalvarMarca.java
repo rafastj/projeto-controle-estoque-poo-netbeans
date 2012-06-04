@@ -11,24 +11,26 @@ import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Marca;
 
-
 /**
  *
  * @author Felipe Carlos
  */
 public class GuiSalvarMarca extends javax.swing.JDialog {
-        Fachada fachada = new Fachada();
+
+    Fachada fachada = new Fachada();
+
     /**
      * Creates new form GuiSalvarMarca
      */
     public GuiSalvarMarca(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-      }
-    
-     public GuiSalvarMarca() {
-          initComponents();
-       try {
+    }
+
+    public GuiSalvarMarca() {
+        initComponents();
+        try {
+            jTcodM.setEditable(false);
             jTcodM.setText(String.valueOf(Fachada.CodigoMarca()));
         } catch (GeralException ex) {
             Logger.getLogger(GuiSalvarMarca.class.getName()).log(Level.SEVERE, null, ex);
@@ -44,17 +46,21 @@ public class GuiSalvarMarca extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTcodM = new javax.swing.JTextField();
         jTDesMar = new javax.swing.JTextField();
+        jTcodM = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Marca");
+        setTitle("Salvar Marca");
         setModal(true);
 
+        jTcodM.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTcodM.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTcodM.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTcodM.setEnabled(false);
         jTcodM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTcodMActionPerformed(evt);
@@ -144,38 +150,38 @@ public class GuiSalvarMarca extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSairActionPerformed
 
     public void salvarMarca() {
-                Fachada fachada = new Fachada();
-                String mSalvar = jTDesMar.getText();
+        Fachada fachada = new Fachada();
+        String mSalvar = jTDesMar.getText();
 
-                try {
-                    @SuppressWarnings("unused")
-                    int validoString = Integer.parseInt(mSalvar);
+        try {
+            @SuppressWarnings("unused")
+            int validoString = Integer.parseInt(mSalvar);
 
-                    JOptionPane.showMessageDialog(null, "Digite apenas a descricão do tipo!");
-                } catch (NumberFormatException x) {
-                    Marca m = new Marca();
-                    m.setMarcas_Descricao(mSalvar);
-                    m.setMarcas_Codigo(Integer.parseInt(jTcodM.getText()));
+            JOptionPane.showMessageDialog(null, "Digite apenas a descricão do tipo!");
+        } catch (NumberFormatException x) {
+            Marca m = new Marca();
+            m.setMarcas_Descricao(mSalvar);
+            m.setMarcas_Codigo(Integer.parseInt(jTcodM.getText()));
 
-                    try {
-                        fachada.salvarMarca(m);
-                    } catch (GeralException ex) {
-                        JOptionPane.showMessageDialog(null, ex.getMessage());
-                    }
-                }
-
-                jTDesMar.setText(null);
-              
-
-                try {
-                    jTcodM.setText(String.valueOf(Fachada.CodigoMarca()));
-                } catch (GeralException e1) {
-
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
+            try {
+                fachada.salvarMarca(m);
+            } catch (GeralException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
-    
+        }
+
+        jTDesMar.setText(null);
+
+
+        try {
+            jTcodM.setText(String.valueOf(Fachada.CodigoMarca()));
+        } catch (GeralException e1) {
+
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+    }
+
     /**
      * @param args the command line arguments
      */

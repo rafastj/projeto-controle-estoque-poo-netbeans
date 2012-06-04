@@ -16,8 +16,10 @@ import projeto.modelo.to.Tipo;
  * @author Felipe Carlos
  */
 public class GuiTipos extends javax.swing.JDialog {
-       ArrayList<Tipo> listaTipo = null;
-       public static Fachada fachada = new Fachada();
+
+    ArrayList<Tipo> listaTipo = null;
+    public static Fachada fachada = new Fachada();
+
     /**
      * Creates new form GuiTipo
      */
@@ -25,9 +27,10 @@ public class GuiTipos extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    public GuiTipos(){
-         initComponents();
-         listaTabelaTipo();
+
+    public GuiTipos() {
+        initComponents();
+        listaTabelaTipo();
     }
 
     /**
@@ -115,6 +118,8 @@ public class GuiTipos extends javax.swing.JDialog {
         JtListarTipos.setShowVerticalLines(false);
         JtListarTipos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(JtListarTipos);
+        JtListarTipos.getColumnModel().getColumn(0).setResizable(false);
+        JtListarTipos.getColumnModel().getColumn(1).setResizable(false);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 376, 180));
 
@@ -200,7 +205,7 @@ public class GuiTipos extends javax.swing.JDialog {
         // TODO add your handling code here:
         listaTabelaTipo();
     }//GEN-LAST:event_formWindowGainedFocus
-/**
+    /**
      * Define o padrão da tabela e insere os dados da tabela Tipos em um
      * ArrayList;
      *
@@ -208,10 +213,16 @@ public class GuiTipos extends javax.swing.JDialog {
      * @return
      */
     private DefaultTableModel geramodelo(ArrayList<Tipo> listaTipo) {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Código");
-        modelo.addColumn("Descrição");
-      
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Código", "Descrição"}, 0) {
+
+            public boolean isCellEditable(int rowIndex, int mColIndex) {
+                return false;
+            }
+        };
+        //DefaultTableModel modelo = new DefaultTableModel();
+        //modelo.addColumn("Código");
+        //modelo.addColumn("Descrição");
+
         ArrayList<String> valores;
         int i = 0;
         for (Tipo t : listaTipo) {
@@ -223,20 +234,20 @@ public class GuiTipos extends javax.swing.JDialog {
         }
         return modelo;
     }
-    
-      /**
+
+    /**
      * Método para listar todos os registros de Tipo;
      */
     private void listaTabelaTipo() {
         //MOSTRAR TODOS OS REGISTRO DE TIPOS
-        
+
         try {
             listaTipo = (ArrayList<Tipo>) fachada.listarTipo();
-        }catch (GeralException ex) {
+        } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         DefaultTableModel modelo = geramodelo(listaTipo);
-            JtListarTipos.setModel(modelo);
+        JtListarTipos.setModel(modelo);
     }
 
     /**
@@ -263,14 +274,13 @@ public class GuiTipos extends javax.swing.JDialog {
     }
 
     private void pesquisarTipo() {
-        
+
         try {
-            
-            if ((jTPesq.getText() == "")||( jTPesq.getText() == null)) {
-               listaTipo = (ArrayList<Tipo>) fachada.listarTipo();
-               DefaultTableModel modelo = geramodelo(listaTipo);
-            }
-            else{
+
+            if ((jTPesq.getText() == "") || (jTPesq.getText() == null)) {
+                listaTipo = (ArrayList<Tipo>) fachada.listarTipo();
+                DefaultTableModel modelo = geramodelo(listaTipo);
+            } else {
                 listaTipo = (ArrayList<Tipo>) fachada.listarTiposDescricao(jTPesq.getText());
                 DefaultTableModel modelo = geramodelo(listaTipo);
                 JtListarTipos.setModel(modelo);
@@ -278,25 +288,26 @@ public class GuiTipos extends javax.swing.JDialog {
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-       
+
     }
-    
-     private void alterarTipo() {
+
+    private void alterarTipo() {
         int resposta;
         try {
             Tipo tOld = listaTipo.get(JtListarTipos.getSelectedRow());
 
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
-               GuiAlterarTipo guiAlterarTiposTeste= new GuiAlterarTipo();
-               guiAlterarTiposTeste.jTDescTipo.setText(tOld.getTipos_Descricao());
-               guiAlterarTiposTeste.jTCodTipo.setText(String.valueOf(tOld.getTipos_Codigo()));
-               guiAlterarTiposTeste.setVisible(true);
+                GuiAlterarTipo guiAlterarTiposTeste = new GuiAlterarTipo();
+                guiAlterarTiposTeste.jTDescTipo.setText(tOld.getTipos_Descricao());
+                guiAlterarTiposTeste.jTCodTipo.setText(String.valueOf(tOld.getTipos_Codigo()));
+                guiAlterarTiposTeste.setVisible(true);
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Selecione um endereço!");
         }
     }
+
     /**
      * @param args the command line arguments
      */
