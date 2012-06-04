@@ -9,29 +9,29 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
-import projeto.modelo.to.FormaPagamento;
+import projeto.modelo.to.Segmento;
 
 /**
  *
  * @author Bruno Pinheiro
  */
-public class GuiFormaPagamento extends javax.swing.JDialog {
+public class GuiSegmento extends javax.swing.JDialog {
 
-    ArrayList<FormaPagamento> listaFormaPagamento = null;
+    ArrayList<Segmento> listaSegmento = null;
     public static Fachada fachada = new Fachada();
 
     /**
-     * Creates new form GuiFormaPagamento
+     * Creates new form GuiSegmento
      */
-    public GuiFormaPagamento(java.awt.Frame parent, boolean modal) {
+    public GuiSegmento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 
-    public GuiFormaPagamento() {
+    public GuiSegmento() {
         initComponents();
-        listaTabelaFormaPagamento();
-        // JtListarFormaPagamentos.isCellEditable(0, 0);
+        listaTabelaSegmento();
+        // JtListarSegmentos.isCellEditable(0, 0);
 
     }
 
@@ -49,13 +49,13 @@ public class GuiFormaPagamento extends javax.swing.JDialog {
         JlFuncionario = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JtListarFormaPagamentos = new javax.swing.JTable();
+        JtListarSegmentos = new javax.swing.JTable();
         btnAlterarM = new javax.swing.JButton();
         btnSalvarM = new javax.swing.JButton();
         btnExcluirM = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("FormaPagamentos");
+        setTitle("Segmentos");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
@@ -74,7 +74,7 @@ public class GuiFormaPagamento extends javax.swing.JDialog {
             }
         });
 
-        JlFuncionario.setText("Descrição");
+        JlFuncionario.setText("Descri��o");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -100,12 +100,12 @@ public class GuiFormaPagamento extends javax.swing.JDialog {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        JtListarFormaPagamentos.setModel(new javax.swing.table.DefaultTableModel(
+        JtListarSegmentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Codigo", "Descrição"
+                "Codigo", "Descri��o"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -116,14 +116,14 @@ public class GuiFormaPagamento extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        JtListarFormaPagamentos.setShowHorizontalLines(false);
-        JtListarFormaPagamentos.setShowVerticalLines(false);
-        JtListarFormaPagamentos.getTableHeader().setReorderingAllowed(false);
-        JtListarFormaPagamentos.setUpdateSelectionOnSort(false);
-        JtListarFormaPagamentos.setVerifyInputWhenFocusTarget(false);
-        jScrollPane1.setViewportView(JtListarFormaPagamentos);
-        JtListarFormaPagamentos.getColumnModel().getColumn(0).setResizable(false);
-        JtListarFormaPagamentos.getColumnModel().getColumn(1).setResizable(false);
+        JtListarSegmentos.setShowHorizontalLines(false);
+        JtListarSegmentos.setShowVerticalLines(false);
+        JtListarSegmentos.getTableHeader().setReorderingAllowed(false);
+        JtListarSegmentos.setUpdateSelectionOnSort(false);
+        JtListarSegmentos.setVerifyInputWhenFocusTarget(false);
+        jScrollPane1.setViewportView(JtListarSegmentos);
+        JtListarSegmentos.getColumnModel().getColumn(0).setResizable(false);
+        JtListarSegmentos.getColumnModel().getColumn(1).setResizable(false);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 376, 180));
 
@@ -180,48 +180,48 @@ public class GuiFormaPagamento extends javax.swing.JDialog {
 
     private void jTPesqKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPesqKeyReleased
         // TODO add your handling code here:
-        pesquisarFormaPagamento();
+        pesquisarSegmento();
     }//GEN-LAST:event_jTPesqKeyReleased
 
     private void btnAlterarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarMActionPerformed
         // TODO add your handling code here:
-        alterarFormaPagamento();
+        alterarSegmento();
     }//GEN-LAST:event_btnAlterarMActionPerformed
 
     private void btnSalvarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarMActionPerformed
         // TODO add your handling code here:
-        GuiFormaPagamentoSalvar tela = new GuiFormaPagamentoSalvar();
+        GuiSegmentoSalvar tela = new GuiSegmentoSalvar();
         tela.setVisible(true);
     }//GEN-LAST:event_btnSalvarMActionPerformed
 
     private void btnExcluirMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirMActionPerformed
         // TODO add your handling code here:
-        apagarFormaPagamento();
-        listaTabelaFormaPagamento();
+        apagarSegmento();
+        listaTabelaSegmento();
     }//GEN-LAST:event_btnExcluirMActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
-        listaTabelaFormaPagamento();
+        listaTabelaSegmento();
     }//GEN-LAST:event_formWindowGainedFocus
 
-    private DefaultTableModel geramodelo(ArrayList<FormaPagamento> listaFormaPagamento) {
+    private DefaultTableModel geramodelo(ArrayList<Segmento> listaSegmento) {
 
-        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Código", "Descrição"}, 0) {
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"C�digo", "Descri��o"}, 0) {
 
             public boolean isCellEditable(int rowIndex, int mColIndex) {
                 return false;
             }
         };
         //DefaultTableModel modelo = new DefaultTableModel();
-        //modelo.addColumn("Código");
-        //modelo.addColumn("Descrição");
+        //modelo.addColumn("C�digo");
+        //modelo.addColumn("Descri��o");
         ArrayList<String> valores;
         int i = 0;
-        for (FormaPagamento m : listaFormaPagamento) {
+        for (Segmento m : listaSegmento) {
             valores = new ArrayList<String>();
-            valores.add(String.valueOf(m.getFormaPagamento_Codigo()));
-            valores.add(m.getFormaPagamento_Descricao());
+            valores.add(String.valueOf(m.getSegmentos_Codigo()));
+            valores.add(m.getSegmentos_Descricao());
             modelo.insertRow(i, valores.toArray());
             i++;
         }
@@ -229,34 +229,34 @@ public class GuiFormaPagamento extends javax.swing.JDialog {
     }
 
     /**
-     * Método para listar todos os registros de Tipo;
+     * M�todo para listar todos os registros de Tipo;
      */
-    private void listaTabelaFormaPagamento() {
+    private void listaTabelaSegmento() {
         //MOSTRAR TODOS OS REGISTRO DE TIPOS
 
         try {
-            listaFormaPagamento = (ArrayList<FormaPagamento>) fachada.listarFormasPagamentos();
+            listaSegmento = (ArrayList<Segmento>) fachada.listarSegmentos();
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        DefaultTableModel modelo = geramodelo(listaFormaPagamento);
-        JtListarFormaPagamentos.setModel(modelo);
+        DefaultTableModel modelo = geramodelo(listaSegmento);
+        JtListarSegmentos.setModel(modelo);
     }
 
     /**
-     * Método para apagar um registro selecionado na tabela;
+     * M�todo para apagar um registro selecionado na tabela;
      */
-    private void apagarFormaPagamento() {
+    private void apagarSegmento() {
         int resposta;
         try {
-            FormaPagamento m = listaFormaPagamento.get(JtListarFormaPagamentos.getSelectedRow());
+            Segmento m = listaSegmento.get(JtListarSegmentos.getSelectedRow());
 
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Apagar ?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
-                FormaPagamento mConsult = fachada.consultarFormaPagamento(m.getFormaPagamento_Codigo());
+                Segmento mConsult = fachada.consultarSegmentos(m.getSegmentos_Codigo());
                 if (mConsult != null) {
-                    fachada.excluirFormaPagamento(m.getFormaPagamento_Codigo());
-                    JOptionPane.showMessageDialog(null, "Registro excluído!");
+                    fachada.excluirSegmento(m.getSegmentos_Codigo());
+                    JOptionPane.showMessageDialog(null, "Registro exclu�do!");
                 }
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
@@ -266,17 +266,17 @@ public class GuiFormaPagamento extends javax.swing.JDialog {
         }
     }
 
-    private void pesquisarFormaPagamento() {
+    private void pesquisarSegmento() {
 
         try {
 
             if ((jTPesq.getText() == "") || (jTPesq.getText() == null)) {
-                listaFormaPagamento = (ArrayList<FormaPagamento>) fachada.listarFormasPagamentos();
-                DefaultTableModel modelo = geramodelo(listaFormaPagamento);
+                listaSegmento = (ArrayList<Segmento>) fachada.listarSegmentos();
+                DefaultTableModel modelo = geramodelo(listaSegmento);
             } else {
-                listaFormaPagamento = (ArrayList<FormaPagamento>) fachada.listarFormasPagamentosDescricao(jTPesq.getText());
-                DefaultTableModel modelo = geramodelo(listaFormaPagamento);
-                JtListarFormaPagamentos.setModel(modelo);
+                listaSegmento = (ArrayList<Segmento>) fachada.listarSegmentos(jTPesq.getText());
+                DefaultTableModel modelo = geramodelo(listaSegmento);
+                JtListarSegmentos.setModel(modelo);
             }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -284,20 +284,20 @@ public class GuiFormaPagamento extends javax.swing.JDialog {
 
     }
 
-    private void alterarFormaPagamento() {
+    private void alterarSegmento() {
         int resposta;
         try {
-            FormaPagamento mOld = listaFormaPagamento.get(JtListarFormaPagamentos.getSelectedRow());
+            Segmento mOld = listaSegmento.get(JtListarSegmentos.getSelectedRow());
 
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar?", "Confirma", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
-                 GuiFormaPagamentoAlterar guiAlterarFormaPagamentosTeste= new GuiFormaPagamentoAlterar();
-                 guiAlterarFormaPagamentosTeste.jTDescFormaPagamento.setText(mOld.getFormaPagamento_Descricao());
-                 guiAlterarFormaPagamentosTeste.jTCodFormaPagamento.setText(String.valueOf(mOld.getFormaPagamento_Codigo()));
-                 guiAlterarFormaPagamentosTeste.setVisible(true);
+                 GuiSegmentoAlterar guiAlterarSegmentosTeste= new GuiSegmentoAlterar();
+                 guiAlterarSegmentosTeste.jTDescSegmento.setText(mOld.getSegmentos_Descricao());
+                 guiAlterarSegmentosTeste.jTCodSegmento.setText(String.valueOf(mOld.getSegmentos_Codigo()));
+                 guiAlterarSegmentosTeste.setVisible(true);
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
-            JOptionPane.showMessageDialog(null, "Selecione um endereço!");
+            JOptionPane.showMessageDialog(null, "Selecione um endere�o!");
         }
     }
 
@@ -322,13 +322,13 @@ public class GuiFormaPagamento extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiFormaPagamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiSegmento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiFormaPagamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiSegmento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiFormaPagamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiSegmento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiFormaPagamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiSegmento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -338,7 +338,7 @@ public class GuiFormaPagamento extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                GuiFormaPagamento dialog = new GuiFormaPagamento(new javax.swing.JFrame(), true);
+                GuiSegmento dialog = new GuiSegmento(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override
@@ -352,7 +352,7 @@ public class GuiFormaPagamento extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JlFuncionario;
-    private javax.swing.JTable JtListarFormaPagamentos;
+    private javax.swing.JTable JtListarSegmentos;
     private javax.swing.JButton btnAlterarM;
     private javax.swing.JButton btnExcluirM;
     private javax.swing.JButton btnSalvarM;

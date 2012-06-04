@@ -194,4 +194,33 @@ public class NegocioSegmento {
         }
         return lista;
     }
+    
+    public Collection<Segmento> listarSegmentos() throws GeralException {
+
+        ArrayList<Segmento> lista;
+
+        try {
+            lista = (ArrayList<Segmento>) new RepositorioSegmento().listarSegmentos();
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Usuário fez algo de errado!");
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível!");
+        }
+        return lista;
+    }
+    
+    public int CodigoSegmento()throws GeralException{
+		int m = 0;
+		try {
+			m = rep.CodigoSegmento();
+		} catch (ConexaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RepositorioException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 return m;
+	 }
 }

@@ -1002,7 +1002,7 @@ public class Main {
         FormaPagamento fp;
         ArrayList<FormaPagamento> lista;
         try {
-            lista = (ArrayList<FormaPagamento>) fachada.listarFormasPagamentos("");
+            lista = (ArrayList<FormaPagamento>) fachada.listarFormasPagamentos();
             String imprimeLista = "";
             for (Iterator<FormaPagamento> it = lista.iterator(); it.hasNext();) {
                 fp = it.next();

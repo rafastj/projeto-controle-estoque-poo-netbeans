@@ -39,5 +39,9 @@ public interface IRepositorioFormaPagamento {
     /**
      * Metodo Padrão para lista os dados
      */
-    public Collection<FormaPagamento> listarFormasPagamentos(String formaPagamento_Descricao) throws ConexaoException, RepositorioException;
+    public Collection<FormaPagamento> listarFormasPagamentos() throws ConexaoException, RepositorioException;
+    
+    public Collection<FormaPagamento> listarFormasPagamentosDescricao(String formaPagamento_Descricao) throws ConexaoException, RepositorioException;
+    
+    public int CodigoFormaPagamento()throws ConexaoException,RepositorioException ;
 }

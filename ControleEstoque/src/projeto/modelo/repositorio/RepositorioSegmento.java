@@ -121,7 +121,7 @@ public class RepositorioSegmento implements IRepositorioSegmento {
         return s;
     }
 
-    @Override
+    /*@Override
     public Collection<Segmento> listarSegmentos(String segmentos_Descricao) throws ConexaoException, RepositorioException {
         ArrayList<Segmento> lista = new ArrayList<Segmento>();
         Segmento s;
@@ -143,5 +143,72 @@ public class RepositorioSegmento implements IRepositorioSegmento {
         } finally {
             g.desconectar(c);
         }
+    }*/
+    
+    @Override
+     public Collection<Segmento> listarSegmentos(String segmentos_Descricao) throws ConexaoException,RepositorioException {
+        ArrayList <Segmento> lista = new ArrayList <Segmento>();
+        Segmento s;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT segmentos_Codigo,segmentos_Descricao FROM segmentos where segmentos_Descricao LIKE ? ORDER BY segmentos_Codigo";
+        try{
+            PreparedStatement pstm = c.prepareStatement(sqlLista);
+            pstm.setString(1, segmentos_Descricao+"%");
+            ResultSet rs = pstm.executeQuery();
+            //verifica se retornou algum registro e cria os Objetos
+            while( rs.next() ){
+                s = new Segmento();
+                s.setSegmentos_Codigo( rs.getInt( "segmentos_Codigo" ) );
+                s.setSegmentos_Descricao( rs.getString( "segmentos_Descricao" ) );
+                lista.add( s );
+            } return lista;
+        } catch( SQLException e ) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar( c );
+        }
     }
+    
+    @Override
+    public Collection<Segmento> listarSegmentos() throws ConexaoException, RepositorioException {
+        ArrayList<Segmento> lista = new ArrayList<Segmento>();
+        Segmento s;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT segmentos_Codigo,segmentos_Descricao FROM segmentos ORDER BY segmentos_Codigo";
+        try {
+            Statement stm = c.createStatement();
+            ResultSet rs = stm.executeQuery(sqlLista);
+            //verifica se retornou algum registro e cria os Objetos
+            while (rs.next()) {
+                s = new Segmento();
+                s.setSegmentos_Codigo(rs.getInt("segmentos_Codigo"));
+                s.setSegmentos_Descricao(rs.getString("segmentos_Descricao"));
+                lista.add(s);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar(c);
+        }
+    }
+    
+    @Override
+    public int CodigoSegmento()throws ConexaoException,RepositorioException {
+    	int codFormaPagamento = 0;
+    	Connection c = g.conectar();
+		String sqlAuto="SELECT Auto_increment as segmentos_codigo FROM information_schema.tables WHERE table_name='segmento'";
+        try {
+            Statement stm = c.createStatement();
+            ResultSet rs = stm.executeQuery(sqlAuto);
+            while( rs.next() ){
+                codFormaPagamento = rs.getInt( "segmentos_codigo" );
+                
+            	}return codFormaPagamento;
+            } catch( SQLException e ) {
+                throw new RepositorioException(e);
+            } finally {
+                g.desconectar( c );
+            }
+        }
 }

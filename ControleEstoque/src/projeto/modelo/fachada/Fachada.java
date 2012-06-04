@@ -27,7 +27,7 @@ public class Fachada {
     private NegocioNotaFiscal rnNotaFiscal;//Thiago Evoa
     private static NegocioMarca rnMarca; // Felipe Carlos
     private static NegocioTipo rnTipo; // Felipe Carlos
-    private NegocioFormaPagamento rnFormaPagamento; // Bruno Pinheiro
+    private static NegocioFormaPagamento rnFormaPagamento; // Bruno Pinheiro
     private NegocioSegmento rnSegmento; // Bruno Pinheiro
 
     public Fachada() {
@@ -766,12 +766,20 @@ public class Fachada {
      * ÁREA ESCRITA POR Bruno Pinheiro RESPONSAVEL PELAS CLASSES Segemento,
      * FormaPagamento.
      */
-    // FormaPagamento
+    // FormaPagamento    
+    public static int CodigoFormaPagamento()throws GeralException  {
+		 return rnFormaPagamento.CodigoFormaPagamento();
+    }
+    
     /**
      * Cadastra a forma de pagamento do produto no banco de dados
      */
     public void salvarFormaPagamento(FormaPagamento fp) throws GeralException {
         rnFormaPagamento.salvar(fp);
+    }
+    
+    public static int CodigoSegmento()throws GeralException  {
+		 return rnFormaPagamento.CodigoFormaPagamento();
     }
 
     /**
@@ -802,8 +810,15 @@ public class Fachada {
     /**
      * Metodo Padrão para lista os dados
      */
-    public Collection<FormaPagamento> listarFormasPagamentos(String formaPagamento_Descricao) throws GeralException {
-        return rnFormaPagamento.listarFormasPagamentos(formaPagamento_Descricao);
+    public Collection<FormaPagamento> listarFormasPagamentos() throws GeralException {
+        return rnFormaPagamento.listarFormasPagamentos();
+    }
+    
+    /**
+     * Metodo Padrão para lista os dados
+     */
+    public Collection<FormaPagamento> listarFormasPagamentosDescricao(String formaPagamento) throws GeralException {
+        return rnFormaPagamento.listarFormaPagamentoDescricao(formaPagamento);
     }
 
     // Segmento
@@ -847,6 +862,11 @@ public class Fachada {
     public Collection<Segmento> listarSegmentos(String segmentos_Descricao)
             throws GeralException {
         return rnSegmento.listarSegmentos(segmentos_Descricao);
+    }
+    
+    public Collection<Segmento> listarSegmentos()
+            throws GeralException {
+        return rnSegmento.listarSegmentos();
     }
 
     /**

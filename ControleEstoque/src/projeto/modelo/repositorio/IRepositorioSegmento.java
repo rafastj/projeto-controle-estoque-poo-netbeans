@@ -40,4 +40,8 @@ public interface IRepositorioSegmento {
      * Metodo Padrão para lista os dados
      */
     public Collection<Segmento> listarSegmentos(String segmentos_Descricao) throws ConexaoException, RepositorioException;
+    
+    public Collection<Segmento> listarSegmentos() throws ConexaoException, RepositorioException;
+    
+    public int CodigoSegmento() throws ConexaoException,RepositorioException;
 }

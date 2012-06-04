@@ -208,9 +208,19 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuProduto.add(jMenuItemNovoProduto);
 
         jMenuItem9.setText("Forma de Pagamento");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenuProduto.add(jMenuItem9);
 
         jMenuItem10.setText("Segmento");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenuProduto.add(jMenuItem10);
 
         jMenuTipos.setText("Tipo");
@@ -284,7 +294,7 @@ public class GuiMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addComponent(jPGuiLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -420,6 +430,18 @@ public class GuiMenu extends javax.swing.JFrame {
         GuiMarcas marca = new GuiMarcas();
         marca.setVisible(true);
     }//GEN-LAST:event_jMenuMarcasActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+        GuiFormaPagamento formaPagamento = new GuiFormaPagamento();
+        formaPagamento.setVisible(true);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+        GuiSegmento segmento = new GuiSegmento();
+        segmento.setVisible(true);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     /**
      * @param args the command line arguments
