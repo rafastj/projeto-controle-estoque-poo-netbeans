@@ -158,7 +158,7 @@ public class GuiFuncionarioNovo extends javax.swing.JFrame {
             if(jFormattedTextFieldCEP.getText().equals("")){
                 GuiEnderecoNovo gENovo = new GuiEnderecoNovo();
                 gENovo.setVisible(true);
-            }
+            }else{
             
             Endereco e = fachada.consultarEndCep(jFormattedTextFieldCEP.getText());
             
@@ -171,6 +171,7 @@ public class GuiFuncionarioNovo extends javax.swing.JFrame {
                 
             JOptionPane.showMessageDialog(null, "CEP OK");
             
+            }
             }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
