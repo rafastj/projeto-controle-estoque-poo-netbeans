@@ -44,7 +44,7 @@ public class GuiFuncionario extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JtListarFuncionario = new javax.swing.JTable();
-        JbSalvar = new javax.swing.JButton();
+        JbNovo = new javax.swing.JButton();
         JbAlterar = new javax.swing.JButton();
         JbExcluir = new javax.swing.JButton();
 
@@ -91,10 +91,10 @@ public class GuiFuncionario extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(JtListarFuncionario);
 
-        JbSalvar.setText("Salvar");
-        JbSalvar.addActionListener(new java.awt.event.ActionListener() {
+        JbNovo.setText("Novo");
+        JbNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JbSalvarActionPerformed(evt);
+                JbNovoActionPerformed(evt);
             }
         });
 
@@ -118,18 +118,18 @@ public class GuiFuncionario extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
                 .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(JbSalvar)
-                    .addComponent(JbAlterar)
-                    .addComponent(JbExcluir)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(JbAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JbNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JbExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(JbSalvar)
+                .addComponent(JbNovo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JbAlterar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -160,7 +160,7 @@ public class GuiFuncionario extends javax.swing.JFrame {
                 .addContainerGap(253, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(95, Short.MAX_VALUE)
+                    .addContainerGap(99, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(2, 2, 2)))
         );
@@ -168,11 +168,11 @@ public class GuiFuncionario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbSalvarActionPerformed
+    private void JbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbNovoActionPerformed
         // TODO add your handling code here:
         GuiFuncionarioNovo fu = new GuiFuncionarioNovo();
         fu.setVisible(true);
-    }//GEN-LAST:event_JbSalvarActionPerformed
+    }//GEN-LAST:event_JbNovoActionPerformed
 
     private void JbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbAlterarActionPerformed
         // TODO add your handling code here:
@@ -247,8 +247,8 @@ public class GuiFuncionario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbAlterar;
     private javax.swing.JButton JbExcluir;
+    private javax.swing.JButton JbNovo;
     private javax.swing.JButton JbPesquisar;
-    private javax.swing.JButton JbSalvar;
     private javax.swing.JTextField JcFuncionario;
     private javax.swing.JLabel JlFuncionario;
     private javax.swing.JTable JtListarFuncionario;
