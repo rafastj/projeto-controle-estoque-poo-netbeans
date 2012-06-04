@@ -443,6 +443,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
         String fornecedores_CNPJ;
         int resComCadastro;
         int resSemCadastro;
+        int resAtencao;
         try {
             str_cnpj = jFormattedTextFieldEntradaCNPJ.getText();
             str_cnpj = str_cnpj.replace('.', ' ');
@@ -470,6 +471,14 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
                             } else {
                                 limparCampos();
                                 bloquearTela();
+                            }
+                        } else {
+                            resAtencao = JOptionPane.showConfirmDialog(null, "Este CNPJ já está cadastrado!\n Deseja tentar outro?", "", JOptionPane.YES_NO_OPTION);
+                            if(resAtencao == JOptionPane.YES_OPTION){
+                                limparCampos();
+                                bloquearTela();
+                                jFormattedTextFieldEntradaCNPJ.setValue(null);
+                                
                             }
                         }
                     } else {
@@ -608,6 +617,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
         jButtonAlterarFornecedor.setEnabled(true);
         jButtonAlterarFornecedor.setEnabled(true);
         jButtonPesquisaCEP.setEnabled(true);
+        jButtonAlterarEndereco.setEnabled(true);
     }
 
     private void bloquearTela() {
@@ -619,6 +629,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
         jButtonAlterarFornecedor.setEnabled(false);
         jButtonPesquisaCEP.setEnabled(false);
         jTextFieldCidade.setEnabled(false);
+        jButtonAlterarEndereco.setEnabled(false);
         jFormattedTextFieldEntradaCNPJ.requestFocus();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
