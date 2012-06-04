@@ -69,4 +69,7 @@ public interface IRepositorioFuncionario {
      * @throws RepositorioException
      */
     public Collection<Funcionario> listar(int funcionarios_Codigo) throws ConexaoException, RepositorioException;
+    
+    
+    public Collection<Funcionario> listarTudo() throws ConexaoException, RepositorioException;
 }

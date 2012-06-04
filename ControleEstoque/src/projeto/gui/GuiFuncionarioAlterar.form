@@ -104,8 +104,9 @@
                       <Component id="JlNumeroResidencia" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="JcNumeroResidencia" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="JbAlterar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

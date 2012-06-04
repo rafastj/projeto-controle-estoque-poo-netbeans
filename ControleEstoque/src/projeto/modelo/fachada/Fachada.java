@@ -642,6 +642,10 @@ public class Fachada {
     public Collection<Funcionario> listarFuncionario(String funcionarios_Nome) throws GeralException {
         return rnFuncionario.listar(funcionarios_Nome);
     }
+    
+     public Collection<Funcionario> listarTodosFuncionario() throws GeralException {
+        return rnFuncionario.listarTudo();
+    }
 
     /**
      * Salvar Nota Fiscal!

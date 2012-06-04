@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Funcionario;
@@ -51,6 +52,11 @@ public class GuiFuncionario extends javax.swing.JFrame {
         JbExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtro"));
 
@@ -137,7 +143,7 @@ public class GuiFuncionario extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(JbAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -179,7 +185,7 @@ public class GuiFuncionario extends javax.swing.JFrame {
                 .addContainerGap(257, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(99, Short.MAX_VALUE)
+                    .addContainerGap(103, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(2, 2, 2)))
         );
@@ -211,6 +217,7 @@ public class GuiFuncionario extends javax.swing.JFrame {
                 Funcionario codFuncionario = fachada.consultarFuncionario(f.getFuncionarios_Nome());
                 
                 falterar.alterFuncionario.setFuncionarios_Codigo(codFuncionario.getFuncionarios_Codigo());
+                falterar.alterFuncionario.setEnderecos_Codigo(f.getEnderecos_Codigo());
                 
             } catch (GeralException ex) {
                 Logger.getLogger(GuiFuncionario.class.getName()).log(Level.SEVERE, null, ex);
@@ -248,6 +255,11 @@ public class GuiFuncionario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_JbExcluirActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        atualizarJTabela();
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
@@ -307,4 +319,37 @@ public Funcionario fSelecionado(){
         Funcionario f = listaFuncionario.get(JtListarFuncionario.getSelectedRow());
         return f;
     }
+   
+    //MODELO DA TABELA
+private DefaultTableModel geramodelo(ArrayList<Funcionario> listaFuncionarios) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Funcionário");
+        modelo.addColumn("Endereço");
+        modelo.addColumn("Número Residência");
+
+        ArrayList<String> valores;
+        int i = 0;
+        for (Funcionario fu : listaFuncionarios) {
+            valores = new ArrayList<String>();
+            valores.add(fu.getFuncionarios_Nome());
+            valores.add(fu.getEnderecos().getEnderecos_Logradouro());
+            valores.add(fu.getFuncionarios_NumeroResidencia());
+            modelo.insertRow(i, valores.toArray());
+            i++;
+        }
+        return modelo;
+    }
+
+
+    private void atualizarJTabela(){
+        try {
+            listaFuncionario = (ArrayList<Funcionario>) fachada.listarTodosFuncionario();
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaFuncionario);
+        JtListarFuncionario.setModel(modelo); 
+    }
+
+
 }

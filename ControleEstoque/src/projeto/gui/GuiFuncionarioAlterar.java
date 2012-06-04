@@ -129,8 +129,9 @@ public class GuiFuncionarioAlterar extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JlNumeroResidencia)
                     .addComponent(JcNumeroResidencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addComponent(JbAlterar))
+                .addGap(18, 18, 18)
+                .addComponent(JbAlterar)
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -156,17 +157,23 @@ public class GuiFuncionarioAlterar extends javax.swing.JFrame {
     private void JbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbAlterarActionPerformed
         // TODO add your handling code here:
         
-        alterFuncionario.setFuncionarios_Nome(JlNomeFuncionario.getText());
-        alterFuncionario.setFuncionarios_NumeroResidencia(JlNumeroResidencia.getText());
+        alterFuncionario.setFuncionarios_Nome(JcNomeFuncionario.getText());
+        alterFuncionario.setFuncionarios_NumeroResidencia(JcNumeroResidencia.getText());
         
         
         try {
             
-             Endereco e = fachada.consultarEndCep(jFormattedTextFieldCEP.getText());
+            String str_cep = jFormattedTextFieldCEP.getText();
+            str_cep = str_cep.replace('-', ' ');
+            str_cep = str_cep.replaceAll(" ", "");
+            String enderecos_CEP = str_cep;
+            Endereco e = fachada.consultarEndCep(enderecos_CEP);
             
                alterFuncionario.setEnderecos_Codigo(e.getEnderecos_Codigo());
              
             fachada.alterarFuncionario(alterFuncionario);
+            JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
+            dispose();
             
         } catch (GeralException ex) {
             Logger.getLogger(GuiFuncionarioAlterar.class.getName()).log(Level.SEVERE, null, ex);
@@ -179,13 +186,17 @@ public class GuiFuncionarioAlterar extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             
-            Endereco e = fachada.consultarEndCep(jFormattedTextFieldCEP.getText());
+            String str_cep = jFormattedTextFieldCEP.getText();
+            str_cep = str_cep.replace('-', ' ');
+            str_cep = str_cep.replaceAll(" ", "");
+            String enderecos_CEP = str_cep;
+            Endereco e = fachada.consultarEndCep(enderecos_CEP);
             
             if(e == null){
                 GuiEnderecoNovo gENovo = new GuiEnderecoNovo();
                 gENovo.setVisible(true);
             }else{
-            
+                
                 alterFuncionario.setEnderecos_Codigo(e.getEnderecos_Codigo());
                 
             JOptionPane.showMessageDialog(null, "CEP OK");

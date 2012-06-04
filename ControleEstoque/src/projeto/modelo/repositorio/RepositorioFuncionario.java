@@ -27,7 +27,7 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
     @Override
     public void salvar(Funcionario fu) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
-        String sqlSalvar = "INSERT INTO funcionario(enderecos_Codigo,funcionarios_Nome,Funcionarios_NumeroResidencia) VALUES(?,?,?)";
+        String sqlSalvar = "INSERT INTO funcionarios(enderecos_Codigo,funcionarios_Nome,Funcionarios_NumeroResidencia) VALUES(?,?,?)";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlSalvar);
             pstm.setInt(1, fu.getEnderecos_Codigo());
@@ -77,10 +77,10 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
     @Override
     public void alterar(Funcionario fu) throws RepositorioException, ConexaoException {
         Connection c = g.conectar();
-        String sqlAlterar = "UPDATE Funcionarios set (?,?) WHERE funcionarios_Codigo (?)";
+        String sqlAlterar = "UPDATE Funcionarios set ENDERECOS_CODIGO = ?, FUNCIONARIOS_NUMERORESIDENCIA = ? WHERE funcionarios_Codigo = ?";
         try {
             java.sql.PreparedStatement pstm = c.prepareStatement(sqlAlterar);
-            pstm.setString(1, fu.getFuncionarios_Nome());
+            pstm.setInt(1, fu.getEnderecos_Codigo());
             pstm.setString(2, fu.getFuncionarios_NumeroResidencia());
             pstm.setInt(3, fu.getFuncionarios_Codigo());
             pstm.executeUpdate();
@@ -96,15 +96,15 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
     public Funcionario consultar(int funcionarios_Codigo) throws ConexaoException, RepositorioException {
         Funcionario fu = null;
         Connection c = g.conectar();
-        String sqlConsulta = "SELECT fu.funcionarios_Codigo,fu.enderecos_Codigo,fu.funcionarios_Nome,fu.Funcionarios_NumeroResidencia FROM Funcionarios AS us WHERE (fu.funcionarios_Codigo Like ? )";
+        String sqlConsulta = "SELECT fu.funcionarios_Codigo,fu.enderecos_Codigo,fu.funcionarios_Nome,fu.Funcionarios_NumeroResidencia FROM Funcionarios AS fu WHERE (fu.funcionarios_Codigo = ? )";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsulta);
-            pstm.setInt(1, '%' + funcionarios_Codigo + '%');
+            pstm.setInt(1, funcionarios_Codigo );
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
                 fu = new Funcionario();
                 fu.setFuncionarios_Codigo(rs.getInt("fu.funcionarios_Codigo"));
-                fu.setEnderecos_Codigo(rs.getInt("fu.funcionarios_Enderecos"));
+                fu.setEnderecos_Codigo(rs.getInt("fu.enderecos_Codigo"));
                 fu.setFuncionarios_Nome(rs.getString("fu.funcionarios_Nome"));
                 fu.setFuncionarios_NumeroResidencia(rs.getString("fu.Funcionarios_NumeroResidencia"));
             }
@@ -120,7 +120,7 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
     public Funcionario consultar(String funcionarios_Nome) throws ConexaoException, RepositorioException {
         Funcionario fu = null;
         Connection c = g.conectar();
-        String sqlConsulta = "SELECT fu.funcionarios_Codigo,fu.enderecos_Codigo,fu.funcionarios_Nome,fu.Funcionarios_NumeroResidencia FROM Funcionarios AS us WHERE (fu.funcionarios_Nome Like ? )";
+        String sqlConsulta = "SELECT fu.funcionarios_Codigo,fu.enderecos_Codigo,fu.funcionarios_Nome,fu.Funcionarios_NumeroResidencia FROM Funcionarios AS fu WHERE (fu.funcionarios_Nome Like ? )";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsulta);
             pstm.setString(1, '%' + funcionarios_Nome + '%');
@@ -128,7 +128,7 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
             if (rs.next()) {
                 fu = new Funcionario();
                 fu.setFuncionarios_Codigo(rs.getInt("fu.funcionarios_Codigo"));
-                fu.setEnderecos_Codigo(rs.getInt("fu.funcionarios_Enderecos"));
+                fu.setEnderecos_Codigo(rs.getInt("fu.enderecos_Codigo"));
                 fu.setFuncionarios_Nome(rs.getString("fu.funcionarios_Nome"));
                 fu.setFuncionarios_NumeroResidencia(rs.getString("fu.Funcionarios_NumeroResidencia"));
             }
@@ -185,5 +185,31 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
         } finally {
             g.desconectar(c);
         }
+    }
+
+    @Override
+    public Collection<Funcionario> listarTudo() throws ConexaoException, RepositorioException {
+        ArrayList<Funcionario> lista = new ArrayList<Funcionario>();
+        Funcionario fu;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT f.funcionarios_Codigo, f.enderecos_Codigo, e.Enderecos_Logradouro, e.Enderecos_CEP, f.funcionarios_Nome, f.Funcionarios_NumeroResidencia FROM Funcionarios as f INNER JOIN Enderecos as e ON f.enderecos_Codigo = e.enderecos_Codigo order by funcionarios_Nome";
+        try {
+            Statement stm = c.createStatement();
+            ResultSet rs = stm.executeQuery(sqlLista);
+            while (rs.next()) {
+                fu = new Funcionario();
+                fu.setFuncionarios_Codigo(rs.getInt("funcionarios_Codigo"));
+                fu.setFuncionarios_Nome(rs.getString("funcionarios_Nome"));
+                fu.getEnderecos().setEnderecos_Logradouro(rs.getString("e.Enderecos_Logradouro"));
+                fu.getEnderecos().setEnderecos_CEP(rs.getString("e.Enderecos_CEP"));
+                fu.setFuncionarios_NumeroResidencia(rs.getString("funcionarios_NumeroResidencia"));
+                lista.add(fu);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar(c);
+        } 
     }
 }

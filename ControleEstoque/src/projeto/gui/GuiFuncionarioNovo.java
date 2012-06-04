@@ -157,12 +157,17 @@ public class GuiFuncionarioNovo extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             
-            if(jFormattedTextFieldCEP.getText().equals("")){
+            if(jFormattedTextFieldCEP.getText().equals("     -   ")){
                 GuiEnderecoNovo gENovo = new GuiEnderecoNovo();
                 gENovo.setVisible(true);
             }else{
+                
+            String str_cep = jFormattedTextFieldCEP.getText();
+            str_cep = str_cep.replace('-', ' ');
+            str_cep = str_cep.replaceAll(" ", "");
+            String enderecos_CEP = str_cep;
             
-            Endereco e = fachada.consultarEndCep(jFormattedTextFieldCEP.getText());
+            Endereco e = fachada.consultarEndCep(enderecos_CEP);
             
             if(e == null){
                 GuiEnderecoNovo gENovo = new GuiEnderecoNovo();
@@ -237,8 +242,8 @@ public class GuiFuncionarioNovo extends javax.swing.JFrame {
     private void salvarFuncionario() {
     
     try{
-        fSalvar.setFuncionarios_Nome(JlNomeFuncionario.getText());
-        fSalvar.setFuncionarios_NumeroResidencia(JlNumeroResidencia.getText());
+        fSalvar.setFuncionarios_Nome(JcNomeFuncionario.getText());
+        fSalvar.setFuncionarios_NumeroResidencia(JcNumeroResidencia.getText());
         //Funcionario fu = new Funcionario (int funcionario_Codigo, int enderecos_Codigo, String funcionarios_Nome, String funcionarios_NumeroResidencia);
         fachada.salvarFuncionario(fSalvar);
     }catch (GeralException ex){
