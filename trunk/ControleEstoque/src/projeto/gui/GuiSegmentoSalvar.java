@@ -31,7 +31,7 @@ public class GuiSegmentoSalvar extends javax.swing.JDialog {
         initComponents();
         try {
             jTcodFp.setEditable(false);
-            jTcodFp.setText(String.valueOf(Fachada.CodigoFormaPagamento()));
+            jTcodFp.setText(String.valueOf(Fachada.CodigoSegmento()));
         } catch (GeralException ex) {
             Logger.getLogger(GuiSegmentoSalvar.class.getName()).log(Level.SEVERE, null, ex);
         }
