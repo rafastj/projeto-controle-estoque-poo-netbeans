@@ -36,7 +36,7 @@ public class SoStrings extends JTextField{
     public void insertString(int offs, String str, AttributeSet a) throws BadLocationException{
         for(int i = 0; i < str.length(); i++){
             
-                if(Character.isLetter(str.charAt(i))){//se for Letras ok
+                if((Character.isLetter(str.charAt(i)))||(Character.isSpaceChar(str.charAt(i)))){//se for Letras ou espaço ok
                     
                      super.insertString(offs, str, a);
                 }
