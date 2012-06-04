@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Marca;
+import projeto.modelo.*;
+
 
 /**
  *
@@ -21,10 +23,12 @@ public class GuiAlterarMarca extends javax.swing.JDialog {
     public GuiAlterarMarca(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
     
     public GuiAlterarMarca(){
          initComponents();
+         setLocationRelativeTo(null);
     }
 
     /**
@@ -40,7 +44,7 @@ public class GuiAlterarMarca extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jTCodMarca = new javax.swing.JTextField();
         jTDescMarca = new javax.swing.JTextField();
-        jTAltMarca = new javax.swing.JTextField();
+        jTAltMarca = new projeto.modelo.componente.SoStrings();
         btnAlterar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
 
@@ -156,10 +160,6 @@ public class GuiAlterarMarca extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTDescMarcaActionPerformed
 
-    private void jTAltMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTAltMarcaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTAltMarcaActionPerformed
-
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
         Fachada fachada = new Fachada();
@@ -194,6 +194,10 @@ public class GuiAlterarMarca extends javax.swing.JDialog {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void jTAltMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTAltMarcaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTAltMarcaActionPerformed
 
     /**
      * @param args the command line arguments

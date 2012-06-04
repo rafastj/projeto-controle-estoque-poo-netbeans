@@ -24,10 +24,12 @@ public class GuiSalvarTipo extends javax.swing.JDialog {
     public GuiSalvarTipo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     public GuiSalvarTipo() {
           initComponents();
+          setLocationRelativeTo(null);
           try {
             jTcod.setEditable(false);
             jTcod.setText(String.valueOf(Fachada.Codigo()));
@@ -48,7 +50,7 @@ public class GuiSalvarTipo extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTcod = new javax.swing.JTextField();
-        jTDesTip = new javax.swing.JTextField();
+        jTDesTip = new projeto.modelo.componente.SoStrings();
         btnSalvar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
 

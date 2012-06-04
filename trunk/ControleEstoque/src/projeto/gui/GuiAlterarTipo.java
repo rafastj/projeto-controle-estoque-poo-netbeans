@@ -22,10 +22,12 @@ public class GuiAlterarTipo extends javax.swing.JDialog {
     public GuiAlterarTipo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     public GuiAlterarTipo() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -39,7 +41,7 @@ public class GuiAlterarTipo extends javax.swing.JDialog {
 
         jTCodTipo = new javax.swing.JTextField();
         jTDescTipo = new javax.swing.JTextField();
-        jTAltTipo = new javax.swing.JTextField();
+        jTAltTipo = new projeto.modelo.componente.SoStrings();
         btnAlterar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();

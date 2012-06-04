@@ -25,10 +25,13 @@ public class GuiSalvarMarca extends javax.swing.JDialog {
     public GuiSalvarMarca(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     public GuiSalvarMarca() {
         initComponents();
+        setLocationRelativeTo(null);
+        
         try {
             jTcodM.setEditable(false);
             jTcodM.setText(String.valueOf(Fachada.CodigoMarca()));
@@ -46,7 +49,7 @@ public class GuiSalvarMarca extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTDesMar = new javax.swing.JTextField();
+        jTDesMar = new projeto.modelo.componente.SoStrings();
         jTcodM = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();

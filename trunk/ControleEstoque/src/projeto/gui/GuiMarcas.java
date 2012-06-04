@@ -26,13 +26,14 @@ public class GuiMarcas extends javax.swing.JDialog {
     public GuiMarcas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     public GuiMarcas() {
         initComponents();
         listaTabelaMarca();
-        // JtListarMarcas.isCellEditable(0, 0);
-
+        setLocationRelativeTo(null);
+      
     }
 
     /**
@@ -45,7 +46,7 @@ public class GuiMarcas extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTPesq = new javax.swing.JTextField();
+        jTPesq = new projeto.modelo.componente.SoStrings();
         JlFuncionario = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
