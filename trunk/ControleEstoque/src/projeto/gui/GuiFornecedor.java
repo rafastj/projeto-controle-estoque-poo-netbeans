@@ -539,7 +539,13 @@ public class GuiFornecedor extends javax.swing.JDialog {
     }
     
     private static DefaultTableModel geramodelo(ArrayList<Fornecedor> listaFornecedor) {
-        DefaultTableModel modelo = new DefaultTableModel();
+        DefaultTableModel modelo = new DefaultTableModel() {
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int mColIndex) {
+                return false;
+            }
+        };
         modelo.addColumn("CNPJ");
         modelo.addColumn("Razão Social");
         modelo.addColumn("Logradouro");

@@ -331,7 +331,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
             enderecos_CEP = str_cepNew;
             endAlterar = new Endereco();
             endAlterar.setEnderecos_Codigo(end.getEnderecos_Codigo());
-            endAlterar.setEnderecos_Logradouro(jTextFieldEntradaLog.getText());
+            endAlterar.setEnderecos_Logradouro(str_cepNew);
             endAlterar.setEnderecos_CEP(enderecos_CEP);
             endAlterar.setCidades_Codigo(cd.getCidades_Codigo());
             fachada.alterarEndereco(endAlterar);

@@ -67,10 +67,10 @@ public class RepositorioCidade implements IRepositorioCidade {
     public Cidade consultar(String cidades_Nome) throws ConexaoException, RepositorioException {
         Cidade cd = null;
         Connection c = g.conectar();
-        String sqlConsultar = "SELECT cidades_Codigo, cidades_Nome FROM Cidades WHERE ( cidades_Nome LIKE ? )";
+        String sqlConsultar = "SELECT cidades_Codigo, cidades_Nome FROM Cidades WHERE ( cidades_Nome = ? )";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsultar);
-            pstm.setString(1, cidades_Nome + "%");
+            pstm.setString(1, cidades_Nome);
             ResultSet rs = pstm.executeQuery();
             /*
              * verifica se retornou algum registro e cria o Objeto
