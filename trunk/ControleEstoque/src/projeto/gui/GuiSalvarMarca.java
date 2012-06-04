@@ -170,7 +170,7 @@ public class GuiSalvarMarca extends javax.swing.JDialog {
             }
            else{
             Marca m = new Marca();
-            m.setMarcas_Descricao(mSalvar);
+            m.setMarcas_Descricao(mSalvar.trim());
             m.setMarcas_Codigo(Integer.parseInt(jTcodM.getText()));
             try {
                 fachada.salvarMarca(m);
