@@ -249,7 +249,6 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
                 return types [columnIndex];
             }
         });
-        jTablePF.setCellSelectionEnabled(false);
         jTablePF.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTablePF.setShowHorizontalLines(false);
         jTablePF.setShowVerticalLines(false);
@@ -339,7 +338,11 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         GuiPessoaFisicaNovoM pf = new GuiPessoaFisicaNovoM();
         pf.setVisible(true);
         atualizarComboCidade();
-        atualizarTabela();
+        try {
+            atualizarTabela();
+        } catch (ConexaoException ex) {
+            Logger.getLogger(GuiPessoaFisica.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         
     }//GEN-LAST:event_jbNovoActionPerformed

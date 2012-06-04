@@ -410,32 +410,6 @@ public class RepositorioCliente implements IRepositorioCliente {
     }
 
     @Override
-        public Collection<Cliente> listarTodosCliente() throws ConexaoException, RepositorioException {
-        ArrayList<Cliente> lista = new ArrayList<Cliente>();
-        Cliente cli;
-        Connection c = g.conectar();
-        String sqlLista = "SELECT pj.clientes_Codigo, pj.PessoasJuridica_CNPJ, pj.PessoasJuridica_RazaoSocial,cli.clientes_tipo, cli.clientes_numeroresidencia, cli.enderecos_Codigo from PessoasJuridica AS pj, clientes as cli ORDER BY pj.clientes_Codigo";
-
-        try {
-            Statement stm = c.createStatement();
-            ResultSet rs = stm.executeQuery(sqlLista);
-            //verifica se retornou algum registro e cria os Objetos
-            while (rs.next()) {
-                cli = new Cliente();
-                cli.setClientes_Codigo(rs.getInt("clientes_Codigo"));
-                cli.setEnderecos_Codigo(rs.getInt("PessoasJuridica_RazaoSocial"));
-                cli.setClientes_NumeroResidencia(rs.getString("clientes_NumeroResidencia"));
-                cli.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
-                cli.setClientes_Tipo(rs.getString("clientes_tipo"));
-                lista.add(cli);
-            }
-            return lista;
-        } catch (SQLException e) {
-            throw new RepositorioException(e);
-        } finally {
-            g.desconectar(c);
-        }
-    }
 
         public Collection<PessoaFisica> listarPfCidade(String cidades_Nome) throws ConexaoException, RepositorioException {
         ArrayList<PessoaFisica> lista = new ArrayList<PessoaFisica>();
@@ -455,28 +429,19 @@ public class RepositorioCliente implements IRepositorioCliente {
             //verifica se retornou algum registro e cria os Objetos
             while (rs.next()) {
                 pf = new PessoaFisica();
-                end = new Endereco();
-                cid = new Cidade();
-                
                 
                 pf.getEndereco().getCidade().setCidades_Codigo(rs.getInt("cidades_codigo"));
                 pf.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_nome"));
-                pf.getEndereco().setCidades_Codigo(cidades_Codigo);
-                
-                cid.setCidades_Codigo(rs.getInt("cidades_codigo"));
-                cid.setCidades_Nome(rs.getString("cidades_nome"));
-                end.setCidade(cid);
-                end.setCidades_Codigo(rs.getInt("cidades_codigo"));
-                end.setEnderecos_Codigo(rs.getInt("enderecos_codigo"));
-                end.setEnderecos_CEP(rs.getString("enderecos_cep"));
-                end.setEnderecos_Logradouro("enderecos_logradouro");
-                pf.setEndereco(end);
+                pf.getEndereco().setCidades_Codigo(rs.getInt("cidades_codigo"));
+                pf.getEndereco().setEnderecos_Codigo(rs.getInt("enderecos_codigo"));
+                pf.getEndereco().setEnderecos_CEP(rs.getString("enderecos_cep"));
+                pf.getEndereco().setEnderecos_Logradouro("enderecos_logradouro");
+                pf.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
                 pf.setClientes_Codigo(rs.getInt("clientes_Codigo"));
                 pf.setPessoasFisica_CPF(rs.getString("pessoasfisica_CPF"));
                 pf.setPessoasFisica_Nome(rs.getString("pessoasFisica_nome"));
                 pf.setPessoasFisica_Sexo(rs.getString("pessoasFisica_Sexo"));
                 pf.setClientes_NumeroResidencia(rs.getString("clientes_NumeroResidencia"));
-                pf.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
                 lista.add(pf);
             }
             return lista;

@@ -87,7 +87,5 @@ public interface IRepositorioCliente {
     
     public Collection<PessoaJuridica> listarPessoaJuridica() throws ConexaoException, RepositorioException;
     
-    public Collection<Cliente> listarTodosCliente() throws ConexaoException, RepositorioException;
-    
     public Collection<PessoaFisica> listarPfCidade(String cidade_nome) throws ConexaoException, RepositorioException;
 }
