@@ -8,8 +8,6 @@ import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Marca;
-import projeto.modelo.*;
-
 
 /**
  *
@@ -25,10 +23,10 @@ public class GuiAlterarMarca extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
     }
-    
-    public GuiAlterarMarca(){
-         initComponents();
-         setLocationRelativeTo(null);
+
+    public GuiAlterarMarca() {
+        initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -165,16 +163,10 @@ public class GuiAlterarMarca extends javax.swing.JDialog {
         Fachada fachada = new Fachada();
         String mAlterar = jTAltMarca.getText();
 
-        try {
-            if (mAlterar.equals("")) {
-                JOptionPane.showMessageDialog(null, "Favor digitar uma descrição");
-                jTAltMarca.setText(null);
-            } else {
-                int validoString = Integer.parseInt(mAlterar);
-                JOptionPane.showMessageDialog(null, "Favor digitar uma descrição");
-                jTAltMarca.setText(null);
-            }
-        } catch (NumberFormatException x) {
+        if (mAlterar.equals("")) {
+            JOptionPane.showMessageDialog(null, "Favor digitar uma descrição");
+            jTAltMarca.setText(null);
+        } else {
             Marca m = new Marca();
             int marcas_Codigo = Integer.parseInt(jTCodMarca.getText());
             String mAlt = jTAltMarca.getText();
@@ -182,11 +174,11 @@ public class GuiAlterarMarca extends javax.swing.JDialog {
             m.setMarcas_Descricao(mAlt);
             try {
                 fachada.alterarMarca(m);
+                JOptionPane.showMessageDialog(null, "Marca alterada com sucesso!");
             } catch (GeralException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
             dispose();
-
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 

@@ -36,12 +36,7 @@ public class NegocioMarca {
     public void salvar(Marca m) throws GeralException {
         //validação dos campos no próprio método
 
-        if (m.getMarcas_Descricao() == null) {
-            throw new GeralException("Descrição não informada!");
-        }
-
         try {
-
             Marca mconsul = rep.consultarMarcas(m.getMarcas_Descricao());
             if (mconsul != null) {
                 throw new GeralException("Marca já cadastrada!");
@@ -197,7 +192,7 @@ public class NegocioMarca {
     /**
      * Verificar os dados antes de consultar a lista
      */
-       public Collection<Marca> listarMarca() throws GeralException {
+    public Collection<Marca> listarMarca() throws GeralException {
 
         ArrayList<Marca> lista;
         try {
@@ -211,9 +206,9 @@ public class NegocioMarca {
         }
         return lista;
     }
-    
-     public Collection<Marca> listarMarcasDescricao(String marcas_Descricao)throws GeralException{
-       ArrayList<Marca> lista;
+
+    public Collection<Marca> listarMarcasDescricao(String marcas_Descricao) throws GeralException {
+        ArrayList<Marca> lista;
         try {
             lista = (ArrayList<Marca>) new RepositorioMarca().listarMarcasDescricao(marcas_Descricao);
 
@@ -225,19 +220,16 @@ public class NegocioMarca {
         }
         return lista;
     }
-    
-    public int CodigoMarca()throws GeralException{
-		int m = 0;
-		try {
-			m = rep.CodigoMarca();
-		} catch (ConexaoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RepositorioException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 return m;
-	 }
 
+    public int CodigoMarca() throws GeralException {
+        int m = 0;
+        try {
+            m = rep.CodigoMarca();
+        } catch (ConexaoException e) {
+            throw new GeralException("O banco de dados não está acessível no momento");
+        } catch (RepositorioException e) {
+            throw new GeralException("Erro de programação!");
+        }
+        return m;
+    }
 }

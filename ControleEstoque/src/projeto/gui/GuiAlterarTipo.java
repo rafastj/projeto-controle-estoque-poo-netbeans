@@ -9,7 +9,6 @@ import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Tipo;
 
-
 /**
  *
  * @author Felipe Carlos
@@ -162,16 +161,10 @@ public class GuiAlterarTipo extends javax.swing.JDialog {
         Fachada fachada = new Fachada();
         String tAlterar = jTAltTipo.getText();
 
-        try {
-            if (tAlterar.equals("")) {
-                JOptionPane.showMessageDialog(null, "Favor digitar uma descrição");
-                jTAltTipo.setText(null);
-            } else {
-                int validoString = Integer.parseInt(tAlterar);
-                JOptionPane.showMessageDialog(null, "Favor digitar uma descrição");
-                jTAltTipo.setText(null);
-            }
-        } catch (NumberFormatException x) {
+        if (tAlterar.equals("")) {
+            JOptionPane.showMessageDialog(null, "Favor digitar uma descrição");
+            jTAltTipo.setText(null);
+        } else {
             Tipo t = new Tipo();
             int tipos_Codigo = Integer.parseInt(jTCodTipo.getText());
             String tAlt = jTAltTipo.getText();
@@ -179,11 +172,11 @@ public class GuiAlterarTipo extends javax.swing.JDialog {
             t.setTipos_Descricao(tAlt);
             try {
                 fachada.alterarTipo(t);
+                JOptionPane.showMessageDialog(null, "Marca alterada com sucesso!");
             } catch (GeralException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
             dispose();
-
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 

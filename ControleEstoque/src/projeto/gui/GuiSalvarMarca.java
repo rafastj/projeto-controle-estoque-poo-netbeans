@@ -156,32 +156,26 @@ public class GuiSalvarMarca extends javax.swing.JDialog {
         Fachada fachada = new Fachada();
         String mSalvar = jTDesMar.getText();
 
-        try {
-            @SuppressWarnings("unused")
-            int validoString = Integer.parseInt(mSalvar);
-
-            JOptionPane.showMessageDialog(null, "Digite apenas a descricão do tipo!");
-        } catch (NumberFormatException x) {
+           if (mSalvar.equals("")) {
+            JOptionPane.showMessageDialog(null, "Digite a descricão da Marca!");
+            }
+           else{
             Marca m = new Marca();
             m.setMarcas_Descricao(mSalvar);
             m.setMarcas_Codigo(Integer.parseInt(jTcodM.getText()));
-
             try {
                 fachada.salvarMarca(m);
             } catch (GeralException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         }
-
         jTDesMar.setText(null);
-
 
         try {
             jTcodM.setText(String.valueOf(Fachada.CodigoMarca()));
         } catch (GeralException e1) {
 
             // TODO Auto-generated catch block
-            e1.printStackTrace();
         }
     }
 

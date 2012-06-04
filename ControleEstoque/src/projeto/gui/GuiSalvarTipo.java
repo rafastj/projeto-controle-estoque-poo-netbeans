@@ -17,7 +17,8 @@ import projeto.modelo.to.Tipo;
  */
 public class GuiSalvarTipo extends javax.swing.JDialog {
 
-     Fachada fachada = new Fachada();
+    Fachada fachada = new Fachada();
+
     /**
      * Creates new form GuiSalvarTipo1
      */
@@ -28,9 +29,9 @@ public class GuiSalvarTipo extends javax.swing.JDialog {
     }
 
     public GuiSalvarTipo() {
-          initComponents();
-          setLocationRelativeTo(null);
-          try {
+        initComponents();
+        setLocationRelativeTo(null);
+        try {
             jTcod.setEditable(false);
             jTcod.setText(String.valueOf(Fachada.Codigo()));
         } catch (GeralException ex) {
@@ -159,40 +160,30 @@ public class GuiSalvarTipo extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    
     public void salvarTipo() {
-                Fachada fachada = new Fachada();
-                String tSalvar = jTDesTip.getText();
+        Fachada fachada = new Fachada();
+        String tSalvar = jTDesTip.getText();
 
-                try {
-                    @SuppressWarnings("unused")
-                    int validoString = Integer.parseInt(tSalvar);
+        if (tSalvar.equals("")) {
+            JOptionPane.showMessageDialog(null, "Digite a descricão do tipo!");
+        } else {
+            Tipo t = new Tipo();
+            t.setTipos_Descricao(tSalvar);
+            t.setTipos_Codigo(Integer.parseInt(jTcod.getText()));
 
-                    JOptionPane.showMessageDialog(null, "Digite apenas a descri��o do tipo!");
-                } catch (NumberFormatException x) {
-                    Tipo t = new Tipo();
-
-                    t.setTipos_Descricao(tSalvar);
-                    t.setTipos_Codigo(Integer.parseInt(jTcod.getText()));
-
-                    try {
-                        fachada.salvarTipo(t);
-                    } catch (GeralException ex) {
-                        JOptionPane.showMessageDialog(null, ex.getMessage());
-                    }
-                }
-
-                jTDesTip.setText(null);
-              
-
-                try {
-                    jTcod.setText(String.valueOf(Fachada.Codigo()));
-                } catch (GeralException e1) {
-
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
+            try {
+                fachada.salvarTipo(t);
+            } catch (GeralException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
+        }
+        jTDesTip.setText(null);
+        try {
+            jTcod.setText(String.valueOf(Fachada.Codigo()));
+        } catch (GeralException e1) {
+        }
+    }
+
     public static void main(String args[]) {
         /*
          * Set the Nimbus look and feel
