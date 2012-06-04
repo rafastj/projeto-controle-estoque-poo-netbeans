@@ -168,11 +168,11 @@ public class GuiSegmentoAlterar extends javax.swing.JDialog {
 
         try {
             if (fpAlterar.equals("")) {
-                JOptionPane.showMessageDialog(null, "Favor digitar uma descri��o");
+                JOptionPane.showMessageDialog(null, "Favor digitar uma descrição");
                 jTAltSegmento.setText(null);
             } else {
                 int validoString = Integer.parseInt(fpAlterar);
-                JOptionPane.showMessageDialog(null, "Favor digitar uma descri��o");
+                JOptionPane.showMessageDialog(null, "Favor digitar uma descrição");
                 jTAltSegmento.setText(null);
             }
         } catch (NumberFormatException x) {

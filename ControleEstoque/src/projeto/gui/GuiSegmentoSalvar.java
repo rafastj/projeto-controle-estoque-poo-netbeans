@@ -158,7 +158,7 @@ public class GuiSegmentoSalvar extends javax.swing.JDialog {
             @SuppressWarnings("unused")
             int validoString = Integer.parseInt(fpSalvar);
 
-            JOptionPane.showMessageDialog(null, "Digite apenas a descric?o do tipo!");
+            JOptionPane.showMessageDialog(null, "Digite apenas a descrição do Segmento!");
         } catch (NumberFormatException x) {
             Segmento s = new Segmento();
             s.setSegmentos_Descricao(fpSalvar);
