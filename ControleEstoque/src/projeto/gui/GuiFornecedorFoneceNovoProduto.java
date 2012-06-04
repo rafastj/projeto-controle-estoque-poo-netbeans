@@ -130,6 +130,7 @@ public class GuiFornecedorFoneceNovoProduto extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        jTabelaForneForneceProduto.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTabelaForneForneceProduto);
 
         javax.swing.GroupLayout jPFornecedor1Layout = new javax.swing.GroupLayout(jPFornecedor1);
@@ -316,9 +317,14 @@ public class GuiFornecedorFoneceNovoProduto extends javax.swing.JFrame {
   
     //MODELO DA TABELA FORNECEDOR FORNECE PRODUTO
     private DefaultTableModel geramodelo(ArrayList<Produto_Fornecedor> listaForneForneciProduto) {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Produto");
-        modelo.addColumn("Fornecedor");
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Produto","Fornecedor"},0){
+            
+            public boolean isCellEditable(int rowIndex, int mColIndex) {
+                return false;
+            }
+        };
+        //modelo.addColumn("Produto");
+        //modelo.addColumn("Fornecedor");
 
         ArrayList<String> valores;
         int i = 0;

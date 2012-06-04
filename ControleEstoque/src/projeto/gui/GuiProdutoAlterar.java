@@ -238,8 +238,6 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
             fachada.alterarProduto(pAlterar);
 
             JOptionPane.showMessageDialog(null, "Produto Alterado!");
-            //PROFESSOR AJUDA!
-            guiPro.atualizarTabela();//atualizar a tabela
             dispose();
 
         } catch (GeralException ex) {
