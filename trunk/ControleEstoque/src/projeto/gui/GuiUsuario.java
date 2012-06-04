@@ -87,7 +87,18 @@ public class GuiUsuario extends javax.swing.JFrame {
             new String [] {
                 "Funcionario", "Login"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtListarUsuario.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jtListarUsuario.setShowHorizontalLines(false);
+        jtListarUsuario.setShowVerticalLines(false);
         jScrollPane1.setViewportView(jtListarUsuario);
 
         jbSalvar.setText("Salvar");

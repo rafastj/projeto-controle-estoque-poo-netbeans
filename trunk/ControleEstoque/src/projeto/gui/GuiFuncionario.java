@@ -66,7 +66,7 @@ public class GuiFuncionario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(JlFuncionario)
                 .addGap(18, 18, 18)
-                .addComponent(JcFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                .addComponent(JcFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JbPesquisar)
                 .addGap(61, 61, 61))
@@ -85,12 +85,29 @@ public class GuiFuncionario extends javax.swing.JFrame {
 
         JtListarFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null}
+                {null, null, null}
             },
             new String [] {
-                "Funcionario", "Endereço"
+                "Funcionario", "Endereço", "Número Residência"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        JtListarFuncionario.setShowHorizontalLines(false);
+        JtListarFuncionario.setShowVerticalLines(false);
         jScrollPane1.setViewportView(JtListarFuncionario);
 
         JbNovo.setText("Novo");
@@ -159,7 +176,7 @@ public class GuiFuncionario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addContainerGap(257, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(99, Short.MAX_VALUE)
