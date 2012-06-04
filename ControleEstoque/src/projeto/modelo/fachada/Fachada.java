@@ -311,8 +311,8 @@ public class Fachada {
      * @param Produto_Descricao
      * @throws GeralException
      */
-    public void alterarLigacaoFornecedorProduto(String Fornecedor_RazaoSocial, String Produto_Descricao) throws GeralException {
-        rnProduto_Fornecedor.alterarProduto_Fornecedor(Fornecedor_RazaoSocial, Produto_Descricao);
+    public void alterarLigacaoFornecedorProduto(int NFornecedor_Codigo, int NProduto_Codigo, int Fornecedor_Codigo, int Produto_Codigo) throws GeralException {
+        rnProduto_Fornecedor.alterarProduto_Fornecedor(NFornecedor_Codigo, NProduto_Codigo,Fornecedor_Codigo,Produto_Codigo);
     }
     
     /**

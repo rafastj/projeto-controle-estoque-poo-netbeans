@@ -161,6 +161,11 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
         });
 
         jBAlterar.setText("Alterar");
+        jBAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAlterarActionPerformed(evt);
+            }
+        });
 
         jBApagar.setText("Excluir");
         jBApagar.addActionListener(new java.awt.event.ActionListener() {
@@ -284,6 +289,68 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
         gffnp.setVisible(true);
     }//GEN-LAST:event_jBNovoActionPerformed
 
+    private void jBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarActionPerformed
+        // TODO add your handling code here:
+         try{
+             //criar o objeto alterar o fornecedor do produto
+             GuiFornecedorAlterarForneceProduto altFornecedorProduto = new GuiFornecedorAlterarForneceProduto();
+             
+                        //LISTA DO FORNECEDOR
+                Fornecedor forne;
+                ArrayList<Fornecedor> listafo;
+                    try{
+                            //Lista dos os segmentos
+                            listafo = (ArrayList<Fornecedor>)fachada.listarFornecedor();
+                            for(Iterator<Fornecedor> it = listafo.iterator(); it.hasNext();){
+                                forne = it.next();
+                                altFornecedorProduto.jFornecedorBox.addItem(forne.getFornecedores_RazaoSocial());	
+                            }
+                    }catch (GeralException ex){
+                            JOptionPane.showMessageDialog(null, ex.getMessage());
+                    }
+                    //LISTAR OS PRODUTDOS
+                    Produto p;
+                    ArrayList<Produto> listap;
+                    try{
+                            listap = (ArrayList<Produto>) fachada.listaProdutoTudo();
+                            for(Iterator<Produto> it = listap.iterator(); it.hasNext();){
+                                p = it.next();
+                                altFornecedorProduto.jProdutoBox.addItem(p.getProdutos_Descricao());
+                            }
+                    }catch (GeralException ex){
+                            JOptionPane.showMessageDialog(null, ex.getMessage());
+                    }
+                    
+                    //pegar o objeto selecionado
+            Produto_Fornecedor pf = pSelecionado();
+            
+            
+            altFornecedorProduto.jFornecedorField.setText(pf.getFornecedor().getFornecedores_RazaoSocial());
+            altFornecedorProduto.jFornecedorBox.setSelectedItem(pf.getFornecedor().getFornecedores_RazaoSocial());//setar o fornecedor
+            altFornecedorProduto.jProdutoField.setText(pf.getProduto().getProdutos_Descricao());
+            altFornecedorProduto.jProdutoBox.setSelectedItem(pf.getProduto().getProdutos_Descricao());//seta o produto
+           
+            try{
+            //antes de abrir lança o codigo desse produto selecionado
+            Produto_Fornecedor pfconsul = fachada.consultarLigacaoFornecedorProduto(pf.getFornecedor().getFornecedores_RazaoSocial(), pf.getProduto().getProdutos_Descricao());
+            
+            //Codigo do produto lançado para um Inteiro publico em GuiProdutoAlterar
+            altFornecedorProduto.codFornecedor = pfconsul.getFornecedores_Codigo();
+            altFornecedorProduto.codProduto = pfconsul.getProdutos_Codigo();
+             
+             
+             //chama a tela para alterar
+             altFornecedorProduto.setVisible(true);
+             
+            }catch(GeralException ex){
+                JOptionPane.showMessageDialog(null,ex.getMessage());
+            }
+             
+         }catch(ArrayIndexOutOfBoundsException ex){
+            JOptionPane.showMessageDialog(null, "Selecione o produto!");
+        }
+    }//GEN-LAST:event_jBAlterarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -388,7 +455,7 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
         return modelo;
     }
     
-    
+    //PESQUISAR TODO OS FORNECEDORES DO PRODUTO SELECIONADO
     private void pesquisarProduto(String descricao_produto){
         try {
             listaProdutoFornecedor = (ArrayList<Produto_Fornecedor>) fachada.listarFornecedoresdetalProduto(descricao_produto);
@@ -419,6 +486,12 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
         }
         DefaultTableModel modelo = geramodelo(listaProdutoFornecedor);
         jTabelaForneForneceProduto.setModel(modelo); 
+    }
+    
+    //SELECIONA A LINHA
+       public Produto_Fornecedor pSelecionado(){
+        Produto_Fornecedor pf = listaProdutoFornecedor.get(jTabelaForneForneceProduto.getSelectedRow());
+        return pf;
     }
     
 //fim
