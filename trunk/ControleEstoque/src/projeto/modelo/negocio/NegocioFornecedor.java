@@ -9,8 +9,13 @@ import javax.swing.JOptionPane;
 import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.erro.RepositorioException;
+import projeto.gui.GuiFornecedor;
+import projeto.gui.GuiFornecedorNovo;
+import projeto.modelo.repositorio.IRepositorioEndereco;
 import projeto.modelo.repositorio.IRepositorioFornecedor;
+import projeto.modelo.repositorio.RepositorioEndereco;
 import projeto.modelo.repositorio.RepositorioFornecedor;
+import projeto.modelo.to.Endereco;
 import projeto.modelo.to.Fornecedor;
 
 /**
@@ -18,39 +23,96 @@ import projeto.modelo.to.Fornecedor;
  */
 public class NegocioFornecedor {
 
-    private IRepositorioFornecedor rep;
+    private IRepositorioFornecedor repFor;
+    private IRepositorioEndereco repEnd;
 
     public NegocioFornecedor() {
-        rep = new RepositorioFornecedor();
+        repFor = new RepositorioFornecedor();
+        repEnd = new RepositorioEndereco();
     }
 
     public void salvar(Fornecedor f) throws GeralException {
+        int resposta;
+        int resComCadastro;
+        Fornecedor cnpjConsult;
+        Endereco end;
+        int fornecedores_Codigo = 0;
+        String fornecedores_CNPJ;
+        String enderecos_CEP;
+        String str_cep;
+        String str_cnpj;
+        //Trata o CNPJ para salvar;
+        str_cnpj = f.getFornecedores_CNPJ();
+        str_cnpj = str_cnpj.replace('.', ' ');
+        str_cnpj = str_cnpj.replace('/', ' ');
+        str_cnpj = str_cnpj.replace('-', ' ');
+        str_cnpj = str_cnpj.replaceAll(" ", "");
+        fornecedores_CNPJ = str_cnpj;
+        //Trata o CEP para salvar;
+        str_cep = f.getEnderecos_CEP();
+        str_cep = str_cep.replace('-', ' ');
+        str_cep = str_cep.replaceAll(" ", "");
+        enderecos_CEP = str_cep;
         
         if ((f.getFornecedores_RazaoSocial() == null) || (f.getFornecedores_RazaoSocial().equals(""))) {
-            throw new GeralException("Digite a Razão Social!");
+            JOptionPane.showMessageDialog(null, "Informe a Razão Social");
+            GuiFornecedorNovo.jTextFieldEntradaRS.requestFocus();
         }
-
-        if (f.getEnderecos_Codigo() <= 0) {
-            throw new GeralException("Digite um código válido!");
+        if ((enderecos_CEP == null) || (enderecos_CEP.equals(""))){
+            JOptionPane.showMessageDialog(null, "Informe o CEP");
+            GuiFornecedorNovo.jFormattedTextFieldEntradaCEP.requestFocus();
         }
-
-        if (f.getFornecedores_NumeroResidencia() <= 0) {
-            throw new GeralException("Digite um número válido!");
+        if ((f.getEnderecos_Logradouro() == null) || (f.getEnderecos_Logradouro().equals(""))){
+            JOptionPane.showMessageDialog(null, "Informe o Logradouro");
+            GuiFornecedorNovo.jTextFieldEntradaLog.requestFocus();
         }
+        if (((f.getFornecedores_RazaoSocial() == null) || (f.getFornecedores_RazaoSocial().equals(""))) || ((enderecos_CEP == null) || (enderecos_CEP.equals(""))) || ((f.getEnderecos_Logradouro() == null) || (f.getEnderecos_Logradouro().equals("")))){
+            JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios!");
+            GuiFornecedorNovo guiFornecedorNovo = new GuiFornecedorNovo();
+            GuiFornecedorNovo.jFormattedTextFieldEntradaCNPJ.setText(fornecedores_CNPJ);
+            GuiFornecedorNovo.jTextFieldEntradaRS.setText(f.getFornecedores_RazaoSocial());
+            GuiFornecedorNovo.jFormattedTextFieldEntradaCEP.setText(enderecos_CEP);
+            GuiFornecedorNovo.jTextFieldEntradaLog.setText(f.getEnderecos_Logradouro());
+            GuiFornecedorNovo.jTextFieldEntradaNumero.setText(String.valueOf(f.getFornecedores_NumeroResidencia()));
+            GuiFornecedorNovo.jTextFieldCidade.setText(f.getCidades_Nome());
+            GuiFornecedorNovo.liberarTela();
+            guiFornecedorNovo.setVisible(true);
+        } else {
+            try {
+                cnpjConsult = repFor.consultarCNPJ(fornecedores_CNPJ);
+                if (cnpjConsult == null) {
+                    end = repEnd.consultarCep(enderecos_CEP);
+                    f.setFornecedores_Codigo(fornecedores_Codigo);
+                    f.setFornecedores_CNPJ(fornecedores_CNPJ);
+                    f.setFornecedores_RazaoSocial(f.getFornecedores_RazaoSocial());
+                    f.setFornecedores_NumeroResidencia(f.getFornecedores_NumeroResidencia());
+                    f.setEnderecos_Codigo(end.getEnderecos_Codigo());
+                    repFor.salvar(f);
+                    resposta = JOptionPane.showConfirmDialog(null, "Registro salvo com sucesso! Deseja salvar outro?", "", JOptionPane.YES_NO_OPTION);
+                    if (resposta == JOptionPane.YES_OPTION){
+                        GuiFornecedorNovo guiFornecedorNovo = new GuiFornecedorNovo();
+                        guiFornecedorNovo.setVisible(true);
+                    } else {
+                        GuiFornecedor guiFornecedor = new GuiFornecedor();
+                        guiFornecedor.setVisible(true);
+                    }
+                } else {
+                    resComCadastro = JOptionPane.showConfirmDialog(null, "Fornecedor já está cadastrado!\nDeseja cadastrar outro?", "", JOptionPane.YES_NO_OPTION);
+                    if(resComCadastro == JOptionPane.YES_OPTION){
+                        GuiFornecedorNovo guiFornecedorNovo = new GuiFornecedorNovo();
+                        guiFornecedorNovo.setVisible(true);
+                    }else{
+                        GuiFornecedor guiFornecedor = new GuiFornecedor();
+                        guiFornecedor.setVisible(true);
+                    }
+                }
 
-        try {
-            Fornecedor cnpjConsult = rep.consultarCNPJ(f.getFornecedores_CNPJ());
-            if (cnpjConsult == null) {
-                rep.salvar(f);
-            } else {
-                JOptionPane.showMessageDialog(null, "Fornecedor já está cadastrado!");
+            } catch (RepositorioException e) {
+                throw new GeralException("Erro de programação!");
+
+            } catch (ConexaoException e) {
+                throw new GeralException("O banco de dados não está acessível no momento");
             }
-
-        } catch (RepositorioException e) {
-            throw new GeralException("Erro de programação!");
-
-        } catch (ConexaoException e) {
-            throw new GeralException("O banco de dados não está acessível no momento");
         }
     }
 
@@ -58,7 +120,7 @@ public class NegocioFornecedor {
         Fornecedor f = null;
         
         try {
-            f = rep.consultarCNPJ(fornecedores_CNPJ);            
+            f = repFor.consultarCNPJ(fornecedores_CNPJ);            
         } catch (RepositorioException e) {
             throw new GeralException("Erro de programação!");
 
@@ -71,7 +133,7 @@ public class NegocioFornecedor {
     public Fornecedor consultarRazaoSocial(String fornecedores_RazaoSocial) throws GeralException {
         Fornecedor f = null;
         try {
-            f = rep.consultarRazaoSocial(fornecedores_RazaoSocial);
+            f = repFor.consultarRazaoSocial(fornecedores_RazaoSocial);
             if (f == null) {
                 JOptionPane.showMessageDialog(null, "Fornecedor não está cadastrado!");
             }
@@ -92,9 +154,9 @@ public class NegocioFornecedor {
         }
 
         try {
-            Fornecedor fConsult = rep.consultarCNPJ(f.getFornecedores_CNPJ());
+            Fornecedor fConsult = repFor.consultarCNPJ(f.getFornecedores_CNPJ());
             if (fConsult != null) {
-                rep.alterar(f);
+                repFor.alterar(f);
             } else {
                 throw new GeralException("Fornecedor não está cadastrado!");
             }
@@ -113,11 +175,11 @@ public class NegocioFornecedor {
         }
 
         try {
-            Fornecedor f = rep.consultarCNPJ(fornecedores_CNPJ);
+            Fornecedor f = repFor.consultarCNPJ(fornecedores_CNPJ);
             if (f == null) {
                 throw new GeralException("Fornecedor não está cadastrado!");
             }
-            rep.excluir(fornecedores_CNPJ);
+            repFor.excluir(fornecedores_CNPJ);
 
         } catch (RepositorioException ex) {
             throw new GeralException("Erro de programação!");

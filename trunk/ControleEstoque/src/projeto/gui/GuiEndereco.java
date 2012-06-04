@@ -314,7 +314,6 @@ public class GuiEndereco extends javax.swing.JDialog {
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         limparCampos();
-        dispose();
         alterarEndereco();
         limparCampos();
         atualizarTabelaEndereco();
@@ -355,6 +354,7 @@ public class GuiEndereco extends javax.swing.JDialog {
 
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
+                dispose();
                 GuiEnderecoAlterar guiEnderecoAlterar = new GuiEnderecoAlterar();
                 guiEnderecoAlterar.jTextFieldSaidaLog.setText(endOld.getEnderecos_Logradouro());
                 guiEnderecoAlterar.jTextFieldSaidaCidade.setText(endOld.getCidades_Nome());

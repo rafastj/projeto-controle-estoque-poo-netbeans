@@ -19,7 +19,7 @@ import projeto.modelo.to.Fornecedor;
  */
 public class GuiFornecedor extends javax.swing.JDialog {
 
-    ArrayList<Fornecedor> listaFornecedor = null;
+    private static ArrayList<Fornecedor> listaFornecedor = null;
     public static Fachada fachada = new Fachada();
     
     /**
@@ -30,9 +30,11 @@ public class GuiFornecedor extends javax.swing.JDialog {
         initComponents();
     }
     
-    GuiFornecedor() {
+    public GuiFornecedor() {
         initComponents();
         setLocationRelativeTo(null);
+        atualizarComboCidade();
+        atualizarTabela();
     }
 
     /**
@@ -337,10 +339,9 @@ public class GuiFornecedor extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
+        dispose();
         GuiFornecedorNovo fornecedor = new GuiFornecedorNovo();
         fornecedor.setVisible(true);
-        atualizarComboCidade();
-        atualizarTabela();
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
@@ -501,7 +502,7 @@ public class GuiFornecedor extends javax.swing.JDialog {
         jTableListaFornecedor.setModel(modelo);
     }
     
-    public void atualizarTabela() {
+    public static void atualizarTabela() {
         try {
             listaFornecedor = (ArrayList<Fornecedor>) fachada.listarFornecedor();
         } catch (GeralException ex) {
@@ -532,7 +533,7 @@ public class GuiFornecedor extends javax.swing.JDialog {
         jTextFieldEntradaLog.setText("");
     }
     
-    private DefaultTableModel geramodelo(ArrayList<Fornecedor> listaFornecedor) {
+    private static DefaultTableModel geramodelo(ArrayList<Fornecedor> listaFornecedor) {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("CNPJ");
         modelo.addColumn("Razão Social");
@@ -573,7 +574,7 @@ public class GuiFornecedor extends javax.swing.JDialog {
     private javax.swing.JPanel jPanelFiltro;
     private javax.swing.JPanel jPanelLista;
     private javax.swing.JScrollPane jScrollPaneFornecedor;
-    private javax.swing.JTable jTableListaFornecedor;
+    private static javax.swing.JTable jTableListaFornecedor;
     private javax.swing.JTextField jTextFieldEntradaLog;
     private javax.swing.JTextField jTextFieldEntradaRS;
     // End of variables declaration//GEN-END:variables
