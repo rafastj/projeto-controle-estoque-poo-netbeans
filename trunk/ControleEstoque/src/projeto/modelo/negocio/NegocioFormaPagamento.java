@@ -174,25 +174,52 @@ public class NegocioFormaPagamento {
         }
     }
 
-    /**
+        /**
      * Verificar os dados antes de consultar a lista
      */
-    public Collection<FormaPagamento> listarFormasPagamentos(
-            String formaPagamento_Descricao) throws GeralException {
+    public Collection<FormaPagamento> listarFormasPagamentos() throws GeralException {
 
         ArrayList<FormaPagamento> lista;
-
-        if (formaPagamento_Descricao == null) {
-            throw new GeralException("Descrição do produto não informada");
-        }
         try {
-            lista = (ArrayList<FormaPagamento>) new RepositorioFormaPagamento().listarFormasPagamentos(formaPagamento_Descricao);
+            lista = (ArrayList<FormaPagamento>) new RepositorioFormaPagamento().listarFormasPagamentos();
 
         } catch (RepositorioException ex) {
-            throw new GeralException("Felipe fez algo de errado!");
+            throw new GeralException("Erro de programação!");
+
         } catch (ConexaoException ex) {
-            throw new GeralException("O banco de dados não está acessível!");
+            throw new GeralException("O banco de dados não está acessível no momento");
         }
         return lista;
     }
+    
+    /**
+     * Verificar os dados antes de consultar a lista
+     */
+    public Collection<FormaPagamento> listarFormaPagamentoDescricao(String formaPagamento_Descricao)throws GeralException{
+       ArrayList<FormaPagamento> lista;
+        try {
+            lista = (ArrayList<FormaPagamento>) new RepositorioFormaPagamento().listarFormasPagamentosDescricao(formaPagamento_Descricao);
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível no momento");
+        }
+        return lista;
+    }
+    
+    public int CodigoFormaPagamento()throws GeralException{
+		int m = 0;
+		try {
+			m = rep.CodigoFormaPagamento();
+		} catch (ConexaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RepositorioException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 return m;
+	 }
 }
