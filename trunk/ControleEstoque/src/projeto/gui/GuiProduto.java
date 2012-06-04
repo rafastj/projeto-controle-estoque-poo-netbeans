@@ -59,6 +59,7 @@ import projeto.modelo.to.Tipo;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Produto");
+        setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -125,7 +126,7 @@ import projeto.modelo.to.Tipo;
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
         );
 
-        jbApagar.setText("Apagar");
+        jbApagar.setText("Excluir");
         jbApagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbApagarActionPerformed(evt);
@@ -491,7 +492,7 @@ import projeto.modelo.to.Tipo;
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
-            @Override
+           // @Override
             public void run() {
                 new GuiProduto().setVisible(true);
             }

@@ -162,7 +162,7 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
 
         jBAlterar.setText("Alterar");
 
-        jBApagar.setText("Apagar");
+        jBApagar.setText("Excluir");
         jBApagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBApagarActionPerformed(evt);
@@ -257,18 +257,18 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
 
     private void jFornecedorBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jFornecedorBoxItemStateChanged
         // TODO add your handling code here:
-       // pesquisarFornecedor((String) jFornecedorBox.getSelectedItem());
+        pesquisarFornecedor((String) jFornecedorBox.getSelectedItem());
         
         //Isso indica que o filtro foi feito pelo Produto
-        //selecionado = 1;
+        selecionado = 1;
     }//GEN-LAST:event_jFornecedorBoxItemStateChanged
 
     private void jProdutoBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jProdutoBoxItemStateChanged
         // TODO add your handling code here:
-        //pesquisarProduto((String)jProdutoBox.getSelectedItem());
+        pesquisarProduto((String)jProdutoBox.getSelectedItem());
         
         //Isso indica que o filtro foi feito pelo Produto
-       // selecionado = 2;
+        selecionado = 2;
     }//GEN-LAST:event_jProdutoBoxItemStateChanged
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
