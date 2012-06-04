@@ -4,6 +4,8 @@
  */
 package projeto.gui;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
@@ -48,10 +50,17 @@ public class GuiFornecedorAlterarForneceProduto extends javax.swing.JFrame {
         jBSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Alterar Relação de Fornecimento");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Fornecedor"));
 
         jLabel7.setText("Alterar para.:");
+
+        jFornecedorBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFornecedorBoxActionPerformed(evt);
+            }
+        });
 
         jFornecedorField.setBackground(new java.awt.Color(204, 204, 204));
         jFornecedorField.setEditable(false);
@@ -169,7 +178,7 @@ public class GuiFornecedorAlterarForneceProduto extends javax.swing.JFrame {
             Produto p = fachada.consultarProduto((String) jProdutoBox.getSelectedItem());
             
             //CHAMAR O DAO ALTEARAR PRODUTO_FORNECEDOR
-            fachada.alterarLigacaoFornecedorProduto(codFornecedor, codProduto,f.getFornecedores_Codigo(),p.getProdutos_Codigo());
+            fachada.alterarLigacaoFornecedorProduto(f.getFornecedores_Codigo(),p.getProdutos_Codigo(),codFornecedor, codProduto);
             
             JOptionPane.showMessageDialog(null, "Relação Alterada!");
             dispose();
@@ -178,6 +187,11 @@ public class GuiFornecedorAlterarForneceProduto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_jBSalvarActionPerformed
+
+    private void jFornecedorBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFornecedorBoxActionPerformed
+        // TODO add your handling code here:
+        listarProdutosNaoFornecidos((String) jFornecedorBox.getSelectedItem());
+    }//GEN-LAST:event_jFornecedorBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,4 +245,24 @@ public class GuiFornecedorAlterarForneceProduto extends javax.swing.JFrame {
     public javax.swing.JComboBox jProdutoBox;
     public javax.swing.JTextField jProdutoField;
     // End of variables declaration//GEN-END:variables
+
+  //Filtrar os produtos não fornecidos pelo fornecedor selecionado
+    public void listarProdutosNaoFornecidos(String fornecedor_RazaoSocial){
+        //remover todos os items
+        jProdutoBox.removeAllItems();
+        //LISTAR OS PRODUTDOS
+        Produto_Fornecedor p;
+        ArrayList<Produto_Fornecedor> listp;
+        try{
+                listp = (ArrayList<Produto_Fornecedor>) fachada.listadeProdutosNaoFornecidos(fornecedor_RazaoSocial);
+                for(Iterator<Produto_Fornecedor> it = listp.iterator(); it.hasNext();){
+                    p = it.next();
+                    jProdutoBox.addItem(p.getProduto().getProdutos_Descricao());
+                }
+        }catch (GeralException ex){
+		JOptionPane.showMessageDialog(null, ex.getMessage());
+	}
+    }  
+    
+  //fim  
 }

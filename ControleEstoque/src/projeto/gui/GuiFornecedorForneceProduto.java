@@ -308,18 +308,8 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
                     }catch (GeralException ex){
                             JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
-                    //LISTAR OS PRODUTDOS
-                    Produto p;
-                    ArrayList<Produto> listap;
-                    try{
-                            listap = (ArrayList<Produto>) fachada.listaProdutoTudo();
-                            for(Iterator<Produto> it = listap.iterator(); it.hasNext();){
-                                p = it.next();
-                                altFornecedorProduto.jProdutoBox.addItem(p.getProdutos_Descricao());
-                            }
-                    }catch (GeralException ex){
-                            JOptionPane.showMessageDialog(null, ex.getMessage());
-                    }
+                    //LISTAR OS PRODUTDOS NÃO VINCULADOS AO FORNECEDOR SELECIONADO
+                   altFornecedorProduto.listarProdutosNaoFornecidos((String) jFornecedorBox.getSelectedItem());
                     
                     //pegar o objeto selecionado
             Produto_Fornecedor pf = pSelecionado();
