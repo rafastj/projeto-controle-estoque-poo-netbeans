@@ -93,7 +93,7 @@ public class GuiCidadeNova extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextFieldEntradaCidade = new javax.swing.JTextField();
+        jTextFieldEntradaCidade = new projeto.modelo.componente.SoStrings();
         jButtonSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
