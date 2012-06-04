@@ -51,7 +51,7 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jMarcaBox = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
-        jValorUnitarioField = new projeto.modelo.componente.ValorReal();
+        jValorUnitarioField = new javax.swing.JFormattedTextField();
         jQtdeField = new projeto.modelo.componente.SoNumero();
         jbSalvar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
