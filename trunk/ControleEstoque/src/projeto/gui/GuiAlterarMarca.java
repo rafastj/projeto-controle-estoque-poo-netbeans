@@ -4,7 +4,10 @@
  */
 package projeto.gui;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Marca;
@@ -42,7 +45,15 @@ public class GuiAlterarMarca extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jTCodMarca = new javax.swing.JTextField();
         jTDescMarca = new javax.swing.JTextField();
-        jTAltMarca = new projeto.modelo.componente.SoStrings();
+        jTAltMarca = new JTextField();
+        jTAltMarca.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                if ((!Character.isLetter(e.getKeyChar())) && (e.getKeyChar() != e.VK_SPACE)){
+                    e.consume();
+                }
+            }
+        });
+        ;
         btnAlterar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
 

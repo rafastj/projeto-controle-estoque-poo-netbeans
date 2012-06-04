@@ -4,8 +4,11 @@
  */
 package projeto.gui;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
@@ -46,7 +49,15 @@ public class GuiMarcas extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTPesq = new projeto.modelo.componente.SoStrings();
+        jTPesq = new JTextField();
+        jTPesq.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                if ((!Character.isLetter(e.getKeyChar())) && (e.getKeyChar() != e.VK_SPACE)){
+                    e.consume();
+                }
+            }
+        });
+        ;
         JlFuncionario = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
