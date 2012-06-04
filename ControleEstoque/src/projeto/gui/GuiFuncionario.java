@@ -182,10 +182,10 @@ public class GuiFuncionario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(257, Short.MAX_VALUE))
+                .addContainerGap(256, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(103, Short.MAX_VALUE)
+                    .addContainerGap(102, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(2, 2, 2)))
         );
@@ -246,7 +246,8 @@ public class GuiFuncionario extends javax.swing.JFrame {
             
                 if(fuconsul != null){
                 fachada.excluirFuncionario(fuconsul.getFuncionarios_Codigo());
-                
+                JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
+                atualizarJTabela();
                 }
             }
         }catch (ArrayIndexOutOfBoundsException ex){
