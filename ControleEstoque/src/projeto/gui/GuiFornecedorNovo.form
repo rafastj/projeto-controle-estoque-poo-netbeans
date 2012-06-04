@@ -88,8 +88,8 @@
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="jTextFieldEntradaNumero" pref="107" max="32767" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jTextFieldEntradaNumero" min="-2" pref="96" max="-2" attributes="0"/>
+                          <EmptySpace pref="29" max="32767" attributes="0"/>
                           <Component id="jLabelCidade" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jTextFieldCidade" min="-2" pref="311" max="-2" attributes="0"/>
@@ -131,8 +131,8 @@
                               <Component id="jLabelCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelNumero" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jTextFieldCidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextFieldEntradaNumero" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButtonVoltar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFieldEntradaNumero" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -240,12 +240,6 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldEntradaNumero">
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new projeto.modelo.componente.SoNumero()"/>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-          </AuxValues>
-        </Component>
         <Component class="javax.swing.JButton" name="jButtonVoltar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Voltar"/>
@@ -253,6 +247,12 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonVoltarActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextFieldEntradaNumero">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new projeto.modelo.componente.SoNumero()"/>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
