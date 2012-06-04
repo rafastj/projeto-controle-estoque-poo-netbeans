@@ -26,11 +26,13 @@ public class GuiTipos extends javax.swing.JDialog {
     public GuiTipos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     public GuiTipos() {
         initComponents();
         listaTabelaTipo();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -43,7 +45,7 @@ public class GuiTipos extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTPesq = new javax.swing.JTextField();
+        jTPesq = new projeto.modelo.componente.SoStrings();
         JlFuncionario = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
