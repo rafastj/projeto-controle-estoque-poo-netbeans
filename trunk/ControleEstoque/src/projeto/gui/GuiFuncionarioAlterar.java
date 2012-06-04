@@ -4,9 +4,12 @@
  */
 package projeto.gui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.Endereco;
 import projeto.modelo.to.Funcionario;
 
 /**
@@ -16,8 +19,10 @@ import projeto.modelo.to.Funcionario;
 public class GuiFuncionarioAlterar extends javax.swing.JFrame {
 
     Fachada fachada = new Fachada();
+    
+    Funcionario alterFuncionario = new Funcionario();
+    
     private GuiFuncionario guiFu;
-    String funcionarioNome;
     /**
      * Creates new form GuiFuncionarioAlterar
      */
@@ -44,7 +49,7 @@ public class GuiFuncionarioAlterar extends javax.swing.JFrame {
         JbAlterar = new javax.swing.JButton();
         JbConsultarCEP = new javax.swing.JButton();
         JlCEP = new javax.swing.JLabel();
-        JcCEP = new javax.swing.JTextField();
+        jFormattedTextFieldCEP = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -62,8 +67,19 @@ public class GuiFuncionarioAlterar extends javax.swing.JFrame {
         });
 
         JbConsultarCEP.setText("Consultar CEP");
+        JbConsultarCEP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbConsultarCEPActionPerformed(evt);
+            }
+        });
 
         JlCEP.setText("CEP.:");
+
+        try {
+            jFormattedTextFieldCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -85,12 +101,12 @@ public class GuiFuncionarioAlterar extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGap(67, 67, 67)
                                 .addComponent(JlCEP)
-                                .addGap(18, 18, 18)
-                                .addComponent(JcCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jFormattedTextFieldCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JbConsultarCEP))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(JbConsultarCEP)
-                        .addGap(60, 60, 60)
+                        .addGap(239, 239, 239)
                         .addComponent(JbAlterar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -104,15 +120,14 @@ public class GuiFuncionarioAlterar extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JlCEP)
-                    .addComponent(JcCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JbConsultarCEP)
+                    .addComponent(jFormattedTextFieldCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JlNumeroResidencia)
                     .addComponent(JcNumeroResidencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JbAlterar)
-                    .addComponent(JbConsultarCEP))
+                .addComponent(JbAlterar)
                 .addGap(40, 40, 40))
         );
 
@@ -137,22 +152,46 @@ public class GuiFuncionarioAlterar extends javax.swing.JFrame {
 
     private void JbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbAlterarActionPerformed
         // TODO add your handling code here:
-        try{
-            Funcionario fuAlterar = new Funcionario();
+        
+        alterFuncionario.setFuncionarios_Nome(JlNomeFuncionario.getText());
+        alterFuncionario.setFuncionarios_NumeroResidencia(JlNumeroResidencia.getText());
+        
+        
+        try {
             
-            fuAlterar.setFuncionarios_Nome(funcionarioNome);
+             Endereco e = fachada.consultarEndCep(jFormattedTextFieldCEP.getText());
             
-            Funcionario fusalvar = fachada.consultarFuncionario((String) JcNomeFuncionario.getSelectedText());
-            fuAlterar.setFuncionarios_Nome(fusalvar.getFuncionarios_Nome());
+               alterFuncionario.setEnderecos_Codigo(e.getEnderecos_Codigo());
+             
+            fachada.alterarFuncionario(alterFuncionario);
             
-            fachada.alterarFuncionario(fusalvar);
-            JOptionPane.showMessageDialog(null, "Funcionario Alterado!");            
-                     
-        }catch (GeralException ex){
+        } catch (GeralException ex) {
+            Logger.getLogger(GuiFuncionarioAlterar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+    }//GEN-LAST:event_JbAlterarActionPerformed
+
+    private void JbConsultarCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbConsultarCEPActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
             
+            Endereco e = fachada.consultarEndCep(jFormattedTextFieldCEP.getText());
+            
+            if(e == null){
+                GuiEnderecoNovo gENovo = new GuiEnderecoNovo();
+                gENovo.setVisible(true);
+            }else{
+            
+                alterFuncionario.setEnderecos_Codigo(e.getEnderecos_Codigo());
+                
+            JOptionPane.showMessageDialog(null, "CEP OK");
+            
+            }
+        } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-    }//GEN-LAST:event_JbAlterarActionPerformed
+    }//GEN-LAST:event_JbConsultarCEPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,12 +237,12 @@ public class GuiFuncionarioAlterar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbAlterar;
     private javax.swing.JButton JbConsultarCEP;
-    private javax.swing.JTextField JcCEP;
-    private javax.swing.JTextField JcNomeFuncionario;
-    private javax.swing.JTextField JcNumeroResidencia;
+    public javax.swing.JTextField JcNomeFuncionario;
+    public javax.swing.JTextField JcNumeroResidencia;
     private javax.swing.JLabel JlCEP;
     private javax.swing.JLabel JlNomeFuncionario;
     private javax.swing.JLabel JlNumeroResidencia;
+    public javax.swing.JFormattedTextField jFormattedTextFieldCEP;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

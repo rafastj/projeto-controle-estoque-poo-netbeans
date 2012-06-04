@@ -62,15 +62,15 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                                   <Component id="JlCEP" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="JcCEP" min="-2" pref="113" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jFormattedTextFieldCEP" min="-2" pref="159" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="JbConsultarCEP" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                          <Component id="JbConsultarCEP" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="239" max="-2" attributes="0"/>
                           <Component id="JbAlterar" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -89,7 +89,8 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="JlCEP" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JcCEP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JbConsultarCEP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jFormattedTextFieldCEP" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -97,10 +98,7 @@
                       <Component id="JcNumeroResidencia" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="JbAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JbConsultarCEP" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="JbAlterar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -116,6 +114,9 @@
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="JlNumeroResidencia">
           <Properties>
@@ -123,6 +124,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="JcNumeroResidencia">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="JbAlterar">
           <Properties>
@@ -136,13 +140,24 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Consultar CEP"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbConsultarCEPActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="JlCEP">
           <Properties>
             <Property name="text" type="java.lang.String" value="CEP.:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="JcCEP">
+        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldCEP">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+              <Format format="#####-###" subtype="-1" type="5"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

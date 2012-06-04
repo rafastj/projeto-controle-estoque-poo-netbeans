@@ -5,6 +5,8 @@
 package projeto.gui;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
@@ -176,8 +178,35 @@ public class GuiFuncionario extends javax.swing.JFrame {
 
     private void JbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbAlterarActionPerformed
         // TODO add your handling code here:
-        GuiFuncionarioAlterar fu = new GuiFuncionarioAlterar();
-        fu.setVisible(true);
+        try{
+        GuiFuncionarioAlterar falterar = new GuiFuncionarioAlterar();
+        
+        
+         //pegar o objeto selecionado
+            Funcionario f = fSelecionado();
+            
+            falterar.JcNomeFuncionario.setText(f.getFuncionarios_Nome());
+            falterar.jFormattedTextFieldCEP.setText(f.getEnderecos().getEnderecos_CEP());
+            falterar.JcNumeroResidencia.setText(f.getFuncionarios_NumeroResidencia());
+            
+            
+            try {
+                Funcionario codFuncionario = fachada.consultarFuncionario(f.getFuncionarios_Nome());
+                
+                falterar.alterFuncionario.setFuncionarios_Codigo(codFuncionario.getFuncionarios_Codigo());
+                
+            } catch (GeralException ex) {
+                Logger.getLogger(GuiFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+        
+        
+        falterar.setVisible(true);
+         
+        } catch(ArrayIndexOutOfBoundsException ex){
+            JOptionPane.showMessageDialog(null, "Selecione o Funcionário!");
+        }
     }//GEN-LAST:event_JbAlterarActionPerformed
 
     private void JbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbExcluirActionPerformed
@@ -256,4 +285,9 @@ public class GuiFuncionario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+public Funcionario fSelecionado(){
+        Funcionario f = listaFuncionario.get(JtListarFuncionario.getSelectedRow());
+        return f;
+    }
 }
