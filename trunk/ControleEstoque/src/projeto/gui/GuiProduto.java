@@ -55,11 +55,17 @@ import projeto.modelo.to.Tipo;
         jTipoBox = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         jMarcaBox = new javax.swing.JComboBox();
-        jbAtualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Produto");
         setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -113,6 +119,7 @@ import projeto.modelo.to.Tipo;
         });
         jtabelaProduto.setEditingColumn(0);
         jtabelaProduto.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jtabelaProduto.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtabelaProduto);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -223,13 +230,6 @@ import projeto.modelo.to.Tipo;
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jbAtualizar.setText("Atualizar");
-        jbAtualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAtualizarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -243,7 +243,6 @@ import projeto.modelo.to.Tipo;
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jbNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbAtualizar)
                             .addComponent(jbAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -257,14 +256,12 @@ import projeto.modelo.to.Tipo;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbAtualizar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbNovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbAlterar)
                         .addGap(13, 13, 13)
                         .addComponent(jbApagar)
-                        .addGap(0, 246, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -324,12 +321,6 @@ import projeto.modelo.to.Tipo;
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jbApagarActionPerformed
-
-    private void jbAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizarActionPerformed
-        // TODO add your handling code here:
-        atualizarJTabela();
-        jcDescricaoField.setText("");
-    }//GEN-LAST:event_jbAtualizarActionPerformed
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
         // TODO add your handling code here:
@@ -434,6 +425,12 @@ import projeto.modelo.to.Tipo;
                   pesquisarDescricao();
             }  
         }//GEN-LAST:event_jcDescricaoFieldKeyPressed
+
+        private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+            // TODO add your handling code here:
+            //PROFESSOR AJUDA!
+            atualizarTabela();//atualizar a tabela
+        }//GEN-LAST:event_formWindowGainedFocus
     
     //CONVERTE O VALOR DOUBLE PARA SALVAR DO BD
     private String converterValorReal(String valorx) {
@@ -513,7 +510,6 @@ import projeto.modelo.to.Tipo;
     private javax.swing.JComboBox jTipoBox;
     private javax.swing.JButton jbAlterar;
     private javax.swing.JButton jbApagar;
-    private javax.swing.JButton jbAtualizar;
     private javax.swing.JButton jbNovo;
     private javax.swing.JTextField jcDescricaoField;
     private javax.swing.JButton jconsulDescricao;
@@ -522,13 +518,18 @@ import projeto.modelo.to.Tipo;
 
    
     private DefaultTableModel geramodelo(ArrayList<Produto> listaProduto) {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Descrição");
-        modelo.addColumn("Valor Unit.");
-        modelo.addColumn("Qtde");
-        modelo.addColumn("Marca");
-        modelo.addColumn("Tipo");
-        modelo.addColumn("Segmento");
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Descrição","Valor Unit.","Qtde","Marca","Tipo","Segmento"},0){
+            
+            public boolean isCellEditable(int rowIndex, int mColIndex) {
+                return false;
+            }
+        };
+       // modelo.addColumn("Descrição");
+        //modelo.addColumn("Valor Unit.");
+        //modelo.addColumn("Qtde");
+        //modelo.addColumn("Marca");
+        //modelo.addColumn("Tipo");
+        //modelo.addColumn("Segmento");
 
         ArrayList<String> valores;
         int i = 0;

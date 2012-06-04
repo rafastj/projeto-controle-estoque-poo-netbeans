@@ -51,13 +51,19 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTabelaForneForneceProduto = new javax.swing.JTable();
-        jBAtualizar = new javax.swing.JButton();
         jBNovo = new javax.swing.JButton();
         jBAlterar = new javax.swing.JButton();
         jBExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Fornecimento de Produtos");
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -95,7 +101,7 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPFornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jFornecedorBox, 0, 423, Short.MAX_VALUE)
+                    .addComponent(jFornecedorBox, 0, 424, Short.MAX_VALUE)
                     .addComponent(jProdutoBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -131,6 +137,7 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        jTabelaForneForneceProduto.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTabelaForneForneceProduto);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -145,13 +152,6 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
-
-        jBAtualizar.setText("Atualizar");
-        jBAtualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAtualizarActionPerformed(evt);
-            }
-        });
 
         jBNovo.setText("Novo");
         jBNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -182,45 +182,37 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(20, 20, 20))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jBAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jBNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jBAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
+                            .addComponent(jBExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jBAtualizar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBNovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBAlterar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBExcluir))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jBExcluir)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jBAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtualizarActionPerformed
-        // TODO add your handling code here:
-        //atualizar combobox Fornecedor e o Produto
-        atualizarListaTodos();
-    }//GEN-LAST:event_jBAtualizarActionPerformed
 
     private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
         // TODO add your handling code here:
@@ -333,6 +325,12 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBAlterarActionPerformed
 
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        //atualizar combobox Fornecedor e o Produto
+        atualizarListaTodos();
+    }//GEN-LAST:event_formWindowGainedFocus
+
     /**
      * @param args the command line arguments
      */
@@ -377,7 +375,6 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAlterar;
-    private javax.swing.JButton jBAtualizar;
     private javax.swing.JButton jBExcluir;
     private javax.swing.JButton jBNovo;
     public javax.swing.JComboBox jFornecedorBox;
@@ -421,9 +418,14 @@ public class GuiFornecedorForneceProduto extends javax.swing.JFrame {
     
     //MODELO DA TABELA FORNECEDOR FORNECE PRODUTO
     private DefaultTableModel geramodelo(ArrayList<Produto_Fornecedor> listaForneForneciProduto) {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Produto");
-        modelo.addColumn("Fornecedor");
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Produto","Fornecedor"},0){
+            
+            public boolean isCellEditable(int rowIndex, int mColIndex) {
+                return false;
+            }
+        };
+       // modelo.addColumn("Produto");
+       // modelo.addColumn("Fornecedor");
 
         ArrayList<String> valores;
         int i = 0;
