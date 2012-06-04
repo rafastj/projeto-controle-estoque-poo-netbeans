@@ -63,8 +63,8 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuItemNovoProduto = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuTipos = new javax.swing.JMenuItem();
+        jMenuMarcas = new javax.swing.JMenuItem();
         jMovimentacao = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
@@ -121,7 +121,7 @@ public class GuiMenu extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbAcessar))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jMenuCadastro.setText("Cadastro");
@@ -140,7 +140,12 @@ public class GuiMenu extends javax.swing.JFrame {
 
         jMenuCliente.setText("Cliente");
 
-        jMenuClienteNovo.setText("Novo Cliente");
+        jMenuClienteNovo.setText("Gerenciar Cliente");
+        jMenuClienteNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuClienteNovoActionPerformed(evt);
+            }
+        });
         jMenuCliente.add(jMenuClienteNovo);
 
         jMenuCadastro.add(jMenuCliente);
@@ -213,16 +218,21 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuItem10.setText("Segmento");
         jMenuProduto.add(jMenuItem10);
 
-        jMenuItem11.setText("Tipo");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+        jMenuTipos.setText("Tipo");
+        jMenuTipos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
+                jMenuTiposActionPerformed(evt);
             }
         });
-        jMenuProduto.add(jMenuItem11);
+        jMenuProduto.add(jMenuTipos);
 
-        jMenuItem12.setText("Marca");
-        jMenuProduto.add(jMenuItem12);
+        jMenuMarcas.setText("Marca");
+        jMenuMarcas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuMarcasActionPerformed(evt);
+            }
+        });
+        jMenuProduto.add(jMenuMarcas);
 
         jMenuCadastro.add(jMenuProduto);
 
@@ -279,7 +289,7 @@ public class GuiMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addComponent(jPGuiLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -404,11 +414,17 @@ public class GuiMenu extends javax.swing.JFrame {
         nf.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+    private void jMenuTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuTiposActionPerformed
         // TODO add your handling code here:
-        GuiTipos tela = new GuiTipos();
-        tela.setVisible(true);
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
+        GuiTipos tipo = new GuiTipos();
+        tipo.setVisible(true);
+    }//GEN-LAST:event_jMenuTiposActionPerformed
+
+    private void jMenuMarcasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMarcasActionPerformed
+        // TODO add your handling code here:
+        GuiMarcas marca = new GuiMarcas();
+        marca.setVisible(true);
+    }//GEN-LAST:event_jMenuMarcasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -470,8 +486,6 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuGerenciarFornecedor;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem9;
@@ -480,8 +494,10 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemNovoUsuario;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenuItem jMenuItemSobre;
+    private javax.swing.JMenuItem jMenuMarcas;
     private javax.swing.JMenu jMenuProduto;
     private javax.swing.JMenuItem jMenuTabelaCidade;
+    private javax.swing.JMenuItem jMenuTipos;
     private javax.swing.JMenu jMovimentacao;
     private javax.swing.JPanel jPGuiLogin;
     private javax.swing.JPasswordField jPasswordField;
