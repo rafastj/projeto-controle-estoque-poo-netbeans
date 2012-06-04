@@ -110,6 +110,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
         jTextFieldEntradaLog = new javax.swing.JTextField();
         jButtonVoltar = new javax.swing.JButton();
         jTextFieldCidade = new javax.swing.JTextField();
+        jButtonAlterarEndereco = new javax.swing.JButton();
         jPanelForAntigo = new javax.swing.JPanel();
         jLabelCNPJ = new javax.swing.JLabel();
         jLabelRazaoSocial = new javax.swing.JLabel();
@@ -189,6 +190,13 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
             }
         });
 
+        jButtonAlterarEndereco.setText("Alterar endereço");
+        jButtonAlterarEndereco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarEnderecoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelForAtualLayout = new javax.swing.GroupLayout(jPanelForAtual);
         jPanelForAtual.setLayout(jPanelForAtualLayout);
         jPanelForAtualLayout.setHorizontalGroup(
@@ -196,44 +204,47 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
             .addGroup(jPanelForAtualLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelNumero1)
-                    .addComponent(jLabelCEP1)
-                    .addComponent(jLabelCNPJ1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelForAtualLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonVoltar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonAlterarFornecedor))
                     .addGroup(jPanelForAtualLayout.createSequentialGroup()
                         .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jFormattedTextFieldEntradaCNPJ, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                            .addComponent(jFormattedTextFieldEntradaCEP))
-                        .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelForAtualLayout.createSequentialGroup()
-                                .addGap(103, 103, 103)
+                                .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelCEP1)
+                                    .addComponent(jLabelCNPJ1))
+                                .addGap(34, 34, 34)
+                                .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jFormattedTextFieldEntradaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFormattedTextFieldEntradaCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanelForAtualLayout.createSequentialGroup()
+                                .addComponent(jLabelNumero1)
+                                .addGap(22, 22, 22)
+                                .addComponent(jFormattedTextFieldEntradaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelCidade1)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanelForAtualLayout.createSequentialGroup()
+                                .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonAlterarEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanelForAtualLayout.createSequentialGroup()
+                                .addComponent(jButtonPesquisaCEP)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelLogradouro1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldEntradaLog, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelForAtualLayout.createSequentialGroup()
+                                .addComponent(jButtonPesquisaCNPJ)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabelRazaoSocial1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldEntradaRS))
-                            .addGroup(jPanelForAtualLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanelForAtualLayout.createSequentialGroup()
-                                        .addComponent(jButtonPesquisaCNPJ)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(jPanelForAtualLayout.createSequentialGroup()
-                                        .addComponent(jButtonPesquisaCEP)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabelLogradouro1)
-                                        .addGap(9, 9, 9)
-                                        .addComponent(jTextFieldEntradaLog))))))
-                    .addGroup(jPanelForAtualLayout.createSequentialGroup()
-                        .addComponent(jFormattedTextFieldEntradaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelCidade1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldCidade)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonVoltar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonAlterarFornecedor)))
-                .addGap(5, 5, 5))
+                                .addComponent(jTextFieldEntradaRS, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelForAtualLayout.setVerticalGroup(
             jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,23 +259,28 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
                         .addComponent(jLabelCEP1))
                     .addGroup(jPanelForAtualLayout.createSequentialGroup()
                         .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelRazaoSocial1)
-                            .addComponent(jTextFieldEntradaRS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldEntradaRS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelRazaoSocial1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelLogradouro1)
-                            .addComponent(jTextFieldEntradaLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonPesquisaCEP)
-                            .addComponent(jFormattedTextFieldEntradaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jFormattedTextFieldEntradaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelLogradouro1)
+                            .addComponent(jTextFieldEntradaLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelForAtualLayout.createSequentialGroup()
                         .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonAlterarFornecedor)
-                            .addComponent(jLabelCidade1)
                             .addComponent(jFormattedTextFieldEntradaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelNumero1)
+                            .addComponent(jLabelCidade1)
+                            .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonAlterarEndereco))
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanelForAtualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonVoltar)
-                            .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(13, Short.MAX_VALUE))
+                            .addComponent(jButtonAlterarFornecedor)))
+                    .addComponent(jLabelNumero1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanelForAntigo.setBorder(javax.swing.BorderFactory.createTitledBorder("Fornecedor Antigo"));
@@ -338,7 +354,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
                     .addComponent(jLabelCidade))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelForAntigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldSaidaLog, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+                    .addComponent(jTextFieldSaidaLog)
                     .addComponent(jTextFieldSaidaRS)
                     .addComponent(jTextFieldSaidaCidade))
                 .addContainerGap())
@@ -392,7 +408,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
                 .addComponent(jPanelForAntigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelForAtual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -417,6 +433,10 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
         dispose();
     }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    private void jButtonAlterarEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarEnderecoActionPerformed
+        alterarendereco();
+    }//GEN-LAST:event_jButtonAlterarEnderecoActionPerformed
 
     private void pesquisarCNPJ() {
         String str_cnpj;
@@ -563,6 +583,14 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
         }
     }
 
+    public void alterarendereco() {
+        GuiEnderecoAlterar guiEnderecoAlterar = new GuiEnderecoAlterar();
+        GuiEnderecoAlterar.jTextFieldSaidaLog.setText(jTextFieldEntradaLog.getText());
+        GuiEnderecoAlterar.jTextFieldSaidaCidade.setText(jTextFieldCidade.getText());
+        GuiEnderecoAlterar.jFormattedTextFieldSaidaCEP.setText(jFormattedTextFieldEntradaCEP.getText());
+        guiEnderecoAlterar.setVisible(true);
+    }
+
     private void limparCampos() {
         jFormattedTextFieldEntradaCEP.setValue(null);
         jFormattedTextFieldEntradaNumero.setValue(null);
@@ -594,6 +622,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
         jFormattedTextFieldEntradaCNPJ.requestFocus();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAlterarEndereco;
     private javax.swing.JButton jButtonAlterarFornecedor;
     private javax.swing.JButton jButtonPesquisaCEP;
     private javax.swing.JButton jButtonPesquisaCNPJ;
