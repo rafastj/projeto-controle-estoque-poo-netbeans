@@ -4,6 +4,8 @@
  */
 package projeto.gui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
@@ -17,6 +19,8 @@ import projeto.modelo.to.Funcionario;
 public class GuiFuncionarioNovo extends javax.swing.JFrame {
 
     public static Fachada fachada = new Fachada();
+    
+    Funcionario fSalvar = new Funcionario();
     
     private GuiFuncionario guiFu = new GuiFuncionario();
     /**
@@ -44,7 +48,7 @@ public class GuiFuncionarioNovo extends javax.swing.JFrame {
         JbSalvar = new javax.swing.JButton();
         JbConsultarCEP = new javax.swing.JButton();
         JlCEP = new javax.swing.JLabel();
-        JcCEP = new javax.swing.JTextField();
+        jFormattedTextFieldCEP = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -68,36 +72,38 @@ public class GuiFuncionarioNovo extends javax.swing.JFrame {
 
         JlCEP.setText("CEP.:");
 
-        JcCEP.setEditable(false);
+        try {
+            jFormattedTextFieldCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(JlNumeroResidencia)
-                                .addGap(18, 18, 18)
-                                .addComponent(JcNumeroResidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(JlNomeFuncionario)
-                                .addGap(18, 18, 18)
-                                .addComponent(JcNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addComponent(JlCEP)
-                                .addGap(18, 18, 18)
-                                .addComponent(JcCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(JlNomeFuncionario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JcNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(JbConsultarCEP)
-                        .addGap(60, 60, 60)
-                        .addComponent(JbSalvar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(JlNumeroResidencia)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JcNumeroResidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(JbSalvar)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(JlCEP)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFormattedTextFieldCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JbConsultarCEP)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,16 +115,15 @@ public class GuiFuncionarioNovo extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JlCEP)
-                    .addComponent(JcCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jFormattedTextFieldCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JbConsultarCEP))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JlNumeroResidencia)
                     .addComponent(JcNumeroResidencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JbSalvar)
-                    .addComponent(JbConsultarCEP))
-                .addGap(40, 40, 40))
+                .addGap(45, 45, 45)
+                .addComponent(JbSalvar)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -147,7 +152,29 @@ public class GuiFuncionarioNovo extends javax.swing.JFrame {
     }//GEN-LAST:event_JbSalvarActionPerformed
 
     private void JbConsultarCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbConsultarCEPActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            
+            if(jFormattedTextFieldCEP.getText().equals("")){
+                GuiEnderecoNovo gENovo = new GuiEnderecoNovo();
+                gENovo.setVisible(true);
+            }
+            
+            Endereco e = fachada.consultarEndCep(jFormattedTextFieldCEP.getText());
+            
+            if(e == null){
+                GuiEnderecoNovo gENovo = new GuiEnderecoNovo();
+                gENovo.setVisible(true);
+            }else{
+            
+                fSalvar.setEnderecos_Codigo(e.getEnderecos_Codigo());
+                
+            JOptionPane.showMessageDialog(null, "CEP OK");
+            
+            }
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
         
     }//GEN-LAST:event_JbConsultarCEPActionPerformed
 
@@ -195,31 +222,22 @@ public class GuiFuncionarioNovo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbConsultarCEP;
     private javax.swing.JButton JbSalvar;
-    private javax.swing.JTextField JcCEP;
     private javax.swing.JTextField JcNomeFuncionario;
     private javax.swing.JTextField JcNumeroResidencia;
     private javax.swing.JLabel JlCEP;
     private javax.swing.JLabel JlNomeFuncionario;
     private javax.swing.JLabel JlNumeroResidencia;
+    public static javax.swing.JFormattedTextField jFormattedTextFieldCEP;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
     private void salvarFuncionario() {
-    int funcionarios_Codigo = 0;
-    int enderecos_Codigo = 0;    
-    String funcionarios_Nome;
-    String funcionarios_NumeroResidencia;
-    int fu_cod = 0;
-    String end_cod = "";
+    
     try{
-        Funcionario fu = fachada.consultarFuncionario(fu_cod);
-        funcionarios_Codigo = fu.getEnderecos_Codigo();
-        Endereco end = fachada.consultarEndCep(end_cod);
-        enderecos_Codigo = end.getEnderecos_Codigo();
-        funcionarios_Nome = JcNomeFuncionario.getText();
-        funcionarios_NumeroResidencia = JcNumeroResidencia.getText();
+        fSalvar.setFuncionarios_Nome(JlNomeFuncionario.getText());
+        fSalvar.setFuncionarios_NumeroResidencia(JlNumeroResidencia.getText());
         //Funcionario fu = new Funcionario (int funcionario_Codigo, int enderecos_Codigo, String funcionarios_Nome, String funcionarios_NumeroResidencia);
-        fachada.salvarFuncionario(fu);
+        fachada.salvarFuncionario(fSalvar);
     }catch (GeralException ex){
         JOptionPane.showMessageDialog(null, ex.getMessage());
     }
