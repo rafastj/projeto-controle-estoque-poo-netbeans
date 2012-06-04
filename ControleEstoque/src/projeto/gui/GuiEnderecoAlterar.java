@@ -423,9 +423,9 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
         GuiEnderecoAlterar guiEnderecoAlterar = new GuiEnderecoAlterar();
         guiEnderecoAlterar.jFormattedTextFieldCEP.setText(cep);
         GuiEnderecoAlterar.jTextFieldEntradaLog.setText(log);
-        guiEnderecoAlterar.jTextFieldSaidaLog.setText(logOld);
-        guiEnderecoAlterar.jTextFieldSaidaCidade.setText(cdOld);
-        guiEnderecoAlterar.jFormattedTextFieldSaidaCEP.setText(cepOld);
+        GuiEnderecoAlterar.jTextFieldSaidaLog.setText(logOld);
+        GuiEnderecoAlterar.jTextFieldSaidaCidade.setText(cdOld);
+        GuiEnderecoAlterar.jFormattedTextFieldSaidaCEP.setText(cepOld);
         liberarTela();
         jComboBoxCidade.requestFocus();
         guiEnderecoAlterar.setVisible(true);
@@ -471,7 +471,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
     private javax.swing.JButton jButtonVoltar;
     public static javax.swing.JComboBox jComboBoxCidade;
     private javax.swing.JFormattedTextField jFormattedTextFieldCEP;
-    public javax.swing.JFormattedTextField jFormattedTextFieldSaidaCEP;
+    public static javax.swing.JFormattedTextField jFormattedTextFieldSaidaCEP;
     private javax.swing.JLabel jLabelCEP;
     private javax.swing.JLabel jLabelCEPNew;
     private javax.swing.JLabel jLabelCidadeNew;
@@ -481,7 +481,7 @@ public class GuiEnderecoAlterar extends javax.swing.JDialog {
     private javax.swing.JPanel jPanelEndNew;
     private javax.swing.JPanel jPanelEndOld;
     public static javax.swing.JTextField jTextFieldEntradaLog;
-    public javax.swing.JTextField jTextFieldSaidaCidade;
-    public javax.swing.JTextField jTextFieldSaidaLog;
+    public static javax.swing.JTextField jTextFieldSaidaCidade;
+    public static javax.swing.JTextField jTextFieldSaidaLog;
     // End of variables declaration//GEN-END:variables
 }

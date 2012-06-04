@@ -358,9 +358,9 @@ public class GuiEndereco extends javax.swing.JDialog {
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
                 GuiEnderecoAlterar guiEnderecoAlterar = new GuiEnderecoAlterar();
-                guiEnderecoAlterar.jTextFieldSaidaLog.setText(endOld.getEnderecos_Logradouro());
-                guiEnderecoAlterar.jTextFieldSaidaCidade.setText(endOld.getCidades_Nome());
-                guiEnderecoAlterar.jFormattedTextFieldSaidaCEP.setText(endOld.getEnderecos_CEP());
+                GuiEnderecoAlterar.jTextFieldSaidaLog.setText(endOld.getEnderecos_Logradouro());
+                GuiEnderecoAlterar.jTextFieldSaidaCidade.setText(endOld.getCidades_Nome());
+                GuiEnderecoAlterar.jFormattedTextFieldSaidaCEP.setText(endOld.getEnderecos_CEP());
                 guiEnderecoAlterar.setVisible(true);
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
