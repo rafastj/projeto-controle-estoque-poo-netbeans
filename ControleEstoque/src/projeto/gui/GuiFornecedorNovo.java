@@ -109,6 +109,7 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
         jTextFieldEntradaLog = new javax.swing.JTextField();
         jTextFieldCidade = new javax.swing.JTextField();
         jTextFieldEntradaNumero = new projeto.modelo.componente.SoNumero();
+        jButtonVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Salvar novo fornecedor");
@@ -166,6 +167,13 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
             ex.printStackTrace();
         }
 
+        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelFiltroLayout = new javax.swing.GroupLayout(jPanelFiltro);
         jPanelFiltro.setLayout(jPanelFiltroLayout);
         jPanelFiltroLayout.setHorizontalGroup(
@@ -195,11 +203,13 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
                             .addComponent(jTextFieldEntradaRS, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                             .addComponent(jTextFieldEntradaLog)))
                     .addGroup(jPanelFiltroLayout.createSequentialGroup()
-                        .addComponent(jTextFieldEntradaNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                        .addComponent(jTextFieldEntradaNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabelCidade)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonVoltar)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonSalvarFornecedor)))
                 .addContainerGap())
@@ -229,7 +239,8 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
                             .addComponent(jLabelCidade)
                             .addComponent(jLabelNumero)
                             .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldEntradaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextFieldEntradaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonVoltar))))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -262,12 +273,18 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonPesquisaCEPActionPerformed
 
     private void jButtonSalvarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarFornecedorActionPerformed
+        dispose();
         salvarFornecedor();
     }//GEN-LAST:event_jButtonSalvarFornecedorActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         //
     }//GEN-LAST:event_formComponentShown
+
+    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+        dispose();
+        voltar();
+    }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void salvarFornecedor() {
         try{
@@ -289,51 +306,6 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
-        
-    /*private void salvarFornecedor() {
-        int resposta;
-        int fornecedores_Codigo = 0;
-        String fornecedores_CNPJ;
-        String fornecedores_RazaoSocial;
-        String fornecedores_NumeroResidencia;
-        int enderecos_Codigo;
-        String enderecos_CEP;
-        String enderecos_Logradouro;
-        int cidades_Codigo;
-        String cidades_Nome;
-        String str_cep;
-        String str_cnpj;
-        try {
-            str_cnpj = jFormattedTextFieldEntradaCNPJ.getText();
-            str_cnpj = str_cnpj.replace('.', ' ');
-            str_cnpj = str_cnpj.replace('/', ' ');
-            str_cnpj = str_cnpj.replace('-', ' ');
-            str_cnpj = str_cnpj.replaceAll(" ", "");
-            fornecedores_CNPJ = str_cnpj;
-            fornecedores_RazaoSocial = jTextFieldEntradaRS.getText();
-            fornecedores_NumeroResidencia = Integer.parseInt(jFormattedTextFieldEntradaNumero.getText());
-            str_cep = jFormattedTextFieldEntradaCEP.getText();
-            str_cep = str_cep.replace('-', ' ');
-            str_cep = str_cep.replaceAll(" ", "");
-            Endereco end = fachada.consultarEndCep(str_cep);
-            enderecos_Codigo = end.getEnderecos_Codigo();
-            enderecos_CEP = end.getEnderecos_CEP();
-            enderecos_Logradouro = end.getEnderecos_Logradouro();
-            cidades_Codigo = end.getCidades_Codigo();
-            cidades_Nome = end.getCidades_Nome();
-            Fornecedor f = new Fornecedor(fornecedores_Codigo, fornecedores_CNPJ, fornecedores_RazaoSocial, fornecedores_NumeroResidencia, enderecos_Codigo, enderecos_CEP, enderecos_Logradouro, cidades_Codigo, cidades_Nome);
-            fachada.salvarFornecedor(f);
-            resposta = JOptionPane.showConfirmDialog(null, "Registro salvo com sucesso!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
-            if (resposta == JOptionPane.NO_OPTION) {
-                dispose();
-            } else {
-                limparCampos();
-                bloquearTela();
-            }
-        } catch (GeralException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-    }*/
 
     private void pesquisarCNPJ() {
         String str_cnpj;
@@ -359,6 +331,7 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
                             bloquearTela();
                         } else {
                             dispose();
+                            voltar();
                         }
                     } else {
                         resSemCadastro = JOptionPane.showConfirmDialog(null, "CNPJ não está cadastrado!\nDeseja continuar?\nSe não informe outro CNPJ.", "", JOptionPane.YES_NO_OPTION);
@@ -383,6 +356,7 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
         String str_cep;
         String enderecos_CEP;
         String cep;
+        String cepNew;
         String rs;
         String cnpj;
         Endereco end;
@@ -409,24 +383,33 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
                     }                    
                 } else {
                     resSemCep = JOptionPane.showConfirmDialog(null, "CEP não está cadastrado. Deseja cadastrar?\nSe não informe outro CEP.", "", JOptionPane.YES_NO_OPTION);
+                    cnpj = jFormattedTextFieldEntradaCNPJ.getText();
+                    rs = jTextFieldEntradaRS.getText();
                     if(resSemCep == JOptionPane.YES_OPTION){
-                        cnpj = jFormattedTextFieldEntradaCNPJ.getText();
-                        rs = jTextFieldEntradaRS.getText();
-                        cep = jFormattedTextFieldEntradaCEP.getText();
                         dispose();
                         GuiEnderecoNovo guiEnderecoNovo = new GuiEnderecoNovo();
-                        guiEnderecoNovo.jFormattedTextFieldCEP.setText(cep);
+                        GuiEnderecoNovo.jFormattedTextFieldCEP.setText(enderecos_CEP);
+                        GuiEnderecoNovo.jTextFieldEntradaLog.requestFocus();
+                        GuiEnderecoNovo.liberarTela();
                         guiEnderecoNovo.setVisible(true);
+                        end = fachada.consultarEndCep(enderecos_CEP);
                         GuiFornecedorNovo guiFornecedorNovo = new GuiFornecedorNovo();
+                        liberarTela();
                         GuiFornecedorNovo.jFormattedTextFieldEntradaCNPJ.setText(cnpj);
                         GuiFornecedorNovo.jTextFieldEntradaRS.setText(rs);
-                        GuiFornecedorNovo.jFormattedTextFieldEntradaCEP.setText(cep);
+                        GuiFornecedorNovo.jFormattedTextFieldEntradaCEP.setText(enderecos_CEP);
+                        GuiFornecedorNovo.jTextFieldEntradaLog.setText(end.getEnderecos_Logradouro());
                         GuiFornecedorNovo.jTextFieldCidade.setText(end.getCidades_Nome());
-                        liberarTela();
                         jTextFieldEntradaNumero.requestFocus();
                         guiFornecedorNovo.setVisible(true);
                     }else {
-                        bloquearTela();
+                        dispose();
+                        GuiFornecedorNovo guiFornecedorNovo = new GuiFornecedorNovo();
+                        GuiFornecedorNovo.jFormattedTextFieldEntradaCNPJ.setText(cnpj);
+                        GuiFornecedorNovo.jTextFieldEntradaRS.setText(rs);
+                        liberarTela();
+                        jFormattedTextFieldEntradaCEP.requestFocus();
+                        guiFornecedorNovo.setVisible(true);
                     }
                 }
             }
@@ -464,10 +447,15 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
         jFormattedTextFieldEntradaCNPJ.requestFocus();
         jFormattedTextFieldEntradaCNPJ.setValue(null);
     }
+    public static void voltar(){
+        GuiFornecedor guiFornecedor = new GuiFornecedor();
+        guiFornecedor.setVisible(true);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JButton jButtonPesquisaCEP;
     private static javax.swing.JButton jButtonPesquisaCNPJ;
     private static javax.swing.JButton jButtonSalvarFornecedor;
+    private javax.swing.JButton jButtonVoltar;
     public static javax.swing.JFormattedTextField jFormattedTextFieldEntradaCEP;
     public static javax.swing.JFormattedTextField jFormattedTextFieldEntradaCNPJ;
     private javax.swing.JLabel jLabelCEP;

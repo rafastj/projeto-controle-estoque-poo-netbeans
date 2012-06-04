@@ -413,10 +413,14 @@ public class GuiFornecedor extends javax.swing.JDialog {
                 Fornecedor fConsult = fachada.consultarForCNPJ(f.getFornecedores_CNPJ());
                 if (fConsult != null) {
                     fachada.excluirFornecedor(fConsult.getFornecedores_CNPJ());
+                    limparCampos();
                 }
+            }else{
+                limparCampos();
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Selecione um Registro!");
+            limparCampos();
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -531,6 +535,7 @@ public class GuiFornecedor extends javax.swing.JDialog {
         jFormattedTextFieldEntradaCEP.setValue(null);
         jTextFieldEntradaRS.setText("");
         jTextFieldEntradaLog.setText("");
+        jFormattedTextFieldEntradaCNPJ.requestFocus();
     }
     
     private static DefaultTableModel geramodelo(ArrayList<Fornecedor> listaFornecedor) {

@@ -374,7 +374,7 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
         jFormattedTextFieldCEP.requestFocus();
     }
     
-    private static void liberarTela(){
+    public static void liberarTela(){
         jTextFieldEntradaLog.setEnabled(true);
         jComboBoxCidade.setEnabled(true);
         jButtonGerenciarCidade.setEnabled(true);
@@ -382,7 +382,7 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
         jTextFieldEntradaLog.requestFocus();
     }
     
-    private void bloquearTela(){
+    public static void bloquearTela(){
         jTextFieldEntradaLog.setEnabled(false);
         jComboBoxCidade.setEnabled(false);
         jButtonGerenciarCidade.setEnabled(false);
@@ -395,7 +395,7 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
     private static javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonVoltar;
     public static javax.swing.JComboBox jComboBoxCidade;
-    public javax.swing.JFormattedTextField jFormattedTextFieldCEP;
+    public static javax.swing.JFormattedTextField jFormattedTextFieldCEP;
     private javax.swing.JLabel jLabelCEP;
     private javax.swing.JLabel jLabelCidade;
     private javax.swing.JLabel jLabelLogradouro;
