@@ -38,10 +38,10 @@ public class NegocioFuncionario {
         if (fu.getEnderecos_Codigo() <= 0) {
             throw new GeralException("Informe o código do endereço!");
         }
-        if (fu.getFuncionarios_Nome() == null) {
+        if (fu.getFuncionarios_Nome().equals("")) {
             throw new GeralException("Informe o nome!");
         }
-        if (fu.getFuncionarios_NumeroResidencia() == null) {
+        if (fu.getFuncionarios_NumeroResidencia().equals("")) {
             throw new GeralException("Informe o número da residencia!");
         }
         try {
@@ -229,4 +229,22 @@ public class NegocioFuncionario {
         }
         return lista;
     }
+    
+    public Collection<Funcionario> listarTudo() throws GeralException {
+
+        ArrayList<Funcionario> lista;
+
+
+        try {
+            lista = (ArrayList<Funcionario>) new RepositorioFuncionario().listarTudo();
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Erro de programação!");
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível!");
+        }
+        return lista;
+    }
+    
+    
 }
