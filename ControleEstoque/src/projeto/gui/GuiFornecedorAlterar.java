@@ -185,7 +185,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
             }
         });
 
-        jFormattedTextFieldEntradaNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("0"))));
+        jFormattedTextFieldEntradaNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         jFormattedTextFieldEntradaNumero.setEnabled(false);
 
         try {
@@ -310,7 +310,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
         jLabelLogradouro.setText("Logradouro.:");
 
         jFormattedTextFieldSaidaNumero.setEditable(false);
-        jFormattedTextFieldSaidaNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("0"))));
+        jFormattedTextFieldSaidaNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         jFormattedTextFieldSaidaNumero.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         jFormattedTextFieldSaidaNumero.setEnabled(false);
 

@@ -105,6 +105,7 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
         jButtonSalvar = new javax.swing.JButton();
         jButtonGerenciarCidade = new javax.swing.JButton();
         jFormattedTextFieldCEP = new javax.swing.JFormattedTextField();
+        jButtonVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Salvar novo endereço");
@@ -150,6 +151,13 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
             ex.printStackTrace();
         }
 
+        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelNovoEnderecoLayout = new javax.swing.GroupLayout(jPanelNovoEndereco);
         jPanelNovoEndereco.setLayout(jPanelNovoEnderecoLayout);
         jPanelNovoEnderecoLayout.setHorizontalGroup(
@@ -165,7 +173,8 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
                     .addGroup(jPanelNovoEnderecoLayout.createSequentialGroup()
                         .addGroup(jPanelNovoEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextFieldCEP))
+                            .addComponent(jFormattedTextFieldCEP)
+                            .addComponent(jButtonVoltar, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
                         .addGroup(jPanelNovoEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonConsultarCEP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -193,7 +202,9 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
                     .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonGerenciarCidade))
                 .addGap(18, 18, 18)
-                .addComponent(jButtonSalvar)
+                .addGroup(jPanelNovoEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSalvar)
+                    .addComponent(jButtonVoltar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -234,6 +245,12 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         //
     }//GEN-LAST:event_formComponentShown
+
+    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+        dispose();
+        GuiEndereco guiEndereco = new GuiEndereco();
+        guiEndereco.setVisible(true);
+    }//GEN-LAST:event_jButtonVoltarActionPerformed
     
     /**
      * Método que salva um novo registro Endereco;
@@ -295,16 +312,18 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
                 if (end != null) {
                     resComCadastro = JOptionPane.showConfirmDialog(null, "CEP já está cadastrado!\nDeseja cadastrar outro?", "", JOptionPane.YES_NO_OPTION);
                     if (resComCadastro == JOptionPane.YES_OPTION) {
-                        limparCampos();
+                        bloquearTela();
                     } else {
-                        dispose();
+                        GuiEndereco guiEndereco = new GuiEndereco();
+                        guiEndereco.setVisible(true);
                     }
                 } else {
                     resSemCadastro = JOptionPane.showConfirmDialog(null, "CEP não está cadastrado!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
                     if (resSemCadastro == JOptionPane.YES_OPTION) {
                         liberarTela();
                     } else {
-                        dispose();
+                        GuiEndereco guiEndereco = new GuiEndereco();
+                        guiEndereco.setVisible(true);
                     }
                 }
             }
@@ -374,6 +393,7 @@ public class GuiEnderecoNovo extends javax.swing.JDialog {
     private javax.swing.JButton jButtonConsultarCEP;
     private static javax.swing.JButton jButtonGerenciarCidade;
     private static javax.swing.JButton jButtonSalvar;
+    private javax.swing.JButton jButtonVoltar;
     public static javax.swing.JComboBox jComboBoxCidade;
     public javax.swing.JFormattedTextField jFormattedTextFieldCEP;
     private javax.swing.JLabel jLabelCEP;
