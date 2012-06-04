@@ -183,16 +183,16 @@ public class RepositorioMarca implements IRepositorioMarca {
         }
     }
     public int CodigoMarca()throws ConexaoException,RepositorioException {
-    	int cod = 0;
+    	int codMarca = 0;
     	Connection c = g.conectar();
-		String sqlAuto="SELECT Auto_increment as tipos_codigo FROM information_schema.tables WHERE table_name='tipos'";
+		String sqlAuto="SELECT Auto_increment as marcas_codigo FROM information_schema.tables WHERE table_name='marcas'";
         try {
-        	Statement stm = c.createStatement();
+            Statement stm = c.createStatement();
             ResultSet rs = stm.executeQuery(sqlAuto);
             while( rs.next() ){
-                cod= rs.getInt( "tipos_codigo" );
+                codMarca= rs.getInt( "marcas_codigo" );
                 
-            	}return cod;
+            	}return codMarca;
             } catch( SQLException e ) {
                 throw new RepositorioException(e);
             } finally {

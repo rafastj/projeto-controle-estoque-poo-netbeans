@@ -18,8 +18,8 @@ import projeto.modelo.to.Marca;
 public class GuiMarcas extends javax.swing.JDialog {
 
     ArrayList<Marca> listaMarca = null;
-        public static Fachada fachada = new Fachada();
-        
+    public static Fachada fachada = new Fachada();
+
     /**
      * Creates new form GuiMarcas
      */
@@ -27,10 +27,12 @@ public class GuiMarcas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    
-    public GuiMarcas(){
+
+    public GuiMarcas() {
         initComponents();
         listaTabelaMarca();
+        // JtListarMarcas.isCellEditable(0, 0);
+
     }
 
     /**
@@ -54,6 +56,7 @@ public class GuiMarcas extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Marcas");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 formWindowGainedFocus(evt);
@@ -116,7 +119,11 @@ public class GuiMarcas extends javax.swing.JDialog {
         JtListarMarcas.setShowHorizontalLines(false);
         JtListarMarcas.setShowVerticalLines(false);
         JtListarMarcas.getTableHeader().setReorderingAllowed(false);
+        JtListarMarcas.setUpdateSelectionOnSort(false);
+        JtListarMarcas.setVerifyInputWhenFocusTarget(false);
         jScrollPane1.setViewportView(JtListarMarcas);
+        JtListarMarcas.getColumnModel().getColumn(0).setResizable(false);
+        JtListarMarcas.getColumnModel().getColumn(1).setResizable(false);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 376, 180));
 
@@ -183,8 +190,8 @@ public class GuiMarcas extends javax.swing.JDialog {
 
     private void btnSalvarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarMActionPerformed
         // TODO add your handling code here:
-        // GuiSalvarMarca tela = new GuiSalvarMarca();
-        //tela.setVisible(true);
+        GuiSalvarMarca tela = new GuiSalvarMarca();
+        tela.setVisible(true);
     }//GEN-LAST:event_btnSalvarMActionPerformed
 
     private void btnExcluirMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirMActionPerformed
@@ -198,11 +205,17 @@ public class GuiMarcas extends javax.swing.JDialog {
         listaTabelaMarca();
     }//GEN-LAST:event_formWindowGainedFocus
 
-     private DefaultTableModel geramodelo(ArrayList<Marca> listaTipo) {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Código");
-        modelo.addColumn("Descrição");
-      
+    private DefaultTableModel geramodelo(ArrayList<Marca> listaMarca) {
+
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Código", "Descrição"}, 0) {
+
+            public boolean isCellEditable(int rowIndex, int mColIndex) {
+                return false;
+            }
+        };
+        //DefaultTableModel modelo = new DefaultTableModel();
+        //modelo.addColumn("Código");
+        //modelo.addColumn("Descrição");
         ArrayList<String> valores;
         int i = 0;
         for (Marca m : listaMarca) {
@@ -214,20 +227,20 @@ public class GuiMarcas extends javax.swing.JDialog {
         }
         return modelo;
     }
-    
-      /**
+
+    /**
      * Método para listar todos os registros de Tipo;
      */
     private void listaTabelaMarca() {
         //MOSTRAR TODOS OS REGISTRO DE TIPOS
-        
+
         try {
             listaMarca = (ArrayList<Marca>) fachada.listarMarca();
-        }catch (GeralException ex) {
+        } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         DefaultTableModel modelo = geramodelo(listaMarca);
-            JtListarMarcas.setModel(modelo);
+        JtListarMarcas.setModel(modelo);
     }
 
     /**
@@ -242,7 +255,7 @@ public class GuiMarcas extends javax.swing.JDialog {
             if (resposta == JOptionPane.YES_OPTION) {
                 Marca mConsult = fachada.consultarMarcas(m.getMarcas_Codigo());
                 if (mConsult != null) {
-                    fachada.excluirTipo(m.getMarcas_Codigo());
+                    fachada.excluirMarca(m.getMarcas_Codigo());
                     JOptionPane.showMessageDialog(null, "Registro excluído!");
                 }
             }
@@ -254,14 +267,13 @@ public class GuiMarcas extends javax.swing.JDialog {
     }
 
     private void pesquisarMarca() {
-        
+
         try {
-            
-            if ((jTPesq.getText() == "")||( jTPesq.getText() == null)) {
-               listaMarca = (ArrayList<Marca>) fachada.listarMarca();
-               DefaultTableModel modelo = geramodelo(listaMarca);
-            }
-            else{
+
+            if ((jTPesq.getText() == "") || (jTPesq.getText() == null)) {
+                listaMarca = (ArrayList<Marca>) fachada.listarMarca();
+                DefaultTableModel modelo = geramodelo(listaMarca);
+            } else {
                 listaMarca = (ArrayList<Marca>) fachada.listarMarcasDescricao(jTPesq.getText());
                 DefaultTableModel modelo = geramodelo(listaMarca);
                 JtListarMarcas.setModel(modelo);
@@ -269,26 +281,26 @@ public class GuiMarcas extends javax.swing.JDialog {
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-       
+
     }
-    
-     private void alterarMarca() {
+
+    private void alterarMarca() {
         int resposta;
         try {
             Marca mOld = listaMarca.get(JtListarMarcas.getSelectedRow());
 
-            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar?", "", JOptionPane.YES_NO_OPTION);
+            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar?", "Confirma", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
-              // GuiAlterarTipo guiAlterarTiposTeste= new GuiAlterarTipo();
-               //guiAlterarTiposTeste.jTDescTipo.setText(tOld.getTipos_Descricao());
-               //guiAlterarTiposTeste.jTCodTipo.setText(String.valueOf(tOld.getTipos_Codigo()));
-               //guiAlterarTiposTeste.setVisible(true);
+                 GuiAlterarMarca guiAlterarMarcasTeste= new GuiAlterarMarca();
+                 guiAlterarMarcasTeste.jTDescMarca.setText(mOld.getMarcas_Descricao());
+                 guiAlterarMarcasTeste.jTCodMarca.setText(String.valueOf(mOld.getMarcas_Codigo()));
+                 guiAlterarMarcasTeste.setVisible(true);
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Selecione um endereço!");
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */

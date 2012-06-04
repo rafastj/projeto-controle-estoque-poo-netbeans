@@ -227,9 +227,9 @@ public class NegocioMarca {
     }
     
     public int CodigoMarca()throws GeralException{
-		 int t = 0;
+		int m = 0;
 		try {
-			t = rep.CodigoMarca();
+			m = rep.CodigoMarca();
 		} catch (ConexaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -237,7 +237,7 @@ public class NegocioMarca {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 return t;
+		 return m;
 	 }
 
 }

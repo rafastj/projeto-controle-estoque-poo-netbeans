@@ -4,14 +4,9 @@
  */
 package projeto.gui;
 
-import java.awt.Button;
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Tipo;
@@ -68,6 +63,10 @@ public class GuiSalvarTipo extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Descrição");
 
+        jTcod.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTcod.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTcod.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTcod.setEnabled(false);
         jTcod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTcodActionPerformed(evt);
