@@ -27,13 +27,12 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
     @Override
     public void salvar(Funcionario fu) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
-        String sqlSalvar = "INSERT INTO funcionario(funcionarios_Codigo,enderecos_Codigo,funcionarios_Nome,Funcionarios_NumeroResidencia) VALUES(?,?,?,?)";
+        String sqlSalvar = "INSERT INTO funcionario(enderecos_Codigo,funcionarios_Nome,Funcionarios_NumeroResidencia) VALUES(?,?,?)";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlSalvar);
-            pstm.setInt(1, fu.getFuncionarios_Codigo());
-            pstm.setInt(2, fu.getEnderecos_Codigo());
-            pstm.setString(3, fu.getFuncionarios_Nome());
-            pstm.setString(4, fu.getFuncionarios_NumeroResidencia());
+            pstm.setInt(1, fu.getEnderecos_Codigo());
+            pstm.setString(2, fu.getFuncionarios_Nome());
+            pstm.setString(3, fu.getFuncionarios_NumeroResidencia());
             pstm.executeUpdate();
             pstm.close();
         } catch (SQLException ex) {
