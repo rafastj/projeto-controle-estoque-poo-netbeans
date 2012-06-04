@@ -204,9 +204,9 @@ public class NegocioTipo {
         }
         return lista;
     }
-    
-     public Collection<Tipo> listarTiposDescricao(String tipos_Descricao)throws GeralException{
-       ArrayList<Tipo> lista;
+
+    public Collection<Tipo> listarTiposDescricao(String tipos_Descricao) throws GeralException {
+        ArrayList<Tipo> lista;
         try {
             lista = (ArrayList<Tipo>) new RepositorioTipo().listarTipoDescricao(tipos_Descricao);
 
@@ -219,19 +219,15 @@ public class NegocioTipo {
         return lista;
     }
 
-    public int Codigo()throws GeralException{
-		 int t = 0;
-		try {
-			t = rep.Codigo();
-		} catch (ConexaoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RepositorioException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 return t;
-	 }
-
-   
+    public int Codigo() throws GeralException {
+        int t = 0;
+        try {
+            t = rep.Codigo();
+        } catch (ConexaoException e) {
+            throw new GeralException("O banco de dados não está acessível no momento");
+        } catch (RepositorioException e) {
+            throw new GeralException("Erro de programação!");
+        }
+        return t;
+    }
 }
