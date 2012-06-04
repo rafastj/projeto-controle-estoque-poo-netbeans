@@ -156,37 +156,29 @@ public class NegocioProduto_Fornecedor {
      * @param Produtos_Descricao
      * @throws GeralException
      */
-    public void alterarProduto_Fornecedor(String Fornecedores_RazaoSocial, String Produtos_Descricao) throws GeralException {
+    public void alterarProduto_Fornecedor(int NFornecedor_Codigo, int NProduto_Codigo, int Fornecedor_Codigo, int Produto_Codigo) throws GeralException {
 
-        if (Fornecedores_RazaoSocial == null) {
-            throw new GeralException("Informe o Nome do FORNECEDOR!");
+        if (NFornecedor_Codigo <= 0) {
+            throw new GeralException("Informe o código do novo FORNECEDOR!");
         }
 
-        if (Produtos_Descricao == null) {
-            throw new GeralException("Informe o Nome do PRODUTO");
+        if (NProduto_Codigo <= 0) {
+            throw new GeralException("Informe o código do novo PRODUTO");
         }
+        
+        if (Fornecedor_Codigo <= 0) {
+            throw new GeralException("Informe o código do antigo FORNECEDOR!");
+        }
+
+        if (Produto_Codigo <= 0) {
+            throw new GeralException("Informe o código do antigo PRODUTO");
+        }
+
 
         try {
-
-            //Consultar se existe Fornecedor fornecendo o codigo do produto informado!
-            Produto_Fornecedor pfconsul = rep.ConsultarLigacaoFornecedorProduto(Fornecedores_RazaoSocial, Produtos_Descricao);
-            if (pfconsul == null) {
-                throw new GeralException("O Fornecedor não fornece este Produto");
-            }
-
-            //recebe o nome do produto substituto
-            String NProduto = JOptionPane.showInputDialog("O fornecedor.: " + pfconsul.getFornecedor().getFornecedores_RazaoSocial() + "| fornece sim -> " + pfconsul.getProduto().getProdutos_Descricao() + ". Informe o nome do produto substituto!");
-
-            //Procura na tabela Produtos a existencia do produto informado
-            //Consultar se existe o tal produto informado na tabela Produtos (Diego)
-            Produto psconsul = repProduto.consultarDescricao(NProduto);
-            if (psconsul == null) {
-                throw new GeralException("Esse produto não existe na tabela de Produtos!");
-            }
-
-
+            
             //Se caso os dados passarem na verificação dos dados Irar executa de fato a exclusão!
-            rep.alterar(pfconsul.getFornecedores_Codigo(), psconsul.getProdutos_Codigo(), pfconsul.getFornecedores_Codigo(), pfconsul.getProdutos_Codigo());
+            rep.alterar(NFornecedor_Codigo, NProduto_Codigo, Fornecedor_Codigo, Produto_Codigo);
 
 
         } catch (RepositorioException ex) {
