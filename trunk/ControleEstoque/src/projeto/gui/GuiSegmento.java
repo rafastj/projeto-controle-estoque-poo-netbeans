@@ -26,6 +26,7 @@ public class GuiSegmento extends javax.swing.JDialog {
     public GuiSegmento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     public GuiSegmento() {

@@ -25,6 +25,7 @@ public class GuiSegmentoSalvar extends javax.swing.JDialog {
     public GuiSegmentoSalvar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     public GuiSegmentoSalvar() {

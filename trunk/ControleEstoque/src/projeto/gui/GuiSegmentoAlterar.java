@@ -21,6 +21,7 @@ public class GuiSegmentoAlterar extends javax.swing.JDialog {
     public GuiSegmentoAlterar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
     
     public GuiSegmentoAlterar(){
