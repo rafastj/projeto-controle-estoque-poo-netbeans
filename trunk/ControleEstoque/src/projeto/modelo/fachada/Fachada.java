@@ -490,9 +490,6 @@ public class Fachada {
         return rnCliente.listarPessoaJuridica();
     }
     
-    public Collection<Cliente> listarTodosCliente() throws GeralException, ConexaoException{
-        return rnCliente.listarTodosCliente();
-    }
 
     public Collection<PessoaFisica> listarPfCidade(String cidade_nome) throws GeralException, ConexaoException{
         return rnCliente.listarPfCidade(cidade_nome);

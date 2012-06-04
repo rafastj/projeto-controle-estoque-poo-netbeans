@@ -50,7 +50,7 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuCidade = new javax.swing.JMenu();
         jMenuTabelaCidade = new javax.swing.JMenuItem();
         jMenuCliente = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItemPF = new javax.swing.JMenuItem();
         jMenuEndereco = new javax.swing.JMenu();
         jMenuEnderecoNovo = new javax.swing.JMenuItem();
         jMenuFornecedor = new javax.swing.JMenu();
@@ -140,8 +140,13 @@ public class GuiMenu extends javax.swing.JFrame {
 
         jMenuCliente.setText("Cliente");
 
-        jMenuItem3.setText("GerenciarCliente");
-        jMenuCliente.add(jMenuItem3);
+        jMenuItemPF.setText("Gerenciar Pessoa Fisica");
+        jMenuItemPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemPFActionPerformed(evt);
+            }
+        });
+        jMenuCliente.add(jMenuItemPF);
 
         jMenuCadastro.add(jMenuCliente);
 
@@ -294,7 +299,7 @@ public class GuiMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addComponent(jPGuiLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -443,6 +448,10 @@ public class GuiMenu extends javax.swing.JFrame {
         segmento.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
+    private void jMenuItemPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemPFActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -503,12 +512,12 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItemLogoff;
     private javax.swing.JMenuItem jMenuItemNovoProduto;
     private javax.swing.JMenuItem jMenuItemNovoUsuario;
+    private javax.swing.JMenuItem jMenuItemPF;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenuItem jMenuItemSobre;
     private javax.swing.JMenuItem jMenuMarcas;

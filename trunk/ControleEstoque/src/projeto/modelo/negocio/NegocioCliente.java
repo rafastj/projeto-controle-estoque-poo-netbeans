@@ -146,17 +146,6 @@ public class NegocioCliente {
         return lista;
        }
        
-       public Collection<Cliente> listarTodosCliente() throws ConexaoException{
-           
-        ArrayList<Cliente> lista = null;
-        try {
-            lista = (ArrayList<Cliente>) new RepositorioCliente().listarTodosCliente();
-        } catch (RepositorioException ex) {
-            Logger.getLogger(NegocioCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return lista;
-       }
 
         public void excluirCliente(Cliente cli) throws GeralException {
         /*if (codigo < 1) {
