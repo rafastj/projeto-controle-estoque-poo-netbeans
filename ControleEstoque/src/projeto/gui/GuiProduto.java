@@ -367,7 +367,7 @@ import projeto.modelo.to.Tipo;
         Marca ma;
         ArrayList<Marca> listama;
         try{
-                listama = (ArrayList<Marca>) fachada.listarMarca("");
+                listama = (ArrayList<Marca>) fachada.listarMarca();
                 for(Iterator<Marca> it = listama.iterator(); it.hasNext();){
                     ma = it.next();
                     gpAlterar.jMarcaBox.addItem(ma.getMarcas_Descricao());
@@ -652,7 +652,7 @@ import projeto.modelo.to.Tipo;
         Marca ma;
         ArrayList<Marca> listama;
         try{
-                listama = (ArrayList<Marca>) fachada.listarMarca("");
+                listama = (ArrayList<Marca>) fachada.listarMarca();
                 for(Iterator<Marca> it = listama.iterator(); it.hasNext();){
                     ma = it.next();
                     jMarcaBox.addItem(ma.getMarcas_Descricao());

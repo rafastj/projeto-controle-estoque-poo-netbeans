@@ -4,8 +4,8 @@
  */
 package projeto.modelo.componente;
 
+import javax.swing.JFormattedTextField;
 import javax.swing.text.AttributeSet;
-import javax.swing.JTextField;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.PlainDocument;
@@ -14,7 +14,7 @@ import javax.swing.text.PlainDocument;
  *
  * @author diego
  */
-public class ValorReal extends JTextField{
+public class ValorReal extends JFormattedTextField{
     
     private static final long serialVersionUID = 1L;
     
