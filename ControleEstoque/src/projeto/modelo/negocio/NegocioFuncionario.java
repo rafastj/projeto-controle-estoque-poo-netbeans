@@ -35,10 +35,7 @@ public class NegocioFuncionario {
      */
     public void salvar(Funcionario fu) throws GeralException {
 
-        if (fu.getFuncionarios_Codigo() <= 0) {
-            throw new GeralException("Digite o código do funcionário!");
-        }
-        if (fu.getEnderecos() == null) {
+        if (fu.getEnderecos_Codigo() <= 0) {
             throw new GeralException("Informe o código do endereço!");
         }
         if (fu.getFuncionarios_Nome() == null) {
@@ -48,7 +45,7 @@ public class NegocioFuncionario {
             throw new GeralException("Informe o número da residencia!");
         }
         try {
-            Funcionario fuconsult = rep.consultar(fu.getFuncionarios_Codigo());
+            Funcionario fuconsult = rep.consultar(fu.getFuncionarios_Nome());
             if (fuconsult != null) {
                 throw new GeralException("Funcionário já está cadastrado!");
             }
