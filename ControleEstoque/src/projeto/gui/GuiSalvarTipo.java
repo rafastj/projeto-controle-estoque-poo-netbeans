@@ -175,11 +175,11 @@ public class GuiSalvarTipo extends javax.swing.JDialog {
         Fachada fachada = new Fachada();
         String tSalvar = jTDesTip.getText();
 
-        if (tSalvar.equals("")) {
+        if (tSalvar.trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Digite a descricão do tipo!");
         } else {
             Tipo t = new Tipo();
-            t.setTipos_Descricao(tSalvar);
+            t.setTipos_Descricao(tSalvar.trim());
             t.setTipos_Codigo(Integer.parseInt(jTcod.getText()));
 
             try {

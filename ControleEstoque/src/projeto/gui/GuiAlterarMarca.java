@@ -182,7 +182,7 @@ public class GuiAlterarMarca extends javax.swing.JDialog {
             int marcas_Codigo = Integer.parseInt(jTCodMarca.getText());
             String mAlt = jTAltMarca.getText();
             m.setMarcas_Codigo(marcas_Codigo);
-            m.setMarcas_Descricao(mAlt);
+            m.setMarcas_Descricao(mAlt.trim());
             try {
                 fachada.alterarMarca(m);
                 JOptionPane.showMessageDialog(null, "Marca alterada com sucesso!");

@@ -180,7 +180,7 @@ public class GuiAlterarTipo extends javax.swing.JDialog {
             int tipos_Codigo = Integer.parseInt(jTCodTipo.getText());
             String tAlt = jTAltTipo.getText();
             t.setTipos_Codigo(tipos_Codigo);
-            t.setTipos_Descricao(tAlt);
+            t.setTipos_Descricao(tAlt.trim());
             try {
                 fachada.alterarTipo(t);
                 JOptionPane.showMessageDialog(null, "Marca alterada com sucesso!");
