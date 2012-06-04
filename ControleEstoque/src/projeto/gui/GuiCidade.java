@@ -98,7 +98,7 @@ public class GuiCidade extends javax.swing.JDialog {
 
         jPanelFiltro = new javax.swing.JPanel();
         labelCidade = new java.awt.Label();
-        jTextFieldCidade = new javax.swing.JTextField();
+        jTextFieldCidade = new projeto.modelo.componente.SoStrings();
         jPanelLista = new javax.swing.JPanel();
         jButtonSalvar = new javax.swing.JButton();
         jButtonAtualizar = new javax.swing.JButton();

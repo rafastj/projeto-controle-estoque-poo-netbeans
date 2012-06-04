@@ -94,7 +94,7 @@ public class GuiCidadeAlterar extends javax.swing.JDialog {
         jLabelCidade = new javax.swing.JLabel();
         jTextFieldSaidaCidade = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextFieldCidadeNova = new javax.swing.JTextField();
+        jTextFieldCidadeNova = new projeto.modelo.componente.SoStrings();
         jButtonAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
