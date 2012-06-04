@@ -268,7 +268,7 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
         Marca ma;
         ArrayList<Marca> listama;
         try {
-            listama = (ArrayList<Marca>) fachada.listarMarca("");
+            listama = (ArrayList<Marca>) fachada.listarMarca();
             for (Iterator<Marca> it = listama.iterator(); it.hasNext();) {
                 ma = it.next();
                 jMarcaBox.addItem(ma.getMarcas_Descricao());
