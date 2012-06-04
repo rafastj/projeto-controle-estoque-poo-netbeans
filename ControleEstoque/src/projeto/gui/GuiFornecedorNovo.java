@@ -273,8 +273,7 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonPesquisaCEPActionPerformed
 
     private void jButtonSalvarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarFornecedorActionPerformed
-        dispose();
-        salvarFornecedor();
+        salvarFornecedor();        
     }//GEN-LAST:event_jButtonSalvarFornecedorActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -289,6 +288,7 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
     private void salvarFornecedor() {
         try{
             try{
+                dispose();
                 Fornecedor fSalvar = new Fornecedor();
                 fSalvar.setFornecedores_CNPJ(jFormattedTextFieldEntradaCNPJ.getText());
                 fSalvar.setFornecedores_RazaoSocial(jTextFieldEntradaRS.getText());
@@ -326,7 +326,7 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
                 if (ValidaCampo.validaCNPJ(fornecedores_CNPJ) == true) {
                     Fornecedor f = fachada.consultarForCNPJ(fornecedores_CNPJ);
                     if (f != null) {
-                        resComCadastro = JOptionPane.showConfirmDialog(null, "CNPJ já está cadastrado!\nDeseja inserir outro?", "", JOptionPane.YES_NO_OPTION);
+                        resComCadastro = JOptionPane.showConfirmDialog(null, "\nCNPJ já está cadastrado!\n\nDeseja inserir outro?", "", JOptionPane.YES_NO_OPTION);
                         if (resComCadastro == JOptionPane.YES_OPTION) {
                             bloquearTela();
                         } else {
@@ -334,7 +334,7 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
                             voltar();
                         }
                     } else {
-                        resSemCadastro = JOptionPane.showConfirmDialog(null, "CNPJ não está cadastrado!\nDeseja continuar?\nSe não informe outro CNPJ.", "", JOptionPane.YES_NO_OPTION);
+                        resSemCadastro = JOptionPane.showConfirmDialog(null, "\nCNPJ não está cadastrado! Deseja continuar?\n\nSe não informe outro CNPJ.", "", JOptionPane.YES_NO_OPTION);
                         if (resSemCadastro == JOptionPane.YES_OPTION) {
                             liberarTela();
                         } else {

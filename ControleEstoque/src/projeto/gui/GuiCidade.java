@@ -342,6 +342,7 @@ public class GuiCidade extends javax.swing.JDialog {
                 cdConsult = fachada.consultarCidade(cd.getCidades_Nome());
                 if (cdConsult != null) {
                     fachada.excluirCidade(cdConsult.getCidades_Codigo());
+                    JOptionPane.showMessageDialog(null, "Registro excluído!");
                 }
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
@@ -372,7 +373,13 @@ public class GuiCidade extends javax.swing.JDialog {
      * @return
      */
     private static DefaultTableModel geramodelo(ArrayList<Cidade> listaCidade) {
-        DefaultTableModel modelo = new DefaultTableModel();
+        DefaultTableModel modelo = new DefaultTableModel() {
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int mColIndex) {
+                return false;
+            }
+        };
         modelo.addColumn("Código");
         modelo.addColumn("Nome da Cidade");
 

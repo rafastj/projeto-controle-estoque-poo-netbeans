@@ -489,7 +489,14 @@ public class GuiEndereco extends javax.swing.JDialog {
      * @return
      */
     private DefaultTableModel geramodelo(ArrayList<Endereco> listaEndereco) {
-        DefaultTableModel modelo = new DefaultTableModel();
+        DefaultTableModel modelo = new DefaultTableModel() {
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int mColIndex) {
+                return false;
+            }
+        };
+
         modelo.addColumn("CEP");
         modelo.addColumn("Logradouro");
         modelo.addColumn("Cidade");
