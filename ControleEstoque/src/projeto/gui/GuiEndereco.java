@@ -34,8 +34,6 @@ public class GuiEndereco extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         limparCampos();
-        atualizarComboCidade();
-        atualizarTabelaEndereco();
     }
 
     /**
@@ -116,6 +114,13 @@ public class GuiEndereco extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de endereços");
         setModal(true);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -304,20 +309,13 @@ public class GuiEndereco extends javax.swing.JDialog {
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         limparCampos();
-        dispose();
         GuiEnderecoNovo novoEnd = new GuiEnderecoNovo();
-        novoEnd.setVisible(true);
-        limparCampos();
-        atualizarTabelaEndereco();
-        atualizarComboCidade();
+        novoEnd.setVisible(true);        
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         limparCampos();
-        alterarEndereco();
-        limparCampos();
-        atualizarTabelaEndereco();
-        atualizarComboCidade();
+        alterarEndereco();        
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApagarActionPerformed
@@ -343,6 +341,11 @@ public class GuiEndereco extends javax.swing.JDialog {
         pesquisarEndLog();
     }//GEN-LAST:event_jTextFieldEntradaLogKeyReleased
 
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        atualizarComboCidade();
+        atualizarTabelaEndereco();        
+    }//GEN-LAST:event_formWindowGainedFocus
+
     /**
      * Método para alterar um endereço;
      */
@@ -354,7 +357,6 @@ public class GuiEndereco extends javax.swing.JDialog {
 
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
-                dispose();
                 GuiEnderecoAlterar guiEnderecoAlterar = new GuiEnderecoAlterar();
                 guiEnderecoAlterar.jTextFieldSaidaLog.setText(endOld.getEnderecos_Logradouro());
                 guiEnderecoAlterar.jTextFieldSaidaCidade.setText(endOld.getCidades_Nome());

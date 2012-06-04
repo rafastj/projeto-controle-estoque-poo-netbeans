@@ -395,6 +395,7 @@ public class GuiFornecedor extends javax.swing.JDialog {
                 guiFornecedorAlterar.jTextFieldSaidaLog.setText(fOld.getEnderecos_Logradouro());
                 guiFornecedorAlterar.jFormattedTextFieldSaidaNumero.setText(String.valueOf(fOld.getFornecedores_NumeroResidencia()));
                 guiFornecedorAlterar.jTextFieldSaidaCidade.setText(fOld.getCidades_Nome());
+                guiFornecedorAlterar.jFormattedTextFieldEntradaCNPJ.requestFocus();
                 guiFornecedorAlterar.setVisible(true);
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
