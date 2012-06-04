@@ -298,7 +298,7 @@ public class GuiFormaPagamento extends javax.swing.JDialog {
                  guiAlterarFormaPagamentosTeste.setVisible(true);
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
-            JOptionPane.showMessageDialog(null, "Selecione um endereço!");
+            JOptionPane.showMessageDialog(null, "Selecione uma Forma de Pagamento!");
         }
     }
 

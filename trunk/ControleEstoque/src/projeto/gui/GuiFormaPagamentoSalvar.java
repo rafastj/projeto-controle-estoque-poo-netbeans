@@ -158,7 +158,7 @@ public class GuiFormaPagamentoSalvar extends javax.swing.JDialog {
             @SuppressWarnings("unused")
             int validoString = Integer.parseInt(fpSalvar);
 
-            JOptionPane.showMessageDialog(null, "Digite apenas a descric�o do tipo!");
+            JOptionPane.showMessageDialog(null, "Digite apenas a descricão da Forma de Pagamento!");
         } catch (NumberFormatException x) {
             FormaPagamento fp = new FormaPagamento();
             fp.setFormaPagamento_Descricao(fpSalvar);

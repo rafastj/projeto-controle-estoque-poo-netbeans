@@ -208,7 +208,7 @@ public class GuiSegmento extends javax.swing.JDialog {
 
     private DefaultTableModel geramodelo(ArrayList<Segmento> listaSegmento) {
 
-        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"C�digo", "Descri��o"}, 0) {
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Código", "Descrição"}, 0) {
 
             public boolean isCellEditable(int rowIndex, int mColIndex) {
                 return false;
@@ -257,11 +257,11 @@ public class GuiSegmento extends javax.swing.JDialog {
                 Segmento mConsult = fachada.consultarSegmentos(m.getSegmentos_Codigo());
                 if (mConsult != null) {
                     fachada.excluirSegmento(m.getSegmentos_Codigo());
-                    JOptionPane.showMessageDialog(null, "Registro exclu�do!");
+                    JOptionPane.showMessageDialog(null, "Registro excluído!");
                 }
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
-            JOptionPane.showMessageDialog(null, "Selecione o Tipo!");
+            JOptionPane.showMessageDialog(null, "Selecione o Segmento!");
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -298,7 +298,7 @@ public class GuiSegmento extends javax.swing.JDialog {
                  guiAlterarSegmentosTeste.setVisible(true);
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
-            JOptionPane.showMessageDialog(null, "Selecione um endere�o!");
+            JOptionPane.showMessageDialog(null, "Selecione um Segmento!");
         }
     }
 
