@@ -33,6 +33,10 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
         jDescricaoField.requestFocus();//setar o focu na descrição
     }
 
+    GuiProdutoNovo(GuiProduto aThis, boolean rootPaneCheckingEnabled) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

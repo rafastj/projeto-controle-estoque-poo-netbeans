@@ -328,7 +328,6 @@ import projeto.modelo.to.Tipo;
     private void jbAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizarActionPerformed
         // TODO add your handling code here:
         atualizarJTabela();
-        
         jcDescricaoField.setText("");
     }//GEN-LAST:event_jbAtualizarActionPerformed
 
