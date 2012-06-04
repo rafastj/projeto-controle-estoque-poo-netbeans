@@ -70,7 +70,7 @@ public class RepositorioEndereco implements IRepositorioEndereco {
     public Endereco consultarCep(String enderecos_CEP) throws ConexaoException, RepositorioException {
         Endereco end = null;
         Connection c = g.conectar();
-        String sqlConsultar = "SELECT ENDERECOS_CODIGO, ENDERECOS_CEP, CIDADES_CODIGO, ENDERECOS_LOGRADOURO FROM enderecos WHERE ( ENDERECOS_CEP = ? )";
+        String sqlConsultar = "SELECT end.ENDERECOS_CODIGO, end.ENDERECOS_CEP, end.CIDADES_CODIGO, end.ENDERECOS_LOGRADOURO, cd.CIDADES_NOME FROM enderecos end INNER JOIN cidades cd ON end.Cidades_Codigo = cd.Cidades_Codigo WHERE (ENDERECOS_CEP = ?)";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsultar);
             pstm.setString(1, enderecos_CEP);
@@ -82,6 +82,7 @@ public class RepositorioEndereco implements IRepositorioEndereco {
                 end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                end.setCidades_Nome(rs.getString("cidades_Nome"));
             }
         } catch (SQLException e) {
             throw new RepositorioException(e.getMessage());
