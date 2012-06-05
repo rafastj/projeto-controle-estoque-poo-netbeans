@@ -48,7 +48,11 @@ public class GuiAlterarMarca extends javax.swing.JDialog {
         jTAltMarca = new JTextField();
         jTAltMarca.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
-                if ((!Character.isLetter(e.getKeyChar())) && (e.getKeyChar() != e.VK_SPACE)){
+                if(e.isControlDown()){
+                    jTAltMarca.setText(null);
+                    JOptionPane.showMessageDialog(null, "Copiar Desativado");
+                }
+                else if ((!Character.isLetter(e.getKeyChar())) && (e.getKeyChar() != e.VK_SPACE)){
                     e.consume();
                 }
             }

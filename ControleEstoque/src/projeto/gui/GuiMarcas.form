@@ -95,7 +95,7 @@
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTPesqKeyReleased"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JTextField();&#xa;jTPesq.addKeyListener(new KeyAdapter() {&#xa;    public void keyTyped(KeyEvent e) {&#xa;        if ((!Character.isLetter(e.getKeyChar())) &amp;&amp; (e.getKeyChar() != e.VK_SPACE)){&#xa;            e.consume();&#xa;        }&#xa;    }&#xa;});&#xa;"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JTextField();&#xa;jTPesq.addKeyListener(new KeyAdapter() {&#xa;    public void keyTyped(KeyEvent e) {&#xa;        if(e.isControlDown()){&#xa;            jTPesq.setText(null);&#xa;            JOptionPane.showMessageDialog(null, &quot;Copiar Desativado&quot;);&#xa;        }&#xa;        else if ((!Character.isLetter(e.getKeyChar())) &amp;&amp; (e.getKeyChar() != e.VK_SPACE)){&#xa;            e.consume();&#xa;        }&#xa;    }&#xa;});&#xa;"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="JlFuncionario">

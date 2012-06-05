@@ -88,6 +88,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="11" style="1"/>
         </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
@@ -123,7 +124,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTAltTipoActionPerformed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JTextField();&#xa;jTAltTipo.addKeyListener(new KeyAdapter() {&#xa;    public void keyTyped(KeyEvent e) {&#xa;        if ((!Character.isLetter(e.getKeyChar())) &amp;&amp; (e.getKeyChar() != e.VK_SPACE)){&#xa;            e.consume();&#xa;        }&#xa;    }&#xa;});  &#xa;"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JTextField();&#xa;jTAltTipo.addKeyListener(new KeyAdapter() {&#xa;    public void keyTyped(KeyEvent e) {&#xa;        if(e.isControlDown()){&#xa;            jTAltTipo.setText(null);&#xa;            JOptionPane.showMessageDialog(null, &quot;Copiar Desativado&quot;);&#xa;        }&#xa;        else if ((!Character.isLetter(e.getKeyChar())) &amp;&amp; (e.getKeyChar() != e.VK_SPACE)){&#xa;            e.consume();&#xa;        }&#xa;    }&#xa;});&#xa;"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="btnAlterar">
