@@ -280,6 +280,11 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenu9.add(jMenuItemSair);
 
         jMenuItemSobre.setText("Sobre...");
+        jMenuItemSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSobreActionPerformed(evt);
+            }
+        });
         jMenu9.add(jMenuItemSobre);
 
         jMenuBarra.add(jMenu9);
@@ -300,7 +305,7 @@ public class GuiMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addComponent(jPGuiLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -455,6 +460,10 @@ public class GuiMenu extends javax.swing.JFrame {
     private void jMenuItemPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemPFActionPerformed
+
+    private void jMenuItemSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSobreActionPerformed
+        JOptionPane.showMessageDialog(null, "Sistema de controle de estoque.\n\nDesenvolvido por:\n\nBruno Pinheiro\nDaniel Valença\nDiego Pereira\nFelipe Carlos\nSandro Fernandes\nThiago Evoá");
+    }//GEN-LAST:event_jMenuItemSobreActionPerformed
 
     /**
      * @param args the command line arguments
