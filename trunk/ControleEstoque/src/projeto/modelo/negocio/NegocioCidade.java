@@ -9,8 +9,8 @@ import javax.swing.JOptionPane;
 import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.erro.RepositorioException;
+import projeto.gui.GuiCidade;
 import projeto.gui.GuiCidadeAlterar;
-import projeto.gui.GuiCidadeNova;
 import projeto.modelo.repositorio.IRepositorioCidade;
 import projeto.modelo.repositorio.RepositorioCidade;
 import projeto.modelo.to.Cidade;
@@ -42,31 +42,27 @@ public class NegocioCidade {
         int resSemCadastro;
         if ((cd.getCidades_Nome() == null) || (cd.getCidades_Nome().equals(""))) {
             JOptionPane.showMessageDialog(null, "Digite o nome da cidade!");
-            GuiCidadeNova.limparCampos();
+            GuiCidade.limparCampos();
         } else {
             try {
                 double validoString;
                 validoString = Double.parseDouble(cd.getCidades_Nome());
                 JOptionPane.showMessageDialog(null, "Digite apenas o nome da cidade!");
-                GuiCidadeNova.limparCampos();
+                GuiCidade.limparCampos();
             } catch (NumberFormatException x) {
                 try {
                     Cidade cdConsult = rep.consultar(cd.getCidades_Nome());
                     if (cdConsult != null) {
                         resComCadastro = JOptionPane.showConfirmDialog(null, "Cidade já cadastrada!\nDeseja cadastrar outra cidade?", "", JOptionPane.YES_NO_OPTION);
                         if(resComCadastro == JOptionPane.YES_OPTION) {
-                            GuiCidadeNova.limparCampos();
+                            GuiCidade.limparCampos();
                         } else {
                             throw new GeralException();
                         }
                     } else {
                         rep.salvar(cd);
-                        resSemCadastro = JOptionPane.showConfirmDialog(null, "Registro salvo com sucesso!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
-                        if (resSemCadastro == JOptionPane.YES_OPTION){
-                            GuiCidadeNova.limparCampos();
-                        }else{
-                            throw new GeralException();
-                        }
+                        JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
+                        GuiCidade.limparCampos();
                     }
                 } catch (RepositorioException e) {
                     throw new GeralException("Erro ao tentar salvar!\n Contate o suporte!");
