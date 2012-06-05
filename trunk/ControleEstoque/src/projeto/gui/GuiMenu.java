@@ -78,6 +78,7 @@ public class GuiMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
+        setResizable(false);
 
         jPGuiLogin.setBorder(javax.swing.BorderFactory.createTitledBorder("Autenticação..."));
 
@@ -299,7 +300,7 @@ public class GuiMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addComponent(jPGuiLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -309,9 +310,11 @@ public class GuiMenu extends javax.swing.JFrame {
     //metodo responsável por libera o acesso ao menu
     private void acessoLiberado() {
         //ocultar o Painel de login
+        
         jPGuiLogin.setVisible(false);
         //mostrar a Barra de Menu
         jMenuBarra.setVisible(true);
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     //metodo responsável por limpar os campos login e senha
@@ -372,10 +375,11 @@ public class GuiMenu extends javax.swing.JFrame {
 
     private void jMenuItemLogoffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLogoffActionPerformed
         // TODO add your handling code here:
+        //errosenha();
+        //errologin();
+        initComponents();
         jMenuBarra.setVisible(false);
         jPGuiLogin.setVisible(true);
-        errosenha();
-        errologin();
     }//GEN-LAST:event_jMenuItemLogoffActionPerformed
 
     private void jMenuItemNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoUsuarioActionPerformed
