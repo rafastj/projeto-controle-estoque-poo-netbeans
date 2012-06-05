@@ -183,7 +183,7 @@ public class GuiCidadeAlterar extends javax.swing.JDialog {
             cdOld = fachada.consultarCidade(jTextFieldSaidaCidade.getText());
             cd = new Cidade();
             cd.setCidades_Codigo(cdOld.getCidades_Codigo());
-            cd.setCidades_Nome(jTextFieldCidadeNova.getText());
+            cd.setCidades_Nome(jTextFieldCidadeNova.getText().trim());
             fachada.alterarCidade(cd);
         } catch (GeralException ex) {
             dispose();

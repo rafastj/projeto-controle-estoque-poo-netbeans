@@ -167,7 +167,7 @@ public class GuiCidadeNova extends javax.swing.JDialog {
         Cidade cd;
         try {
             cdSalvar = jTextFieldEntradaCidade.getText();
-            cd = new Cidade(cdSalvar);
+            cd = new Cidade(cdSalvar.trim());
             fachada.salvarCidade(cd);
         } catch (GeralException ex) {
             dispose();
