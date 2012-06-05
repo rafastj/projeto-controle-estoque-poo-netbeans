@@ -4,7 +4,7 @@
 package projeto.modelo.to;
 
 /**
- * @author DANIEL VALENÇA Classe Cidade
+ * @author DANIEL VALENÇA
  */
 public class Cidade {
 
