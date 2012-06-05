@@ -208,34 +208,19 @@ public class GuiUsuario extends javax.swing.JFrame {
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
         // TODO add your handling code here:
-        try{
         GuiUsuarioAlterar usalterar = new GuiUsuarioAlterar();
-        
-        
-         //pegar o objeto selecionado
+         
+       try{
+           
+            //pegar o objeto selecionado
             Usuario us = usSelecionado();
             
             usalterar.JcNomeUsuario2.setText(us.getFuncionarios().getFuncionarios_Nome());
-            
             usalterar.JcLoginUsuario2.setText(us.getUsuarios_Login());
             usalterar.JcSenhaUsuario2.setText(us.getUsuarios_Senha());
             
-            
-            try {
-                Usuario codUsuario = fachada.consultarUsuario(us.getFuncionarios_Nome());
-                
-                usalterar.alterUsuario.setFuncionarios_Codigo(codUsuario.getFuncionarios_Codigo());
-                usalterar.alterUsuario.setUsuarios_Login(codUsuario.getUsuarios_Login());
-                usalterar.alterUsuario.setUsuarios_Senha(codUsuario.getUsuarios_Senha());
-                
-            } catch (GeralException ex) {
-                Logger.getLogger(GuiFuncionario.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            
         
-        
-        usalterar.setVisible(true);
+            usalterar.setVisible(true);
          
         } catch(ArrayIndexOutOfBoundsException ex){
             JOptionPane.showMessageDialog(null, "Selecione o Usuário!");
