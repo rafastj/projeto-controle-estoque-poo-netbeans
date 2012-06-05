@@ -212,7 +212,8 @@ public class GuiUsuarioNovo extends javax.swing.JFrame {
 
     private void salvarUsuario() {
         try{
-        usSalvar.setFuncionarios_Nome((String)jCoFuncionarioBox.getSelectedItem());
+            Funcionario fu = fachada.consultarFuncionario((String)jCoFuncionarioBox.getSelectedItem());
+        usSalvar.setFuncionarios_Codigo(fu.getFuncionarios_Codigo());
         usSalvar.setUsuarios_Login(JcLoginUsuario.getText());
         usSalvar.setUsuarios_Senha(JcSenhaUsuario.getText());
         //Funcionario fu = new Funcionario (int funcionario_Codigo, int enderecos_Codigo, String funcionarios_Nome, String funcionarios_NumeroResidencia);
