@@ -71,7 +71,7 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jComboBoxCidade" min="-2" pref="205" max="-2" attributes="0"/>
                               <Component id="jFormattedTextFieldCEP" max="32767" attributes="0"/>
-                              <Component id="jButtonVoltar" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonVoltar" alignment="1" min="-2" pref="75" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -93,24 +93,24 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabelCEP" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButtonConsultarCEP" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jFormattedTextFieldCEP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonConsultarCEP" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="jFormattedTextFieldCEP" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabelLogradouro" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldEntradaLog" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldEntradaLog" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabelCidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBoxCidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButtonGerenciarCidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBoxCidade" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="jButtonGerenciarCidade" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButtonSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButtonVoltar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonSalvar" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="jButtonVoltar" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -134,6 +134,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldEntradaLog">
+          <Properties>
+            <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>

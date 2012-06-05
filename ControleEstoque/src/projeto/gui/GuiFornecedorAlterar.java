@@ -140,6 +140,8 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
 
         jLabelRazaoSocial1.setText("Razão Social.:");
 
+        jTextFieldEntradaRS.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
         jLabelCEP1.setText("CEP.:");
 
         jButtonPesquisaCNPJ.setText("Pesquisar");
@@ -170,6 +172,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
         });
 
         jFormattedTextFieldEntradaNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jFormattedTextFieldEntradaNumero.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         try {
             jFormattedTextFieldEntradaCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
@@ -182,6 +185,9 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextFieldEntradaCEP.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
+        jTextFieldEntradaLog.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -189,6 +195,8 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
                 jButtonVoltarActionPerformed(evt);
             }
         });
+
+        jTextFieldCidade.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jButtonAlterarEndereco.setText("Alterar endereço");
         jButtonAlterarEndereco.addActionListener(new java.awt.event.ActionListener() {
@@ -290,7 +298,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
         jLabelRazaoSocial.setText("Razão Social.:");
 
         jTextFieldSaidaRS.setEditable(false);
-        jTextFieldSaidaRS.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+        jTextFieldSaidaRS.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextFieldSaidaRS.setEnabled(false);
 
         jLabelCEP.setText("CEP.:");
@@ -303,7 +311,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
 
         jFormattedTextFieldSaidaNumero.setEditable(false);
         jFormattedTextFieldSaidaNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        jFormattedTextFieldSaidaNumero.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+        jFormattedTextFieldSaidaNumero.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jFormattedTextFieldSaidaNumero.setEnabled(false);
 
         jFormattedTextFieldSaidaCNPJ.setEditable(false);
@@ -312,7 +320,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextFieldSaidaCNPJ.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+        jFormattedTextFieldSaidaCNPJ.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jFormattedTextFieldSaidaCNPJ.setEnabled(false);
 
         jFormattedTextFieldSaidaCEP.setEditable(false);
@@ -321,15 +329,15 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextFieldSaidaCEP.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+        jFormattedTextFieldSaidaCEP.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jFormattedTextFieldSaidaCEP.setEnabled(false);
 
         jTextFieldSaidaLog.setEditable(false);
-        jTextFieldSaidaLog.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+        jTextFieldSaidaLog.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextFieldSaidaLog.setEnabled(false);
 
         jTextFieldSaidaCidade.setEditable(false);
-        jTextFieldSaidaCidade.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+        jTextFieldSaidaCidade.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextFieldSaidaCidade.setEnabled(false);
 
         javax.swing.GroupLayout jPanelForAntigoLayout = new javax.swing.GroupLayout(jPanelForAntigo);
