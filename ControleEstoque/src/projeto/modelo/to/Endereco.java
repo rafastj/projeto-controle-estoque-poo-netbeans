@@ -12,7 +12,6 @@ public class Endereco {
     private String enderecos_CEP;
     private String enderecos_Logradouro;
     private int cidades_Codigo;
-    private String cidades_Nome;
     private Cidade cidade = new Cidade();
 
     public Endereco() {
@@ -23,7 +22,6 @@ public class Endereco {
         this.enderecos_CEP = enderecos_CEP;
         this.enderecos_Logradouro = enderecos_Logradouro;
         this.cidades_Codigo = cidades_Codigo;
-        this.cidades_Nome = cidades_Nome;
     }
 
     public int getEnderecos_Codigo() {
@@ -50,14 +48,6 @@ public class Endereco {
         this.enderecos_Logradouro = enderecos_Logradouro;
     }
 
-    public Cidade getCodigo() {
-        return cidade;
-    }
-
-    public void setCodigo(Cidade codigo) {
-        this.cidade = codigo;
-    }
-
     public int getCidades_Codigo() {
         return cidades_Codigo;
     }
@@ -66,14 +56,6 @@ public class Endereco {
         this.cidades_Codigo = cidades_Codigo;
     }
     
-    public String getCidades_Nome() {
-        return cidades_Nome;
-    }
-    
-    public void setCidades_Nome(String cidades_Nome) {
-        this.cidades_Nome = cidades_Nome;
-    }
-
     public Cidade getCidade() {
         return cidade;
     }

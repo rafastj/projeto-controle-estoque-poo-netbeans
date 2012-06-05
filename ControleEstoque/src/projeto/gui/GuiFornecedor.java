@@ -391,10 +391,10 @@ public class GuiFornecedor extends javax.swing.JDialog {
                 GuiFornecedorAlterar guiFornecedorAlterar = new GuiFornecedorAlterar();
                 guiFornecedorAlterar.jFormattedTextFieldSaidaCNPJ.setText(fOld.getFornecedores_CNPJ());
                 guiFornecedorAlterar.jTextFieldSaidaRS.setText(fOld.getFornecedores_RazaoSocial());
-                guiFornecedorAlterar.jFormattedTextFieldSaidaCEP.setText(fOld.getEnderecos_CEP());
-                guiFornecedorAlterar.jTextFieldSaidaLog.setText(fOld.getEnderecos_Logradouro());
+                guiFornecedorAlterar.jFormattedTextFieldSaidaCEP.setText(fOld.getEndereco().getEnderecos_CEP());
+                guiFornecedorAlterar.jTextFieldSaidaLog.setText(fOld.getEndereco().getEnderecos_Logradouro());
                 guiFornecedorAlterar.jFormattedTextFieldSaidaNumero.setText(String.valueOf(fOld.getFornecedores_NumeroResidencia()));
-                guiFornecedorAlterar.jTextFieldSaidaCidade.setText(fOld.getCidades_Nome());
+                guiFornecedorAlterar.jTextFieldSaidaCidade.setText(fOld.getEndereco().getCidade().getCidades_Nome());
                 guiFornecedorAlterar.jFormattedTextFieldEntradaCNPJ.requestFocus();
                 guiFornecedorAlterar.setVisible(true);
             }
@@ -560,10 +560,10 @@ public class GuiFornecedor extends javax.swing.JDialog {
             valores = new ArrayList<String>();
             valores.add(f.getFornecedores_CNPJ());
             valores.add(f.getFornecedores_RazaoSocial());
-            valores.add(f.getEnderecos_Logradouro());
+            valores.add(f.getEndereco().getEnderecos_Logradouro());
             valores.add(String.valueOf(f.getFornecedores_NumeroResidencia()));
-            valores.add(f.getCidades_Nome());
-            valores.add(f.getEnderecos_CEP());
+            valores.add(f.getEndereco().getCidade().getCidades_Nome());
+            valores.add(f.getEndereco().getEnderecos_CEP());
             modelo.insertRow(i, valores.toArray());
             i++;
         }

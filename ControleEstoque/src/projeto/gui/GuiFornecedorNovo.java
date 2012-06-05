@@ -291,10 +291,10 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
                 Fornecedor fSalvar = new Fornecedor();
                 fSalvar.setFornecedores_CNPJ(jFormattedTextFieldEntradaCNPJ.getText());
                 fSalvar.setFornecedores_RazaoSocial(jTextFieldEntradaRS.getText());
-                fSalvar.setEnderecos_CEP(jFormattedTextFieldEntradaCEP.getText());
-                fSalvar.setEnderecos_Logradouro(jTextFieldEntradaLog.getText());
+                fSalvar.getEndereco().setEnderecos_CEP(jFormattedTextFieldEntradaCEP.getText());
+                fSalvar.getEndereco().setEnderecos_Logradouro(jTextFieldEntradaLog.getText());
                 fSalvar.setFornecedores_NumeroResidencia(Integer.parseInt(jTextFieldEntradaNumero.getText()));
-                fSalvar.setCidades_Nome(jTextFieldCidade.getText());
+                fSalvar.getEndereco().getCidade().setCidades_Nome(jTextFieldCidade.getText());
                 dispose();
                 fachada.salvarFornecedor(fSalvar);
                 dispose();
@@ -373,7 +373,7 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
                     if (resComCep == JOptionPane.YES_OPTION) {
                         jFormattedTextFieldEntradaCEP.setText(end.getEnderecos_CEP());
                         jTextFieldEntradaLog.setText(end.getEnderecos_Logradouro());
-                        jTextFieldCidade.setText(end.getCidades_Nome());
+                        jTextFieldCidade.setText(end.getCidade().getCidades_Nome());
                         jTextFieldEntradaNumero.requestFocus();
                     } else {
                         jFormattedTextFieldEntradaCEP.requestFocus();
@@ -397,7 +397,7 @@ public class GuiFornecedorNovo extends javax.swing.JDialog {
                         GuiFornecedorNovo.jTextFieldEntradaRS.setText(rs);
                         GuiFornecedorNovo.jFormattedTextFieldEntradaCEP.setText(enderecos_CEP);
                         GuiFornecedorNovo.jTextFieldEntradaLog.setText(end.getEnderecos_Logradouro());
-                        GuiFornecedorNovo.jTextFieldCidade.setText(end.getCidades_Nome());
+                        GuiFornecedorNovo.jTextFieldCidade.setText(end.getCidade().getCidades_Nome());
                         jTextFieldEntradaNumero.requestFocus();
                         guiFornecedorNovo.setVisible(true);
                     } else {

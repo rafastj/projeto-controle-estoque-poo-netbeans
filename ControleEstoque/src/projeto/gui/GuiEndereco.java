@@ -359,7 +359,7 @@ public class GuiEndereco extends javax.swing.JDialog {
             if (resposta == JOptionPane.YES_OPTION) {
                 GuiEnderecoAlterar guiEnderecoAlterar = new GuiEnderecoAlterar();
                 GuiEnderecoAlterar.jTextFieldSaidaLog.setText(endOld.getEnderecos_Logradouro());
-                GuiEnderecoAlterar.jTextFieldSaidaCidade.setText(endOld.getCidades_Nome());
+                GuiEnderecoAlterar.jTextFieldSaidaCidade.setText(endOld.getCidade().getCidades_Nome());
                 GuiEnderecoAlterar.jFormattedTextFieldSaidaCEP.setText(endOld.getEnderecos_CEP());
                 guiEnderecoAlterar.setVisible(true);
             }
@@ -509,7 +509,7 @@ public class GuiEndereco extends javax.swing.JDialog {
             valores = new ArrayList<String>();
             valores.add(end.getEnderecos_CEP());
             valores.add(end.getEnderecos_Logradouro());
-            valores.add(end.getCidades_Nome());
+            valores.add(end.getCidade().getCidades_Nome());
             modelo.insertRow(i, valores.toArray());
             i++;
         }

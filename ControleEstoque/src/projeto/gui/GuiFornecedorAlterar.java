@@ -463,10 +463,10 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
                             if (resComCadastro == JOptionPane.YES_OPTION) {
                                 liberarTela();
                                 jTextFieldEntradaRS.setText(f.getFornecedores_RazaoSocial());
-                                jFormattedTextFieldEntradaCEP.setText(f.getEnderecos_CEP());
-                                jTextFieldEntradaLog.setText(f.getEnderecos_Logradouro());
+                                jFormattedTextFieldEntradaCEP.setText(f.getEndereco().getEnderecos_CEP());
+                                jTextFieldEntradaLog.setText(f.getEndereco().getEnderecos_Logradouro());
                                 jFormattedTextFieldEntradaNumero.setText(String.valueOf(f.getFornecedores_NumeroResidencia()));
-                                jTextFieldCidade.setText(f.getCidades_Nome());
+                                jTextFieldCidade.setText(f.getEndereco().getCidade().getCidades_Nome());
                                 jFormattedTextFieldEntradaCNPJ.requestFocus();
                             } else {
                                 limparCampos();
@@ -521,7 +521,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
                     jFormattedTextFieldEntradaCEP.setText(end.getEnderecos_CEP());
                     jFormattedTextFieldEntradaNumero.requestFocus();
                     jTextFieldEntradaLog.setText(end.getEnderecos_Logradouro());
-                    jTextFieldCidade.setText(end.getCidades_Nome());
+                    jTextFieldCidade.setText(end.getCidade().getCidades_Nome());
                 }
             } else {
                 resSemCadastro = JOptionPane.showConfirmDialog(null, "CEP não está cadastrado!\nDeseja cadastrar?", "", JOptionPane.YES_NO_OPTION);
