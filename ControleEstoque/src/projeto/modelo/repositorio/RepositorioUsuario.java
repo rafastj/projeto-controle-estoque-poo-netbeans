@@ -44,7 +44,7 @@ public class RepositorioUsuario implements IRepositorioUsuario {
     @Override
     public void excluir(int funcionarios_Codigo) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
-        String sqlExcluir = "DELETE FROM usuario WHERE (funcionarios_Codigo = ?)";
+        String sqlExcluir = "DELETE FROM usuarios WHERE (funcionarios_Codigo = ?)";
         try {
             java.sql.PreparedStatement pstm = c.prepareStatement(sqlExcluir);
             pstm.setInt(1, funcionarios_Codigo);
@@ -60,7 +60,7 @@ public class RepositorioUsuario implements IRepositorioUsuario {
     @Override
     public void excluir(String funcionarios_Nome) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
-        String sqlExcluir = "DELETE FROM usuario WHERE (funcionarios_Codigo = ?)";
+        String sqlExcluir = "DELETE FROM usuarios WHERE (funcionarios_Codigo = ?)";
         try {
             java.sql.PreparedStatement pstm = c.prepareStatement(sqlExcluir);
             pstm.setString(1, funcionarios_Nome);
