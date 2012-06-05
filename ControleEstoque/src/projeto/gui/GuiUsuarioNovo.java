@@ -140,22 +140,12 @@ public class GuiUsuarioNovo extends javax.swing.JFrame {
     private void JbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbSalvarActionPerformed
         // TODO add your handling code here:
         salvarUsuario();
+        dispose();
         
     }//GEN-LAST:event_JbSalvarActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
-        Funcionario fu = null;
-        ArrayList<Funcionario> listafu;
-        
-        try{
-            listafu = (ArrayList<Funcionario>) fachada.listarTodosFuncionario();
-            for (Iterator<Funcionario> it = listafu.iterator(); it.hasNext();)
-                fu = it.next();
-            jCoFuncionarioBox.addItem(fu.getFuncionarios_Nome());
-    }catch (GeralException ex){
-        JOptionPane.showMessageDialog(null,ex.getMessage());
-    }
     }//GEN-LAST:event_formComponentShown
 
     /**
@@ -206,7 +196,7 @@ public class GuiUsuarioNovo extends javax.swing.JFrame {
     private javax.swing.JLabel JlLoginUsuario;
     private javax.swing.JLabel JlNomeusuario;
     private javax.swing.JLabel JlSenhaUsuario;
-    private javax.swing.JComboBox jCoFuncionarioBox;
+    public javax.swing.JComboBox jCoFuncionarioBox;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
