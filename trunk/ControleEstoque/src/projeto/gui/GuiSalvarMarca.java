@@ -51,14 +51,19 @@ public class GuiSalvarMarca extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTDesMar =  new JTextField();
+        jTDesMar = new JTextField();
         jTDesMar.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
-                if ((!Character.isLetter(e.getKeyChar())) && (e.getKeyChar() != e.VK_SPACE)){
+                if(e.isControlDown()){
+                    jTDesMar.setText(null);
+                    JOptionPane.showMessageDialog(null, "Copiar Desativado");
+                }
+                else if ((!Character.isLetter(e.getKeyChar())) && (e.getKeyChar() != e.VK_SPACE)){
                     e.consume();
                 }
             }
-        });  ;
+        });
+        ;
         jTcodM = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();

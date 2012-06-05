@@ -46,7 +46,11 @@ public class GuiAlterarTipo extends javax.swing.JDialog {
         jTAltTipo = new JTextField();
         jTAltTipo.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
-                if ((!Character.isLetter(e.getKeyChar())) && (e.getKeyChar() != e.VK_SPACE)){
+                if(e.isControlDown()){
+                    jTAltTipo.setText(null);
+                    JOptionPane.showMessageDialog(null, "Copiar Desativado");
+                }
+                else if ((!Character.isLetter(e.getKeyChar())) && (e.getKeyChar() != e.VK_SPACE)){
                     e.consume();
                 }
             }
@@ -64,6 +68,7 @@ public class GuiAlterarTipo extends javax.swing.JDialog {
 
         jTCodTipo.setEditable(false);
         jTCodTipo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTCodTipo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTCodTipo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTCodTipo.setEnabled(false);
         jTCodTipo.addActionListener(new java.awt.event.ActionListener() {

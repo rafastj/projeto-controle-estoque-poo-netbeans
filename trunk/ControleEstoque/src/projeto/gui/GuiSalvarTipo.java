@@ -57,7 +57,11 @@ public class GuiSalvarTipo extends javax.swing.JDialog {
         jTDesTip = new JTextField();
         jTDesTip.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
-                if ((!Character.isLetter(e.getKeyChar())) && (e.getKeyChar() != e.VK_SPACE)){
+                if(e.isControlDown()){
+                    jTDesTip.setText(null);
+                    JOptionPane.showMessageDialog(null, "Copiar Desativado");
+                }
+                else if ((!Character.isLetter(e.getKeyChar())) && (e.getKeyChar() != e.VK_SPACE)){
                     e.consume();
                 }
             }
