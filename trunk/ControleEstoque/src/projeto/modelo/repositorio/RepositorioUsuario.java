@@ -76,7 +76,7 @@ public class RepositorioUsuario implements IRepositorioUsuario {
     @Override
     public void alterar(Usuario us) throws RepositorioException, ConexaoException {
         Connection c = g.conectar();
-        String sqlAlterar = "UPDATE Usuarios set (?,?) WHERE funcionarios_Codigo (?)";
+        String sqlAlterar = "UPDATE Usuarios set Usuarios_Login = ?,Usuarios_Senha = ? WHERE funcionarios_Codigo = ?";
         try {
             java.sql.PreparedStatement pstm = c.prepareStatement(sqlAlterar);
             pstm.setString(1, us.getUsuarios_Login());
