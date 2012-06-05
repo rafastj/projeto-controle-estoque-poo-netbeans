@@ -95,7 +95,7 @@ public class RepositorioUsuario implements IRepositorioUsuario {
     public Usuario consultar(int funcionarios_Codigo) throws ConexaoException, RepositorioException {
         Usuario us = null;
         Connection c = g.conectar();
-        String sqlConsulta = "SELECT us.funcionarios_Codigo,us.usuarios_Login,us.usuarios_Senha FROM Usuarios AS us WHERE (us.funcionarios_Codigo like ? )";
+        String sqlConsulta = "SELECT us.funcionarios_Codigo,us.usuarios_Login,us.usuarios_Senha FROM Usuarios AS us WHERE (us.funcionarios_Codigo = ? )";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsulta);
             pstm.setInt(1, '%' + funcionarios_Codigo + '%');
