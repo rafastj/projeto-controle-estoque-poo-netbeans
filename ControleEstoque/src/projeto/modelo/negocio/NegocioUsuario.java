@@ -39,10 +39,10 @@ public class NegocioUsuario {
         if (us.getFuncionarios_Codigo() <= 0) {
             throw new GeralException("Digite o código do usuário!");
         }
-        if (us.getUsuarios_Login() == null) {
+        if (us.getUsuarios_Login().equals("")) {
             throw new GeralException("Informe o Login!");
         }
-        if (us.getUsuarios_Senha() == null) {
+        if (us.getUsuarios_Senha().equals("")) {
             throw new GeralException("Informe a Senha!");
         }
         try {
