@@ -161,34 +161,24 @@ public class NegocioMarca {
      * @throws GeralException
      */
     public void alterar(Marca m) throws GeralException {
-        //validação dos campos no próprio método
-
-        //validação da seleção da narca do  produto
-        if (m.getMarcas_Codigo() <= 0) {
-            throw new GeralException("Marca não informada!");
-        }
-
-        //validação da descricao
-        if (m.getMarcas_Descricao() == null) {
-            throw new GeralException("Marca da Descrição não informada!");
-        }
-
-        try {
+       try {
 
             Marca mconsul = rep.consultarMarcas(m.getMarcas_Codigo());
-            if (mconsul == null) {
-                throw new GeralException("Marca não existe!");
+            if (mconsul != null) {
+                Marca mconsul1 = rep.consultarMarcas(m.getMarcas_Descricao());
+                if (mconsul1 != null) {
+                    throw new GeralException("Marca já cadastrado!");
+                }
             }
-
             rep.alterar(m);
-
+            throw new GeralException("Marca alterada com sucesso!");
+            
         } catch (RepositorioException ex) {
             throw new GeralException("Felipe fez algo de errado!");
         } catch (ConexaoException ex) {
             throw new GeralException("O banco de dados não está acessível!");
         }
     }
-
     /**
      * Verificar os dados antes de consultar a lista
      */
