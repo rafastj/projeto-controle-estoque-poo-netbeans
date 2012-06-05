@@ -22,7 +22,10 @@ public class GuiLogin extends javax.swing.JFrame {
      */
     public GuiLogin() {
         initComponents();
-        setLocationRelativeTo(null);//mostra no centro da tela
+       java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();   
+        int componentWidth = this.getWidth();   
+        int componentHeight = this.getHeight();   
+        this.setBounds((screenSize.width-componentWidth)/2, (screenSize.height-componentHeight)/2, componentWidth, componentHeight);   //mostra no centro da tela
     }
 
     /**
@@ -42,6 +45,8 @@ public class GuiLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Autenticação...");
+        setResizable(false);
+        setUndecorated(true);
 
         jLabel1.setText("Login.:");
 
@@ -89,7 +94,7 @@ public class GuiLogin extends javax.swing.JFrame {
         getAccessibleContext().setAccessibleParent(this);
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-351)/2, (screenSize.height-133)/2, 351, 133);
+        setBounds((screenSize.width-335)/2, (screenSize.height-95)/2, 335, 95);
     }// </editor-fold>//GEN-END:initComponents
 
     private void acessoLiberado() {
@@ -99,6 +104,8 @@ public class GuiLogin extends javax.swing.JFrame {
 
         //criar o objeto do Menu
         GuiMenu tMenu = new GuiMenu();
+        setLocationRelativeTo( null ); 
+
 
         //chamar o Menu
         tMenu.setVisible(true);
