@@ -5,12 +5,14 @@
 package projeto.gui;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.Funcionario;
 import projeto.modelo.to.Usuario;
 
 /**
@@ -187,6 +189,20 @@ public class GuiUsuario extends javax.swing.JFrame {
     private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
         // TODO add your handling code here:
         GuiUsuarioNovo us = new GuiUsuarioNovo();
+        
+        Funcionario fu = new Funcionario();
+        ArrayList<Funcionario> listafu;
+        
+        try{
+            listafu = (ArrayList<Funcionario>) fachada.listarTodosFuncionario();
+            for (Iterator<Funcionario> it = listafu.iterator(); it.hasNext();){
+                fu = it.next();
+            us.jCoFuncionarioBox.addItem(fu.getFuncionarios_Nome());
+            }
+    }catch (GeralException ex){
+        JOptionPane.showMessageDialog(null,ex.getMessage());
+    }
+        //chama a GUI Novo Usuário
         us.setVisible(true);
     }//GEN-LAST:event_jbNovoActionPerformed
 
