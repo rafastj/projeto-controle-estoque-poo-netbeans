@@ -4,8 +4,6 @@
  */
 package projeto.gui;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
@@ -18,17 +16,17 @@ import projeto.modelo.to.Tipo;
  *
  * @author diego
  */
-public class GuiProdutoAlterar extends javax.swing.JFrame {
-
+public class GuiProdutoAlterar extends javax.swing.JDialog {
+    
     Fachada fachada = new Fachada();
     private GuiProduto guiPro;
     int produtoCodigo;
     /**
      * Creates new form GuiProdutoAlterar
      */
-    public GuiProdutoAlterar() {
+    public GuiProdutoAlterar(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        guiPro = new GuiProduto();//objeto do GuiProduto
         setLocationRelativeTo(null);//mostra no centro da tela  
     }
 
@@ -41,59 +39,40 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDescricaoField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jValorUnitarioField = new javax.swing.JFormattedTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jQtdeField = new javax.swing.JTextField();
-        jSegmentoBox = new javax.swing.JComboBox();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTipoBox = new javax.swing.JComboBox();
-        jLabel6 = new javax.swing.JLabel();
         jMarcaBox = new javax.swing.JComboBox();
-        jbAlterar = new javax.swing.JButton();
-        jSegmentoField = new javax.swing.JTextField();
-        jTipoField = new javax.swing.JTextField();
-        jMarcaField = new javax.swing.JTextField();
+        jTipoBox = new javax.swing.JComboBox();
+        jSegmentoBox = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jMarcaField = new javax.swing.JTextField();
+        jTipoField = new javax.swing.JTextField();
+        jSegmentoField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jValorUnitarioField = new javax.swing.JFormattedTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jQtdeField = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jDescricaoField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jbAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Alterar Produto");
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-        });
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
-            }
-        });
 
-        jLabel2.setText("Descrição.:");
+        jLabel7.setText("Alterar para.:");
 
-        jValorUnitarioField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
+        jLabel8.setText("Alterar para.:");
 
-        jLabel3.setText("Valor Unitário R$.:");
+        jLabel9.setText("Alterar para.:");
 
-        jLabel4.setText("Quantidade.:");
+        jMarcaField.setBackground(new java.awt.Color(204, 204, 204));
+        jMarcaField.setEditable(false);
 
-        jLabel1.setText("Segmento.:");
-
-        jLabel5.setText("Tipo.:");
-
-        jLabel6.setText("Marca.:");
-
-        jbAlterar.setText("Alterar");
-        jbAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAlterarActionPerformed(evt);
-            }
-        });
+        jTipoField.setBackground(new java.awt.Color(204, 204, 204));
+        jTipoField.setEditable(false);
 
         jSegmentoField.setBackground(new java.awt.Color(204, 204, 204));
         jSegmentoField.setEditable(false);
@@ -103,41 +82,44 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
             }
         });
 
-        jTipoField.setBackground(new java.awt.Color(204, 204, 204));
-        jTipoField.setEditable(false);
+        jLabel1.setText("Segmento.:");
 
-        jMarcaField.setBackground(new java.awt.Color(204, 204, 204));
-        jMarcaField.setEditable(false);
+        jLabel5.setText("Tipo.:");
 
-        jLabel7.setText("Alterar para.:");
+        jLabel6.setText("Marca.:");
 
-        jLabel8.setText("Alterar para.:");
+        jValorUnitarioField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
 
-        jLabel9.setText("Alterar para.:");
+        jLabel3.setText("Valor Unitário R$.:");
+
+        jLabel4.setText("Quantidade.:");
+
+        jLabel2.setText("Descrição.:");
+
+        jbAlterar.setText("Alterar");
+        jbAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAlterarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDescricaoField)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jValorUnitarioField, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jQtdeField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 183, Short.MAX_VALUE)))
-                        .addGap(19, 19, 19))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jValorUnitarioField, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jQtdeField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -147,23 +129,25 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTipoField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                            .addComponent(jTipoField, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSegmentoField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jMarcaField))
+                            .addComponent(jMarcaField, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTipoBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jSegmentoBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jMarcaBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbAlterar)
-                        .addGap(8, 8, 8))))
+                            .addComponent(jMarcaBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jDescricaoField, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,12 +157,14 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addComponent(jDescricaoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jQtdeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jValorUnitarioField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jQtdeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jValorUnitarioField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4))
+                    .addComponent(jbAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jSegmentoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,14 +180,17 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jMarcaBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbAlterar)
                     .addComponent(jMarcaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jSegmentoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSegmentoFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jSegmentoFieldActionPerformed
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
         // TODO add your handling code here:    
@@ -209,11 +198,11 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
         try {
             //preparando o novo produto para ser salvo no DAO
             Produto pAlterar = new Produto();
-            
-            
+
+
             //recebe o codigo do produto
             pAlterar.setProdutos_Codigo(produtoCodigo);
-            
+
             //pegando o codigo do segmento selecionado
             Segmento sgsalvar = fachada.consultarSegmentos((String) jSegmentoBox.getSelectedItem());
             pAlterar.setSegmentos_Codigo(sgsalvar.getSegmentos_Codigo());
@@ -232,8 +221,8 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
             String converterValor = converterValorReal(jValorUnitarioField.getText());
             pAlterar.setProdutos_ValorVenda(Double.parseDouble(converterValor));
             pAlterar.setProdutos_Quantidade(Integer.parseInt(jQtdeField.getText()));
-            
-            
+
+
             //CHAMAR O DAO ALTERAR
             fachada.alterarProduto(pAlterar);
 
@@ -244,18 +233,6 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_jbAlterarActionPerformed
-
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        // TODO add your handling code here:   
-    }//GEN-LAST:event_formComponentShown
-
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formWindowClosed
-
-    private void jSegmentoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSegmentoFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jSegmentoFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,13 +266,20 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
         //</editor-fold>
 
         /*
-         * Create and display the form
+         * Create and display the dialog
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
-            @Override
             public void run() {
-                new GuiProdutoAlterar().setVisible(true);
+                GuiProdutoAlterar dialog = new GuiProdutoAlterar(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -320,8 +304,8 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
     public javax.swing.JFormattedTextField jValorUnitarioField;
     private javax.swing.JButton jbAlterar;
     // End of variables declaration//GEN-END:variables
- 
-  //CONVERTE O VALOR DOUBLE PARA SALVAR DO BD
+
+      //CONVERTE O VALOR DOUBLE PARA SALVAR DO BD
     private String converterValorReal(String valorx){
         String valorConvertido = "";
         
@@ -338,4 +322,5 @@ public class GuiProdutoAlterar extends javax.swing.JFrame {
         return valorConvertido;
     }   
     
+//fim    
 }

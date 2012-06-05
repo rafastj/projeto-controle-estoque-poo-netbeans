@@ -406,7 +406,7 @@ public class GuiMenu extends javax.swing.JFrame {
     private void jMenuItemNovoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoProdutoActionPerformed
         // TODO add your handling code here:
                 //CHAMADA DA GUI PRODUTO
-        GuiProduto gProduto = new GuiProduto();//criei o objeto
+        GuiProduto gProduto = new GuiProduto(this, rootPaneCheckingEnabled);//criei o objeto
 
         gProduto.setVisible(true);//chamei o objeto    
     }//GEN-LAST:event_jMenuItemNovoProdutoActionPerformed

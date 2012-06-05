@@ -1,3 +1,7 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package projeto.gui;
 
 import java.awt.event.KeyEvent;
@@ -14,18 +18,19 @@ import projeto.modelo.to.Tipo;
 
 /**
  *
- * @author diego Silva
+ * @author diego
  */
-    public class GuiProduto extends javax.swing.JFrame {
-
+public class GuiProduto extends javax.swing.JDialog {
+    
+    
     ArrayList<Produto> listaProduto = null;
     
-    public static Fachada fachada = new Fachada();    
-
+    Fachada fachada = new Fachada();   
     /**
      * Creates new form GuiProduto
      */
-    public GuiProduto() {
+    public GuiProduto(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);//mostra no centro da tela  
     }
@@ -39,12 +44,6 @@ import projeto.modelo.to.Tipo;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jbNovo = new javax.swing.JButton();
-        jbAlterar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtabelaProduto = new javax.swing.JTable();
-        jbApagar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jcDescricaoField = new javax.swing.JTextField();
@@ -55,88 +54,21 @@ import projeto.modelo.to.Tipo;
         jTipoBox = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         jMarcaBox = new javax.swing.JComboBox();
+        jbNovo = new javax.swing.JButton();
+        jbAlterar = new javax.swing.JButton();
+        jbApagar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtabelaProduto = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Produto");
-        setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+        setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 formWindowGainedFocus(evt);
             }
             public void windowLostFocus(java.awt.event.WindowEvent evt) {
-            }
-        });
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-        });
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
-            }
-        });
-
-        jbNovo.setText("Novo");
-        jbNovo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbNovoActionPerformed(evt);
-            }
-        });
-
-        jbAlterar.setText("Alterar");
-        jbAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAlterarActionPerformed(evt);
-            }
-        });
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.setToolTipText("");
-
-        jtabelaProduto.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Descrição", "Valor Unit.", "Qtde", "Marca", "Tipo", "Segmento"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jtabelaProduto.setEditingColumn(0);
-        jtabelaProduto.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jtabelaProduto.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jtabelaProduto);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
-        );
-
-        jbApagar.setText("Excluir");
-        jbApagar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbApagarActionPerformed(evt);
             }
         });
 
@@ -191,16 +123,16 @@ import projeto.modelo.to.Tipo;
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jMarcaBox, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jMarcaBox, 0, 148, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTipoBox, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTipoBox, 0, 148, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSegmentoBox, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addComponent(jSegmentoBox, 0, 148, Short.MAX_VALUE)
+                        .addGap(31, 31, 31))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -230,6 +162,73 @@ import projeto.modelo.to.Tipo;
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jbNovo.setText("Novo");
+        jbNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNovoActionPerformed(evt);
+            }
+        });
+
+        jbAlterar.setText("Alterar");
+        jbAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAlterarActionPerformed(evt);
+            }
+        });
+
+        jbApagar.setText("Excluir");
+        jbApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbApagarActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setToolTipText("");
+
+        jtabelaProduto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Descrição", "Valor Unit.", "Qtde", "Marca", "Tipo", "Segmento"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtabelaProduto.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jtabelaProduto);
+        jtabelaProduto.getColumnModel().getColumn(0).setResizable(false);
+        jtabelaProduto.getColumnModel().getColumn(1).setResizable(false);
+        jtabelaProduto.getColumnModel().getColumn(2).setResizable(false);
+        jtabelaProduto.getColumnModel().getColumn(3).setResizable(false);
+        jtabelaProduto.getColumnModel().getColumn(4).setResizable(false);
+        jtabelaProduto.getColumnModel().getColumn(5).setResizable(false);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -237,14 +236,14 @@ import projeto.modelo.to.Tipo;
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jbNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jbAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -252,49 +251,135 @@ import projeto.modelo.to.Tipo;
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbNovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbAlterar)
                         .addGap(13, 13, 13)
-                        .addComponent(jbApagar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jbApagar))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-702)/2, (screenSize.height-542)/2, 702, 542);
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+    private void jcDescricaoFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jcDescricaoFieldKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_formWindowClosed
-
-    private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
-        // TODO add your handling code here:
-        GuiProdutoNovo gpnovo = new GuiProdutoNovo();
-        gpnovo.setVisible(true);
-    }//GEN-LAST:event_jbNovoActionPerformed
-
-    private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        // TODO add your handling code here:
-    }                                       
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            pesquisarDescricao();
+        }
+    }//GEN-LAST:event_jcDescricaoFieldKeyPressed
 
     private void jconsulDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jconsulDescricaoActionPerformed
         // TODO add your handling code here:  
         pesquisarDescricao();
     }//GEN-LAST:event_jconsulDescricaoActionPerformed
 
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+    private void jSegmentoBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSegmentoBoxActionPerformed
         // TODO add your handling code here:
-        atualizarFiltro();
-        
-        //MOSTRAR TODOS OS REGISTRO DE PRODUTOS
-        atualizarJTabela();
-    }//GEN-LAST:event_formComponentShown
+        pesquisarSegmento((String) jSegmentoBox.getSelectedItem());
+    }//GEN-LAST:event_jSegmentoBoxActionPerformed
+
+    private void jTipoBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTipoBoxActionPerformed
+        // TODO add your handling code here:
+        pesquisarTipo((String) jTipoBox.getSelectedItem());
+    }//GEN-LAST:event_jTipoBoxActionPerformed
+
+    private void jMarcaBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMarcaBoxActionPerformed
+        // TODO add your handling code here:
+        pesquisarMarca((String) jMarcaBox.getSelectedItem());//joga a descrição da marca selecionada
+    }//GEN-LAST:event_jMarcaBoxActionPerformed
+
+    private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
+        // TODO add your handling code here:
+        GuiProdutoNovo gpnovo = new GuiProdutoNovo(null, rootPaneCheckingEnabled);
+        gpnovo.setVisible(true);
+    }//GEN-LAST:event_jbNovoActionPerformed
+
+    private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
+        // TODO add your handling code here:
+        try {
+            //crio o objeto Produto Alterado         
+            GuiProdutoAlterar gpAlterar = new GuiProdutoAlterar(null, rootPaneCheckingEnabled);
+
+
+            //LISTA DO SEGMENTO
+            Segmento sg;
+            ArrayList<Segmento> listasg;
+            try {
+                //Lista dos os segmentos
+                listasg = (ArrayList<Segmento>) fachada.listarSegmentos("");
+                for (Iterator<Segmento> it = listasg.iterator(); it.hasNext();) {
+                    sg = it.next();
+                    gpAlterar.jSegmentoBox.addItem(sg.getSegmentos_Descricao());
+                }
+            } catch (GeralException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+            //LISTAR OS TIPOS
+            Tipo tp;
+            ArrayList<Tipo> listatp;
+            try {
+                listatp = (ArrayList<Tipo>) fachada.listarTipo();
+                for (Iterator<Tipo> it = listatp.iterator(); it.hasNext();) {
+                    tp = it.next();
+                    gpAlterar.jTipoBox.addItem(tp.getTipos_Descricao());
+                }
+            } catch (GeralException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+            //LISTAR MARCA
+            Marca ma;
+            ArrayList<Marca> listama;
+            try {
+                listama = (ArrayList<Marca>) fachada.listarMarca();
+                for (Iterator<Marca> it = listama.iterator(); it.hasNext();) {
+                    ma = it.next();
+                    gpAlterar.jMarcaBox.addItem(ma.getMarcas_Descricao());
+                }
+            } catch (GeralException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+
+
+
+            //pegar o objeto selecionado
+            Produto p = pSelecionado();
+
+
+            gpAlterar.jDescricaoField.setText(p.getProdutos_Descricao());
+            //recebe a conversão de double para string incluindo no formato Moeda
+            String valorVenda = formaMoeda(p.getProdutos_ValorVenda());
+            gpAlterar.jValorUnitarioField.setText(valorVenda);
+            gpAlterar.jQtdeField.setText(String.valueOf(p.getProdutos_Quantidade()));
+            gpAlterar.jSegmentoField.setText(p.getSegmentos().getSegmentos_Descricao());
+            gpAlterar.jSegmentoBox.setSelectedItem(p.getSegmentos().getSegmentos_Descricao());//seta o segmento do Produto
+            gpAlterar.jTipoField.setText(p.getTipo().getTipos_Descricao());
+            gpAlterar.jTipoBox.setSelectedItem(p.getTipo().getTipos_Descricao());//seta o tipo de Produto
+            gpAlterar.jMarcaField.setText(p.getMarcas().getMarcas_Descricao());
+            gpAlterar.jMarcaBox.setSelectedItem(p.getMarcas().getMarcas_Descricao());
+
+            try {
+                //antes de abrir lança o codigo desse produto selecionado
+                Produto pconsul = fachada.consultarProduto(p.getProdutos_Descricao());
+
+                //Codigo do produto lançado para um Inteiro publico em GuiProdutoAlterarOLD
+                gpAlterar.produtoCodigo = pconsul.getProdutos_Codigo();
+
+            } catch (GeralException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+
+            //chama o jframe produto alterar
+            gpAlterar.setVisible(true);
+
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione o produto!");
+        }
+    }//GEN-LAST:event_jbAlterarActionPerformed
 
     private void jbApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbApagarActionPerformed
         // TODO add your handling code here:
@@ -322,135 +407,13 @@ import projeto.modelo.to.Tipo;
         }
     }//GEN-LAST:event_jbApagarActionPerformed
 
-    private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
-        try{
-       //crio o objeto Produto Alterado         
-       GuiProdutoAlterar gpAlterar = new GuiProdutoAlterar();
-
-            
-       //LISTA DO SEGMENTO
-       Segmento sg;
-       ArrayList<Segmento> listasg;
-	try{
-		//Lista dos os segmentos
-		listasg = (ArrayList<Segmento>)fachada.listarSegmentos("");
-		for(Iterator<Segmento> it = listasg.iterator(); it.hasNext();){
-                    sg = it.next();
-                    gpAlterar.jSegmentoBox.addItem(sg.getSegmentos_Descricao());	
-		}
-	}catch (GeralException ex){
-		JOptionPane.showMessageDialog(null, ex.getMessage());
-	}
-        //LISTAR OS TIPOS
-        Tipo tp;
-        ArrayList<Tipo> listatp;
-        try{
-                listatp = (ArrayList<Tipo>) fachada.listarTipo();
-                for(Iterator<Tipo> it = listatp.iterator(); it.hasNext();){
-                    tp = it.next();
-                    gpAlterar.jTipoBox.addItem(tp.getTipos_Descricao());
-                }
-        }catch (GeralException ex){
-		JOptionPane.showMessageDialog(null, ex.getMessage());
-	}
-        //LISTAR MARCA
-        Marca ma;
-        ArrayList<Marca> listama;
-        try{
-                listama = (ArrayList<Marca>) fachada.listarMarca();
-                for(Iterator<Marca> it = listama.iterator(); it.hasNext();){
-                    ma = it.next();
-                    gpAlterar.jMarcaBox.addItem(ma.getMarcas_Descricao());
-                }
-        }catch (GeralException ex){
-		JOptionPane.showMessageDialog(null, ex.getMessage());
-	}
-            
-            
-            
-            //pegar o objeto selecionado
-            Produto p = pSelecionado();
-            
-            
-            gpAlterar.jDescricaoField.setText(p.getProdutos_Descricao());
-            //recebe a conversão de double para string incluindo no formato Moeda
-            String valorVenda = formaMoeda(p.getProdutos_ValorVenda());
-            gpAlterar.jValorUnitarioField.setText( valorVenda );
-            gpAlterar.jQtdeField.setText(String.valueOf(p.getProdutos_Quantidade()));
-            gpAlterar.jSegmentoField.setText(p.getSegmentos().getSegmentos_Descricao());
-            gpAlterar.jSegmentoBox.setSelectedItem(p.getSegmentos().getSegmentos_Descricao());//seta o segmento do Produto
-            gpAlterar.jTipoField.setText(p.getTipo().getTipos_Descricao());
-            gpAlterar.jTipoBox.setSelectedItem(p.getTipo().getTipos_Descricao());//seta o tipo de Produto
-            gpAlterar.jMarcaField.setText(p.getMarcas().getMarcas_Descricao());
-            gpAlterar.jMarcaBox.setSelectedItem(p.getMarcas().getMarcas_Descricao());
-           
-            try{
-            //antes de abrir lança o codigo desse produto selecionado
-            Produto pconsul = fachada.consultarProduto(p.getProdutos_Descricao());
-            
-            //Codigo do produto lançado para um Inteiro publico em GuiProdutoAlterar
-            gpAlterar.produtoCodigo = pconsul.getProdutos_Codigo();
-            
-            }catch(GeralException ex){
-                JOptionPane.showMessageDialog(null,ex.getMessage());
-            }
- 
-            //chama o jframe produto alterar
-            gpAlterar.setVisible(true);
-                        
-        } catch(ArrayIndexOutOfBoundsException ex){
-            JOptionPane.showMessageDialog(null, "Selecione o produto!");
-        }
-    }//GEN-LAST:event_jbAlterarActionPerformed
-
-        private void jMarcaBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMarcaBoxActionPerformed
-            // TODO add your handling code here:
-            pesquisarMarca((String) jMarcaBox.getSelectedItem());//joga a descrição da marca selecionada
-        }//GEN-LAST:event_jMarcaBoxActionPerformed
-
-        private void jTipoBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTipoBoxActionPerformed
-            // TODO add your handling code here:
-            pesquisarTipo((String) jTipoBox.getSelectedItem() );
-        }//GEN-LAST:event_jTipoBoxActionPerformed
-
-        private void jSegmentoBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSegmentoBoxActionPerformed
-            // TODO add your handling code here:
-            pesquisarSegmento((String) jSegmentoBox.getSelectedItem());
-        }//GEN-LAST:event_jSegmentoBoxActionPerformed
-
-        private void jcDescricaoFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jcDescricaoFieldKeyPressed
-            // TODO add your handling code here:
-             if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                  pesquisarDescricao();
-            }  
-        }//GEN-LAST:event_jcDescricaoFieldKeyPressed
-
-        private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-            // TODO add your handling code here:
-            //PROFESSOR AJUDA!
-            atualizarTabela();//atualizar a tabela
-        }//GEN-LAST:event_formWindowGainedFocus
-    
-    //CONVERTE O VALOR DOUBLE PARA SALVAR DO BD
-    private String converterValorReal(String valorx) {
-        String valorConvertido = "";
-
-        for (int i = 0, x = 1; i < valorx.length(); i++, x++) {
-
-            if (valorx.substring(i, x).equals(",")) {
-
-                valorConvertido = valorConvertido + ".";
-
-            } else if (!valorx.substring(i, x).equals(".")) {
-
-                valorConvertido = valorConvertido + valorx.substring(i, x);
-
-            }
-        }
-
-        return valorConvertido;
-    }
+        atualizarFiltro();
+        
+        //MOSTRAR TODOS OS REGISTRO DE PRODUTOS
+        atualizarTabela();
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
@@ -484,18 +447,22 @@ import projeto.modelo.to.Tipo;
         //</editor-fold>
 
         /*
-         * Create and display the form
+         * Create and display the dialog
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
-           // @Override
             public void run() {
-                new GuiProduto().setVisible(true);
+                GuiProduto dialog = new GuiProduto(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
-        /**
-         * Metodo no mão
-         */
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -516,7 +483,7 @@ import projeto.modelo.to.Tipo;
     private javax.swing.JTable jtabelaProduto;
     // End of variables declaration//GEN-END:variables
 
-   
+    
     private DefaultTableModel geramodelo(ArrayList<Produto> listaProduto) {
         DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Descrição","Valor Unit.","Qtde","Marca","Tipo","Segmento"},0){
             
@@ -552,16 +519,6 @@ import projeto.modelo.to.Tipo;
     private String formaMoeda (double valorMoeda){
         java.text.DecimalFormat df = new java.text.DecimalFormat("###,###,##0.00");
         return df.format(valorMoeda);
-    }
-    
-    private void atualizarJTabela(){
-        try {
-            listaProduto = (ArrayList<Produto>) fachada.listaProdutoTudo();
-        } catch (GeralException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-        DefaultTableModel modelo = geramodelo(listaProduto);
-        jtabelaProduto.setModel(modelo); 
     }
 
     public Produto pSelecionado(){
@@ -663,5 +620,23 @@ import projeto.modelo.to.Tipo;
 	}
     }
     
-//fim    
+     //CONVERTE O VALOR DOUBLE PARA SALVAR DO BD
+    private String converterValorReal(String valorx) {
+        String valorConvertido = "";
+
+        for (int i = 0, x = 1; i < valorx.length(); i++, x++) {
+
+            if (valorx.substring(i, x).equals(",")) {
+
+                valorConvertido = valorConvertido + ".";
+
+            } else if (!valorx.substring(i, x).equals(".")) {
+
+                valorConvertido = valorConvertido + valorx.substring(i, x);
+            }
+        }
+        return valorConvertido;
+    }
+    
+    //fim
 }

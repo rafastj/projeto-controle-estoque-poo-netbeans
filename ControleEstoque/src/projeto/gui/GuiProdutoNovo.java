@@ -4,14 +4,9 @@
  */
 package projeto.gui;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.text.MaskFormatter;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Marca;
@@ -23,23 +18,21 @@ import projeto.modelo.to.Tipo;
  *
  * @author diego
  */
-public class GuiProdutoNovo extends javax.swing.JFrame {
-
-    public static Fachada fachada = new Fachada();
+public class GuiProdutoNovo extends javax.swing.JDialog {
     
-    private GuiProduto guiPro = new GuiProduto();
-
+    
+    Fachada fachada = new Fachada();
+    
+    private GuiProduto guiPro = new GuiProduto(null, rootPaneCheckingEnabled);
+    
     /**
      * Creates new form GuiProdutoNovo
      */
-    public GuiProdutoNovo() {
+    public GuiProdutoNovo(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        setLocationRelativeTo(null);//mostra no centro da tela  
+         setLocationRelativeTo(null);//mostra no centro da tela  
         jDescricaoField.requestFocus();//setar o focu na descrição
-    }
-
-    GuiProdutoNovo(GuiProduto aThis, boolean rootPaneCheckingEnabled) {
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 
     /**
@@ -51,42 +44,31 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jSegmentoBox = new javax.swing.JComboBox();
-        jLabel2 = new javax.swing.JLabel();
-        jDescricaoField = new javax.swing.JTextField();
-        jTipoBox = new javax.swing.JComboBox();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jMarcaBox = new javax.swing.JComboBox();
+        jbSalvar = new javax.swing.JButton();
+        jTipoBox = new javax.swing.JComboBox();
+        jSegmentoBox = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
+        jValorUnitarioField = new projeto.modelo.componente.ValorReal();
         jLabel3 = new javax.swing.JLabel();
         jQtdeField = new projeto.modelo.componente.SoNumero();
-        jbSalvar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jValorUnitarioField = new projeto.modelo.componente.ValorReal();
+        jDescricaoField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Novo Produto");
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
             }
         });
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
-            }
-        });
-
-        jLabel1.setText("Segmento.:");
-
-        jLabel2.setText("Descrição.:");
-
-        jLabel5.setText("Tipo.:");
 
         jLabel6.setText("Marca.:");
-
-        jLabel3.setText("Valor Unitário R$.:");
 
         jbSalvar.setText("Salvar");
         jbSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -95,46 +77,51 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Segmento.:");
+
+        jLabel3.setText("Valor Unitário R$.:");
+
         jLabel4.setText("Quantidade.:");
+
+        jLabel2.setText("Descrição.:");
+
+        jLabel5.setText("Tipo.:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDescricaoField, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                            .addComponent(jDescricaoField, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                            .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jValorUnitarioField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jQtdeField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(19, 19, 19))
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jValorUnitarioField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jQtdeField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(13, 13, 13))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(9, 9, 9)
                                 .addComponent(jLabel1))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTipoBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 176, Short.MAX_VALUE)
+                            .addComponent(jTipoBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jSegmentoBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jMarcaBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6))))
+                        .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +136,7 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
                     .addComponent(jQtdeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(jValorUnitarioField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jSegmentoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -162,16 +149,15 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jMarcaBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbSalvar))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-370)/2, (screenSize.height-266)/2, 370, 266);
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
         // TODO add your handling code here:    
-        
+
         try {
             //preparando o novo produto para ser salvo no DAO
             Produto pSalvar = new Produto();
@@ -204,47 +190,11 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-
     }//GEN-LAST:event_jbSalvarActionPerformed
 
-    //CONVERTE O VALOR DOUBLE PARA SALVAR DO BD
-    private String converterValorReal(String valorx) {
-        String valorConvertido = "";
-
-        for (int i = 0, x = 1; i < valorx.length(); i++, x++) {
-
-            if (valorx.substring(i, x).equals(",")) {
-
-                valorConvertido = valorConvertido + ".";
-
-            } else if (!valorx.substring(i, x).equals(".")) {
-
-                valorConvertido = valorConvertido + valorx.substring(i, x);
-
-            }
-        }
-
-        return valorConvertido;
-    }
-
-    // LIMPAR OS CAMPOS DO PRODUTO  
-    private void limparTodosCampos() {
-        //limpar os comboboxs
-        jSegmentoBox.removeAllItems();
-        jTipoBox.removeAllItems();
-        jMarcaBox.removeAllItems();
-        //limpar os edits
-        jDescricaoField.setText("");
-        jValorUnitarioField.setText("");
-        jQtdeField.setText("");
-    }
-
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
-
-        jDescricaoField.grabFocus();//setar o focul
-
-        //LISTA DO SEGMENTO
+         //LISTA DO SEGMENTO
         Segmento sg;
         ArrayList<Segmento> listasg;
         try {
@@ -281,17 +231,12 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-    }//GEN-LAST:event_formComponentShown
-
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // TODO add your handling code here:
-        guiPro.atualizarTabela();
-    }//GEN-LAST:event_formWindowClosed
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) { 
+    public static void main(String args[]) {
         /*
          * Set the Nimbus look and feel
          */
@@ -320,13 +265,20 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
         //</editor-fold>
 
         /*
-         * Create and display the form
+         * Create and display the dialog
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
-            @Override
             public void run() {
-                new GuiProdutoNovo().setVisible(true);
+                GuiProdutoNovo dialog = new GuiProdutoNovo(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -345,20 +297,39 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
     private javax.swing.JTextField jValorUnitarioField;
     private javax.swing.JButton jbSalvar;
     // End of variables declaration//GEN-END:variables
+
     
-    private void caracteresSelecionados(){
-        try{
-            javax.swing.text.MaskFormatter data = new
-                    javax.swing.text.MaskFormatter("0,1,2,3,4,5,6,7,8,9,',','.'");
-            jQtdeField = new javax.swing.JFormattedTextField(data);
-            
-        
-    }   catch(Exception ex){
-    JOptionPane.showMessageDialog(null, "DEU PAU");
+    
+    //CONVERTE O VALOR DOUBLE PARA SALVAR DO BD
+    private String converterValorReal(String valorx) {
+        String valorConvertido = "";
+
+        for (int i = 0, x = 1; i < valorx.length(); i++, x++) {
+
+            if (valorx.substring(i, x).equals(",")) {
+
+                valorConvertido = valorConvertido + ".";
+
+            } else if (!valorx.substring(i, x).equals(".")) {
+
+                valorConvertido = valorConvertido + valorx.substring(i, x);
+            }
+        }
+        return valorConvertido;
     }
-}    
- 
+    
+    
+    // LIMPAR OS CAMPOS DO PRODUTO  
+    private void limparTodosCampos() {
+        //limpar os comboboxs
+        jSegmentoBox.removeAllItems();
+        jTipoBox.removeAllItems();
+        jMarcaBox.removeAllItems();
+        //limpar os edits
+        jDescricaoField.setText("");
+        jValorUnitarioField.setText("");
+        jQtdeField.setText("");
+    }
     
     //fim
-
 }

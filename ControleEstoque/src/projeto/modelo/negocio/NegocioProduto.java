@@ -261,6 +261,7 @@ public class NegocioProduto {
             throw new GeralException("Descrição do produto não informada");
         }
         try {
+            
             lista = (ArrayList<Produto>) new RepositorioProduto().listarDescicao(produtos_Descricao);
 
         } catch (RepositorioException ex) {
