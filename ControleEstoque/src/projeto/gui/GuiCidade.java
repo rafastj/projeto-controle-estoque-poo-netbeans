@@ -156,7 +156,7 @@ public class GuiCidade extends javax.swing.JDialog {
 
         jPanelLista.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista das cidades"));
 
-        jButtonSalvar.setText("Novo");
+        jButtonSalvar.setText("Salvar");
         jButtonSalvar.setToolTipText("Salvar nova cidade");
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,11 +258,12 @@ public class GuiCidade extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        limparCampos();
-        atualizarTabelaCidade();
-        GuiCidadeNova cdSalvar = new GuiCidadeNova();
-        cdSalvar.setVisible(true);
-        atualizarTabelaCidade();
+        //limparCampos();
+        //atualizarTabelaCidade();
+        //GuiCidadeNova cdSalvar = new GuiCidadeNova();
+        //cdSalvar.setVisible(true);
+        //atualizarTabelaCidade();
+        salvarCidade();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
@@ -293,6 +294,18 @@ public class GuiCidade extends javax.swing.JDialog {
         atualizarTabelaCidade();
     }//GEN-LAST:event_formWindowGainedFocus
 
+    private void salvarCidade() {
+        String cdSalvar;
+        Cidade cd;
+        try {
+            cdSalvar = jTextFieldCidade.getText();
+            cd = new Cidade(cdSalvar.trim());
+            fachada.salvarCidade(cd);
+        } catch (GeralException ex) {
+            dispose();
+        }
+    }
+    
     /**
      * Método que filtra a lista pelo nome da cidade informada;
      */
@@ -399,7 +412,7 @@ public class GuiCidade extends javax.swing.JDialog {
         return modelo;
     }
     
-    private void limparCampos() {
+    public static void limparCampos() {
         jTextFieldCidade.requestFocus();
         jTextFieldCidade.setText("");
     }
@@ -411,7 +424,7 @@ public class GuiCidade extends javax.swing.JDialog {
     private javax.swing.JPanel jPanelLista;
     private javax.swing.JScrollPane jScrollPaneListaCidades;
     private static javax.swing.JTable jTableListaCidade;
-    private javax.swing.JTextField jTextFieldCidade;
+    private static javax.swing.JTextField jTextFieldCidade;
     private java.awt.Label labelCidade;
     // End of variables declaration//GEN-END:variables
 }
