@@ -13,7 +13,7 @@ public class ValidaCampo {
      * Método para Validação de CNPJ
      *
      * @param str_cnpj
-     * @return
+     * @return Método responsável por validar o CNPJ.
      */
     public static boolean validaCNPJ(String str_cnpj) {
         if (!str_cnpj.substring(0, 1).equals("")) {
