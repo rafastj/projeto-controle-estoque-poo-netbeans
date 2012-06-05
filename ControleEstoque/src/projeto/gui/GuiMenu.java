@@ -376,10 +376,10 @@ public class GuiMenu extends javax.swing.JFrame {
     private void jMenuItemLogoffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLogoffActionPerformed
         // TODO add your handling code here:
         //errosenha();
-        //errologin();
         initComponents();
         jMenuBarra.setVisible(false);
         jPGuiLogin.setVisible(true);
+        jLoginField.requestFocus();
     }//GEN-LAST:event_jMenuItemLogoffActionPerformed
 
     private void jMenuItemNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoUsuarioActionPerformed
