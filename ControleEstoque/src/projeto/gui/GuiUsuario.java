@@ -239,10 +239,10 @@ public class GuiUsuario extends javax.swing.JFrame {
             if (resposta == JOptionPane.YES_OPTION) {
 
                 //consulta a descrição do produto selecionado
-                Usuario usconsul = fachada.consultarUsuario(us.getFuncionarios_Nome());
+                Usuario usconsul = fachada.consultarUsuario(us.getFuncionarios_Codigo());
 
                 if (usconsul != null) {       //seta o codigo do produto selecionado da consulta
-                    fachada.excluirProduto(usconsul.getFuncionarios_Codigo());
+                    fachada.excluirUsuario(usconsul.getFuncionarios_Codigo());
                     //atualizarTabela();//atalizar a tabela
                 }
             }
