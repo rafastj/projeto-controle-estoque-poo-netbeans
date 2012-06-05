@@ -230,4 +230,19 @@ public class NegocioUsuario {
         }
         return lista;
     }
+    
+    public Collection<Usuario> listarTodosUsuario() throws GeralException {
+
+        ArrayList<Usuario> lista;
+
+        try {
+            lista = (ArrayList<Usuario>) new RepositorioUsuario().listarTodosUsuario();
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Erro de programação!");
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível!");
+        }
+        return lista;
+    }
 }

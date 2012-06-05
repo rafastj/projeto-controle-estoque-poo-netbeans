@@ -80,4 +80,6 @@ public interface IRepositorioUsuario {
      * @throws RepositorioException
      */
     public Collection<Usuario> listar(String funcionarios_Nome) throws ConexaoException, RepositorioException;
+    
+    public Collection<Usuario> listarTodosUsuario() throws ConexaoException, RepositorioException;
 }

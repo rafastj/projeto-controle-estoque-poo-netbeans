@@ -5,7 +5,10 @@
 package projeto.gui;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Usuario;
@@ -17,6 +20,7 @@ import projeto.modelo.to.Usuario;
 public class GuiUsuario extends javax.swing.JFrame {
 
     ArrayList<Usuario> listaUsuario = null;
+    
     
     public static Fachada fachada = new Fachada(); 
     /**
@@ -43,7 +47,7 @@ public class GuiUsuario extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtListarUsuario = new javax.swing.JTable();
-        jbSalvar = new javax.swing.JButton();
+        jbNovo = new javax.swing.JButton();
         jbAlterar = new javax.swing.JButton();
         jbExcluir = new javax.swing.JButton();
 
@@ -101,10 +105,10 @@ public class GuiUsuario extends javax.swing.JFrame {
         jtListarUsuario.setShowVerticalLines(false);
         jScrollPane1.setViewportView(jtListarUsuario);
 
-        jbSalvar.setText("Salvar");
-        jbSalvar.addActionListener(new java.awt.event.ActionListener() {
+        jbNovo.setText("Novo");
+        jbNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbSalvarActionPerformed(evt);
+                jbNovoActionPerformed(evt);
             }
         });
 
@@ -131,7 +135,7 @@ public class GuiUsuario extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jbSalvar)
+                    .addComponent(jbNovo)
                     .addComponent(jbAlterar)
                     .addComponent(jbExcluir)))
         );
@@ -139,7 +143,7 @@ public class GuiUsuario extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(jbSalvar)
+                .addComponent(jbNovo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbAlterar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -173,16 +177,44 @@ public class GuiUsuario extends javax.swing.JFrame {
         setBounds((screenSize.width-502)/2, (screenSize.height-448)/2, 502, 448);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
+    private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
         // TODO add your handling code here:
         GuiUsuarioNovo us = new GuiUsuarioNovo();
         us.setVisible(true);
-    }//GEN-LAST:event_jbSalvarActionPerformed
+    }//GEN-LAST:event_jbNovoActionPerformed
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
         // TODO add your handling code here:
-        GuiUsuarioAlterar us = new GuiUsuarioAlterar();
-        us.setVisible(true);
+        try{
+        GuiUsuarioAlterar usalterar = new GuiUsuarioAlterar();
+        
+        
+         //pegar o objeto selecionado
+            Usuario us = usSelecionado();
+            
+            usalterar.JcLoginUsuario2.setText(us.getUsuarios_Login());
+            usalterar.JcSenhaUsuario2.setText(us.getUsuarios_Senha());
+            
+            
+            try {
+                Usuario codUsuario = fachada.consultarUsuario(us.getFuncionarios_Nome());
+                
+                usalterar.alterUsuario.setFuncionarios_Codigo(codUsuario.getFuncionarios_Codigo());
+                usalterar.alterUsuario.setUsuarios_Login(codUsuario.getUsuarios_Login());
+                usalterar.alterUsuario.setUsuarios_Senha(codUsuario.getUsuarios_Senha());
+                
+            } catch (GeralException ex) {
+                Logger.getLogger(GuiFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+        
+        
+        usalterar.setVisible(true);
+         
+        } catch(ArrayIndexOutOfBoundsException ex){
+            JOptionPane.showMessageDialog(null, "Selecione o Usuário!");
+        }
     }//GEN-LAST:event_jbAlterarActionPerformed
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
@@ -262,7 +294,45 @@ public class GuiUsuario extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbAlterar;
     private javax.swing.JButton jbExcluir;
-    private javax.swing.JButton jbSalvar;
+    private javax.swing.JButton jbNovo;
     private javax.swing.JTable jtListarUsuario;
     // End of variables declaration//GEN-END:variables
+
+    public Usuario usSelecionado(){
+        Usuario us = listaUsuario.get(jtListarUsuario.getSelectedRow());
+        return us;
+    }
+    
+    private DefaultTableModel geramodelo(ArrayList<Usuario> listaUsuarios) {
+       DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Funcionario", "Login"}, 0) {
+
+            public boolean isCellEditable(int rowIndex, int mColIndex) {
+                return false;
+            }
+       };
+        //modelo.addColumn("Funcionario");
+       // modelo.addColumn("Login");
+       
+
+        ArrayList<String> valores;
+        int i = 0;
+        for (Usuario us : listaUsuarios) {
+            valores = new ArrayList<String>();
+            valores.add(us.getFuncionarios_Nome());
+            valores.add(us.getUsuarios_Login());            
+            modelo.insertRow(i, valores.toArray());
+            i++;
+        }
+        return modelo;
+    }
+    
+    private void atualizarJTabela(){
+        try {
+            listaUsuario = (ArrayList<Usuario>) fachada.listarTodosUsuario();
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        DefaultTableModel modelo = geramodelo(listaUsuario);
+        jtListarUsuario.setModel(modelo); 
+    }
 }

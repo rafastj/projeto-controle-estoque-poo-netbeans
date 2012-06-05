@@ -22,7 +22,7 @@ public class GuiFuncionarioAlterar extends javax.swing.JFrame {
     
     Funcionario alterFuncionario = new Funcionario();
     
-    private GuiFuncionario guiFu;
+    private GuiFuncionario guiFu = null;
     /**
      * Creates new form GuiFuncionarioAlterar
      */

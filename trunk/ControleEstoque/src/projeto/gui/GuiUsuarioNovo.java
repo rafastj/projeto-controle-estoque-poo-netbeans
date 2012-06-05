@@ -17,6 +17,8 @@ public class GuiUsuarioNovo extends javax.swing.JFrame {
 
     public static Fachada fachada = new Fachada();
     
+    Usuario usSalvar = new Usuario();
+    
     private GuiUsuario guiUs = new GuiUsuario();
     /**
      * Creates new form GuiUsuarioNovo
@@ -129,19 +131,7 @@ public class GuiUsuarioNovo extends javax.swing.JFrame {
 
     private void JbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbSalvarActionPerformed
         // TODO add your handling code here:
-        try{
-            Usuario usSalvar = new Usuario();
-           
-            Usuario ussalvar = fachada.consultarUsuario((String) JcNomeUsuario.getSelectedText());
-            usSalvar.setFuncionarios_Nome(ussalvar.getFuncionarios_Nome());            
-                     
-            fachada.salvarUsuario(ussalvar);
-            JOptionPane.showMessageDialog(null, "Usuario Salvo!");
-            dispose();
-                     
-        }catch(GeralException ex){
-            JOptionPane.showMessageDialog(null, ex.getMessage());            
-        }
+        salvarUsuario();
         
     }//GEN-LAST:event_JbSalvarActionPerformed
 
@@ -196,4 +186,17 @@ public class GuiUsuarioNovo extends javax.swing.JFrame {
     private javax.swing.JLabel JlSenhaUsuario;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-}
+
+    private void salvarUsuario() {
+        try{
+        usSalvar.setFuncionarios_Nome(JcNomeUsuario.getText());
+        usSalvar.setUsuarios_Login(JcLoginUsuario.getText());
+        usSalvar.setUsuarios_Senha(JcSenhaUsuario.getText());
+        //Funcionario fu = new Funcionario (int funcionario_Codigo, int enderecos_Codigo, String funcionarios_Nome, String funcionarios_NumeroResidencia);
+        fachada.salvarUsuario(usSalvar);
+    }catch (GeralException ex){
+        JOptionPane.showMessageDialog(null, ex.getMessage());
+    }
+    }
+ }
+

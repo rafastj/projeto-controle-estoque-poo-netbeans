@@ -571,6 +571,10 @@ public class Fachada {
     public Collection<Usuario> listarUsuario(String funcionarios_Nome) throws GeralException {
         return rnUsuario.listar(funcionarios_Nome);
     }
+    
+    public Collection<Usuario> listarTodosUsuario() throws GeralException {
+        return rnUsuario.listarTodosUsuario();
+    }
 
     /**
      * Salvar Funcionario!
