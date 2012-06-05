@@ -4,9 +4,12 @@
  */
 package projeto.gui;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.Funcionario;
 import projeto.modelo.to.Usuario;
 
 /**
@@ -39,14 +42,19 @@ public class GuiUsuarioNovo extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         JlNomeusuario = new javax.swing.JLabel();
-        JcNomeUsuario = new javax.swing.JTextField();
         JlLoginUsuario = new javax.swing.JLabel();
         JcLoginUsuario = new javax.swing.JTextField();
         JlSenhaUsuario = new javax.swing.JLabel();
         JcSenhaUsuario = new javax.swing.JTextField();
         JbSalvar = new javax.swing.JButton();
+        jCoFuncionarioBox = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         JlNomeusuario.setText("Nome usuário.:");
 
@@ -76,13 +84,13 @@ public class GuiUsuarioNovo extends javax.swing.JFrame {
                                 .addComponent(JcSenhaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(JlLoginUsuario)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(JcLoginUsuario))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(JlNomeusuario)
                                     .addGap(18, 18, 18)
-                                    .addComponent(JcNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jCoFuncionarioBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(JlLoginUsuario)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(JcLoginUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 42, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -95,7 +103,7 @@ public class GuiUsuarioNovo extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JlNomeusuario)
-                    .addComponent(JcNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCoFuncionarioBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JlLoginUsuario)
@@ -134,6 +142,21 @@ public class GuiUsuarioNovo extends javax.swing.JFrame {
         salvarUsuario();
         
     }//GEN-LAST:event_JbSalvarActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        Funcionario fu = null;
+        ArrayList<Funcionario> listafu;
+        
+        try{
+            listafu = (ArrayList<Funcionario>) fachada.listarTodosFuncionario();
+            for (Iterator<Funcionario> it = listafu.iterator(); it.hasNext();)
+                fu = it.next();
+            jCoFuncionarioBox.addItem(fu.getFuncionarios_Nome());
+    }catch (GeralException ex){
+        JOptionPane.showMessageDialog(null,ex.getMessage());
+    }
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
@@ -179,17 +202,17 @@ public class GuiUsuarioNovo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbSalvar;
     private javax.swing.JTextField JcLoginUsuario;
-    private javax.swing.JTextField JcNomeUsuario;
     private javax.swing.JTextField JcSenhaUsuario;
     private javax.swing.JLabel JlLoginUsuario;
     private javax.swing.JLabel JlNomeusuario;
     private javax.swing.JLabel JlSenhaUsuario;
+    private javax.swing.JComboBox jCoFuncionarioBox;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
     private void salvarUsuario() {
         try{
-        usSalvar.setFuncionarios_Nome(JcNomeUsuario.getText());
+        usSalvar.setFuncionarios_Nome((String)jCoFuncionarioBox.getSelectedItem());
         usSalvar.setUsuarios_Login(JcLoginUsuario.getText());
         usSalvar.setUsuarios_Senha(JcSenhaUsuario.getText());
         //Funcionario fu = new Funcionario (int funcionario_Codigo, int enderecos_Codigo, String funcionarios_Nome, String funcionarios_NumeroResidencia);
