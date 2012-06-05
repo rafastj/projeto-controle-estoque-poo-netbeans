@@ -93,7 +93,7 @@ public class NegocioUsuario {
      */
     public Usuario consultar(String funcionarios_Nome) throws GeralException {
         Usuario us = null;
-        if ((funcionarios_Nome == null) || (funcionarios_Nome.equals(""))) {
+        if (funcionarios_Nome.equals("")) {
             throw new GeralException("Digite o nome do Usuário!");
         }
         try {
