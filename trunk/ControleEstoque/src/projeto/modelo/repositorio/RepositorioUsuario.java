@@ -26,7 +26,7 @@ public class RepositorioUsuario implements IRepositorioUsuario {
     @Override
     public void salvar(Usuario us) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
-        String sqlSalvar = "INSERT INTO usuario(funcionarios_Codigo,usuarios_Login,usuarios_Senha) VALUES(?,?,?)";
+        String sqlSalvar = "INSERT INTO usuarios(funcionarios_Codigo,usuarios_Login,usuarios_Senha) VALUES(?,?,?)";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlSalvar);
             pstm.setInt(1, us.getFuncionarios_Codigo());
@@ -98,7 +98,7 @@ public class RepositorioUsuario implements IRepositorioUsuario {
         String sqlConsulta = "SELECT us.funcionarios_Codigo,us.usuarios_Login,us.usuarios_Senha FROM Usuarios AS us WHERE (us.funcionarios_Codigo = ? )";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsulta);
-            pstm.setInt(1, '%' + funcionarios_Codigo + '%');
+            pstm.setInt(1, funcionarios_Codigo );
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
                 us = new Usuario();
@@ -189,14 +189,15 @@ public class RepositorioUsuario implements IRepositorioUsuario {
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
         Usuario us;
         Connection c = g.conectar();
-        String sqlLista = "SELECT funcionarios_Codigo,usuarios_Login FROM Usuarios";
+        String sqlLista = "SELECT us.funcionarios_Codigo, f.funcionarios_Nome,us.usuarios_Login FROM Usuarios AS us INNER JOIN Funcionarios as f ON f.funcionarios_Codigo = us.Funcionarios_Codigo order by f.funcionarios_Nome";
         try {
             Statement stm = c.createStatement();
             ResultSet rs = stm.executeQuery(sqlLista);
             while (rs.next()) {
                 us = new Usuario();
-                us.setFuncionarios_Codigo(rs.getInt("funcionarios_Codigo"));
-                us.setUsuarios_Login(rs.getString("usuarios_Login"));                
+                us.setFuncionarios_Codigo(rs.getInt("us.funcionarios_Codigo"));
+                us.getFuncionarios().setFuncionarios_Nome(rs.getString("f.funcionarios_Nome"));
+                us.setUsuarios_Login(rs.getString("us.usuarios_Login"));            
                 lista.add(us);
             }
             return lista;

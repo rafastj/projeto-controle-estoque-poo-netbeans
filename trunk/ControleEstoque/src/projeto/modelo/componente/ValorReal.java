@@ -4,7 +4,9 @@
  */
 package projeto.modelo.componente;
 
+import java.text.DecimalFormat;
 import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
@@ -14,9 +16,7 @@ import javax.swing.text.PlainDocument;
  *
  * @author diego
  */
-public class ValorReal extends JFormattedTextField{
-    
-    private static final long serialVersionUID = 1L;
+public class ValorReal extends JTextField{ 
     
     public ValorReal(){
         super();
@@ -36,7 +36,7 @@ public class ValorReal extends JFormattedTextField{
         private static final long serialVersionUID = 1L;  
   
         @Override
-        public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {  
+        public void insertString (int offs, String str, AttributeSet a) throws BadLocationException {  
               if (str == null) return;  
 
               for (int i = 0; i < str.length(); i++) {

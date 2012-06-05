@@ -4,9 +4,14 @@
  */
 package projeto.gui;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Marca;
@@ -55,10 +60,10 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jMarcaBox = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
-        jValorUnitarioField = new javax.swing.JFormattedTextField();
         jQtdeField = new projeto.modelo.componente.SoNumero();
         jbSalvar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jValorUnitarioField = new projeto.modelo.componente.ValorReal();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Novo Produto");
@@ -82,10 +87,6 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
         jLabel6.setText("Marca.:");
 
         jLabel3.setText("Valor Unitário R$.:");
-
-        jValorUnitarioField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.##"))));
-        jValorUnitarioField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jValorUnitarioField.setToolTipText("");
 
         jbSalvar.setText("Salvar");
         jbSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -112,8 +113,8 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jValorUnitarioField, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
+                                        .addComponent(jValorUnitarioField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jQtdeField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -146,8 +147,8 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jQtdeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jValorUnitarioField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jValorUnitarioField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -341,7 +342,7 @@ public class GuiProdutoNovo extends javax.swing.JFrame {
     private javax.swing.JTextField jQtdeField;
     private javax.swing.JComboBox jSegmentoBox;
     private javax.swing.JComboBox jTipoBox;
-    private javax.swing.JFormattedTextField jValorUnitarioField;
+    private javax.swing.JTextField jValorUnitarioField;
     private javax.swing.JButton jbSalvar;
     // End of variables declaration//GEN-END:variables
     

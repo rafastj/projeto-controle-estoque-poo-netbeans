@@ -52,6 +52,13 @@ public class GuiUsuario extends javax.swing.JFrame {
         jbExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtro"));
 
@@ -67,7 +74,7 @@ public class GuiUsuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(JlUsuario)
                 .addGap(18, 18, 18)
-                .addComponent(JcUsuario)
+                .addComponent(JcUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JbPesquisar)
                 .addGap(61, 61, 61))
@@ -148,7 +155,7 @@ public class GuiUsuario extends javax.swing.JFrame {
                 .addComponent(jbAlterar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbExcluir)
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addContainerGap(211, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
         );
 
@@ -192,6 +199,7 @@ public class GuiUsuario extends javax.swing.JFrame {
          //pegar o objeto selecionado
             Usuario us = usSelecionado();
             
+            usalterar.JcNomeUsuario2.setText(us.getFuncionarios().getFuncionarios_Nome());
             usalterar.JcLoginUsuario2.setText(us.getUsuarios_Login());
             usalterar.JcSenhaUsuario2.setText(us.getUsuarios_Senha());
             
@@ -242,6 +250,11 @@ public class GuiUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jbExcluirActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        atualizarJTabela();
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
@@ -318,7 +331,7 @@ public class GuiUsuario extends javax.swing.JFrame {
         int i = 0;
         for (Usuario us : listaUsuarios) {
             valores = new ArrayList<String>();
-            valores.add(us.getFuncionarios_Nome());
+            valores.add(us.getFuncionarios().getFuncionarios_Nome());
             valores.add(us.getUsuarios_Login());            
             modelo.insertRow(i, valores.toArray());
             i++;
