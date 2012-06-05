@@ -184,4 +184,26 @@ public class RepositorioUsuario implements IRepositorioUsuario {
             g.desconectar(c);
         }
     }
+    
+    public Collection<Usuario> listarTodosUsuario() throws ConexaoException, RepositorioException {
+        ArrayList<Usuario> lista = new ArrayList<Usuario>();
+        Usuario us;
+        Connection c = g.conectar();
+        String sqlLista = "SELECT funcionarios_Codigo,usuarios_Login FROM Usuarios";
+        try {
+            Statement stm = c.createStatement();
+            ResultSet rs = stm.executeQuery(sqlLista);
+            while (rs.next()) {
+                us = new Usuario();
+                us.setFuncionarios_Codigo(rs.getInt("funcionarios_Codigo"));
+                us.setUsuarios_Login(rs.getString("usuarios_Login"));                
+                lista.add(us);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar(c);
+        }
+    }
 }

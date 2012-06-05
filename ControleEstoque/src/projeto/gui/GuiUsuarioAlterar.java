@@ -4,6 +4,8 @@
  */
 package projeto.gui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
@@ -16,8 +18,8 @@ import projeto.modelo.to.Usuario;
 public class GuiUsuarioAlterar extends javax.swing.JFrame {
 
     Fachada fachada = new Fachada();
-    private GuiUsuario guiUs;
-    String usuarioNome;
+    Usuario alterUsuario = new Usuario();
+    private GuiUsuario guiUs = null;;
     /**
      * Creates new form GuiUsuarioAlterar
      */
@@ -132,20 +134,21 @@ public class GuiUsuarioAlterar extends javax.swing.JFrame {
 
     private void JbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbAlterarActionPerformed
         // TODO add your handling code here:
-        try{
-            Usuario usAlterar = new Usuario();
+        alterUsuario.setUsuarios_Login(JcLoginUsuario2.getText());
+        alterUsuario.setUsuarios_Senha(JcSenhaUsuario2.getText());
+        
+        
+        try {                     
+            Usuario us = fachada.consultarUsuario(JcNomeUsuario2.getText());
+               alterUsuario.setUsuarios_Login(us.getUsuarios_Login());
+               alterUsuario.setUsuarios_Senha(us.getUsuarios_Senha());
+               
+            fachada.alterarUsuario(alterUsuario);
+            JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
+            dispose();
             
-            usAlterar.setFuncionarios_Nome(usuarioNome);
-            
-            Usuario ussalvar = fachada.consultarUsuario((String) JcNomeUsuario2.getSelectedText());
-            usAlterar.setFuncionarios_Nome(ussalvar.getFuncionarios_Nome());
-            
-            fachada.alterarUsuario(ussalvar);
-            JOptionPane.showMessageDialog(null, "Usuario Alterado!");            
-                     
-        }catch (GeralException ex){
-            
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } catch (GeralException ex) {
+            Logger.getLogger(GuiFuncionarioAlterar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_JbAlterarActionPerformed
 
@@ -192,9 +195,9 @@ public class GuiUsuarioAlterar extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbAlterar;
-    private javax.swing.JTextField JcLoginUsuario2;
-    private javax.swing.JTextField JcNomeUsuario2;
-    private javax.swing.JTextField JcSenhaUsuario2;
+    public javax.swing.JTextField JcLoginUsuario2;
+    public javax.swing.JTextField JcNomeUsuario2;
+    public javax.swing.JTextField JcSenhaUsuario2;
     private javax.swing.JLabel JlLoginUsuario2;
     private javax.swing.JLabel JlNomeusuario2;
     private javax.swing.JLabel JlSenhaUsuario2;

@@ -116,7 +116,7 @@
                   <Component id="jScrollPane1" pref="351" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jbSalvar" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbNovo" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="jbAlterar" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="jbExcluir" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -127,7 +127,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                  <Component id="jbSalvar" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbNovo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jbAlterar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -180,12 +180,12 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jbSalvar">
+        <Component class="javax.swing.JButton" name="jbNovo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Salvar"/>
+            <Property name="text" type="java.lang.String" value="Novo"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSalvarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbNovoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbAlterar">
