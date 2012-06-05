@@ -13,13 +13,8 @@ public class Fornecedor {
     private String fornecedores_RazaoSocial;
     private int fornecedores_NumeroResidencia;
     private int enderecos_Codigo;
-    private String enderecos_CEP;
-    private String enderecos_Logradouro;
-    private int cidades_Codigo;
-    private String cidades_Nome;
     private Endereco endereco = new Endereco();
-    private Cidade cidade = new Cidade();
-    
+        
     public Fornecedor() {
     }
 
@@ -29,10 +24,6 @@ public class Fornecedor {
         this.fornecedores_RazaoSocial = fornecedores_RazaoSocial;
         this.fornecedores_NumeroResidencia = fornecedores_NumeroResidencia;
         this.enderecos_Codigo = enderecos_Codigo;
-        this.enderecos_CEP = enderecos_CEP;
-        this.enderecos_Logradouro = enderecos_Logradouro;
-        this.cidades_Codigo = cidades_Codigo;
-        this.cidades_Nome = cidades_Nome;
     }
 
     public int getFornecedores_Codigo() {
@@ -88,51 +79,11 @@ public class Fornecedor {
         return enderecos_Codigo;
     }
     
-    public Cidade getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(Cidade cidade) {
-        this.cidade = cidade;
-    }
-
-    public int getCidades_Codigo() {
-        return cidades_Codigo;
-    }
-
-    public void setCidades_Codigo(int cidades_Codigo) {
-        this.cidades_Codigo = cidades_Codigo;
-    }
-
-    public String getCidades_Nome() {
-        return cidades_Nome;
-    }
-
-    public void setCidades_Nome(String cidades_Nome) {
-        this.cidades_Nome = cidades_Nome;
-    }
-
     public Endereco getEndereco() {
         return endereco;
     }
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
-    }
-
-    public String getEnderecos_CEP() {
-        return enderecos_CEP;
-    }
-
-    public void setEnderecos_CEP(String enderecos_CEP) {
-        this.enderecos_CEP = enderecos_CEP;
-    }
-
-    public String getEnderecos_Logradouro() {
-        return enderecos_Logradouro;
-    }
-
-    public void setEnderecos_Logradouro(String enderecos_Logradouro) {
-        this.enderecos_Logradouro = enderecos_Logradouro;
     }
 }

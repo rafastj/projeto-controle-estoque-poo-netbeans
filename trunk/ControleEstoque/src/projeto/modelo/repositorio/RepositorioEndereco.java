@@ -82,7 +82,7 @@ public class RepositorioEndereco implements IRepositorioEndereco {
                 end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
-                end.setCidades_Nome(rs.getString("cidades_Nome"));
+                end.getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
             }
         } catch (SQLException e) {
             throw new RepositorioException(e.getMessage());
@@ -143,7 +143,7 @@ public class RepositorioEndereco implements IRepositorioEndereco {
                 end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
-                end.setCidades_Nome(rs.getString("cidades_Nome"));
+                end.getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(end);
             }
             return lista;
@@ -159,7 +159,7 @@ public class RepositorioEndereco implements IRepositorioEndereco {
         ArrayList<Endereco> lista = new ArrayList<Endereco>();
         Endereco end;
         Connection c = g.conectar();
-        String sqlLista = "SELECT end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from Enderecos as end inner join Cidades as cd On end.cidades_Codigo = cd.cidades_Codigo where end.Enderecos_CEP LIKE ? ORDER BY end.enderecos_CEP";
+        String sqlLista = "SELECT end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, end.cidades_Codigo, cd.cidades_Nome from Enderecos as end inner join Cidades as cd On end.cidades_Codigo = cd.cidades_Codigo where end.Enderecos_CEP LIKE ? ORDER BY end.enderecos_CEP";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlLista);
             pstm.setString(1, enderecos_CEP+"%");
@@ -171,7 +171,7 @@ public class RepositorioEndereco implements IRepositorioEndereco {
                 end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
-                end.setCidades_Nome(rs.getString("cidades_Nome"));
+                end.getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(end);
             }
             return lista;
@@ -187,7 +187,7 @@ public class RepositorioEndereco implements IRepositorioEndereco {
         ArrayList<Endereco> lista = new ArrayList<Endereco>();
         Endereco end;
         Connection c = g.conectar();
-        String sqlLista = "SELECT end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from Enderecos as end inner join Cidades as cd On end.cidades_Codigo = cd.cidades_Codigo where end.Enderecos_Logradouro LIKE ? ORDER BY end.enderecos_CEP";
+        String sqlLista = "SELECT end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, end.cidades_Codigo, cd.cidades_Nome from Enderecos as end inner join Cidades as cd On end.cidades_Codigo = cd.cidades_Codigo where end.Enderecos_Logradouro LIKE ? ORDER BY end.enderecos_Logradouro";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlLista);
             pstm.setString(1, "%"+enderecos_Logradouro+"%");
@@ -199,7 +199,7 @@ public class RepositorioEndereco implements IRepositorioEndereco {
                 end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
-                end.setCidades_Nome(rs.getString("cidades_Nome"));
+                end.getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(end);
             }
             return lista;
@@ -215,7 +215,7 @@ public class RepositorioEndereco implements IRepositorioEndereco {
         ArrayList<Endereco> lista = new ArrayList<Endereco>();
         Endereco end;
         Connection c = g.conectar();
-        String sqlLista = "SELECT end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from Enderecos as end inner join Cidades as cd On end.cidades_Codigo = cd.cidades_Codigo where cd.cidades_Nome = ? ORDER BY end.enderecos_CEP";
+        String sqlLista = "SELECT end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, end.cidades_Codigo, cd.cidades_Nome from Enderecos as end inner join Cidades as cd On end.cidades_Codigo = cd.cidades_Codigo where cd.cidades_Nome = ? ORDER BY end.enderecos_CEP";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlLista);
             pstm.setString(1, cidades_Nome);
@@ -227,7 +227,7 @@ public class RepositorioEndereco implements IRepositorioEndereco {
                 end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
-                end.setCidades_Nome(rs.getString("cidades_Nome"));
+                end.getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(end);
             }
             return lista;

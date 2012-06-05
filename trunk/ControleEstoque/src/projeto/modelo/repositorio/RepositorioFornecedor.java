@@ -98,7 +98,7 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
     public Fornecedor consultarRazaoSocial(String fornecedores_RazaoSocial) throws ConexaoException, RepositorioException {
         Fornecedor f = null;
         Connection c = g.conectar();
-        String sqlConsultar = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE FORNECEDORES_RazaoSocial = ?";
+        String sqlConsultar = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, end.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE FORNECEDORES_RazaoSocial = ?";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsultar);
             pstm.setString(1, fornecedores_RazaoSocial);
@@ -111,10 +111,10 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
                 f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
                 f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
                 f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
-                f.setEnderecos_CEP(rs.getString("enderecos_CEP"));
-                f.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
-                f.setCidades_Codigo(rs.getInt("cidades_Codigo"));
-                f.setCidades_Nome(rs.getString("cidades_Nome"));
+                f.getEndereco().setEnderecos_CEP(rs.getString("enderecos_CEP"));
+                f.getEndereco().setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
+                f.getEndereco().setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
             }
         } catch (SQLException e) {
             throw new RepositorioException(e.getMessage());
@@ -128,7 +128,7 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
     public Fornecedor consultarCNPJ(String fornecedores_CNPJ) throws ConexaoException, RepositorioException {
         Fornecedor f = null;
         Connection c = g.conectar();
-        String sqlConsultar = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE FORNECEDORES_CNPJ = ?";
+        String sqlConsultar = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, end.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE FORNECEDORES_CNPJ = ?";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsultar);
             pstm.setString(1, fornecedores_CNPJ);
@@ -141,10 +141,10 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
                 f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
                 f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
                 f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
-                f.setEnderecos_CEP(rs.getString("enderecos_CEP"));
-                f.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
-                f.setCidades_Codigo(rs.getInt("cidades_Codigo"));
-                f.setCidades_Nome(rs.getString("cidades_Nome"));
+                f.getEndereco().setEnderecos_CEP(rs.getString("enderecos_CEP"));
+                f.getEndereco().setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
+                f.getEndereco().setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
             }
         } catch (SQLException e) {
             throw new RepositorioException(e.getMessage());
@@ -159,7 +159,7 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
         ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
         Fornecedor f;
         Connection c = g.conectar();
-        String sqlLista = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo ORDER BY f.fornecedores_CNPJ";
+        String sqlLista = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, end.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo ORDER BY f.fornecedores_CNPJ";
 
         try {
             Statement stm = c.createStatement();
@@ -172,10 +172,10 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
                 f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
                 f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
                 f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
-                f.setEnderecos_CEP(rs.getString("enderecos_CEP"));
-                f.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
-                f.setCidades_Codigo(rs.getInt("cidades_Codigo"));
-                f.setCidades_Nome(rs.getString("cidades_Nome"));
+                f.getEndereco().setEnderecos_CEP(rs.getString("enderecos_CEP"));
+                f.getEndereco().setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
+                f.getEndereco().setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(f);
             }
             return lista;
@@ -191,7 +191,7 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
         ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
         Fornecedor f;
         Connection c = g.conectar();
-        String sqlLista = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE fornecedores_CNPJ LIKE ? ORDER BY f.fornecedores_CNPJ";
+        String sqlLista = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, end.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE fornecedores_CNPJ LIKE ? ORDER BY f.fornecedores_CNPJ";
 
         try {
             PreparedStatement pstm = c.prepareStatement(sqlLista);
@@ -205,10 +205,10 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
                 f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
                 f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
                 f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
-                f.setEnderecos_CEP(rs.getString("enderecos_CEP"));
-                f.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
-                f.setCidades_Codigo(rs.getInt("cidades_Codigo"));
-                f.setCidades_Nome(rs.getString("cidades_Nome"));
+                f.getEndereco().setEnderecos_CEP(rs.getString("enderecos_CEP"));
+                f.getEndereco().setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
+                f.getEndereco().setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(f);
             }
             return lista;
@@ -224,7 +224,7 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
         ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
         Fornecedor f;
         Connection c = g.conectar();
-        String sqlLista = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE fornecedores_RazaoSocial LIKE ? ORDER BY f.fornecedores_CNPJ";
+        String sqlLista = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, end.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE fornecedores_RazaoSocial LIKE ? ORDER BY f.fornecedores_CNPJ";
 
         try {
             PreparedStatement pstm = c.prepareStatement(sqlLista);
@@ -238,10 +238,10 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
                 f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
                 f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
                 f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
-                f.setEnderecos_CEP(rs.getString("enderecos_CEP"));
-                f.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
-                f.setCidades_Codigo(rs.getInt("cidades_Codigo"));
-                f.setCidades_Nome(rs.getString("cidades_Nome"));
+                f.getEndereco().setEnderecos_CEP(rs.getString("enderecos_CEP"));
+                f.getEndereco().setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
+                f.getEndereco().setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(f);
             }
             return lista;
@@ -257,7 +257,7 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
         ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
         Fornecedor f;
         Connection c = g.conectar();
-        String sqlLista = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE enderecos_CEP LIKE ? ORDER BY f.fornecedores_CNPJ";
+        String sqlLista = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, end.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE enderecos_CEP LIKE ? ORDER BY f.fornecedores_CNPJ";
 
         try {
             PreparedStatement pstm = c.prepareStatement(sqlLista);
@@ -271,10 +271,10 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
                 f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
                 f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
                 f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
-                f.setEnderecos_CEP(rs.getString("enderecos_CEP"));
-                f.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
-                f.setCidades_Codigo(rs.getInt("cidades_Codigo"));
-                f.setCidades_Nome(rs.getString("cidades_Nome"));
+                f.getEndereco().setEnderecos_CEP(rs.getString("enderecos_CEP"));
+                f.getEndereco().setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
+                f.getEndereco().setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(f);
             }
             return lista;
@@ -290,7 +290,7 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
         ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
         Fornecedor f;
         Connection c = g.conectar();
-        String sqlLista = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE enderecos_Logradouro LIKE ? ORDER BY f.fornecedores_CNPJ";
+        String sqlLista = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, end.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE enderecos_Logradouro LIKE ? ORDER BY f.fornecedores_CNPJ";
 
         try {
             PreparedStatement pstm = c.prepareStatement(sqlLista);
@@ -304,10 +304,10 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
                 f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
                 f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
                 f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
-                f.setEnderecos_CEP(rs.getString("enderecos_CEP"));
-                f.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
-                f.setCidades_Codigo(rs.getInt("cidades_Codigo"));
-                f.setCidades_Nome(rs.getString("cidades_Nome"));
+                f.getEndereco().setEnderecos_CEP(rs.getString("enderecos_CEP"));
+                f.getEndereco().setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
+                f.getEndereco().setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(f);
             }
             return lista;
@@ -323,7 +323,7 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
         ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
         Fornecedor f;
         Connection c = g.conectar();
-        String sqlLista = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE cidades_Nome = ? ORDER BY f.fornecedores_CNPJ";
+        String sqlLista = "SELECT f.fornecedores_Codigo, f.fornecedores_CNPJ, f.Fornecedores_RazaoSocial, f.fornecedores_NumeroResidencia, end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, end.cidades_Codigo, cd.cidades_Nome from (FORNECEDORES AS f INNER JOIN ENDERECOS AS end ON f.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE cidades_Nome = ? ORDER BY f.fornecedores_CNPJ";
 
         try {
             PreparedStatement pstm = c.prepareStatement(sqlLista);
@@ -337,10 +337,10 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
                 f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
                 f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
                 f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
-                f.setEnderecos_CEP(rs.getString("enderecos_CEP"));
-                f.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
-                f.setCidades_Codigo(rs.getInt("cidades_Codigo"));
-                f.setCidades_Nome(rs.getString("cidades_Nome"));
+                f.getEndereco().setEnderecos_CEP(rs.getString("enderecos_CEP"));
+                f.getEndereco().setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
+                f.getEndereco().setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(f);
             }
             return lista;

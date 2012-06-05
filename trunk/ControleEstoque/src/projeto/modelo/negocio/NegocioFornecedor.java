@@ -49,7 +49,7 @@ public class NegocioFornecedor {
         str_cnpj = str_cnpj.replaceAll(" ", "");
         fornecedores_CNPJ = str_cnpj;
         //Trata o CEP para salvar;
-        str_cep = f.getEnderecos_CEP();
+        str_cep = f.getEndereco().getEnderecos_CEP();
         str_cep = str_cep.replace('-', ' ');
         str_cep = str_cep.replaceAll(" ", "");
         enderecos_CEP = str_cep;
@@ -62,19 +62,19 @@ public class NegocioFornecedor {
             JOptionPane.showMessageDialog(null, "Informe o CEP");
             GuiFornecedorNovo.jFormattedTextFieldEntradaCEP.requestFocus();
         }
-        if ((f.getEnderecos_Logradouro() == null) || (f.getEnderecos_Logradouro().equals(""))){
+        if ((f.getEndereco().getEnderecos_Logradouro() == null) || (f.getEndereco().getEnderecos_Logradouro().equals(""))){
             JOptionPane.showMessageDialog(null, "Informe o Logradouro");
             GuiFornecedorNovo.jTextFieldEntradaLog.requestFocus();
         }
-        if (((f.getFornecedores_RazaoSocial() == null) || (f.getFornecedores_RazaoSocial().equals(""))) || ((enderecos_CEP == null) || (enderecos_CEP.equals(""))) || ((f.getEnderecos_Logradouro() == null) || (f.getEnderecos_Logradouro().equals("")))){
+        if (((f.getFornecedores_RazaoSocial() == null) || (f.getFornecedores_RazaoSocial().equals(""))) || ((enderecos_CEP == null) || (enderecos_CEP.equals(""))) || ((f.getEndereco().getEnderecos_Logradouro() == null) || (f.getEndereco().getEnderecos_Logradouro().equals("")))){
             JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios!");
             GuiFornecedorNovo guiFornecedorNovo = new GuiFornecedorNovo();
             GuiFornecedorNovo.jFormattedTextFieldEntradaCNPJ.setText(fornecedores_CNPJ);
             GuiFornecedorNovo.jTextFieldEntradaRS.setText(f.getFornecedores_RazaoSocial());
             GuiFornecedorNovo.jFormattedTextFieldEntradaCEP.setText(enderecos_CEP);
-            GuiFornecedorNovo.jTextFieldEntradaLog.setText(f.getEnderecos_Logradouro());
+            GuiFornecedorNovo.jTextFieldEntradaLog.setText(f.getEndereco().getEnderecos_Logradouro());
             GuiFornecedorNovo.jTextFieldEntradaNumero.setText(String.valueOf(f.getFornecedores_NumeroResidencia()));
-            GuiFornecedorNovo.jTextFieldCidade.setText(f.getCidades_Nome());
+            GuiFornecedorNovo.jTextFieldCidade.setText(f.getEndereco().getCidade().getCidades_Nome());
             GuiFornecedorNovo.liberarTela();
             guiFornecedorNovo.setVisible(true);
         } else {
