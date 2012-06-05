@@ -45,26 +45,70 @@ public class GuiFormaPagamento extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jTPesq = new javax.swing.JTextField();
-        JlFuncionario = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JtListarFormaPagamentos = new javax.swing.JTable();
         btnAlterarM = new javax.swing.JButton();
         btnSalvarM = new javax.swing.JButton();
         btnExcluirM = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jTPesq = new projeto.modelo.componente.SoStrings();
+        JlFuncionario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("FormaPagamentos");
-        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
-            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
-                formWindowGainedFocus(evt);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        JtListarFormaPagamentos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Codigo", "Descrição"
             }
-            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        JtListarFormaPagamentos.setShowHorizontalLines(false);
+        JtListarFormaPagamentos.setShowVerticalLines(false);
+        JtListarFormaPagamentos.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(JtListarFormaPagamentos);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 376, 180));
+
+        btnAlterarM.setText("Alterar");
+        btnAlterarM.setMaximumSize(new java.awt.Dimension(63, 23));
+        btnAlterarM.setMinimumSize(new java.awt.Dimension(63, 23));
+        btnAlterarM.setPreferredSize(new java.awt.Dimension(63, 23));
+        btnAlterarM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarMActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnAlterarM, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 56, 70, 30));
+
+        btnSalvarM.setText("Novo");
+        btnSalvarM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarMActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnSalvarM, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 20, 70, 30));
+
+        btnExcluirM.setText("Excluir");
+        btnExcluirM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirMActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnExcluirM, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 92, 70, 30));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel1.setPreferredSize(new java.awt.Dimension(480, 82));
@@ -95,65 +139,8 @@ public class GuiFormaPagamento extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jTPesq, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JlFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        JtListarFormaPagamentos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Codigo", "Descrição"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        JtListarFormaPagamentos.setShowHorizontalLines(false);
-        JtListarFormaPagamentos.setShowVerticalLines(false);
-        JtListarFormaPagamentos.getTableHeader().setReorderingAllowed(false);
-        JtListarFormaPagamentos.setUpdateSelectionOnSort(false);
-        JtListarFormaPagamentos.setVerifyInputWhenFocusTarget(false);
-        jScrollPane1.setViewportView(JtListarFormaPagamentos);
-        JtListarFormaPagamentos.getColumnModel().getColumn(0).setResizable(false);
-        JtListarFormaPagamentos.getColumnModel().getColumn(1).setResizable(false);
-
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 376, 180));
-
-        btnAlterarM.setText("Alterar");
-        btnAlterarM.setMaximumSize(new java.awt.Dimension(63, 23));
-        btnAlterarM.setMinimumSize(new java.awt.Dimension(63, 23));
-        btnAlterarM.setPreferredSize(new java.awt.Dimension(63, 23));
-        btnAlterarM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarMActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnAlterarM, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 56, 70, 30));
-
-        btnSalvarM.setText("Novo");
-        btnSalvarM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarMActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnSalvarM, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 20, 70, 30));
-
-        btnExcluirM.setText("Excluir");
-        btnExcluirM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirMActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnExcluirM, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 92, 70, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -353,13 +340,13 @@ public class GuiFormaPagamento extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JlFuncionario;
-    private javax.swing.JTable JtListarFormaPagamentos;
+    public static javax.swing.JTable JtListarFormaPagamentos;
     private javax.swing.JButton btnAlterarM;
     private javax.swing.JButton btnExcluirM;
     private javax.swing.JButton btnSalvarM;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTPesq;
+    public static javax.swing.JTextField jTPesq;
     // End of variables declaration//GEN-END:variables
 }
