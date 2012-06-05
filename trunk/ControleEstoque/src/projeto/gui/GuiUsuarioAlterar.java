@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.Funcionario;
 import projeto.modelo.to.Usuario;
 
 /**
@@ -139,9 +140,10 @@ public class GuiUsuarioAlterar extends javax.swing.JFrame {
         
         
         try {                     
-            Usuario us = fachada.consultarUsuario(JcNomeUsuario2.getText());
-               alterUsuario.setUsuarios_Login(us.getUsuarios_Login());
-               alterUsuario.setUsuarios_Senha(us.getUsuarios_Senha());
+            
+            Funcionario fu = fachada.consultarFuncionario(JcNomeUsuario2.getText());
+            
+            alterUsuario.setFuncionarios_Codigo(fu.getFuncionarios_Codigo());
                
             fachada.alterarUsuario(alterUsuario);
             JOptionPane.showMessageDialog(null, "Alterado com sucesso!");

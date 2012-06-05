@@ -200,6 +200,7 @@ public class GuiUsuario extends javax.swing.JFrame {
             Usuario us = usSelecionado();
             
             usalterar.JcNomeUsuario2.setText(us.getFuncionarios().getFuncionarios_Nome());
+            
             usalterar.JcLoginUsuario2.setText(us.getUsuarios_Login());
             usalterar.JcSenhaUsuario2.setText(us.getUsuarios_Senha());
             
