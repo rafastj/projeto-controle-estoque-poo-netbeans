@@ -53,7 +53,7 @@ public class GuiTipos extends javax.swing.JDialog {
             public void keyTyped(KeyEvent e) {
                 if(e.isControlDown()){
                     jTPesq.setText(null);
-                    JOptionPane.showMessageDialog(null, "Copiar Desativado");
+                    JOptionPane.showMessageDialog(null, "Copiar e Colar Desativado");
                 }
                 else if ((!Character.isLetter(e.getKeyChar())) && (e.getKeyChar() != e.VK_SPACE)){
                     e.consume();
@@ -321,7 +321,7 @@ public class GuiTipos extends javax.swing.JDialog {
                 guiAlterarTiposTeste.setVisible(true);
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
-            JOptionPane.showMessageDialog(null, "Selecione um endereço!");
+            JOptionPane.showMessageDialog(null, "Selecione um Tipo!");
         }
     }
 

@@ -98,8 +98,7 @@ public class NegocioTipo {
             if (t == null) {
 
                 throw new GeralException("Tipo não encontrado");
-            } else {
-            }
+            } 
         } catch (RepositorioException ex) {
             throw new GeralException("Felipe fez algo de errado");
         } catch (ConexaoException ex) {
@@ -178,8 +177,7 @@ public class NegocioTipo {
                 }
             }
             rep.alterar(t);
-            throw new GeralException("Tipo Alterado com Sucesso!");
-
+            throw new GeralException("Tipo alterado com sucesso!");
         } catch (RepositorioException ex) {
             throw new GeralException("Felipe fez algo de errado!");
         } catch (ConexaoException ex) {

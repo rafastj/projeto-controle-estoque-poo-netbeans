@@ -54,7 +54,7 @@ public class GuiMarcas extends javax.swing.JDialog {
             public void keyTyped(KeyEvent e) {
                 if(e.isControlDown()){
                     jTPesq.setText(null);
-                    JOptionPane.showMessageDialog(null, "Copiar Desativado");
+                    JOptionPane.showMessageDialog(null, "Copiar e Colar Desativado");
                 }
                 else if ((!Character.isLetter(e.getKeyChar())) && (e.getKeyChar() != e.VK_SPACE)){
                     e.consume();

@@ -50,7 +50,7 @@ public class GuiAlterarMarca extends javax.swing.JDialog {
             public void keyTyped(KeyEvent e) {
                 if(e.isControlDown()){
                     jTAltMarca.setText(null);
-                    JOptionPane.showMessageDialog(null, "Copiar Desativado");
+                    JOptionPane.showMessageDialog(null, "Copiar e Colar Desativado");
                 }
                 else if ((!Character.isLetter(e.getKeyChar())) && (e.getKeyChar() != e.VK_SPACE)){
                     e.consume();
@@ -182,19 +182,18 @@ public class GuiAlterarMarca extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Favor digitar uma descrição");
             jTAltMarca.setText(null);
         } else {
+            try{
             Marca m = new Marca();
             int marcas_Codigo = Integer.parseInt(jTCodMarca.getText());
             String mAlt = jTAltMarca.getText();
             m.setMarcas_Codigo(marcas_Codigo);
             m.setMarcas_Descricao(mAlt.trim());
-            try {
-                fachada.alterarMarca(m);
-                JOptionPane.showMessageDialog(null, "Marca alterada com sucesso!");
+            fachada.alterarMarca(m);
             } catch (GeralException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
-            dispose();
-        }
+         }
+         dispose();
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed

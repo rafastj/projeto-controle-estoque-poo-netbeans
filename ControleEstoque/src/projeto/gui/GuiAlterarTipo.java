@@ -48,7 +48,7 @@ public class GuiAlterarTipo extends javax.swing.JDialog {
             public void keyTyped(KeyEvent e) {
                 if(e.isControlDown()){
                     jTAltTipo.setText(null);
-                    JOptionPane.showMessageDialog(null, "Copiar Desativado");
+                    JOptionPane.showMessageDialog(null, "Copiar e Colar Desativado");
                 }
                 else if ((!Character.isLetter(e.getKeyChar())) && (e.getKeyChar() != e.VK_SPACE)){
                     e.consume();
@@ -180,20 +180,20 @@ public class GuiAlterarTipo extends javax.swing.JDialog {
         if (tAlterar.equals("")) {
             JOptionPane.showMessageDialog(null, "Favor digitar uma descrição");
             jTAltTipo.setText(null);
-        } else {
+        } 
+        else{
+            try{
             Tipo t = new Tipo();
             int tipos_Codigo = Integer.parseInt(jTCodTipo.getText());
             String tAlt = jTAltTipo.getText();
             t.setTipos_Codigo(tipos_Codigo);
             t.setTipos_Descricao(tAlt.trim());
-            try {
-                fachada.alterarTipo(t);
-                JOptionPane.showMessageDialog(null, "Marca alterada com sucesso!");
+            fachada.alterarTipo(t);
             } catch (GeralException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
-            dispose();
-        }
+         }
+        dispose();
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
