@@ -4,6 +4,7 @@
  */
 package projeto.gui;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,9 +61,20 @@ public class GuiFuncionario extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtro"));
 
+        JcFuncionario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JcFuncionarioKeyPressed(evt);
+            }
+        });
+
         JlFuncionario.setText("Funcionario.:");
 
         JbPesquisar.setText("...");
+        JbPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -72,7 +84,7 @@ public class GuiFuncionario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(JlFuncionario)
                 .addGap(18, 18, 18)
-                .addComponent(JcFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                .addComponent(JcFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JbPesquisar)
                 .addGap(61, 61, 61))
@@ -182,7 +194,7 @@ public class GuiFuncionario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addContainerGap(260, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(102, Short.MAX_VALUE)
@@ -261,6 +273,18 @@ public class GuiFuncionario extends javax.swing.JFrame {
         // TODO add your handling code here:
         atualizarJTabela();
     }//GEN-LAST:event_formComponentShown
+
+    private void JbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbPesquisarActionPerformed
+        // TODO add your handling code here:
+        pesquisarFuncionario();
+    }//GEN-LAST:event_JbPesquisarActionPerformed
+
+    private void JcFuncionarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JcFuncionarioKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            pesquisarFuncionario();
+        }
+    }//GEN-LAST:event_JcFuncionarioKeyPressed
 
     /**
      * @param args the command line arguments
@@ -355,6 +379,16 @@ private DefaultTableModel geramodelo(ArrayList<Funcionario> listaFuncionarios) {
         }
         DefaultTableModel modelo = geramodelo(listaFuncionario);
         JtListarFuncionario.setModel(modelo); 
+    }
+    
+    public void pesquisarFuncionario(){
+         try{
+            listaFuncionario = ( ArrayList<Funcionario>)fachada.listarFuncionario(JcFuncionario.getText());
+        } catch (GeralException ex){
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+          DefaultTableModel modelo = geramodelo(listaFuncionario);
+          JtListarFuncionario.setModel(modelo); 
     }
 
 

@@ -4,6 +4,7 @@
  */
 package projeto.gui;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
@@ -85,6 +86,12 @@ public class GuiMenu extends javax.swing.JFrame {
         jLabel1.setText("Login.:");
 
         jLabel2.setText("Senha.:");
+
+        jPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordFieldKeyPressed(evt);
+            }
+        });
 
         jbAcessar.setText("Acessar");
         jbAcessar.addActionListener(new java.awt.event.ActionListener() {
@@ -337,34 +344,7 @@ public class GuiMenu extends javax.swing.JFrame {
 
     private void jbAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAcessarActionPerformed
         // TODO add your handling code here:
-        //AUTENTICAÇÃO DO LOGIN ADMIN
-        if (jLoginField.getText().equals("000") && jPasswordField.getText().toString().equals("000")) {
-
-            //metodo responsável por libera o acesso ao menu
-            acessoLiberado();
-
-        } else {
-            //AUTENTICAÇÃO DO LOGIN COM DAO
-            try {
-                Usuario userAltenticacao = fachada.consultarUsuario(jLoginField.getText());
-
-                if (userAltenticacao != null) {
-                    if (userAltenticacao.getUsuarios_Senha().equals(jPasswordField.getText().toString())) {
-
-                        //metodo responsável por libera o acesso ao menu
-                        acessoLiberado();
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Senha Incorreta!");
-                        errosenha();
-
-                    }
-                }
-            } catch (GeralException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage());
-                errologin();
-            }
-        }
+        acessar();
         }//GEN-LAST:event_jbAcessarActionPerformed
 
     private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
@@ -465,6 +445,13 @@ public class GuiMenu extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Sistema de controle de estoque.\n\nDesenvolvido por:\n\nBruno Pinheiro\nDaniel Valença\nDiego Pereira\nFelipe Carlos\nSandro Fernandes\nThiago Evoá");
     }//GEN-LAST:event_jMenuItemSobreActionPerformed
 
+    private void jPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            acessar();
+        }
+    }//GEN-LAST:event_jPasswordFieldKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -542,4 +529,35 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JButton jbAcessar;
     // End of variables declaration//GEN-END:variables
+
+    private void acessar(){
+    //AUTENTICAÇÃO DO LOGIN ADMIN
+        if (jLoginField.getText().equals("000") && jPasswordField.getText().toString().equals("000")) {
+
+            //metodo responsável por libera o acesso ao menu
+            acessoLiberado();
+
+        } else {
+            //AUTENTICAÇÃO DO LOGIN COM DAO
+            try {
+                Usuario userAltenticacao = fachada.consultarUsuario(jLoginField.getText());
+
+                if (userAltenticacao != null) {
+                    if (userAltenticacao.getUsuarios_Senha().equals(jPasswordField.getText().toString())) {
+
+                        //metodo responsável por libera o acesso ao menu
+                        acessoLiberado();
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Senha Incorreta!");
+                        errosenha();
+
+                    }
+                }
+            } catch (GeralException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+                errologin();
+            }
+        }
+    }
 }

@@ -168,15 +168,17 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
         ArrayList<Funcionario> lista = new ArrayList<Funcionario>();
         Funcionario fu;
         Connection c = g.conectar();
-        String sqlLista = "SELECT funcionarios_Codigo,enderecos_Codigo,funcionarios_Nome,Funcionarios_NumeroResidencia FROM Funcionarios";
+        String sqlLista = "SELECT fu.funcionarios_Codigo, fu.funcionarios_Nome,e.enderecos_Logradouro,fu.funcionarios_NumeroResidencia FROM Funcionarios AS fu INNER JOIN Enderecos as e ON fu.enderecos_Codigo = e.enderecos_Codigo where fu.funcionarios_nome like ? order by fu.funcionarios_Nome";
         try {
-            Statement stm = c.createStatement();
-            ResultSet rs = stm.executeQuery(sqlLista);
+            PreparedStatement stm = c.prepareStatement(sqlLista);
+            stm.setString(1, "%"+funcionarios_Nome+"%");
+            ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 fu = new Funcionario();
-                fu.setFuncionarios_Codigo(rs.getInt("funcionarios_Codigo"));
-                fu.setFuncionarios_Nome(rs.getString("funcionarios_Nome"));
-                fu.setFuncionarios_NumeroResidencia(rs.getString("funcionarios_NumeroResidencia"));
+                fu.setFuncionarios_Codigo(rs.getInt("fu.funcionarios_Codigo"));
+                fu.setFuncionarios_Nome(rs.getString("fu.funcionarios_Nome"));
+                fu.getEnderecos().setEnderecos_Logradouro(rs.getString("e.enderecos_Logradouro"));
+                fu.setFuncionarios_NumeroResidencia(rs.getString("fu.funcionarios_NumeroResidencia"));
                 lista.add(fu);
             }
             return lista;
