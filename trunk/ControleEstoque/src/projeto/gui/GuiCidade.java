@@ -128,6 +128,7 @@ public class GuiCidade extends javax.swing.JDialog {
 
         labelCidade.setText("Cidade.:");
 
+        jTextFieldCidade.setToolTipText("Digite o nome de uma cidade para salvar ou filtrar na lista.");
         jTextFieldCidade.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextFieldCidadeKeyReleased(evt);

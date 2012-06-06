@@ -38,37 +38,24 @@ public class NegocioCidade {
      * @throws GeralException
      */
     public void salvar(Cidade cd) throws GeralException {
-        int resComCadastro;
-        int resSemCadastro;
         if ((cd.getCidades_Nome() == null) || (cd.getCidades_Nome().equals(""))) {
             JOptionPane.showMessageDialog(null, "Digite o nome da cidade!");
             GuiCidade.limparCampos();
         } else {
             try {
-                double validoString;
-                validoString = Double.parseDouble(cd.getCidades_Nome());
-                JOptionPane.showMessageDialog(null, "Digite apenas o nome da cidade!");
-                GuiCidade.limparCampos();
-            } catch (NumberFormatException x) {
-                try {
-                    Cidade cdConsult = rep.consultar(cd.getCidades_Nome());
-                    if (cdConsult != null) {
-                        resComCadastro = JOptionPane.showConfirmDialog(null, "Cidade já cadastrada!\nDeseja cadastrar outra cidade?", "", JOptionPane.YES_NO_OPTION);
-                        if (resComCadastro == JOptionPane.YES_OPTION) {
-                            GuiCidade.limparCampos();
-                        } else {
-                            throw new GeralException();
-                        }
-                    } else {
-                        rep.salvar(cd);
-                        JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
+                Cidade cdConsult = rep.consultar(cd.getCidades_Nome());
+                if (cdConsult != null) {
+                    JOptionPane.showMessageDialog(null, "Cidade está cadastrada!");
                         GuiCidade.limparCampos();
-                    }
-                } catch (RepositorioException e) {
-                    throw new GeralException("Erro ao tentar salvar!\n Contate o suporte!");
-                } catch (ConexaoException e) {
-                    throw new GeralException("O banco de dados não está acessível no momento!\nContate o suporte!");
+                } else {
+                    rep.salvar(cd);
+                    JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
+                    GuiCidade.limparCampos();
                 }
+            } catch (RepositorioException e) {
+                throw new GeralException("Erro ao tentar salvar!\n Contate o suporte!");
+            } catch (ConexaoException e) {
+                throw new GeralException("O banco de dados não está acessível no momento!\nContate o suporte!");
             }
         }
     }
@@ -155,9 +142,7 @@ public class NegocioCidade {
             if (cd == null) {
                 throw new GeralException("Cidade não está cadastrada!");
             }
-
             rep.excluir(cidades_Nome);
-
         } catch (RepositorioException ex) {
             throw new GeralException("Registro não pode ser excluído!\nMotivo: Existem um ou mais endereços cadastrados para esta cidade.");
         } catch (ConexaoException ex) {
@@ -172,36 +157,24 @@ public class NegocioCidade {
      * @throws GeralException
      */
     public void alterar(Cidade cd) throws GeralException {
-        int resComCadastro;
         if ((cd.getCidades_Nome() == null) || (cd.getCidades_Nome().equals(""))) {
             JOptionPane.showMessageDialog(null, "Digite o nome da cidade!");
             GuiCidadeAlterar.limparCampos();
         } else {
             try {
-                double validoString;
-                validoString = Double.parseDouble(cd.getCidades_Nome());
-                JOptionPane.showMessageDialog(null, "Digite apenas o nome da cidade!");
-                GuiCidadeAlterar.limparCampos();
-            } catch (NumberFormatException x) {
-                try {
-                    Cidade cdConsult = rep.consultar(cd.getCidades_Nome());
-                    if (cdConsult != null) {
-                        resComCadastro = JOptionPane.showConfirmDialog(null, "Cidade já cadastrada!\nDeseja tentar outro nome de cidade?", "", JOptionPane.YES_NO_OPTION);
-                        if (resComCadastro == JOptionPane.YES_OPTION) {
-                            GuiCidadeAlterar.limparCampos();
-                        } else {
-                            throw new GeralException();
-                        }
-                    } else {
-                        rep.alterar(cd);
-                        JOptionPane.showMessageDialog(null, "Registro alterado com sucesso!");
-                        throw new GeralException();
-                    }
-                } catch (RepositorioException e) {
-                    throw new GeralException("Erro ao tentar alterar!\n Contate o suporte!");
-                } catch (ConexaoException e) {
-                    throw new GeralException("O banco de dados não está acessível no momento!\nContate o suporte!");
+                Cidade cdConsult = rep.consultar(cd.getCidades_Nome());
+                if ((cdConsult != null) && (cdConsult.getCidades_Codigo() != cd.getCidades_Codigo())) {
+                    JOptionPane.showMessageDialog(null, "Cidade já cadastrada!");
+                    throw new GeralException();
+                } else {
+                    rep.alterar(cd);
+                    JOptionPane.showMessageDialog(null, "Registro alterado com sucesso!");
+                    throw new GeralException();
                 }
+            } catch (RepositorioException e) {
+                throw new GeralException("Erro ao tentar alterar!\n Contate o suporte!");
+            } catch (ConexaoException e) {
+                throw new GeralException("O banco de dados não está acessível no momento!\nContate o suporte!");
             }
         }
     }
