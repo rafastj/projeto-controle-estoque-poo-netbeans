@@ -451,14 +451,12 @@ public class GuiMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemSobreActionPerformed
 
     private void jPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldKeyPressed
-        // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             acessar();
         }
     }//GEN-LAST:event_jPasswordFieldKeyPressed
 
     private void jbAcessarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jbAcessarKeyPressed
-        // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             acessar();
         }
