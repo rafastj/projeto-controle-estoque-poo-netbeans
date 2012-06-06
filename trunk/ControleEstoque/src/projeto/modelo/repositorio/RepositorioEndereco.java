@@ -57,6 +57,8 @@ public class RepositorioEndereco implements IRepositorioEndereco {
                 end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                end.getCidade().setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                end.getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
             }
         } catch (SQLException e) {
             throw new RepositorioException(e.getMessage());
@@ -82,6 +84,7 @@ public class RepositorioEndereco implements IRepositorioEndereco {
                 end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                end.getCidade().setCidades_Codigo(rs.getInt("cidades_Codigo"));
                 end.getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
             }
         } catch (SQLException e) {
@@ -143,6 +146,7 @@ public class RepositorioEndereco implements IRepositorioEndereco {
                 end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                end.getCidade().setCidades_Codigo(rs.getInt("cidades_Codigo"));
                 end.getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(end);
             }
@@ -171,6 +175,7 @@ public class RepositorioEndereco implements IRepositorioEndereco {
                 end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                end.getCidade().setCidades_Codigo(rs.getInt("cidades_Codigo"));
                 end.getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(end);
             }
@@ -199,6 +204,7 @@ public class RepositorioEndereco implements IRepositorioEndereco {
                 end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                end.getCidade().setCidades_Codigo(rs.getInt("cidades_Codigo"));
                 end.getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(end);
             }
@@ -227,6 +233,7 @@ public class RepositorioEndereco implements IRepositorioEndereco {
                 end.setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 end.setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 end.setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                end.getCidade().setCidades_Codigo(rs.getInt("cidades_Codigo"));
                 end.getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(end);
             }
