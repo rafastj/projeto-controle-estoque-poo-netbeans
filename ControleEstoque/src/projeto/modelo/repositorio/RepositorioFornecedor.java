@@ -111,9 +111,11 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
                 f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
                 f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
                 f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                f.getEndereco().setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
                 f.getEndereco().setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 f.getEndereco().setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 f.getEndereco().setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.getEndereco().getCidade().setCidades_Codigo(rs.getInt("cidades_Codigo"));
                 f.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
             }
         } catch (SQLException e) {
@@ -141,9 +143,11 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
                 f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
                 f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
                 f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                f.getEndereco().setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
                 f.getEndereco().setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 f.getEndereco().setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 f.getEndereco().setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.getEndereco().getCidade().setCidades_Codigo(rs.getInt("cidades_Codigo"));
                 f.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
             }
         } catch (SQLException e) {
@@ -172,9 +176,11 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
                 f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
                 f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
                 f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                f.getEndereco().setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
                 f.getEndereco().setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 f.getEndereco().setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 f.getEndereco().setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.getEndereco().getCidade().setCidades_Codigo(rs.getInt("cidades_Codigo"));
                 f.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(f);
             }
@@ -205,9 +211,11 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
                 f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
                 f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
                 f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                f.getEndereco().setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
                 f.getEndereco().setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 f.getEndereco().setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 f.getEndereco().setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.getEndereco().getCidade().setCidades_Codigo(rs.getInt("cidades_Codigo"));
                 f.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(f);
             }
@@ -238,9 +246,11 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
                 f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
                 f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
                 f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                f.getEndereco().setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
                 f.getEndereco().setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 f.getEndereco().setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 f.getEndereco().setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.getEndereco().getCidade().setCidades_Codigo(rs.getInt("cidades_Codigo"));
                 f.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(f);
             }
@@ -271,9 +281,11 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
                 f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
                 f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
                 f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                f.getEndereco().setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
                 f.getEndereco().setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 f.getEndereco().setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 f.getEndereco().setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.getEndereco().getCidade().setCidades_Codigo(rs.getInt("cidades_Codigo"));
                 f.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(f);
             }
@@ -304,9 +316,11 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
                 f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
                 f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
                 f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                f.getEndereco().setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
                 f.getEndereco().setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 f.getEndereco().setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 f.getEndereco().setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.getEndereco().getCidade().setCidades_Codigo(rs.getInt("cidades_Codigo"));
                 f.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(f);
             }
@@ -337,9 +351,11 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
                 f.setFornecedores_RazaoSocial(rs.getString("fornecedores_RazaoSocial"));
                 f.setFornecedores_NumeroResidencia(rs.getInt("fornecedores_NumeroResidencia"));
                 f.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                f.getEndereco().setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
                 f.getEndereco().setEnderecos_CEP(rs.getString("enderecos_CEP"));
                 f.getEndereco().setEnderecos_Logradouro(rs.getString("enderecos_Logradouro"));
                 f.getEndereco().setCidades_Codigo(rs.getInt("cidades_Codigo"));
+                f.getEndereco().getCidade().setCidades_Codigo(rs.getInt("cidades_Codigo"));
                 f.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_Nome"));
                 lista.add(f);
             }
