@@ -4,6 +4,7 @@
  */
 package projeto.gui;
 
+import java.awt.event.KeyEvent;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Cidade;
@@ -110,6 +111,12 @@ public class GuiCidadeAlterar extends javax.swing.JDialog {
 
         jLabel1.setText("Nova Cidade.:");
 
+        jTextFieldCidadeNova.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldCidadeNovaKeyPressed(evt);
+            }
+        });
+
         jButtonAlterar.setText("Alterar");
         jButtonAlterar.setMaximumSize(new java.awt.Dimension(75, 23));
         jButtonAlterar.setMinimumSize(new java.awt.Dimension(75, 23));
@@ -171,6 +178,12 @@ public class GuiCidadeAlterar extends javax.swing.JDialog {
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         alterarCidade();
     }//GEN-LAST:event_jButtonAlterarActionPerformed
+
+    private void jTextFieldCidadeNovaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCidadeNovaKeyPressed
+    if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            alterarCidade();
+        }
+    }//GEN-LAST:event_jTextFieldCidadeNovaKeyPressed
 
     /**
      * Método que altera um registro selecionado;
