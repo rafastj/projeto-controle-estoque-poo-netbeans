@@ -99,6 +99,11 @@ public class GuiMenu extends javax.swing.JFrame {
                 jbAcessarActionPerformed(evt);
             }
         });
+        jbAcessar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jbAcessarKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPGuiLoginLayout = new javax.swing.GroupLayout(jPGuiLogin);
         jPGuiLogin.setLayout(jPGuiLoginLayout);
@@ -451,6 +456,13 @@ public class GuiMenu extends javax.swing.JFrame {
             acessar();
         }
     }//GEN-LAST:event_jPasswordFieldKeyPressed
+
+    private void jbAcessarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jbAcessarKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            acessar();
+        }
+    }//GEN-LAST:event_jbAcessarKeyPressed
 
     /**
      * @param args the command line arguments
