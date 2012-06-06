@@ -1,5 +1,5 @@
 /**
- *
+ * Pacote modelo
  */
 package projeto.modelo.negocio;
 
@@ -22,7 +22,7 @@ import projeto.modelo.to.Cidade;
 public class NegocioCidade {
 
     private IRepositorioCidade rep;
-        
+
     /**
      * Construtor inicializa o atributo "rep", responsável pela camada de Acesso
      * a Dados;
@@ -34,7 +34,7 @@ public class NegocioCidade {
     /**
      * Verifica e valida os dados antes de salvar
      *
-     * @param cd Cidade
+     * @param cd Objeto do tipo "Cidade"
      * @throws GeralException
      */
     public void salvar(Cidade cd) throws GeralException {
@@ -54,7 +54,7 @@ public class NegocioCidade {
                     Cidade cdConsult = rep.consultar(cd.getCidades_Nome());
                     if (cdConsult != null) {
                         resComCadastro = JOptionPane.showConfirmDialog(null, "Cidade já cadastrada!\nDeseja cadastrar outra cidade?", "", JOptionPane.YES_NO_OPTION);
-                        if(resComCadastro == JOptionPane.YES_OPTION) {
+                        if (resComCadastro == JOptionPane.YES_OPTION) {
                             GuiCidade.limparCampos();
                         } else {
                             throw new GeralException();
@@ -187,7 +187,7 @@ public class NegocioCidade {
                     Cidade cdConsult = rep.consultar(cd.getCidades_Nome());
                     if (cdConsult != null) {
                         resComCadastro = JOptionPane.showConfirmDialog(null, "Cidade já cadastrada!\nDeseja tentar outro nome de cidade?", "", JOptionPane.YES_NO_OPTION);
-                        if(resComCadastro == JOptionPane.YES_OPTION) {
+                        if (resComCadastro == JOptionPane.YES_OPTION) {
                             GuiCidadeAlterar.limparCampos();
                         } else {
                             throw new GeralException();
@@ -206,6 +206,13 @@ public class NegocioCidade {
         }
     }
 
+    /**
+     * Método que cria uma lista com todas as cidades cadastradas no banco de
+     * dados
+     *
+     * @return lista
+     * @throws GeralException
+     */
     public Collection<Cidade> listarTudo() throws GeralException {
         ArrayList<Cidade> lista;
         try {
@@ -218,10 +225,18 @@ public class NegocioCidade {
         }
         return lista;
     }
-    
+
+    /**
+     * Método que cria uma lista com todas as cidades cadastradas no banco de
+     * dados filtrado pelo nome da cidade informado pelo usuário
+     *
+     * @param cidades_Nome
+     * @return
+     * @throws GeralException
+     */
     public Collection<Cidade> listarCidadeNome(String cidades_Nome) throws GeralException {
         ArrayList<Cidade> lista;
-        if (cidades_Nome.equals("")){
+        if (cidades_Nome.equals("")) {
             throw new GeralException("Nome da cidade não informado!");
         }
         try {

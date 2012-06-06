@@ -12,8 +12,8 @@ public class ValidaCampo {
     /**
      * Método para Validação de CNPJ
      *
-     * @param str_cnpj
-     * @return Método responsável por validar o CNPJ.
+     * @param str_cnpj String que representa o CNPJ a ser validado.
+     * @return Retorna "true" ou "false"
      */
     public static boolean validaCNPJ(String str_cnpj) {
         if (!str_cnpj.substring(0, 1).equals("")) {
@@ -67,9 +67,11 @@ public class ValidaCampo {
     /**
      * Método para validação de CPF
      *
-     * @param strCpf
-     * @return
+     * @param strCpf String que representa o CPF a ser validado
+     * @return Retorna verdadeiro se passar na validação ou falso se não
+     * validar.
      */
+    @SuppressWarnings("empty-statement")
     public static boolean ValidaCPF(String strCpf) {
         int d1, d2;
         int digito1, digito2, resto;
