@@ -4,6 +4,7 @@
  */
 package projeto.gui;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -64,9 +65,20 @@ public class GuiUsuario extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtro"));
 
+        JcUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JcUsuarioKeyPressed(evt);
+            }
+        });
+
         JlUsuario.setText("Usuario.:");
 
         JbPesquisar.setText("...");
+        JbPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -143,10 +155,10 @@ public class GuiUsuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
                 .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jbNovo)
-                    .addComponent(jbAlterar)
-                    .addComponent(jbExcluir)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jbAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +169,7 @@ public class GuiUsuario extends javax.swing.JFrame {
                 .addComponent(jbAlterar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbExcluir)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addContainerGap(199, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
         );
 
@@ -258,6 +270,18 @@ public class GuiUsuario extends javax.swing.JFrame {
         atualizarJTabela();
     }//GEN-LAST:event_formWindowGainedFocus
 
+    private void JbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbPesquisarActionPerformed
+        // TODO add your handling code here:
+        pesquisarUsuario();        
+    }//GEN-LAST:event_JbPesquisarActionPerformed
+
+    private void JcUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JcUsuarioKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            pesquisarUsuario();
+        }
+    }//GEN-LAST:event_JcUsuarioKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -349,5 +373,15 @@ public class GuiUsuario extends javax.swing.JFrame {
         }
         DefaultTableModel modelo = geramodelo(listaUsuario);
         jtListarUsuario.setModel(modelo); 
+    }
+    
+    public void pesquisarUsuario(){
+         try{
+            listaUsuario = ( ArrayList<Usuario>)fachada.listarUsuario(JcUsuario.getText());
+        } catch (GeralException ex){
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+          DefaultTableModel modelo = geramodelo(listaUsuario);
+          jtListarUsuario.setModel(modelo); 
     }
 }

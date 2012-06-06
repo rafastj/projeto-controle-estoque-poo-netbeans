@@ -89,6 +89,9 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="JcUsuario">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JcUsuarioKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="JlUsuario">
           <Properties>
@@ -99,6 +102,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbPesquisarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -118,10 +124,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" pref="351" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jbNovo" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbAlterar" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbExcluir" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="jbAlterar" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jbNovo" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jbExcluir" alignment="1" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -135,7 +141,7 @@
                   <Component id="jbAlterar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jbExcluir" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="211" max="32767" attributes="0"/>
+                  <EmptySpace pref="199" max="32767" attributes="0"/>
               </Group>
               <Component id="jScrollPane1" alignment="0" pref="275" max="32767" attributes="0"/>
           </Group>

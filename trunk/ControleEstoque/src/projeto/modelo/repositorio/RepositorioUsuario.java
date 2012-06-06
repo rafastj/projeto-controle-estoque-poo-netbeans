@@ -166,15 +166,16 @@ public class RepositorioUsuario implements IRepositorioUsuario {
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
         Usuario us;
         Connection c = g.conectar();
-        String sqlLista = "SELECT funcionarios_Codigo,usuarios_Login,usuarios_Senha FROM Usuarios";
+        String sqlLista = "SELECT us.funcionarios_Codigo, f.funcionarios_Nome,us.usuarios_Login FROM Usuarios AS us INNER JOIN Funcionarios as f ON f.funcionarios_Codigo = us.Funcionarios_Codigo where f.funcionarios_nome like ? order by f.funcionarios_Nome";
         try {
-            Statement stm = c.createStatement();
-            ResultSet rs = stm.executeQuery(sqlLista);
+            PreparedStatement stm = c.prepareStatement(sqlLista);
+            stm.setString(1, "%"+funcionarios_Nome+"%");
+            ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 us = new Usuario();
-                us.setFuncionarios_Codigo(rs.getInt("funcionarios_Codigo"));
-                us.setUsuarios_Login(rs.getString("usuarios_Login"));
-                us.setUsuarios_Senha(rs.getString("usuarios_Senha"));
+                us.setFuncionarios_Codigo(rs.getInt("us.funcionarios_Codigo"));
+                us.getFuncionarios().setFuncionarios_Nome(rs.getString("f.funcionarios_Nome"));
+                us.setUsuarios_Login(rs.getString("us.usuarios_Login"));            
                 lista.add(us);
             }
             return lista;
