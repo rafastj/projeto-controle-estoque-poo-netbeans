@@ -104,7 +104,7 @@
                           <EmptySpace pref="10" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="JbConsultar" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JbConsultarCPFCNPJ" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -138,7 +138,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="JlCpfCnpj" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="JcCpfCnpj" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JbConsultar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JbConsultarCPFCNPJ" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jFormaPagamentoBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -210,12 +210,12 @@
         </Component>
         <Component class="javax.swing.JTextField" name="JcCpfCnpj">
         </Component>
-        <Component class="javax.swing.JButton" name="JbConsultar">
+        <Component class="javax.swing.JButton" name="JbConsultarCPFCNPJ">
           <Properties>
             <Property name="text" type="java.lang.String" value="Consultar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbConsultarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbConsultarCPFCNPJActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBIncluirNota">

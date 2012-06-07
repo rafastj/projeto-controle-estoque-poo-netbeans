@@ -33,14 +33,14 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
          setLocationRelativeTo(null);//mostra no centro da tela
-         //listarFuncionarios();//todos os funcionarios
-         //listarFormadePagamento();//todas as formas de pagamentos
+         listarFuncionarios();//todos os funcionarios
+         listarFormadePagamento();//todas as formas de pagamentos
          //Obter a data do sistema
          Date d = new Date();
           SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
           jlData.setText(f.format(d));
           //inserir a data na emissão na nota
-        //  nf.setNotasFiscal_DataEmissao(d);
+          nf.setNotasFiscal_DataEmissao(d);
     }
 
     /**
@@ -60,7 +60,7 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         JcCliente = new javax.swing.JTextField();
         JlCpfCnpj = new javax.swing.JLabel();
         JcCpfCnpj = new javax.swing.JTextField();
-        JbConsultar = new javax.swing.JButton();
+        JbConsultarCPFCNPJ = new javax.swing.JButton();
         jBIncluirNota = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -112,10 +112,10 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
 
         JlCpfCnpj.setText("CPF/CNPJ.:");
 
-        JbConsultar.setText("Consultar");
-        JbConsultar.addActionListener(new java.awt.event.ActionListener() {
+        JbConsultarCPFCNPJ.setText("Consultar");
+        JbConsultarCPFCNPJ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JbConsultarActionPerformed(evt);
+                JbConsultarCPFCNPJActionPerformed(evt);
             }
         });
 
@@ -191,16 +191,15 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
                                 .addComponent(JlNumeroNotaFiscal)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(JcNumeroNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(JbConsultar)
+                                .addComponent(JbConsultarCPFCNPJ)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jFormaPagamentoBox, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jfuncionarioBox, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -221,7 +220,7 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JlCpfCnpj)
                     .addComponent(JcCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JbConsultar)
+                    .addComponent(JbConsultarCPFCNPJ)
                     .addComponent(jLabel8)
                     .addComponent(jFormaPagamentoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
@@ -392,9 +391,9 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JbConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbConsultarActionPerformed
+    private void JbConsultarCPFCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbConsultarCPFCNPJActionPerformed
            // TODO add your handling code here:
-       /** if(JcCpfCnpj.getText().length() == 11){
+        if(JcCpfCnpj.getText().length() == 11){
         
         try {
             PessoaFisica pf = fachada.consultarPF_CPF(JcCpfCnpj.getText());
@@ -420,9 +419,8 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         }
             
         }
-        */
         
-    }//GEN-LAST:event_JbConsultarActionPerformed
+    }//GEN-LAST:event_JbConsultarCPFCNPJActionPerformed
 
     private void jBIncluirNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirNotaActionPerformed
         // TODO add your handling code here:
@@ -501,7 +499,7 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JbConsultar;
+    private javax.swing.JButton JbConsultarCPFCNPJ;
     private javax.swing.JTextField JcCidade;
     private javax.swing.JTextField JcCliente;
     private javax.swing.JTextField JcCpfCnpj;
