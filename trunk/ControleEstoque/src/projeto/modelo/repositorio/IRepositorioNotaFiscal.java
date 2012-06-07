@@ -45,6 +45,15 @@ public interface IRepositorioNotaFiscal {
      * @throws RepositorioException
      */
     public NotaFiscal consultar(int notasFiscal_Numero) throws ConexaoException, RepositorioException;
+    
+    /**
+     * Consultar a Nova Nota Fiscal
+     * @param Cliente_Codigo
+     * @return
+     * @throws ConexaoException
+     * @throws RepositorioException 
+     */
+    public NotaFiscal consultarUltimaNota(int Cliente_Codigo ) throws ConexaoException, RepositorioException;
 
     /**
      * Consultar uma lista de NotaFiscal no banco de dados

@@ -424,7 +424,7 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
 
     private void jBIncluirNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirNotaActionPerformed
         // TODO add your handling code here:
-       /** //Pega a seleção do Funcionário
+        //Pega a seleção do Funcionário
         selecionadoFuncionario();
         //Pega a selação da Forma de pagamento
         selecionadoFormadePagamento();
@@ -433,20 +433,16 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
             fachada.salvar(nf);
             
             //pegar a nota cadastrada
-           NotaFiscal nfNova = fachada.consultarNovaNota(nf.getClientes_Codigo());
+           NotaFiscal nfNova = fachada.consultarUltimaNovaCliente(nf.getClientes_Codigo());
            //exibir todos os dados não editaveis
-            JcCliente.setText(nfNova.getCliente().getPessoafisica().getPessoasFisica_Nome());
-            JcEndereco.setText(nfNova.getCliente().getEndereco().getEnderecos_Logradouro());
-            JcNumeroRes.setText(nfNova.getCliente().getClientes_NumeroResidencia());
-            JcCidade.setText(nfNova.getCliente().getEndereco().getCidade().getCidades_Nome());
             JcNumeroNotaFiscal.setText(String.valueOf(nfNova.getNotasFiscal_Numero()));
+            nf.setNotasFiscal_Numero(nfNova.getNotasFiscal_Numero());//setar o numero no objeto Nota Fiscal
             
             
         } catch (GeralException ex) {
           JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         
-        */
     }//GEN-LAST:event_jBIncluirNotaActionPerformed
 
     /**
@@ -577,7 +573,7 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
             Funcionario fu = fachada.consultarFuncionario((String) jfuncionarioBox.getSelectedItem());
             nf.setFuncionarios_Codigo(fu.getFuncionarios_Codigo());
         } catch (GeralException ex) {
-            Logger.getLogger(GuiNotaFiscal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
     
@@ -587,7 +583,7 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
             FormaPagamento fp = fachada.consultarFormaPagamento((String) jFormaPagamentoBox.getSelectedItem());
             nf.setFormasPagamento_Codigo(fp.getFormaPagamento_Codigo());
         } catch (GeralException ex) {
-            Logger.getLogger(GuiNotaFiscal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
     

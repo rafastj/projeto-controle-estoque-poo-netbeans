@@ -709,6 +709,16 @@ public class Fachada {
     public Collection<NotaFiscal> listar(int notasFiscal_Numero) throws GeralException {
         return rnNotaFiscal.listar(notasFiscal_Numero);
     }
+    
+    /**
+     * CONSULTAR ultima nota do cliente
+     * @param clientes_Codigo
+     * @return
+     * @throws GeralException 
+     */
+    public NotaFiscal consultarUltimaNovaCliente(int clientes_Codigo) throws GeralException {
+        return rnNotaFiscal.consultar(clientes_Codigo);
+    }
 
     /**
      * FIM DA ÁREA ESCRITA POR Thiago Evoa

@@ -27,16 +27,13 @@ public class RepositorioNotaFiscal implements IRepositorioNotaFiscal {
     @Override
     public void salvar(NotaFiscal nf) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
-        String sqlSalvar = "INSERT INTO NotasFiscal(notasfiscal_Numero,clientes_Codigo,funcionarios_Codigo,formasPagamento_Codigo,notasFiscal_ValorNotaFiscal,notasFiscal_DataEmissao,notasFiscal_Status) VALUES(?,?,?,?)";
+        String sqlSalvar = "INSERT INTO NotasFiscal(clientes_Codigo,funcionarios_Codigo,formasPagamento_Codigo,notasFiscal_DataEmissao) VALUES(?,?,?,?)";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlSalvar);
-            pstm.setInt(1, nf.getNotasFiscal_Numero());
-            pstm.setInt(2, nf.getClientes_Codigo());
-            pstm.setInt(3, nf.getFuncionarios_Codigo());
-            pstm.setInt(4, nf.getFormasPagamento_Codigo());
-            pstm.setDouble(5, nf.getNotasFiscal_ValorNotaFiscal());
-            pstm.setDate(6, (java.sql.Date) nf.getNotasFiscal_DataEmissao());
-            pstm.setBoolean(7, nf.getNotasFiscal_Status());
+            pstm.setInt(1, nf.getClientes_Codigo());
+            pstm.setInt(2, nf.getFuncionarios_Codigo());
+            pstm.setInt(3, nf.getFormasPagamento_Codigo());
+            pstm.setDate(4, (java.sql.Date) nf.getNotasFiscal_DataEmissao());
             pstm.executeUpdate();
             pstm.close();
         } catch (SQLException ex) {
@@ -133,5 +130,33 @@ public class RepositorioNotaFiscal implements IRepositorioNotaFiscal {
         } finally {
             g.desconectar(c);
         }
+    }
+    
+    /**
+     * Consultar a Ultima nota do Cliente
+     * @param Cliente_Codigo
+     * @return
+     * @throws ConexaoException
+     * @throws RepositorioException 
+     */
+    @Override
+    public NotaFiscal consultarUltimaNota(int Cliente_Codigo) throws ConexaoException, RepositorioException {
+        NotaFiscal nf = null;
+        Connection c = g.conectar();
+        String sqlConsulta = "SELECT notasfiscal_Numero FROM NotasFiscal Order By (clientes_Codigo = ? ) DESC LIMIT 1 ";
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlConsulta);
+            pstm.setInt(1, Cliente_Codigo);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                nf = new NotaFiscal();
+                nf.setNotasFiscal_Numero(rs.getInt("notasfiscal_Numero"));
+            }
+        } catch (SQLException e) {
+            throw new RepositorioException(e.getMessage());
+        } finally {
+            g.desconectar(c);
+        }
+        return nf;
     }
 }
