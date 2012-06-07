@@ -6,8 +6,6 @@ package projeto.gui;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projeto.erro.ConexaoException;
@@ -32,9 +30,12 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         initComponents();
     }
     
-    GuiPessoaFisica() {
+    GuiPessoaFisica() throws ConexaoException {
         initComponents();
         setLocationRelativeTo(null);
+        limparCampos();
+        atualizarTabela();
+
     }
 
 
@@ -321,12 +322,7 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         // TODO add your handling code here:
         alterarPessoaFisica();
         atualizarComboCidade();
-        try {
-            atualizarTabela();
-        } catch (ConexaoException ex) {
-            Logger.getLogger(GuiPessoaFisica.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        atualizarTabela();
     }//GEN-LAST:event_jbAlterarActionPerformed
 
     private void jbAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizarActionPerformed
@@ -338,12 +334,7 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         GuiPessoaFisicaNovoM pf = new GuiPessoaFisicaNovoM();
         pf.setVisible(true);
         atualizarComboCidade();
-        try {
-            atualizarTabela();
-        } catch (ConexaoException ex) {
-            Logger.getLogger(GuiPessoaFisica.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        atualizarTabela();
         
     }//GEN-LAST:event_jbNovoActionPerformed
 
@@ -351,16 +342,12 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         // TODO add your handling code here
         excluirPessoaFisica();
         atualizarComboCidade();
-        try {
-            atualizarTabela();
-        } catch (ConexaoException ex) {
-            Logger.getLogger(GuiPessoaFisica.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        atualizarTabela();
     }//GEN-LAST:event_jbExcluirActionPerformed
 
     private void jbSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSairActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jbSairActionPerformed
 
     private void jTextPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPFActionPerformed
@@ -376,24 +363,15 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextEndActionPerformed
 
     private void jCbBoxCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbBoxCidadeActionPerformed
-        try {
             // TODO add your handling code here:
             pesquisarCidade((String) jCbBoxCidade.getSelectedItem());
-        } catch (ConexaoException ex) {
-            Logger.getLogger(GuiPessoaFisica.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_jCbBoxCidadeActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
         
         atualizarComboCidade();
-        try {
-            atualizarTabela();
-        } catch (ConexaoException ex) {
-            Logger.getLogger(GuiPessoaFisica.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        atualizarTabela();
     }//GEN-LAST:event_formComponentShown
 
     /**
@@ -487,7 +465,7 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         }
     }
     
-    private void pesquisarCPF() throws ConexaoException {
+    private void pesquisarCPF() {
         String str_cnpj;
         String fornecedores_CNPJ;
         try {
@@ -509,7 +487,7 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         jTablePF.setModel(modelo);
     }
     
-    private void pesquisarNome() throws ConexaoException {
+    private void pesquisarNome() {
         try {
             if ((jTextPF.getText() == null) || (jTextPF.getText().equals(""))) {
                 listaPF = (ArrayList<PessoaFisica>) fachada.listarPessoaFisica();
@@ -523,7 +501,7 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         jTablePF.setModel(modelo);
     }
     
-    private void pesquisarCEP() throws ConexaoException {
+    private void pesquisarCEP() {
         String str_cep;
         String fornecedores_CEP;
         try {
@@ -543,7 +521,7 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         jTablePF.setModel(modelo);
     }
     
-    private void pesquisarLogradouro() throws ConexaoException {
+    private void pesquisarLogradouro(){
         try {
             if ((jTextEnd.getText() == null) || (jTextEnd.getText().equals(""))) {
                 listaPF = (ArrayList<PessoaFisica>) fachada.listarPessoaFisica();
@@ -557,7 +535,7 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         jTablePF.setModel(modelo);
     }
     
-    private void pesquisarCidade(String cidades_Nome) throws ConexaoException {
+    private void pesquisarCidade(String cidades_Nome) {
         try{
             listaPF = ( ArrayList<PessoaFisica>)fachada.listarPfCidade(cidades_Nome);
         } catch (GeralException ex){
@@ -567,7 +545,7 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         jTablePF.setModel(modelo);
     }
     
-    public void atualizarTabela() throws ConexaoException {
+    private void atualizarTabela() {
         try {
             listaPF = (ArrayList<PessoaFisica>) fachada.listarPessoaFisica();
         } catch (GeralException ex) {
@@ -610,7 +588,7 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         int i = 0;
         for (PessoaFisica pf : listaPF) {
             valores = new ArrayList<String>();
-            valores.add(pf.getPessoasFisica_CPF());
+           // valores.add(pf.getPessoasFisica_CPF());
             valores.add(pf.getPessoasFisica_Nome());
             valores.add(pf.getEndereco().getEnderecos_Logradouro());
             valores.add(String.valueOf(pf.getClientes_NumeroResidencia()));
