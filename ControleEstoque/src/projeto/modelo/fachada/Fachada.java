@@ -446,6 +446,26 @@ public class Fachada {
     public PessoaFisica consultarPF_Nome(String pessoaFisica_Nome) throws GeralException {
         return rnCliente.consultarPF_Nome(pessoaFisica_Nome);
     }
+    
+    /**
+     * Sandro Fernandes consultar cliente pelo CPF
+     * @param cpf
+     * @return
+     * @throws GeralException 
+     */
+    public PessoaFisica consultarPF_CPF(String cpf) throws GeralException{
+        return rnCliente.consultaPF_CPF(cpf);
+    }
+    
+    /**
+     * Sandro Fernandes consultar clienete pelo CNPJ
+     * @param cnpj
+     * @return
+     * @throws GeralException 
+     */
+    public PessoaJuridica consultaPJ_CNPJ(String cnpj) throws GeralException{
+        return rnCliente.consultaPJ_CNPJ(cnpj);
+    }
 
     /**
      * Sandro Fernandes consulta Cliente pelo Codigo
@@ -498,6 +518,8 @@ public class Fachada {
     /**
      * FIM DA ÁREA ESCRITA POR SANDRO
      */
+    
+    
     /**
      * AREA ESCRITA POR Thiago Evoa RESPONSAVEL PELAS CLASSES Usuario,
      * Funcionario, NotaFiscal.
