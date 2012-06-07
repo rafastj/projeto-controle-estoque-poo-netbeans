@@ -10,8 +10,10 @@ import projeto.conexao.GerenciadorConexao;
 import projeto.conexao.IGerenciadorConexao;
 import projeto.erro.ConexaoException;
 import projeto.erro.RepositorioException;
-import projeto.erro.TerminalException;
-import projeto.modelo.to.*;
+import projeto.modelo.to.Cidade;
+import projeto.modelo.to.Endereco;
+import projeto.modelo.to.PessoaFisica;
+import projeto.modelo.to.PessoaJuridica;
 
 /**
  * @author Sandro
@@ -356,7 +358,12 @@ public class RepositorioCliente implements IRepositorioCliente {
         ArrayList<PessoaFisica> lista = new ArrayList<PessoaFisica>();
         PessoaFisica pf;
         Connection c = g.conectar();
-        String sqlLista = "SELECT pf.clientes_Codigo, pf.pessoasfisica_CPf, pf.pessoasfisica_nome,cli.clientes_tipo, cli.clientes_numeroresidencia, cli.enderecos_Codigo from PessoasFisica AS pf, clientes as cli ORDER BY pf.clientes_Codigo";
+        String sqlLista = "SELECT pf.clientes_Codigo, pf.pessoasfisica_CPF, pf.pessoasFisica_nome, pf.pessoasfisica_sexo,"
+                + " end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome,"
+                + " cli.clientes_numeroresidencia, cli.clientes_tipo from ((PessoasFisica AS pf INNER JOIN clientes as cli"
+                + " on pf.clientes_codigo = cli.clientes_codigo) INNER JOIN ENDERECOS AS end ON CLI.enderecos_Codigo = end.enderecos_Codigo)"
+                + " INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo ORDER BY pf.pessoasfisica_CPF";
+
 
         try {
             Statement stm = c.createStatement();
@@ -364,12 +371,19 @@ public class RepositorioCliente implements IRepositorioCliente {
             //verifica se retornou algum registro e cria os Objetos
             while (rs.next()) {
                 pf = new PessoaFisica();
+                
+                pf.getEndereco().getCidade().setCidades_Codigo(rs.getInt("cidades_codigo"));
+                pf.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_nome"));
+                pf.getEndereco().setCidades_Codigo(rs.getInt("cidades_codigo"));
+                pf.getEndereco().setEnderecos_Codigo(rs.getInt("enderecos_codigo"));
+                pf.getEndereco().setEnderecos_CEP(rs.getString("enderecos_cep"));
+                pf.getEndereco().setEnderecos_Logradouro(rs.getString("enderecos_logradouro"));
+                pf.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
                 pf.setClientes_Codigo(rs.getInt("clientes_Codigo"));
                 pf.setPessoasFisica_CPF(rs.getString("pessoasfisica_CPF"));
-                pf.setPessoasFisica_Nome(rs.getString("pessoasfisica_nome"));
+                pf.setPessoasFisica_Nome(rs.getString("pessoasFisica_nome"));
+                pf.setPessoasFisica_Sexo(rs.getString("pessoasFisica_Sexo"));
                 pf.setClientes_NumeroResidencia(rs.getString("clientes_NumeroResidencia"));
-                pf.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
-                pf.setClientes_Tipo(rs.getString("clientes_tipo"));
                 lista.add(pf);
             }
             return lista;

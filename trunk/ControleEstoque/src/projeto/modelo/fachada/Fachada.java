@@ -502,16 +502,16 @@ public class Fachada {
      * @return
      * @throws GeralException
      */
-    public Collection<PessoaFisica> listarPessoaFisica() throws GeralException, ConexaoException {
+    public Collection<PessoaFisica> listarPessoaFisica() throws GeralException {
         return rnCliente.listarPessoaFisica();
     }
     
-    public Collection<PessoaJuridica> listarPessoaJuridica() throws GeralException, ConexaoException{
+    public Collection<PessoaJuridica> listarPessoaJuridica() throws GeralException {
         return rnCliente.listarPessoaJuridica();
     }
     
 
-    public Collection<PessoaFisica> listarPfCidade(String cidade_nome) throws GeralException, ConexaoException{
+    public Collection<PessoaFisica> listarPfCidade(String cidade_nome) throws GeralException {
         return rnCliente.listarPfCidade(cidade_nome);
     }
 

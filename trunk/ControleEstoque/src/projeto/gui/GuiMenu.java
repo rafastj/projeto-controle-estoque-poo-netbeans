@@ -5,7 +5,10 @@
 package projeto.gui;
 
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Usuario;
@@ -444,6 +447,13 @@ public class GuiMenu extends javax.swing.JFrame {
 
     private void jMenuItemPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPFActionPerformed
         // TODO add your handling code here:
+        GuiPessoaFisica telaPF = null;
+        try {
+            telaPF = new GuiPessoaFisica();
+        } catch (ConexaoException ex) {
+            Logger.getLogger(GuiMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        telaPF.setVisible(true);
     }//GEN-LAST:event_jMenuItemPFActionPerformed
 
     private void jMenuItemSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSobreActionPerformed
