@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import projeto.erro.GeralException;
+import projeto.erro.RepositorioException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.*;
 
@@ -32,12 +33,14 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
          setLocationRelativeTo(null);//mostra no centro da tela
-         listarFuncionarios();//todos os funcionarios
-         listarFormadePagamento();//todas as formas de pagamentos
+         //listarFuncionarios();//todos os funcionarios
+         //listarFormadePagamento();//todas as formas de pagamentos
          //Obter a data do sistema
          Date d = new Date();
           SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
           jlData.setText(f.format(d));
+          //inserir a data na emissão na nota
+        //  nf.setNotasFiscal_DataEmissao(d);
     }
 
     /**
@@ -58,16 +61,16 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         JlCpfCnpj = new javax.swing.JLabel();
         JcCpfCnpj = new javax.swing.JTextField();
         JbConsultar = new javax.swing.JButton();
-        jBIncluir = new javax.swing.JButton();
+        jBIncluirNota = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jfuncionarioBox = new javax.swing.JComboBox();
         JlCliente1 = new javax.swing.JLabel();
         JcEndereco = new javax.swing.JTextField();
-        JcNumeroNotaFiscal1 = new javax.swing.JTextField();
+        JcNumeroRes = new javax.swing.JTextField();
         JlNumeroNotaFiscal1 = new javax.swing.JLabel();
         JlCliente2 = new javax.swing.JLabel();
-        JcEndereco1 = new javax.swing.JTextField();
+        JcCidade = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jFormaPagamentoBox = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
@@ -101,7 +104,7 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         JcNumeroNotaFiscal.setEditable(false);
         JcNumeroNotaFiscal.setEnabled(false);
 
-        JlCliente.setText("Cliente/Razao Social");
+        JlCliente.setText("Cliente/Razao Social.:");
 
         JcCliente.setBackground(new java.awt.Color(204, 204, 204));
         JcCliente.setEditable(false);
@@ -116,10 +119,10 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
             }
         });
 
-        jBIncluir.setText("Incluir Nota");
-        jBIncluir.addActionListener(new java.awt.event.ActionListener() {
+        jBIncluirNota.setText("Incluir Nota");
+        jBIncluirNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBIncluirActionPerformed(evt);
+                jBIncluirNotaActionPerformed(evt);
             }
         });
 
@@ -133,19 +136,19 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         JcEndereco.setEditable(false);
         JcEndereco.setEnabled(false);
 
-        JcNumeroNotaFiscal1.setBackground(new java.awt.Color(204, 204, 204));
-        JcNumeroNotaFiscal1.setEditable(false);
-        JcNumeroNotaFiscal1.setEnabled(false);
+        JcNumeroRes.setBackground(new java.awt.Color(204, 204, 204));
+        JcNumeroRes.setEditable(false);
+        JcNumeroRes.setEnabled(false);
 
         JlNumeroNotaFiscal1.setText("Número Res.:");
 
         JlCliente2.setText("Cidade.:");
 
-        JcEndereco1.setBackground(new java.awt.Color(204, 204, 204));
-        JcEndereco1.setEditable(false);
-        JcEndereco1.setEnabled(false);
+        JcCidade.setBackground(new java.awt.Color(204, 204, 204));
+        JcCidade.setEditable(false);
+        JcCidade.setEnabled(false);
 
-        jLabel8.setText("Forma de Pagamento");
+        jLabel8.setText("Forma de Pagamento.:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -166,14 +169,14 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JlNumeroNotaFiscal1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JcNumeroNotaFiscal1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JcNumeroRes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(146, 146, 146))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(JlCliente2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JcEndereco1)
+                        .addComponent(JcCidade)
                         .addGap(215, 215, 215)
-                        .addComponent(jBIncluir))
+                        .addComponent(jBIncluirNota))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -184,14 +187,13 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jlData, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(JlNumeroNotaFiscal)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(JcNumeroNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(JbConsultar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel8)
@@ -231,12 +233,12 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
                     .addComponent(JcEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JlCliente1)
                     .addComponent(JlNumeroNotaFiscal1)
-                    .addComponent(JcNumeroNotaFiscal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JcNumeroRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JcEndereco1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JcCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JlCliente2)
-                    .addComponent(jBIncluir))
+                    .addComponent(jBIncluirNota))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -392,32 +394,62 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
 
     private void JbConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbConsultarActionPerformed
            // TODO add your handling code here:
-        if(JcCpfCnpj.getText().length() == 11){
+       /** if(JcCpfCnpj.getText().length() == 11){
         
         try {
             PessoaFisica pf = fachada.consultarPF_CPF(JcCpfCnpj.getText());
             nf.setClientes_Codigo(pf.getClientes_Codigo());
-            JOptionPane.showMessageDialog(null, "Cliente encontrado!");
+            //preencher os campos no cliente
+            JcCliente.setText(pf.getPessoasFisica_Nome());
+            JcEndereco.setText(pf.getEndereco().getEnderecos_Logradouro());
+            JcNumeroRes.setText(pf.getClientes_NumeroResidencia());
+            JcCidade.setText(pf.getEndereco().getCidade().getCidades_Nome());
+            
         } catch (GeralException ex) {
-            Logger.getLogger(GuiNotaFiscal.class.getName()).log(Level.SEVERE, null, ex);
+           JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+        
         }else if(JcCpfCnpj.getText().length() == 14){
         
         try{
             PessoaJuridica pj = fachada.consultaPJ_CNPJ(JcCpfCnpj.getText());
             nf.setClientes_Codigo(pj.getClientes_Codigo());
+
         } catch (GeralException ex) {
-            Logger.getLogger(GuiNotaFiscal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
             
         }
-        
+        */
         
     }//GEN-LAST:event_JbConsultarActionPerformed
 
-    private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
+    private void jBIncluirNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirNotaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jBIncluirActionPerformed
+       /** //Pega a seleção do Funcionário
+        selecionadoFuncionario();
+        //Pega a selação da Forma de pagamento
+        selecionadoFormadePagamento();
+        //chamar a fachada para salvar a nota Fiscal
+        try {  
+            fachada.salvar(nf);
+            
+            //pegar a nota cadastrada
+           NotaFiscal nfNova = fachada.consultarNovaNota(nf.getClientes_Codigo());
+           //exibir todos os dados não editaveis
+            JcCliente.setText(nfNova.getCliente().getPessoafisica().getPessoasFisica_Nome());
+            JcEndereco.setText(nfNova.getCliente().getEndereco().getEnderecos_Logradouro());
+            JcNumeroRes.setText(nfNova.getCliente().getClientes_NumeroResidencia());
+            JcCidade.setText(nfNova.getCliente().getEndereco().getCidade().getCidades_Nome());
+            JcNumeroNotaFiscal.setText(String.valueOf(nfNova.getNotasFiscal_Numero()));
+            
+            
+        } catch (GeralException ex) {
+          JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
+        */
+    }//GEN-LAST:event_jBIncluirNotaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -470,19 +502,19 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbConsultar;
+    private javax.swing.JTextField JcCidade;
     private javax.swing.JTextField JcCliente;
     private javax.swing.JTextField JcCpfCnpj;
     private javax.swing.JTextField JcEndereco;
-    private javax.swing.JTextField JcEndereco1;
     private javax.swing.JTextField JcNumeroNotaFiscal;
-    private javax.swing.JTextField JcNumeroNotaFiscal1;
+    private javax.swing.JTextField JcNumeroRes;
     private javax.swing.JLabel JlCliente;
     private javax.swing.JLabel JlCliente1;
     private javax.swing.JLabel JlCliente2;
     private javax.swing.JLabel JlCpfCnpj;
     private javax.swing.JLabel JlNumeroNotaFiscal;
     private javax.swing.JLabel JlNumeroNotaFiscal1;
-    private javax.swing.JButton jBIncluir;
+    private javax.swing.JButton jBIncluirNota;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -539,6 +571,26 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
 	}catch (GeralException ex){
 		JOptionPane.showMessageDialog(null, ex.getMessage());
 	}
+    }
+    
+    //SELECIONAR Funcionario
+    private void selecionadoFuncionario(){
+         try {
+            Funcionario fu = fachada.consultarFuncionario((String) jfuncionarioBox.getSelectedItem());
+            nf.setFuncionarios_Codigo(fu.getFuncionarios_Codigo());
+        } catch (GeralException ex) {
+            Logger.getLogger(GuiNotaFiscal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    //
+    private void selecionadoFormadePagamento(){
+          try {
+            FormaPagamento fp = fachada.consultarFormaPagamento((String) jFormaPagamentoBox.getSelectedItem());
+            nf.setFormasPagamento_Codigo(fp.getFormaPagamento_Codigo());
+        } catch (GeralException ex) {
+            Logger.getLogger(GuiNotaFiscal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 //fim
