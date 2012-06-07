@@ -7,16 +7,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.erro.RepositorioException;
 import projeto.modelo.repositorio.IRepositorioCliente;
 import projeto.modelo.repositorio.RepositorioCliente;
-import projeto.modelo.repositorio.RepositorioProduto;
-import projeto.modelo.to.*;
+import projeto.modelo.to.Cliente;
+import projeto.modelo.to.PessoaFisica;
 import projeto.modelo.to.PessoaJuridica;
-import projeto.modelo.to.Produto;
 import projeto.validaCampo.ValidaCampo;
 
 /**
@@ -154,37 +152,46 @@ public class NegocioCliente {
         return pj; 
     }
     
-    public Collection<PessoaFisica> listarPessoaFisica() throws GeralException, ConexaoException {
+    public Collection<PessoaFisica> listarPessoaFisica() throws GeralException {
 
         ArrayList<PessoaFisica> lista = null;
         try {
             lista = (ArrayList<PessoaFisica>) new RepositorioCliente().listarPessoaFisica();
-        } catch (RepositorioException ex) {
-            Logger.getLogger(NegocioCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RepositorioException e) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException e) {
+            throw new GeralException("O banco de dados não está acessível no momento");
         }
 
         return lista;
     }
        
-    public Collection<PessoaFisica> listarPfCidade(String cidade_nome) throws GeralException, ConexaoException {
+    public Collection<PessoaFisica> listarPfCidade(String cidade_nome) throws GeralException {
 
         ArrayList<PessoaFisica> lista = null;
         try {
             lista = (ArrayList<PessoaFisica>) new RepositorioCliente().listarPfCidade(cidade_nome);
-        } catch (RepositorioException ex) {
-            Logger.getLogger(NegocioCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RepositorioException e) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException e) {
+            throw new GeralException("O banco de dados não está acessível no momento");
         }
 
         return lista;
     }
        
-       public Collection<PessoaJuridica> listarPessoaJuridica() throws ConexaoException{
+       public Collection<PessoaJuridica> listarPessoaJuridica() throws GeralException{
            
         ArrayList<PessoaJuridica> lista = null;
         try {
             lista = (ArrayList<PessoaJuridica>) new RepositorioCliente().listarPessoaJuridica();
-        } catch (RepositorioException ex) {
-            Logger.getLogger(NegocioCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RepositorioException e) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException e) {
+            throw new GeralException("O banco de dados não está acessível no momento");
         }
 
         return lista;
