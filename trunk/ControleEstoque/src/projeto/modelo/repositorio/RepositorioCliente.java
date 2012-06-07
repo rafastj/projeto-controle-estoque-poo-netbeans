@@ -206,18 +206,21 @@ public class RepositorioCliente implements IRepositorioCliente {
     public PessoaFisica consultarPF(String pf_CPF) throws ConexaoException, RepositorioException {
         PessoaFisica pf = null;
         Connection c = g.conectar();
-        String sqlConsulta = "SELECT clientes_codigo, pessoasfisica_CPF, pessoasfisica_nome, pessoasfisica_sexo FROM pessoasfisica WHERE ( pessoasfisica_cpf like ? )";
+        String sqlConsulta = "SELECT pf.clientes_codigo, pf.pessoasfisica_CPF, pf.pessoasfisica_nome, pf.pessoasfisica_sexo, e.enderecos_logradouro, cli.clientes_numeroresidencia, ci.cidades_Nome  FROM pessoasfisica AS pf INNER JOIN clientes AS cli ON cli.clientes_Codigo = pf.clientes_Codigo INNER JOIN enderecos AS e ON cli.enderecos_Codigo = e.enderecos_Codigo INNER JOIN cidades AS ci ON ci.cidades_Codigo = e.cidades_Codigo WHERE ( pessoasfisica_cpf = ? )";
         
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsulta);
-            pstm.setString(1, '%' + pf_CPF + '%');
+            pstm.setString(1, pf_CPF );
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
                 pf = new PessoaFisica();
-                pf.setClientes_Codigo(rs.getInt("clientes_codigo"));
-                pf.setPessoasFisica_CPF(rs.getString("pessoasfisica_CPF"));
-                pf.setPessoasFisica_Nome(rs.getString("pessoasfisica_nome"));
-                pf.setPessoasFisica_Sexo(rs.getString("pessoasfisica_sexo"));            
+                pf.setClientes_Codigo(rs.getInt("pf.clientes_codigo"));
+                pf.setPessoasFisica_CPF(rs.getString("pf.pessoasfisica_CPF"));
+                pf.setPessoasFisica_Nome(rs.getString("pf.pessoasfisica_nome"));
+                pf.setPessoasFisica_Sexo(rs.getString("pf.pessoasfisica_sexo"));
+                pf.getEndereco().setEnderecos_Logradouro(rs.getString("e.enderecos_logradouro"));
+                pf.setClientes_NumeroResidencia(rs.getString("cli.clientes_numeroresidencia"));
+                pf.getEndereco().getCidade().setCidades_Nome(rs.getString("ci.cidades_Nome"));
             }
         } catch (SQLException e) {
             throw new RepositorioException(e.getMessage());
