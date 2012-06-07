@@ -91,7 +91,7 @@ public class RepositorioTipo implements IRepositorioTipo {
     public Tipo consultarTipos( int tipos_Codigo ) throws ConexaoException, RepositorioException {
     	Tipo t = null;
         Connection c = g.conectar();
-        String sqlConsulta = "SELECT t.tipos_Codigo, t.tipos_Descricao FROM Tipos AS t WHERE ( t.tipos_Codigo = ? )";
+        String sqlConsulta = "SELECT tipos_Codigo, tipos_Descricao FROM Tipos WHERE (tipos_Codigo = ? )";
 
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsulta);
@@ -102,7 +102,7 @@ public class RepositorioTipo implements IRepositorioTipo {
             if( rs.next() ){
                 t = new Tipo();
                 t.setTipos_Codigo( tipos_Codigo );
-                t.setTipos_Descricao( rs.getString( "t.tipos_Descricao" ) );            
+                t.setTipos_Descricao( rs.getString( "tipos_Descricao" ) );            
             }
         } catch( SQLException e ){
             throw new RepositorioException(e.getMessage());
@@ -115,7 +115,7 @@ public class RepositorioTipo implements IRepositorioTipo {
     public Tipo consultarTipos( String tipos_Descricao ) throws ConexaoException, RepositorioException {
     	Tipo t = null;
         Connection c = g.conectar();
-        String sqlConsulta = "SELECT t.tipos_Codigo, t.tipos_Descricao FROM Tipos AS t WHERE ( t.tipos_Descricao = ? )";
+        String sqlConsulta = "SELECT tipos_Codigo, tipos_Descricao FROM Tipos WHERE (tipos_Descricao = ? )";
 
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsulta);
@@ -125,8 +125,8 @@ public class RepositorioTipo implements IRepositorioTipo {
             /*verifica se retornou algum registro e cria o Objeto*/
             if( rs.next() ){
                 t = new Tipo();
-                t.setTipos_Codigo( rs.getInt( "t.tipos_Codigo" ) );
-                t.setTipos_Descricao( rs.getString( "t.tipos_Descricao" ) );            
+                t.setTipos_Codigo( rs.getInt( "tipos_Codigo" ) );
+                t.setTipos_Descricao( rs.getString( "tipos_Descricao" ) );            
             }
         } catch( SQLException e ){	
             throw new RepositorioException(e.getMessage());

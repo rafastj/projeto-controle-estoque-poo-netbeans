@@ -131,12 +131,16 @@ public class GuiTipos extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        JtListarTipos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        JtListarTipos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         JtListarTipos.setShowHorizontalLines(false);
         JtListarTipos.setShowVerticalLines(false);
         JtListarTipos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(JtListarTipos);
         JtListarTipos.getColumnModel().getColumn(0).setResizable(false);
+        JtListarTipos.getColumnModel().getColumn(0).setHeaderValue("Codigo");
         JtListarTipos.getColumnModel().getColumn(1).setResizable(false);
+        JtListarTipos.getColumnModel().getColumn(1).setHeaderValue("Descrição");
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 376, 180));
 
@@ -274,12 +278,11 @@ public class GuiTipos extends javax.swing.JDialog {
         int resposta;
         try {
             Tipo t = listaTipo.get(JtListarTipos.getSelectedRow());
-
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Apagar ?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
-                Tipo tConsult = fachada.consultarTipos(t.getTipos_Codigo());
+                Tipo tConsult = fachada.consultarTipos(t.getTipos_Descricao());
                 if (tConsult != null) {
-                    fachada.excluirTipo(t.getTipos_Codigo());
+                    fachada.excluirTipo(tConsult.getTipos_Codigo());
                     JOptionPane.showMessageDialog(null, "Registro excluído!");
                 }
             }
