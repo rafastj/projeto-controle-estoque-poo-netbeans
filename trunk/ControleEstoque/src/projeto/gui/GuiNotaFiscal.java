@@ -4,24 +4,38 @@
  */
 package projeto.gui;
 
+import com.sun.org.apache.bcel.internal.generic.SWITCH;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import projeto.erro.GeralException;
+import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.*;
 
 /**
  *
- * @author Thiago Evoa
+ * @author diego
  */
-public class GuiNotaFiscal extends javax.swing.JFrame {
-
+public class GuiNotaFiscal extends javax.swing.JDialog {
+    
+    
+    private Fachada fachada = new Fachada();
+    private NotaFiscal nf = new NotaFiscal();
     /**
      * Creates new form GuiNotaFiscal
      */
-    public GuiNotaFiscal() {
+    public GuiNotaFiscal(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        setLocationRelativeTo(null);
-        Date d = new Date();
+         setLocationRelativeTo(null);//mostra no centro da tela
+         listarFuncionarios();//todos os funcionarios
+         listarFormadePagamento();//todas as formas de pagamentos
+         //Obter a data do sistema
+         Date d = new Date();
           SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
           jlData.setText(f.format(d));
     }
@@ -44,28 +58,56 @@ public class GuiNotaFiscal extends javax.swing.JFrame {
         JlCpfCnpj = new javax.swing.JLabel();
         JcCpfCnpj = new javax.swing.JTextField();
         JbConsultar = new javax.swing.JButton();
+        jBIncluir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jfuncionarioBox = new javax.swing.JComboBox();
+        JlCliente1 = new javax.swing.JLabel();
+        JcEndereco = new javax.swing.JTextField();
+        JcNumeroNotaFiscal1 = new javax.swing.JTextField();
+        JlNumeroNotaFiscal1 = new javax.swing.JLabel();
+        JlCliente2 = new javax.swing.JLabel();
+        JcEndereco1 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jFormaPagamentoBox = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
-        JbInserirProduto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Nota Fiscal");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Nota Fiscal"));
 
-        JlNumeroNotaFiscal.setText("Número.:");
+        JlNumeroNotaFiscal.setText("Número NF.:");
 
+        jlData.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jlData.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlData.setText("Data");
 
+        JcNumeroNotaFiscal.setBackground(new java.awt.Color(204, 204, 204));
         JcNumeroNotaFiscal.setEditable(false);
+        JcNumeroNotaFiscal.setEnabled(false);
 
-        JlCliente.setText("Cliente.:");
+        JlCliente.setText("Cliente/Razao Social");
 
+        JcCliente.setBackground(new java.awt.Color(204, 204, 204));
         JcCliente.setEditable(false);
+        JcCliente.setEnabled(false);
 
         JlCpfCnpj.setText("CPF/CNPJ.:");
-
-        JcCpfCnpj.setEditable(false);
 
         JbConsultar.setText("Consultar");
         JbConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +115,37 @@ public class GuiNotaFiscal extends javax.swing.JFrame {
                 JbConsultarActionPerformed(evt);
             }
         });
+
+        jBIncluir.setText("Incluir Nota");
+        jBIncluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBIncluirActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Data.:");
+
+        jLabel2.setText("Funcionário.:");
+
+        JlCliente1.setText("Endereço.:");
+
+        JcEndereco.setBackground(new java.awt.Color(204, 204, 204));
+        JcEndereco.setEditable(false);
+        JcEndereco.setEnabled(false);
+
+        JcNumeroNotaFiscal1.setBackground(new java.awt.Color(204, 204, 204));
+        JcNumeroNotaFiscal1.setEditable(false);
+        JcNumeroNotaFiscal1.setEnabled(false);
+
+        JlNumeroNotaFiscal1.setText("Número Res.:");
+
+        JlCliente2.setText("Cidade.:");
+
+        JcEndereco1.setBackground(new java.awt.Color(204, 204, 204));
+        JcEndereco1.setEditable(false);
+        JcEndereco1.setEnabled(false);
+
+        jLabel8.setText("Forma de Pagamento");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,97 +155,215 @@ public class GuiNotaFiscal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jlData)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JlNumeroNotaFiscal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JcNumeroNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(JlCliente)
-                        .addGap(30, 30, 30)
-                        .addComponent(JcCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
-                        .addComponent(JlCpfCnpj)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JcCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(JlCliente1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JcEndereco)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JcCpfCnpj, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(JbConsultar)))
+                        .addComponent(JlNumeroNotaFiscal1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JcNumeroNotaFiscal1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(146, 146, 146))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(JlCliente2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JcEndereco1)
+                        .addGap(215, 215, 215)
+                        .addComponent(jBIncluir))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(JlCpfCnpj)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JcCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlData, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                                .addComponent(JlNumeroNotaFiscal)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JcNumeroNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JbConsultar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFormaPagamentoBox, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jfuncionarioBox, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jlData)
                     .addComponent(JlNumeroNotaFiscal)
                     .addComponent(JcNumeroNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlData))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel2)
+                    .addComponent(jfuncionarioBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JlCpfCnpj)
                     .addComponent(JcCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JbConsultar)
+                    .addComponent(jLabel8)
+                    .addComponent(jFormaPagamentoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JcCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JlCliente))
-                .addGap(30, 30, 30)
-                .addComponent(JbConsultar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JcEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JlCliente1)
+                    .addComponent(JlNumeroNotaFiscal1)
+                    .addComponent(JcNumeroNotaFiscal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JcEndereco1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JlCliente2)
+                    .addComponent(jBIncluir))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        JbInserirProduto.setText("Inserir Produto");
-        JbInserirProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JbInserirProdutoActionPerformed(evt);
-            }
-        });
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Itens..."));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null}
+                {null, null, null}
             },
             new String [] {
-                "Descrição", "Tipo", "Marca", "Segmento", "Vl.Unitario", "Qtd.", "Vl.Total"
+                "Item", "Qtd", "Valor"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Double.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable1.setShowHorizontalLines(false);
-        jTable1.setShowVerticalLines(false);
+        ));
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getColumnModel().getColumn(0).setResizable(false);
+        jTable1.getColumnModel().getColumn(1).setResizable(false);
+        jTable1.getColumnModel().getColumn(2).setResizable(false);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Análise"));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Total.:");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel4.setText("0,00");
+
+        jButton1.setText("Cancelar");
+
+        jButton2.setText("Alterar");
+
+        jButton3.setText("Incluir Produto");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel5.setText("Finalizar");
+
+        jButton4.setText("Confirmar Compra");
+
+        jButton5.setText("Cancelar Compra");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Movimentação");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addGap(49, 49, 49))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator2)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addComponent(jLabel5)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton4))
+                                .addGap(12, 12, 12)))))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addGap(4, 4, 4)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton4)
+                .addGap(18, 18, 18)
+                .addComponent(jButton5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(JbInserirProduto)))
-                .addContainerGap())
+                .addComponent(jScrollPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(JbInserirProduto))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -183,7 +374,7 @@ public class GuiNotaFiscal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -192,20 +383,41 @@ public class GuiNotaFiscal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JbInserirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbInserirProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JbInserirProdutoActionPerformed
-
     private void JbConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbConsultarActionPerformed
-        // TODO add your handling code here:
+           // TODO add your handling code here:
+        if(JcCpfCnpj.getText().length() == 11){
+        
+        try {
+            PessoaFisica pf = fachada.consultarPF_CPF(JcCpfCnpj.getText());
+            nf.setClientes_Codigo(pf.getClientes_Codigo());
+            JOptionPane.showMessageDialog(null, "Cliente encontrado!");
+        } catch (GeralException ex) {
+            Logger.getLogger(GuiNotaFiscal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }else if(JcCpfCnpj.getText().length() == 14){
+        
+        try{
+            PessoaJuridica pj = fachada.consultaPJ_CNPJ(JcCpfCnpj.getText());
+            nf.setClientes_Codigo(pj.getClientes_Codigo());
+        } catch (GeralException ex) {
+            Logger.getLogger(GuiNotaFiscal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        }
+        
+        
     }//GEN-LAST:event_JbConsultarActionPerformed
+
+    private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBIncluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,28 +451,95 @@ public class GuiNotaFiscal extends javax.swing.JFrame {
         //</editor-fold>
 
         /*
-         * Create and display the form
+         * Create and display the dialog
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new GuiNotaFiscal().setVisible(true);
+                GuiNotaFiscal dialog = new GuiNotaFiscal(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbConsultar;
-    private javax.swing.JButton JbInserirProduto;
     private javax.swing.JTextField JcCliente;
     private javax.swing.JTextField JcCpfCnpj;
+    private javax.swing.JTextField JcEndereco;
+    private javax.swing.JTextField JcEndereco1;
     private javax.swing.JTextField JcNumeroNotaFiscal;
+    private javax.swing.JTextField JcNumeroNotaFiscal1;
     private javax.swing.JLabel JlCliente;
+    private javax.swing.JLabel JlCliente1;
+    private javax.swing.JLabel JlCliente2;
     private javax.swing.JLabel JlCpfCnpj;
     private javax.swing.JLabel JlNumeroNotaFiscal;
+    private javax.swing.JLabel JlNumeroNotaFiscal1;
+    private javax.swing.JButton jBIncluir;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JComboBox jFormaPagamentoBox;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JComboBox jfuncionarioBox;
     private javax.swing.JLabel jlData;
     // End of variables declaration//GEN-END:variables
+   
+    //LISTAR OS FUNCIONARIOS
+    private void listarFuncionarios(){
+        //LISTA Funcionarios
+       Funcionario fu;
+       ArrayList<Funcionario> listasg;
+	try{
+		//Lista dos os segmentos
+		listasg = (ArrayList<Funcionario>)fachada.listarTodosFuncionario();
+		for(Iterator<Funcionario> it = listasg.iterator(); it.hasNext();){
+                    fu = it.next();
+                    jfuncionarioBox.addItem(fu.getFuncionarios_Nome());	
+		}
+	}catch (GeralException ex){
+		JOptionPane.showMessageDialog(null, ex.getMessage());
+	}
+    }
+    
+    //LISTAR FORMA DE PAGAMENTO
+    private void listarFormadePagamento(){
+         //LISTA Forma de Pagamentos
+       FormaPagamento fp;
+       ArrayList<FormaPagamento> listasg;
+	try{
+		//Lista dos os segmentos
+		listasg = (ArrayList<FormaPagamento>)fachada.listarFormasPagamentos();
+		for(Iterator<FormaPagamento> it = listasg.iterator(); it.hasNext();){
+                    fp = it.next();
+                    jFormaPagamentoBox.addItem(fp.getFormaPagamento_Descricao());	
+		}
+	}catch (GeralException ex){
+		JOptionPane.showMessageDialog(null, ex.getMessage());
+	}
+    }
+    
+//fim
 }

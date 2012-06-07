@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.erro.RepositorioException;
@@ -110,7 +111,50 @@ public class NegocioCliente {
         return pf;
     }
     
-       public Collection<PessoaFisica> listarPessoaFisica() throws GeralException, ConexaoException {
+    public PessoaFisica consultaPF_CPF (String cpf) throws GeralException{
+        PessoaFisica pf = null;
+        if (cpf.equals("")) {
+            throw new GeralException("Digite um CNPJ!");
+        }
+
+        try {
+            pf = rep.consultarPF(cpf);
+            if (pf == null) {
+                throw new GeralException("CPF não Encontrado!");
+            }
+
+        } catch (RepositorioException e) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException e) {
+            throw new GeralException("O banco de dados não está acessível no momento");
+        }
+        return pf; 
+    }
+    
+    
+    public PessoaJuridica consultaPJ_CNPJ (String cnpj) throws GeralException{
+        PessoaJuridica pj = null;
+        if (cnpj.equals("")) {
+            throw new GeralException("Digite um CNPJ!");
+        }
+
+        try {
+            pj = rep.consultarPJ(cnpj);
+            if (pj == null) {
+                throw new GeralException("CNPJ não Encontrado!");
+            }
+
+        } catch (RepositorioException e) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException e) {
+            throw new GeralException("O banco de dados não está acessível no momento");
+        }
+        return pj; 
+    }
+    
+    public Collection<PessoaFisica> listarPessoaFisica() throws GeralException, ConexaoException {
 
         ArrayList<PessoaFisica> lista = null;
         try {
