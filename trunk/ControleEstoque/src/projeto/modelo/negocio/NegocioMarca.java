@@ -123,7 +123,7 @@ public class NegocioMarca {
             rep.excluirMarcas(marcas_Codigo);
 
         } catch (RepositorioException ex) {
-            throw new GeralException("Felipe fez algo errado");
+            throw new GeralException("Marca vinculada a um produto, não pode ser excluído!");
 
         } catch (ConexaoException ex) {
             throw new GeralException("O banco de dados não está acessível!");
@@ -147,7 +147,7 @@ public class NegocioMarca {
             rep.excluirMarcas(marcas_Descricao);
 
         } catch (RepositorioException ex) {
-            throw new GeralException("Felipe fez algo errado");
+            throw new GeralException("Marca vinculada a um produto, não pode ser excluído!");
 
         } catch (ConexaoException ex) {
             throw new GeralException("O banco de dados não está acessível!");

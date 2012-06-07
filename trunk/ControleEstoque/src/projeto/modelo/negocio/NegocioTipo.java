@@ -66,8 +66,7 @@ public class NegocioTipo {
         if (tipos_Descricao == null) {
             throw new GeralException("Descrição do tipo não informada");
         }
-
-        try {
+            try {
             t = rep.consultarTipos(tipos_Descricao);
 
             if (t == null) {
@@ -80,7 +79,7 @@ public class NegocioTipo {
             throw new GeralException("O banco de dados não está acessível!");
         }
         return t;
-    }
+       }
 
     /**
      * Verifica os dados antes de consultar a String Codigo
@@ -91,7 +90,6 @@ public class NegocioTipo {
         if (tipos_Codigo <= 0) {
             throw new GeralException("Código do tipo não informada");
         }
-
         try {
             t = rep.consultarTipos(tipos_Codigo);
 
@@ -105,7 +103,7 @@ public class NegocioTipo {
             throw new GeralException("O banco de dados não está acessível!");
         }
         return t;
-    }
+        }
 
     /**
      * Verificar os dados antes de excluir o tipo este m�todo usa Exceptions
@@ -114,35 +112,26 @@ public class NegocioTipo {
      */
     public void excluirTipos(int tipos_Codigo) throws GeralException {
 
-        //verificar se o tipo foi informado
         if (tipos_Codigo <= 0) {
-            throw new GeralException("Tipo não foi selecionado para ser deletado!");
+            throw new GeralException("Digite um códido válido!");
         }
-
         try {
-
             Tipo t = rep.consultarTipos(tipos_Codigo);
             if (t == null) {
-                throw new GeralException("Tipo não existe!");
+                throw new GeralException("Tipo não está cadastrado!");
             }
-
             rep.excluirTipos(tipos_Codigo);
-
         } catch (RepositorioException ex) {
-            throw new GeralException("Felipe fez algo errado");
-
+            throw new GeralException("Tipo Vinculado a um produto, não pode ser excluído!");
         } catch (ConexaoException ex) {
-            throw new GeralException("O banco de dados não está acessível!");
+            throw new GeralException("O banco de dados não está acessível no momento");
         }
     }
 
     public void excluirTipos(String tipos_Descricao) throws GeralException {
 
         //verificar se o codigo do produto foi informado
-        if (tipos_Descricao == null) {
-            throw new GeralException("Tipo não foi selecionado para ser deletado!");
-        }
-
+        
         try {
 
             Tipo t = rep.consultarTipos(tipos_Descricao);
@@ -153,7 +142,7 @@ public class NegocioTipo {
             rep.excluirTipos(tipos_Descricao);
 
         } catch (RepositorioException ex) {
-            throw new GeralException("Felipe fez algo errado");
+            throw new GeralException("Tipo Vinculado a um produto, não pode ser excluído!");
 
         } catch (ConexaoException ex) {
             throw new GeralException("O banco de dados não está acessível!");
