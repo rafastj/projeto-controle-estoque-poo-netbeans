@@ -45,15 +45,6 @@ public class NegocioNotaFiscal {
         if (nf.getFormasPagamento_Codigo() <= 0) {
             throw new GeralException("Digite o código da forma de pagamento!");
         }
-        if (nf.getNotasFiscal_ValorNotaFiscal() <= 0) {
-            throw new GeralException("Digite o valor da nota fiscal!");
-        }
-        if (nf.getNotasFiscal_DataEmissao() == null) {
-            throw new GeralException("Digite a data de emissão da nota!");
-        }
-        if (nf.getNotasFiscal_Status() == false) {
-            throw new GeralException("Digite o status da nota!");
-        }
         try {
             NotaFiscal nfconsult = rep.consultar(nf.getNotasFiscal_Numero());
             if (nfconsult != null) {
@@ -163,4 +154,28 @@ public class NegocioNotaFiscal {
         }
         return lista;
     }
+    
+   
+     public void consultarUltimaNotaCliente(int clientes_Codigo) throws GeralException {
+        if (clientes_Codigo <= 0) {
+            throw new GeralException("Digite um número de nota fiscal válida!");
+        }
+        try {
+            NotaFiscal nf = rep.consultar(clientes_Codigo);
+            if (nf == null) {
+                throw new GeralException("Nota fiscal não está cadastrada!");
+            }
+
+            rep.consultarUltimaNota(clientes_Codigo);
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível!");
+        }
+    }
+    
+    
+//FIM    
 }

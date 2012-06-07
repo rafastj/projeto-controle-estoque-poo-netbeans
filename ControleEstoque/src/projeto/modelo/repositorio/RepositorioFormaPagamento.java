@@ -100,7 +100,7 @@ public class RepositorioFormaPagamento implements IRepositorioFormaPagamento {
     public FormaPagamento consultarFormaPagamento(String formaPagamento_Descricao) throws ConexaoException, RepositorioException {
         FormaPagamento fp = null;
         Connection c = g.conectar();
-        String sqlConsulta = "SELECT s.segmentos_Codigo, s.segmentos_Descricao FROM Segmentos AS s WHERE ( s.segmentos_Descricao = ? )";
+        String sqlConsulta = "SELECT formaspagamento_Codigo, formaspagamento_Descricao FROM formaspagamento WHERE ( formaspagamento_Descricao = ? )";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsulta);
             pstm.setString(1, formaPagamento_Descricao);
@@ -110,8 +110,8 @@ public class RepositorioFormaPagamento implements IRepositorioFormaPagamento {
              */
             if (rs.next()) {
                 fp = new FormaPagamento();
-                fp.setFormaPagamento_Codigo(rs.getInt("fp.FormaPagamento_Codigo"));
-                fp.setFormaPagamento_Descricao(rs.getString("fp.FormaPagamento_Descricao"));
+                fp.setFormaPagamento_Codigo(rs.getInt("formaspagamento_Codigo"));
+                fp.setFormaPagamento_Descricao(rs.getString("formaspagamento_Descricao"));
             }
         } catch (SQLException e) {
             throw new RepositorioException(e.getMessage());
