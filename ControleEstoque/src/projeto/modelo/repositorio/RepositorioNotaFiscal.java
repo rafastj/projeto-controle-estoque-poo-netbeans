@@ -4,6 +4,7 @@
 package projeto.modelo.repositorio;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import projeto.conexao.GerenciadorConexao;
@@ -33,7 +34,11 @@ public class RepositorioNotaFiscal implements IRepositorioNotaFiscal {
             pstm.setInt(1, nf.getClientes_Codigo());
             pstm.setInt(2, nf.getFuncionarios_Codigo());
             pstm.setInt(3, nf.getFormasPagamento_Codigo());
-            pstm.setDate(4, (java.sql.Date) nf.getNotasFiscal_DataEmissao());
+            //converter a data para string no formato do banco!
+            SimpleDateFormat esse = new SimpleDateFormat("yyyy_MM_dd");  
+            String dataConvertida = esse.format(nf.getNotasFiscal_DataEmissao());  
+            pstm.setString(4, dataConvertida);
+            
             pstm.executeUpdate();
             pstm.close();
         } catch (SQLException ex) {
