@@ -524,11 +524,36 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
 
     private void jBcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelarActionPerformed
         // TODO add your handling code here:
-        int resposta;//se vai YES ou NO
-         //PEGUNTA!
-            resposta = JOptionPane.showConfirmDialog(null, "Deseja incluir outro produto ?", "", JOptionPane.YES_NO_OPTION);
+         int resposta;
+
+        try {
+            //chama o metodo que pegar o item selecionado!
+            NotaFiscal_Produto item = itemSelecionado();
+
+            resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente cancelar o Produto ?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
+                
+                NotaFiscal_Produto nfExcluir = new NotaFiscal_Produto();//criei o objeto apra armazenar os dados do item que seré excluido
+                
+                //consulta a descrição do produto selecionado
+                Produto pconsul = fachada.consultarProduto(item.getProduto().getProdutos_Descricao());
+                
+                nfExcluir.setNotasFiscal_Numero(nf.getNotasFiscal_Numero());
+                nfExcluir.setProdutos_Codigo(pconsul.getProdutos_Codigo());
+                nfExcluir.setNotasFiscalProdutos_Quantidade(item.getNotasFiscalProdutos_Quantidade());
+                nfExcluir.setNotasFiscalProdutos_ValorQuantidade(item.getNotasFiscalProdutos_ValorQuantidade());
+                
+                
+
+                if (pconsul != null) {       //seta o codigo do produto selecionado da consulta
+                    fachada.excluirNotaFiscal_Produto(nfExcluir);
+                }
             }
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione o produto!");
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }//GEN-LAST:event_jBcancelarActionPerformed
 
     private void jBconfirmarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBconfirmarCompraActionPerformed

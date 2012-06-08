@@ -67,7 +67,7 @@ public class NegocioNotaFiscal_Produto {
 
             //verificar se a quantidade desejada informa existe em estoque na tabela PRODUTOS
             if (pconsul.getProdutos_Quantidade() < NotaFiscal_Quantidade) {
-                throw new GeralException("A quantidade é superior! deste produto temos essa quantidade.: " + pconsul.getProdutos_Quantidade());
+                throw new GeralException("Não temos essa quantidade em Estoque!\n Deste produto temos essa quantidade.: " + pconsul.getProdutos_Quantidade());
             }
 
             //verificar se o código da NOTAFISCAL informada existe na tabela NotaFiscal
@@ -225,25 +225,77 @@ public class NegocioNotaFiscal_Produto {
     }
 
     //EXCLUIR o vinculo da nota fiscal com o tala produto!
-    public void excluirNotaFiscal_Produto(int NotaFiscal_Numero, int Produtos_Codigo) throws GeralException {
+    public void excluirNotaFiscal_Produto(NotaFiscal_Produto nfp) throws GeralException {
 
-        if (NotaFiscal_Numero <= 0) {
+        if (nfp.getNotasFiscal_Numero() <= 0) {
             throw new GeralException("Informe o número da Nota Fiscal");
         }
 
-        if (Produtos_Codigo <= 0) {
+        if (nfp.getProdutos_Codigo() <= 0) {
             throw new GeralException("Informe o código do Produto");
         }
+        
+         try {
+            /**
+             * CONSULTAR DO PRODUTO OLD
+             */
+            //CONSULTAR a quantidade vinculada com essa NOTA FISCAL
+            NotaFiscal_Produto npconsulOld = repNotaFiscal_Produto.consultarNotaFiscal_Produto(nfp.getNotasFiscal_Numero(), nfp.getProdutos_Codigo());
+
+
+            //CONSULTAR os dados do PRODUTO
+            Produto pconsulOld = repProduto.consultarCodigo(nfp.getProdutos_Codigo());
+            if (pconsulOld == null) {
+                throw new GeralException("O código do produto informado não existe!");
+            }
+
+            //CONSULTAR os dados dessa NOTA FISCAL
+            NotaFiscal nconsulOld = repNotaFiscal.consultar(nfp.getNotasFiscal_Numero());
+            if (nconsulOld == null) {
+                throw new GeralException("Nota Fiscal não existe!");
+            }
+            /**
+             * TRATAMENTO NO PRODUTO OLD
+             */
+            try {
+                //DEVOLVE A QUANTIDADE AO PRODUTO
+                Produto pAtualizar = new Produto();
+                pAtualizar.setProdutos_Codigo(nfp.getProdutos_Codigo());
+                pAtualizar.setProdutos_Quantidade(pconsulOld.getProdutos_Quantidade() + npconsulOld.getNotasFiscalProdutos_Quantidade());//QUANTIDADE ATUAL DE PRODUTO
+                repNotaFiscal_Produto.atualizarProdutoQtde(pAtualizar);//Chama o DAO responsável pela alteração da quantidade
+            } catch (RepositorioException ex) {
+                throw new GeralException("Diego fez caca!");
+            } catch (ConexaoException ex) {
+                throw new GeralException("O banco de dados não está acessível!");
+            }
+            //RETIRAR O VALOR TOTAL do antigo PRODUTO DA NOTA FISCAL
+            try {
+                NotaFiscal nAtualizar = new NotaFiscal();
+                nAtualizar.setNotasFiscal_Numero(nfp.getNotasFiscal_Numero());
+                nAtualizar.setNotasFiscal_ValorNotaFiscal(nconsulOld.getNotasFiscal_ValorNotaFiscal() - npconsulOld.getNotasFiscalProdutos_ValorQuantidade());//retira o antigo valor desse produto nessa nota fiscal
+                repNotaFiscal_Produto.atualizarNotaFiscalValordaNota(nAtualizar);//Chama o DAO responsável pela alteração do valor total
+
+            } catch (RepositorioException ex) {
+                throw new GeralException("Diego fez caca! No Alterar da Quantidade do NotaFiscal!");
+            } catch (ConexaoException ex) {
+                throw new GeralException("O banco de dados não está acessível!");
+            }
+        } catch (RepositorioException ex) {
+            throw new GeralException("Diego fez caca! No Alterar da Quantidade do NotaFiscal!");
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível!");
+        }
+        
 
         try {
             //verificar se exite esse produto na nota fiscal informada
-            NotaFiscal_Produto npconsul = repNotaFiscal_Produto.consultarNotaFiscal_Produto(NotaFiscal_Numero, Produtos_Codigo);
+            NotaFiscal_Produto npconsul = repNotaFiscal_Produto.consultarNotaFiscal_Produto(nfp.getNotasFiscal_Numero(), nfp.getProdutos_Codigo());
             if (npconsul == null) {
                 throw new GeralException("Não existe produto nesta Nota Fiscal!");
             }
 
             //chama o DAO responsável pela EXCLUSÃO dessa vinculo
-            repNotaFiscal_Produto.excluir(NotaFiscal_Numero, Produtos_Codigo);
+            repNotaFiscal_Produto.excluir(nfp);
 
         } catch (RepositorioException ex) {
             throw new GeralException("Diego fez caca!");

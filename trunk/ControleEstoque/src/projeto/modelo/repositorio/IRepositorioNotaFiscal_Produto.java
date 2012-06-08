@@ -68,7 +68,7 @@ public interface IRepositorioNotaFiscal_Produto {
      * @throws ConexaoException
      * @throws RepositorioException
      */
-    public void excluir(int NotaFiscal_Numero, int Produtos_Codigo) throws ConexaoException, RepositorioException;
+    public void excluir(NotaFiscal_Produto np) throws ConexaoException, RepositorioException;
 
     /**
      * LISTAR Produtos de tal Nota Fiscal
@@ -79,6 +79,13 @@ public interface IRepositorioNotaFiscal_Produto {
      * @throws RepositorioException
      */
     public Collection<NotaFiscal_Produto> lista(int notaFiscal_Numero) throws ConexaoException, RepositorioException;
-
+    
+    /**
+     * ATUALIZAR NOTA FISCAL DE PRODUTO
+     * @param np
+     * @throws ConexaoException
+     * @throws RepositorioException 
+     */
     public void atualizarNotaFiscal_Produto(NotaFiscal_Produto np) throws ConexaoException, RepositorioException;
+    
 }
