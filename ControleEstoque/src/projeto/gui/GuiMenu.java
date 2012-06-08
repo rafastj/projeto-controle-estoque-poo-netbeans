@@ -55,6 +55,7 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuTabelaCidade = new javax.swing.JMenuItem();
         jMenuCliente = new javax.swing.JMenu();
         jMenuItemPF = new javax.swing.JMenuItem();
+        jMenuItemPJ = new javax.swing.JMenuItem();
         jMenuEndereco = new javax.swing.JMenu();
         jMenuEnderecoNovo = new javax.swing.JMenuItem();
         jMenuFornecedor = new javax.swing.JMenu();
@@ -163,6 +164,9 @@ public class GuiMenu extends javax.swing.JFrame {
             }
         });
         jMenuCliente.add(jMenuItemPF);
+
+        jMenuItemPJ.setText("Gerenciar Pessoa Juridica");
+        jMenuCliente.add(jMenuItemPJ);
 
         jMenuCadastro.add(jMenuCliente);
 
@@ -538,6 +542,7 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemNovoProduto;
     private javax.swing.JMenuItem jMenuItemNovoUsuario;
     private javax.swing.JMenuItem jMenuItemPF;
+    private javax.swing.JMenuItem jMenuItemPJ;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenuItem jMenuItemSobre;
     private javax.swing.JMenuItem jMenuMarcas;
