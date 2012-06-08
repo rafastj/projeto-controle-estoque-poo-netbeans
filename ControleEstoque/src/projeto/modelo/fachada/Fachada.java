@@ -5,7 +5,6 @@ package projeto.modelo.fachada;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.modelo.negocio.*;
 import projeto.modelo.to.*;
@@ -501,13 +500,14 @@ public class Fachada {
      * Sandro Fernandes Altera Cliente/Pessoa Fisica
      */
     public void alterarCliente(PessoaFisica pf) throws GeralException {
-        
+        rnCliente.alterarCliente(pf);
     }
 
     /**
      * Sandro Fernandes Altera Cliente/Pessoa Juridica
      */
-    public void alterarCliente(PessoaJuridica pf) throws GeralException {
+    public void alterarCliente(PessoaJuridica pj) throws GeralException {
+        rnCliente.alterarCliente(pj);
     }
 
     /**

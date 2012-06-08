@@ -251,7 +251,7 @@ public class NegocioCliente {
             
     }
     
-        public void cliente(PessoaFisica pf) throws GeralException {
+        public void alterarCliente(PessoaFisica pf) throws GeralException {
 
         if ((pf.getPessoasFisica_CPF() == null) || (pf.getPessoasFisica_CPF().equals(""))) {
             throw new GeralException("Digite o CPF!");
@@ -259,6 +259,22 @@ public class NegocioCliente {
 
         try {
             rep.alterar(pf);
+        } catch (RepositorioException ex) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível no momento");
+        }
+    }
+
+        public void alterarCliente(PessoaJuridica pj) throws GeralException {
+
+        if ((pj.getPessoasJuridica_CNPJ() == null) || (pj.getPessoasJuridica_CNPJ().equals(""))) {
+            throw new GeralException("Digite o CPF!");
+        }
+
+        try {
+            rep.alterar(pj);
         } catch (RepositorioException ex) {
             throw new GeralException("Erro de programação!");
 

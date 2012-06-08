@@ -4,11 +4,31 @@
  */
 package projeto.gui;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import projeto.erro.GeralException;
+import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.Cidade;
+import projeto.modelo.to.Endereco;
+import projeto.modelo.to.PessoaFisica;
+import projeto.modelo.to.PessoaJuridica;
+
 /**
  *
  * @author Sandro
  */
 public class GuiPessoaJuridicaAlterar extends javax.swing.JDialog {
+        public static Fachada fachada = new Fachada();
+    PessoaJuridica pjAntigo = new PessoaJuridica();
+    PessoaJuridica pjAlterado = new PessoaJuridica();
+    Endereco endAntigo = new Endereco();
+    Endereco novoEnd = new Endereco();
+    Cidade cid = new Cidade();
+
 
     /**
      * Creates new form GuiPessoaJuridicaAlterar
@@ -27,21 +47,253 @@ public class GuiPessoaJuridicaAlterar extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextAlteraRazao = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jFormatTextCNPJ = new javax.swing.JFormattedTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jTextAlteraLogradouro = new javax.swing.JTextField();
+        jTextAlteraNumero = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBoxCidade = new javax.swing.JComboBox();
+        jbIncluiCidade = new javax.swing.JButton();
+        jFormatTextCEP = new javax.swing.JFormattedTextField();
+        jbLiberaEdicao = new javax.swing.JButton();
+        jbAlterar = new javax.swing.JButton();
+        jbCancela = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Pessoa Juridica"));
+        jPanel1.setEnabled(false);
+
+        jLabel1.setText("Razão Social.:");
+
+        jTextAlteraRazao.setEnabled(false);
+        jTextAlteraRazao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextAlteraRazaoActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("CNPJ");
+
+        jTextField1.setEditable(false);
+        jTextField1.setBorder(null);
+        jTextField1.setEnabled(false);
+        jTextField1.setFocusable(false);
+
+        try {
+            jFormatTextCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormatTextCNPJ.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTextAlteraRazao, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jFormatTextCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextAlteraRazao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jFormatTextCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Endereço"));
+
+        jLabel5.setText("Logradouro :");
+
+        jLabel6.setText("Número :");
+
+        jLabel7.setText("Cidade :");
+
+        jTextAlteraLogradouro.setEnabled(false);
+
+        jTextAlteraNumero.setEnabled(false);
+
+        jLabel4.setText("CEP.:");
+
+        jComboBoxCidade.setEditable(true);
+        jComboBoxCidade.setEnabled(false);
+
+        jbIncluiCidade.setText("Incluir Cidade");
+        jbIncluiCidade.setEnabled(false);
+
+        try {
+            jFormatTextCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormatTextCEP.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jFormatTextCEP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormatTextCEPActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jTextAlteraLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextAlteraNumero))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jbIncluiCidade)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jFormatTextCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextAlteraLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextAlteraNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel4)
+                    .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormatTextCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbIncluiCidade))
+        );
+
+        jbLiberaEdicao.setText("Editar");
+        jbLiberaEdicao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLiberaEdicaoActionPerformed(evt);
+            }
+        });
+
+        jbAlterar.setText("Alterar");
+        jbAlterar.setEnabled(false);
+        jbAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAlterarActionPerformed(evt);
+            }
+        });
+
+        jbCancela.setText("Cancelar");
+        jbCancela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCancelaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbLiberaEdicao)
+                .addGap(18, 18, 18)
+                .addComponent(jbAlterar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbCancela)
+                .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbCancela)
+                    .addComponent(jbAlterar)
+                    .addComponent(jbLiberaEdicao))
+                .addGap(0, 8, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextAlteraRazaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextAlteraRazaoActionPerformed
+        // TODO add your handling code here:
+    }
+
+    public JFormattedTextField getjFormatTextCPF() {
+        return jFormatTextCNPJ;
+    }
+
+    public void setjFormatTextCPF(JFormattedTextField jFormatTextCPF) {
+        this.jFormatTextCNPJ = jFormatTextCNPJ;
+    }//GEN-LAST:event_jTextAlteraRazaoActionPerformed
+
+    private void jbLiberaEdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLiberaEdicaoActionPerformed
+        try {
+            pjAntigoEdit();
+        } catch (GeralException ex) {
+            Logger.getLogger(GuiPessoaFisicaAlterar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        liberarTela();
+    }//GEN-LAST:event_jbLiberaEdicaoActionPerformed
+
+    private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
+        // TODO add your handling code here:
+        alterarPJ();
+    }//GEN-LAST:event_jbAlterarActionPerformed
+
+    private void jbCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelaActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jbCancelaActionPerformed
+
+    private void jFormatTextCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormatTextCEPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormatTextCEPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -92,6 +344,189 @@ public class GuiPessoaJuridicaAlterar extends javax.swing.JDialog {
             }
         });
     }
+    
+        private void alterarPJ() {
+        String antRazao = pjAntigo.getPessoasJuridica_RazaoSocial();
+        String antNumero = pjAntigo.getClientes_NumeroResidencia();
+        String antCnpj = pjAntigo.getPessoasJuridica_CNPJ();
+        
+        int antCodEndereco = pjAntigo.getEnderecos_Codigo();
+        int resposta;
+        PessoaJuridica pjConsult = null;
+        String pj_CNPJ;
+        String str_cep;
+        String str_cnpjOld;
+        String str_cnpj;
+        String CNPJ_Old;
+        PessoaJuridica pjAlter;
+        try {
+            //Faz a consulta do objeto através do CNPJ antigo para retirada do código do fornecedor.
+            str_cnpj = jFormatTextCNPJ.getText();
+            str_cnpj = str_cnpj.replace('.', ' ');
+            str_cnpj = str_cnpj.replace('/', ' ');
+            str_cnpj = str_cnpj.replace('-', ' ');
+            str_cnpj = str_cnpj.replaceAll(" ", "");
+            pj_CNPJ = str_cnpj;
+            
+
+            //Faz a consulta do objeto através do CEP para retirada do código do endereço.
+            str_cep = jFormatTextCEP.getText();
+            str_cep = str_cep.replace('-', ' ');
+            str_cep = str_cep.replaceAll(" ", "");
+            Endereco end = fachada.consultarEndCep(str_cep);
+            if (end != null){
+                if (antCodEndereco != end.getEnderecos_Codigo()){
+                    pjAlterado.setEnderecos_Codigo(end.getEnderecos_Codigo());
+                }else{
+                    pjAlterado.setEnderecos_Codigo(antCodEndereco);
+                    cid = fachada.consultarCidade((String) jComboBoxCidade.getSelectedItem());
+                    novoEnd.setEnderecos_Codigo(antCodEndereco);
+                    novoEnd.setCidades_Codigo(cid.getCidades_Codigo());
+                    novoEnd.setEnderecos_CEP(str_cep);
+                    novoEnd.setEnderecos_Logradouro(jTextAlteraLogradouro.getText());
+                    fachada.alterarEndereco(novoEnd);
+                }
+            }else{
+               cid = fachada.consultarCidade((String) jComboBoxCidade.getSelectedItem());
+               novoEnd.setCidades_Codigo(cid.getCidades_Codigo());
+               novoEnd.setEnderecos_CEP(str_cep);
+               novoEnd.setEnderecos_Logradouro(jTextAlteraLogradouro.getText());
+               fachada.salvarEndereco(novoEnd);
+               end = fachada.consultarEndCep(str_cep);
+               pjAlterado.setEnderecos_Codigo(end.getEnderecos_Codigo());
+            }
+
+            if (!pj_CNPJ.equals(antCnpj)){
+                pjConsult = fachada.consultaPJ_CNPJ(pj_CNPJ);
+                if (pjConsult == null){
+                        pjAlterado.setPessoasJuridica_RazaoSocial(jTextAlteraRazao.getText());
+                        
+                        pjAlterado.setClientes_NumeroResidencia(jTextAlteraNumero.getText());
+                        pjAlterado.setPessoasJuridica_CNPJ(pj_CNPJ);
+                        pjAlterado.setClientes_Tipo("J");
+                        fachada.alterarCliente(pjAlterado);
+                    
+                }else{
+                    
+                }
+            }else{
+                        pjAlterado.setClientes_Codigo(pjAntigo.getClientes_Codigo());
+                        pjAlterado.setPessoasJuridica_RazaoSocial(jTextAlteraRazao.getText());
+                        
+                        pjAlterado.setClientes_NumeroResidencia(jTextAlteraNumero.getText());
+                        pjAlterado.setPessoasJuridica_CNPJ(antCnpj);
+                        pjAlterado.setClientes_Tipo("J");
+                        fachada.alterarCliente(pjAlterado);
+                        resposta = JOptionPane.showConfirmDialog(null, "Registro alterado com sucesso!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
+                        if (resposta == JOptionPane.NO_OPTION) {
+                            dispose();
+                        } else {
+                            limparCampos();
+                            bloquearTela();
+                        }
+
+            }
+
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+
+
+    private void limparCampos() {
+/*        jFormattedTextFieldEntradaCEP.setValue(null);
+        jFormattedTextFieldEntradaNumero.setValue(null);
+        jTextFieldEntradaLog.setText("");
+        jTextFieldEntradaRS.setText("");
+        jTextFieldCidade.setText("");
+        jFormattedTextFieldEntradaCNPJ.requestFocus();*/
+    }
+
+    private void liberarTela() {
+        jFormatTextCEP.setEnabled(true);
+        jTextAlteraNumero.setEnabled(true);
+        jTextAlteraLogradouro.setEnabled(true);
+        jTextAlteraRazao.setEnabled(true);
+        jbAlterar.setEnabled(true);
+        jbLiberaEdicao.setEnabled(false);
+        jFormatTextCNPJ.setEditable(true);
+        jComboBoxCidade.setEditable(true);
+        jbIncluiCidade.setEnabled(true);
+        
+    }
+
+    private void bloquearTela() {
+        jFormatTextCEP.setEnabled(false);
+        jTextAlteraNumero.setEnabled(false);
+        jTextAlteraLogradouro.setEnabled(false);
+        jTextAlteraRazao.setEnabled(false);
+        jbAlterar.setEnabled(false);
+        jbLiberaEdicao.setEnabled(true);
+        jFormatTextCNPJ.setEditable(false);
+        jComboBoxCidade.setEditable(false);
+        jbIncluiCidade.setEnabled(false);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JComboBox jComboBoxCidade;
+    private javax.swing.JFormattedTextField jFormatTextCEP;
+    private javax.swing.JFormattedTextField jFormatTextCNPJ;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    public javax.swing.JTextField jTextAlteraLogradouro;
+    public javax.swing.JTextField jTextAlteraNumero;
+    public javax.swing.JTextField jTextAlteraRazao;
+    public javax.swing.JTextField jTextField1;
+    private javax.swing.JButton jbAlterar;
+    private javax.swing.JButton jbCancela;
+    private javax.swing.JButton jbIncluiCidade;
+    private javax.swing.JButton jbLiberaEdicao;
     // End of variables declaration//GEN-END:variables
+    private void pjAntigoEdit() throws GeralException {
+        String str_cep, str_cnpj;
+        str_cep = jFormatTextCEP.getText();
+        str_cep = str_cep.replace('-', ' ');
+        str_cep = str_cep.replaceAll(" ", "");
+        try {
+            endAntigo = fachada.consultarEndCep(str_cep);
+        } catch (GeralException ex) {
+            Logger.getLogger(GuiPessoaFisicaAlterar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+            str_cnpj = jFormatTextCNPJ.getText();
+            str_cnpj = str_cnpj.replace('.', ' ');
+            str_cnpj = str_cnpj.replace('/', ' ');
+            str_cnpj = str_cnpj.replace('-', ' ');
+            str_cnpj = str_cnpj.replaceAll(" ", "");
+        PessoaJuridica codigoPJ = new PessoaJuridica();
+        codigoPJ = fachada.consultaPJ_CNPJ(str_cnpj);
+        pjAntigo.setClientes_Codigo(codigoPJ.getClientes_Codigo());
+        pjAntigo.setPessoasJuridica_CNPJ(str_cnpj);
+        pjAntigo.setPessoasJuridica_RazaoSocial(jTextAlteraRazao.getText());
+
+        pjAntigo.setClientes_NumeroResidencia(jTextAlteraNumero.getText());
+        pjAntigo.setEnderecos_Codigo(endAntigo.getEnderecos_Codigo());
+        pjAntigo.getEndereco().setEnderecos_CEP(str_cep);
+        
+    }
+        private void atualizarComboCidade() {
+        Cidade cid;
+        ArrayList<Cidade> listaCd;
+        try {
+            listaCd = (ArrayList<Cidade>) fachada.listarCidadeTudo();
+            for (Iterator<Cidade> it = listaCd.iterator(); it.hasNext();) {
+                cid = it.next();
+                jComboBoxCidade.addItem(cid.getCidades_Nome());
+            }
+        } catch (GeralException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+
 }
