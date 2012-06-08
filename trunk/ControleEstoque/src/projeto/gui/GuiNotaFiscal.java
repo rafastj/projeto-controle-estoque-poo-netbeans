@@ -558,10 +558,30 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
 
     private void jBconfirmarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBconfirmarCompraActionPerformed
         // TODO add your handling code here:
+         int resposta;
+         resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente confirmar essa nota fiscal ?", "", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+                boolean confirmado = true;
+                try{
+                fachada.atualizarStatusNF(confirmado, nf.getNotasFiscal_Numero());
+                }catch (GeralException ex){
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+            }
     }//GEN-LAST:event_jBconfirmarCompraActionPerformed
 
     private void jBcancelarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelarCompraActionPerformed
         // TODO add your handling code here:
+         int resposta;
+         resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente cancelar essa nota fiscal ?", "", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+                boolean confirmado = false;
+                try{
+                fachada.atualizarStatusNF(confirmado, nf.getNotasFiscal_Numero());
+                }catch (GeralException ex){
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+            }
     }//GEN-LAST:event_jBcancelarCompraActionPerformed
 
     private void JcCpfCnpjKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JcCpfCnpjKeyPressed

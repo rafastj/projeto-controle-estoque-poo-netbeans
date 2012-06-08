@@ -187,6 +187,24 @@ public class NegocioNotaFiscal {
         }
         return nf;         
     }
+     
+     /**
+      * Atualizar o Status da Nota Fiscal
+      * @param status
+      * @param notasFiscal_Numero
+      * @throws GeralException 
+      */
+     public void statusNotaFiscal(boolean status, int notasFiscal_Numero) throws GeralException {
+
+        try {
+            rep.statusNotaFiscal(status, notasFiscal_Numero);
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Erro de programação!");
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível!");
+        }
+     }
     
     
 //FIM    
