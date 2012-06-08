@@ -217,8 +217,6 @@
                       <Component id="jComboBoxCidade" alignment="0" max="32767" attributes="0"/>
                       <Component id="jFormattedTextFieldCEP" alignment="0" pref="296" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -239,7 +237,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jComboBoxCidade" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jLabelCidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="36" max="32767" attributes="0"/>
               </Group>
@@ -286,11 +283,6 @@
           <Events>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jFormattedTextFieldCEPKeyReleased"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Gerenciar cidade"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
