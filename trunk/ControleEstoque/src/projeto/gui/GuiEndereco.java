@@ -110,7 +110,6 @@ public class GuiEndereco extends javax.swing.JDialog {
         jLabelCidade = new javax.swing.JLabel();
         jComboBoxCidade = new javax.swing.JComboBox();
         jFormattedTextFieldCEP = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de endereços");
@@ -244,8 +243,6 @@ public class GuiEndereco extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setText("Gerenciar cidade");
-
         javax.swing.GroupLayout jPanelFiltroLayout = new javax.swing.GroupLayout(jPanelFiltro);
         jPanelFiltro.setLayout(jPanelFiltroLayout);
         jPanelFiltroLayout.setHorizontalGroup(
@@ -261,8 +258,6 @@ public class GuiEndereco extends javax.swing.JDialog {
                     .addComponent(jTextFieldEntradaLog)
                     .addComponent(jComboBoxCidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jFormattedTextFieldCEP, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelFiltroLayout.setVerticalGroup(
@@ -278,8 +273,7 @@ public class GuiEndereco extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelCidade)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelCidade))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -522,7 +516,6 @@ public class GuiEndereco extends javax.swing.JDialog {
         return modelo;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonApagar;
     private javax.swing.JButton jButtonAtualizar;
