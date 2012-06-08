@@ -63,4 +63,12 @@ public interface IRepositorioNotaFiscal {
      */
     public Collection<NotaFiscal> listar(int notasFiscal_Numero) throws ConexaoException, RepositorioException;
     
+    /**
+     * Atualizar o status da Nota Fiscal
+     * @param notasFiscal_Numero
+     * @throws ConexaoException
+     * @throws RepositorioException 
+     */
+    public void statusNotaFiscal(boolean status,int notasFiscal_Numero) throws ConexaoException, RepositorioException;
+    
 }

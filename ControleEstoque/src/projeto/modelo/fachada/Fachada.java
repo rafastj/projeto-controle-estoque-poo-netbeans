@@ -742,6 +742,13 @@ public class Fachada {
     public NotaFiscal consultarUltimaNovaCliente(int clientes_Codigo) throws GeralException {
         return rnNotaFiscal.consultarUltimaNotaCliente(clientes_Codigo);
     }
+    
+    /**
+     * ATUALIZAR O STATUS DA NOTA FISCAL
+     */
+    public void atualizarStatusNF(boolean status,int NotaFiscal_Codigo) throws GeralException{
+        rnNotaFiscal.statusNotaFiscal(status,NotaFiscal_Codigo);
+    }
 
     /**
      * FIM DA ÁREA ESCRITA POR Thiago Evoa

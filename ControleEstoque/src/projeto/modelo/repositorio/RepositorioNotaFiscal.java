@@ -165,4 +165,22 @@ public class RepositorioNotaFiscal implements IRepositorioNotaFiscal {
         }
         return nf;
     }
+    
+    //ATUALIZAR O STATUS DA NOTA FISCAL
+    @Override
+    public void statusNotaFiscal(boolean status, int notasFiscal_Numero) throws ConexaoException, RepositorioException {
+         Connection c = g.conectar();
+        String sqlAlterar = "UPDATE NotasFiscal set NOTASFISCAL_STATUS = ? WHERE (notasFiscal_Numero = ?)";
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlAlterar);
+            pstm.setBoolean(1, status);
+            pstm.setInt(2, notasFiscal_Numero);
+            pstm.executeUpdate();
+            pstm.close();
+        } catch (SQLException ex) {
+            throw new RepositorioException(ex.getMessage());
+        } finally {
+            g.desconectar(c);
+        }
+    }
 }
