@@ -579,6 +579,25 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
                 boolean confirmado = false;
                 try{
                 fachada.atualizarStatusNF(confirmado, nf.getNotasFiscal_Numero());
+                  
+                NotaFiscal_Produto nfpDelvove = new NotaFiscal_Produto();
+                //DEVOLVER A QUANTIDADE PARA OS PRODUTOS EM ESTOQUE
+                int tabela = jTabelaItens.getRowCount();
+                String produto = null;
+                for(int i=0; i < tabela; i++){  
+
+                    nfpDelvove.setNotasFiscal_Numero(nf.getNotasFiscal_Numero());
+                    
+                    Produto pconsul = fachada.consultarProduto((String) jTabelaItens.getValueAt(i,1));
+                    
+                    nfpDelvove.setProdutos_Codigo(pconsul.getProdutos_Codigo());
+                     
+                    nfpDelvove.setNotasFiscalProdutos_Quantidade(Integer.parseInt((String)jTabelaItens.getValueAt(i,0)));
+                    
+                    fachada.devolver(nfpDelvove);
+                    
+                     }  
+                
                 }catch (GeralException ex){
                     JOptionPane.showMessageDialog(null, ex.getMessage());
                 }

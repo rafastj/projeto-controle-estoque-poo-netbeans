@@ -412,6 +412,10 @@ public class Fachada {
     public ArrayList<NotaFiscal_Produto> listaProdutosNotaFiscal_Produto(int notaFiscal_Produto) throws GeralException{
         return (ArrayList<NotaFiscal_Produto>) rnNotaFiscal_Produto.listaProdutos(notaFiscal_Produto);
     }
+    
+    public void devolver(NotaFiscal_Produto nfp) throws GeralException{
+        rnNotaFiscal_Produto.devolver(nfp);
+    }
 
     /**
      * FIM DA ÁREA ESCRITA POR DIEGO SILVA-----------------
