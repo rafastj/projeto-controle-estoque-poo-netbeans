@@ -509,6 +509,7 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         guiNFAlteraProdu.nfpAlterar.setProdutos_Codigo(pconsul.getProdutos_Codigo());
         guiNFAlteraProdu.nfpAlterar.setNotasFiscal_Numero(nf.getNotasFiscal_Numero());
         guiNFAlteraProdu.nfpAlterar.setNotasFiscalProdutos_Quantidade(item.getNotasFiscalProdutos_Quantidade());
+        guiNFAlteraProdu.nfpAlterar.setNotasFiscalProdutos_ValorQuantidade(item.getNotasFiscalProdutos_ValorQuantidade());
         
         //CHAMA A TELA PARA ALTERA O QUANTIDADE DO PRODUTO
         guiNFAlteraProdu.setVisible(true);
