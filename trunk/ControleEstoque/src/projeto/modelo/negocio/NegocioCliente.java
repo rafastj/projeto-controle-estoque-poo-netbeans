@@ -197,27 +197,33 @@ public class NegocioCliente {
         return lista;
        }
        
+    public Collection<PessoaJuridica> listarPjCidade(String cidade_nome) throws GeralException {
 
-        public void excluirCliente(Cliente cli) throws GeralException {
-        /*if (codigo < 1) {
-            throw new GeralException("Digite o CEP!");
-        }*/
-        String tipo = cli.getClientes_Tipo();
-        int codigo = cli.getClientes_Codigo();
+        ArrayList<PessoaJuridica> lista = null;
+        try {
+            lista = (ArrayList<PessoaJuridica>) new RepositorioCliente().listarPjCidade(cidade_nome);
+        } catch (RepositorioException e) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException e) {
+            throw new GeralException("O banco de dados não está acessível no momento");
+        }
+
+        return lista;
+    }
+
+    public void excluirPessoaFisica(int codigo) throws GeralException {
         try {
             boolean verificaCliente = rep.consultarCliente(codigo);
             if (verificaCliente == false) {
-                throw new GeralException("Cliente nÃ£o existe");
-            }
-            if (("f".equals(tipo)) || ("F".equals(tipo))){
-                rep.excluirPF(codigo);
+                throw new GeralException("Cliente não existe");
             }
             else{
-                rep.excluirPJ(codigo);
+                rep.excluirPF(codigo);
             }
 
         } catch (RepositorioException ex) {
-            throw new GeralException("Registro nÃ£o pode ser excluÃ­do!\nMotivo: Existem um ou mais cadastros vinculados a este endereÃ§o.");
+            throw new GeralException("Registro não pode ser excluído!\nMotivo: Existem um ou mais cadastros vinculados a este endereÃ§o.");
 
         } catch (ConexaoException ex) {
             throw new GeralException("O banco de dados nÃ£o estÃ¡ acessÃ­vel no momento");
@@ -225,4 +231,23 @@ public class NegocioCliente {
             
     }
 
+    public void excluirPessoaJuridica(int codigo) throws GeralException {
+        try {
+            boolean verificaCliente = rep.consultarCliente(codigo);
+            if (verificaCliente == false) {
+                throw new GeralException("Cliente não existe");
+            }
+            else{
+                rep.excluirPJ(codigo);
+            }
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Registro não pode ser excluído!\nMotivo: Existem um ou mais cadastros vinculados a este endereÃ§o.");
+
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados nÃ£o estÃ¡ acessÃ­vel no momento");
+        }
+            
+    }
+    
 }

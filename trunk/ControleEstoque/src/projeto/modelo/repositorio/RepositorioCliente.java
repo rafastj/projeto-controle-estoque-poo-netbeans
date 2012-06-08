@@ -158,8 +158,8 @@ public class RepositorioCliente implements IRepositorioCliente {
     @Override
     public void excluirPF(int codigo) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
-        String sqlExcluirPF = "DELETE FROM PessoasFisica WHERE (clientes_codogo = ?)";
-        String sqlExcluirCli = "DELETE FROM Clientes WHERE (clientes_codogo = ?)";
+        String sqlExcluirPF = "DELETE FROM PessoasFisica WHERE (clientes_codigo = ?)";
+        String sqlExcluirCli = "DELETE FROM Clientes WHERE (clientes_codigo = ?)";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlExcluirPF);
             pstm.setInt(1, codigo);
@@ -182,8 +182,8 @@ public class RepositorioCliente implements IRepositorioCliente {
     @Override
        public void excluirPJ(int codigo) throws ConexaoException, RepositorioException {
         Connection c = g.conectar();
-        String sqlExcluirPF = "DELETE FROM PessoasJuridica WHERE (clientes_codogo = ?)";
-        String sqlExcluirCli = "DELETE FROM Clientes WHERE (clientes_codogo = ?)";
+        String sqlExcluirPF = "DELETE FROM PessoasJuridica WHERE (clientes_codigo = ?)";
+        String sqlExcluirCli = "DELETE FROM Clientes WHERE (clientes_codigo = ?)";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlExcluirPF);
             pstm.setInt(1, codigo);
@@ -458,6 +458,44 @@ public class RepositorioCliente implements IRepositorioCliente {
                 pf.setPessoasFisica_Sexo(rs.getString("pessoasFisica_Sexo"));
                 pf.setClientes_NumeroResidencia(rs.getString("clientes_NumeroResidencia"));
                 lista.add(pf);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RepositorioException(e);
+        } finally {
+            g.desconectar(c);
+        }
+    }
+        public Collection<PessoaJuridica> listarPjCidade(String cidades_Nome) throws ConexaoException, RepositorioException {
+        ArrayList<PessoaJuridica> lista = new ArrayList<PessoaJuridica>();
+        PessoaJuridica pj;
+
+        Connection c = g.conectar();
+        String sqlLista = "SELECT pj.clientes_Codigo, pj.pessoasfisica_CNPJ, pj.pessoasFisica_RazaoSocial,"
+                + " end.enderecos_Codigo, end.enderecos_CEP, end.enderecos_Logradouro, cd.cidades_Codigo, cd.cidades_Nome,"
+                + " cli.clientes_numeroresidencia, cli.clientes_tipo from ((PessoasJuridicaa AS pj INNER JOIN clientes as cli"
+                + " on pj.clientes_codigo = cli.clientes_codigo) INNER JOIN ENDERECOS AS end ON CLI.enderecos_Codigo = end.enderecos_Codigo) INNER JOIN CIDADES AS cd ON end.cidades_Codigo = cd.cidades_Codigo WHERE cidades_Nome = ? ORDER BY pj.pessoasfisica_CNPJ";
+
+        try {
+            PreparedStatement pstm = c.prepareStatement(sqlLista);
+            pstm.setString(1, cidades_Nome);
+            ResultSet rs = pstm.executeQuery();
+            //verifica se retornou algum registro e cria os Objetos
+            while (rs.next()) {
+                pj = new PessoaJuridica();
+                
+                pj.getEndereco().getCidade().setCidades_Codigo(rs.getInt("cidades_codigo"));
+                pj.getEndereco().getCidade().setCidades_Nome(rs.getString("cidades_nome"));
+                pj.getEndereco().setCidades_Codigo(rs.getInt("cidades_codigo"));
+                pj.getEndereco().setEnderecos_Codigo(rs.getInt("enderecos_codigo"));
+                pj.getEndereco().setEnderecos_CEP(rs.getString("enderecos_cep"));
+                pj.getEndereco().setEnderecos_Logradouro("enderecos_logradouro");
+                pj.setEnderecos_Codigo(rs.getInt("enderecos_Codigo"));
+                pj.setClientes_Codigo(rs.getInt("clientes_Codigo"));
+                pj.setPessoasJuridica_CNPJ(rs.getString("pessoasJuridica_CNPJ"));
+                pj.setPessoasJuridica_RazaoSocial(rs.getString("pessoasJuridica_Razao_Social"));
+                pj.setClientes_NumeroResidencia(rs.getString("clientes_NumeroResidencia"));
+                lista.add(pj);
             }
             return lista;
         } catch (SQLException e) {

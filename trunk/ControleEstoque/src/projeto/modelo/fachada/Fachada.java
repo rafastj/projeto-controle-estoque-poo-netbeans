@@ -480,8 +480,14 @@ public class Fachada {
     /**
      * Sandro Fernandes Exclui Cliente pelo Codigo do cliente
      */
-    public void excluirCliente(int clientes_Codigo) throws GeralException {
+    public void excluirPessoaFisica(int codigo) throws GeralException {
+        rnCliente.excluirPessoaFisica(codigo);
     }
+    
+    public void excluirPessoaJuridica(int codigo) throws GeralException {
+        rnCliente.excluirPessoaJuridica(codigo);
+    }
+
 
     /**
      * Sandro Fernandes Altera Cliente/Pessoa Fisica
@@ -514,6 +520,10 @@ public class Fachada {
     public Collection<PessoaFisica> listarPfCidade(String cidade_nome) throws GeralException {
         return rnCliente.listarPfCidade(cidade_nome);
     }
+    public Collection<PessoaJuridica> listarPjCidade(String cidade_nome) throws GeralException {
+        return rnCliente.listarPjCidade(cidade_nome);
+    }
+
 
     /**
      * FIM DA ÁREA ESCRITA POR SANDRO
@@ -920,6 +930,10 @@ public class Fachada {
 
     public PessoaFisica consultarPessoaFisicaNome(String cliPf) {
         // TODO Auto-generated method stub
+        return null;
+    }
+    
+    public PessoaJuridica consultarPessoaJuridicaCNPJ(String cnpf){
         return null;
     }
 }

@@ -13,31 +13,31 @@ import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Cidade;
 import projeto.modelo.to.PessoaFisica;
+import projeto.modelo.to.PessoaJuridica;
 
 /**
  *
  * @author Sandro
  */
-public class GuiPessoaFisica extends javax.swing.JDialog {
-
-     ArrayList<PessoaFisica> listaPF = null;
+public class GuiPessoaJuridica extends javax.swing.JDialog {
+     ArrayList<PessoaJuridica> listaPJ = null;
      public static Fachada fachada = new Fachada();
+
+
     /**
-     * Creates new form GuiPessoaFisica
+     * Creates new form GuiPessoaJuridica
      */
-    public GuiPessoaFisica(java.awt.Frame parent, boolean modal) {
+    public GuiPessoaJuridica(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-    
-    GuiPessoaFisica() throws ConexaoException {
+
+    GuiPessoaJuridica() throws ConexaoException {
         initComponents();
         setLocationRelativeTo(null);
         limparCampos();
         atualizarTabela();
-
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,12 +48,17 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jbAtualizar = new javax.swing.JButton();
+        jbNovo = new javax.swing.JButton();
+        jbAlterar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTablePJ = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jFormatTextCPF = new javax.swing.JFormattedTextField();
-        jTextPF = new javax.swing.JTextField();
+        jFormatTextCNPJ = new javax.swing.JFormattedTextField();
+        jTextPJ = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTextEnd = new javax.swing.JTextField();
@@ -61,45 +66,81 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jFormatTextCEP = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
-        jbNovo = new javax.swing.JButton();
-        jbAlterar = new javax.swing.JButton();
+        jbAtualizar = new javax.swing.JButton();
         jbSair = new javax.swing.JButton();
         jbExcluir = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTablePF = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
-            }
-        });
 
-        jbAtualizar.setText("Atualizar");
-        jbAtualizar.addActionListener(new java.awt.event.ActionListener() {
+        jbNovo.setText("Novo");
+        jbNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAtualizarActionPerformed(evt);
+                jbNovoActionPerformed(evt);
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Filtro de Pessoa Fisica", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+        jbAlterar.setText("Alterar");
+        jbAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAlterarActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setText("CPF.:");
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
-        jLabel3.setText("Nome.:");
+        jTablePJ.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null}
+            },
+            new String [] {
+                "Cliente", "CPF"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTablePJ.setShowHorizontalLines(false);
+        jTablePJ.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(jTablePJ);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel4.setText("Listagem");
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Filtro de Pessoa Juridica", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+
+        jLabel1.setText("CNPJ.:");
+
+        jLabel3.setText("Razão Social.:");
 
         try {
-            jFormatTextCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            jFormatTextCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormatTextCPF.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jFormatTextCNPJ.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
-        jTextPF.addActionListener(new java.awt.event.ActionListener() {
+        jTextPJ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextPFActionPerformed(evt);
+                jTextPJActionPerformed(evt);
             }
         });
 
@@ -146,20 +187,21 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextPF))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextPJ))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jFormatTextCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jFormatTextCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel2))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(140, 140, 140)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jFormatTextCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel6)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jCbBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -168,8 +210,6 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jFormatTextCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
@@ -178,11 +218,11 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jFormatTextCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormatTextCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jTextEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,17 +240,10 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jbNovo.setText("Novo");
-        jbNovo.addActionListener(new java.awt.event.ActionListener() {
+        jbAtualizar.setText("Atualizar");
+        jbAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbNovoActionPerformed(evt);
-            }
-        });
-
-        jbAlterar.setText("Alterar");
-        jbAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAlterarActionPerformed(evt);
+                jbAtualizarActionPerformed(evt);
             }
         });
 
@@ -227,48 +260,6 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
                 jbExcluirActionPerformed(evt);
             }
         });
-
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel4.setText("Listagem");
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jPanel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-
-        jTablePF.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null}
-            },
-            new String [] {
-                "Cliente", "CPF"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jTablePF.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTablePF.setShowHorizontalLines(false);
-        jTablePF.setShowVerticalLines(false);
-        jScrollPane1.setViewportView(jTablePF);
-        jTablePF.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTablePF.getColumnModel().getColumn(0).setPreferredWidth(300);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                .addContainerGap())
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -312,22 +303,11 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
                         .addComponent(jbExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbSair)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
-        // TODO add your handling code here:
-        alterarPessoaFisica();
-        atualizarComboCidade();
-        atualizarTabela();
-    }//GEN-LAST:event_jbAlterarActionPerformed
-
-    private void jbAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbAtualizarActionPerformed
 
     private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
         // TODO add your handling code here:
@@ -335,44 +315,48 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         pf.setVisible(true);
         atualizarComboCidade();
         atualizarTabela();
-        
+
     }//GEN-LAST:event_jbNovoActionPerformed
 
-    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
-        // TODO add your handling code here
-        excluirPessoaFisica();
+    private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
+        // TODO add your handling code here:
+        alterarPessoaJuridica();
         atualizarComboCidade();
         atualizarTabela();
-    }//GEN-LAST:event_jbExcluirActionPerformed
+    }//GEN-LAST:event_jbAlterarActionPerformed
 
-    private void jbSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSairActionPerformed
+    private void jTextPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPJActionPerformed
         // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_jbSairActionPerformed
-
-    private void jTextPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextPFActionPerformed
-
-    private void jFormatTextCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormatTextCEPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormatTextCEPActionPerformed
+    }//GEN-LAST:event_jTextPJActionPerformed
 
     private void jTextEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextEndActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextEndActionPerformed
 
     private void jCbBoxCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbBoxCidadeActionPerformed
-            // TODO add your handling code here:
-            pesquisarCidade((String) jCbBoxCidade.getSelectedItem());
+        // TODO add your handling code here:
+        pesquisarCidade((String) jCbBoxCidade.getSelectedItem());
     }//GEN-LAST:event_jCbBoxCidadeActionPerformed
 
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+    private void jFormatTextCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormatTextCEPActionPerformed
         // TODO add your handling code here:
-        
+    }//GEN-LAST:event_jFormatTextCEPActionPerformed
+
+    private void jbAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbAtualizarActionPerformed
+
+    private void jbSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSairActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jbSairActionPerformed
+
+    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
+        // TODO add your handling code here
+        excluirPessoaJuridica();
         atualizarComboCidade();
         atualizarTabela();
-    }//GEN-LAST:event_formComponentShown
+    }//GEN-LAST:event_jbExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -395,13 +379,13 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiPessoaFisica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiPessoaJuridica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiPessoaFisica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiPessoaJuridica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiPessoaFisica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiPessoaJuridica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiPessoaFisica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiPessoaJuridica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -411,7 +395,7 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                GuiPessoaFisica dialog = new GuiPessoaFisica(new javax.swing.JFrame(), true);
+                GuiPessoaJuridica dialog = new GuiPessoaJuridica(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override
@@ -424,38 +408,39 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         });
     }
     
-        private void alterarPessoaFisica() {
+    
+            private void alterarPessoaJuridica() {
         int resposta;
         try {
-            PessoaFisica PF = listaPF.get(jTablePF.getSelectedRow());
+            PessoaJuridica PJ = listaPJ.get(jTablePJ.getSelectedRow());
 
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Alterar?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
-                GuiPessoaFisicaAlterar guiPF_Alterar = new GuiPessoaFisicaAlterar();
+               /* GuiPessoaJuridicaAlterar guiPJ_Alterar = new GuiPessoaJuridicaAlterar();
                 guiPF_Alterar.jFormatTextAlteraCPF.setText(PF.getPessoasFisica_CPF());
                 guiPF_Alterar.jTextAlteraNome.setText(PF.getPessoasFisica_Nome());
                 guiPF_Alterar.jTextAlteraLogradouro.setText(PF.getEndereco().getEnderecos_Logradouro());
                 guiPF_Alterar.jTextAlteraNumero.setText(PF.getClientes_NumeroResidencia());
                 guiPF_Alterar.jTextAlteraCidade.setText(PF.getEndereco().getCidade().getCidades_Nome());
                 //guiPF_Alterar.jTextFieldSaidaCidade.setText(fOld.getCidades_Nome());
-                guiPF_Alterar.setVisible(true);
+                guiPF_Alterar.setVisible(true);*/
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Selecione um Registro!");
         }
     }
     
-    private void excluirPessoaFisica() {
+    private void excluirPessoaJuridica() {
         int resposta;
 
         try {
-            PessoaFisica pf = listaPF.get(jTablePF.getSelectedRow());
+            PessoaJuridica pj = listaPJ.get(jTablePJ.getSelectedRow());
 
             resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Excluir?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
-                PessoaFisica pfConsult = fachada.consultarPF_CPF(pf.getPessoasFisica_CPF());
-                if (pfConsult != null) {
-                    fachada.excluirPessoaFisica(pfConsult.getClientes_Codigo());
+                PessoaJuridica pjConsult = fachada.consultarPessoaJuridicaCNPJ(pj.getPessoasJuridica_CNPJ());
+                if (pjConsult != null) {
+                    fachada.excluirPessoaJuridica(pjConsult.getClientes_Codigo());
                 }
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
@@ -465,94 +450,94 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         }
     }
     
-    private void pesquisarCPF() {
+    private void pesquisarCNPJ() {
         String str_cnpj;
-        String fornecedores_CNPJ;
+        String pj_CNPJ;
         try {
-            str_cnpj = jFormatTextCPF.getText();
+            str_cnpj = jFormatTextCNPJ.getText();
             str_cnpj = str_cnpj.replace('.', ' ');
             str_cnpj = str_cnpj.replace('/', ' ');
             str_cnpj = str_cnpj.replace('-', ' ');
             str_cnpj = str_cnpj.replaceAll(" ", "");
-            fornecedores_CNPJ = str_cnpj;
-            if ((fornecedores_CNPJ == null) || (fornecedores_CNPJ.equals(""))) {
-                listaPF = (ArrayList<PessoaFisica>) fachada.listarPessoaFisica();
+            pj_CNPJ = str_cnpj;
+            if ((pj_CNPJ == null) || (pj_CNPJ.equals(""))) {
+                listaPJ = (ArrayList<PessoaJuridica>) fachada.listarPessoaJuridica();
             } else {
-                listaPF = (ArrayList<PessoaFisica>) fachada.listarPessoaFisica();
+                listaPJ = (ArrayList<PessoaJuridica>) fachada.listarPessoaJuridica();
             }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        DefaultTableModel modelo = geramodeloPF(listaPF);
-        jTablePF.setModel(modelo);
+        DefaultTableModel modelo = geramodeloPJ(listaPJ);
+        jTablePJ.setModel(modelo);
     }
     
-    private void pesquisarNome() {
+    private void pesquisarRazaoSocial() {
         try {
-            if ((jTextPF.getText() == null) || (jTextPF.getText().equals(""))) {
-                listaPF = (ArrayList<PessoaFisica>) fachada.listarPessoaFisica();
+            if ((jTextPJ.getText() == null) || (jTextPJ.getText().equals(""))) {
+                listaPJ = (ArrayList<PessoaJuridica>) fachada.listarPessoaJuridica();
             } else {
-                listaPF = (ArrayList<PessoaFisica>) fachada.listarPessoaFisica();
+                listaPJ = (ArrayList<PessoaJuridica>) fachada.listarPessoaJuridica();
             }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        DefaultTableModel modelo = geramodeloPF(listaPF);
-        jTablePF.setModel(modelo);
+        DefaultTableModel modelo = geramodeloPJ(listaPJ);
+        jTablePJ.setModel(modelo);
     }
     
     private void pesquisarCEP() {
         String str_cep;
-        String fornecedores_CEP;
+        String pj_CEP;
         try {
             str_cep = jFormatTextCEP.getText();
             str_cep = str_cep.replace('-', ' ');
             str_cep = str_cep.replaceAll(" ", "");
-            fornecedores_CEP = str_cep;
-            if ((fornecedores_CEP == null) || (fornecedores_CEP.equals(""))) {
-                listaPF = (ArrayList<PessoaFisica>) fachada.listarPessoaFisica();
+            pj_CEP = str_cep;
+            if ((pj_CEP == null) || (pj_CEP.equals(""))) {
+                listaPJ = (ArrayList<PessoaJuridica>) fachada.listarPessoaJuridica();
             } else {
-                listaPF = (ArrayList<PessoaFisica>) fachada.listarPessoaFisica();
+                listaPJ = (ArrayList<PessoaJuridica>) fachada.listarPessoaJuridica();
             }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        DefaultTableModel modelo = geramodeloPF(listaPF);
-        jTablePF.setModel(modelo);
+        DefaultTableModel modelo = geramodeloPJ(listaPJ);
+        jTablePJ.setModel(modelo);
     }
     
     private void pesquisarLogradouro(){
         try {
             if ((jTextEnd.getText() == null) || (jTextEnd.getText().equals(""))) {
-                listaPF = (ArrayList<PessoaFisica>) fachada.listarPessoaFisica();
+                listaPJ = (ArrayList<PessoaJuridica>) fachada.listarPessoaJuridica();
             } else {
-                listaPF = (ArrayList<PessoaFisica>) fachada.listarPessoaFisica();
+                listaPJ = (ArrayList<PessoaJuridica>) fachada.listarPessoaJuridica();
             }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        DefaultTableModel modelo = geramodeloPF(listaPF);
-        jTablePF.setModel(modelo);
+        DefaultTableModel modelo = geramodeloPJ(listaPJ);
+        jTablePJ.setModel(modelo);
     }
     
     private void pesquisarCidade(String cidades_Nome) {
         try{
-            listaPF = ( ArrayList<PessoaFisica>)fachada.listarPfCidade(cidades_Nome);
+            listaPJ = (ArrayList<PessoaJuridica>) fachada.listarPjCidade(cidades_Nome);
         } catch (GeralException ex){
                 JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        DefaultTableModel modelo = geramodeloPF(listaPF);
-        jTablePF.setModel(modelo);
+        DefaultTableModel modelo = geramodeloPJ(listaPJ);
+        jTablePJ.setModel(modelo);
     }
     
     private void atualizarTabela() {
         try {
-            listaPF = (ArrayList<PessoaFisica>) fachada.listarPessoaFisica();
+            listaPJ = (ArrayList<PessoaJuridica>) fachada.listarPessoaJuridica();
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        DefaultTableModel modelo = geramodeloPF(listaPF);
-        jTablePF.setModel(modelo);
+        DefaultTableModel modelo = geramodeloPJ(listaPJ);
+        jTablePJ.setModel(modelo);
     }
     
     private void atualizarComboCidade() {
@@ -570,41 +555,42 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
     }
     
     private void limparCampos() {
-        jFormatTextCPF.setValue(null);
+        jFormatTextCNPJ.setValue(null);
         jFormatTextCEP.setValue(null);
         jTextEnd.setText("");
-        jTextPF.setText("");
+        jTextPJ.setText("");
     }
     
-    private DefaultTableModel geramodeloPF(ArrayList<PessoaFisica> listaPF) {
-        DefaultTableModel modeloPF = new DefaultTableModel();
-        modeloPF.addColumn("Cliente/Nome");
-        modeloPF.addColumn("Logradouro");
-        modeloPF.addColumn("Número");
-        modeloPF.addColumn("Cidade");
-        modeloPF.addColumn("CEP");
+    private DefaultTableModel geramodeloPJ(ArrayList<PessoaJuridica> listaPJ) {
+        DefaultTableModel modeloPJ = new DefaultTableModel();
+        modeloPJ.addColumn("CNPJ");
+        modeloPJ.addColumn("Razão Social");
+        modeloPJ.addColumn("Logradouro");
+        modeloPJ.addColumn("Número");
+        modeloPJ.addColumn("Cidade");
+        modeloPJ.addColumn("CEP");
 
         ArrayList<String> valores;
         int i = 0;
-        for (PessoaFisica pf : listaPF) {
+        for (PessoaJuridica pj : listaPJ) {
             valores = new ArrayList<String>();
-           // valores.add(pf.getPessoasFisica_CPF());
-            valores.add(pf.getPessoasFisica_Nome());
-            valores.add(pf.getEndereco().getEnderecos_Logradouro());
-            valores.add(String.valueOf(pf.getClientes_NumeroResidencia()));
-            valores.add(pf.getEndereco().getCidade().getCidades_Nome());
-            valores.add(pf.getEndereco().getEnderecos_CEP());
-            modeloPF.insertRow(i, valores.toArray());
+            valores.add(pj.getPessoasJuridica_CNPJ());
+            valores.add(pj.getPessoasJuridica_RazaoSocial());
+            valores.add(pj.getEndereco().getEnderecos_Logradouro());
+            valores.add(String.valueOf(pj.getClientes_NumeroResidencia()));
+            valores.add(pj.getEndereco().getCidade().getCidades_Nome());
+            valores.add(pj.getEndereco().getEnderecos_CEP());
+            modeloPJ.insertRow(i, valores.toArray());
             i++;
         }
-        return modeloPF;
+        return modeloPJ;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox jCbBoxCidade;
     private javax.swing.JFormattedTextField jFormatTextCEP;
-    private javax.swing.JFormattedTextField jFormatTextCPF;
+    private javax.swing.JFormattedTextField jFormatTextCNPJ;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -614,9 +600,9 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTablePF;
+    private javax.swing.JTable jTablePJ;
     private javax.swing.JTextField jTextEnd;
-    private javax.swing.JTextField jTextPF;
+    private javax.swing.JTextField jTextPJ;
     private javax.swing.JButton jbAlterar;
     private javax.swing.JButton jbAtualizar;
     private javax.swing.JButton jbExcluir;
