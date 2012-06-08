@@ -85,7 +85,7 @@ public class NegocioNotaFiscal_Produto {
             //VERIFICAÇÃO se exite estes vinculo dentro da tabela NotaFiscal_Produto
             NotaFiscal_Produto npconsul = repNotaFiscal_Produto.consultarNotaFiscal_Produto(NotaFiscal_Codigo, Produto_Codigo);
             if (npconsul != null) {
-                throw new GeralException("Esse Produto já possui vinculo com essa Nota Fiscal! utilizar atualize as informações!");
+                throw new GeralException("Esse Produto já possui vinculo com essa Nota Fiscal!");
             }
 
 

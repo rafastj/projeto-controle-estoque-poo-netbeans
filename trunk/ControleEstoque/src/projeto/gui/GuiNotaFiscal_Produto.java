@@ -207,6 +207,11 @@ public class GuiNotaFiscal_Produto extends javax.swing.JDialog {
         JcProdutoselecionado.setEditable(false);
 
         jButton1.setText("Inserir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Quantidade.:");
@@ -355,6 +360,29 @@ public class GuiNotaFiscal_Produto extends javax.swing.JDialog {
         // TODO add your handling code here:
         itemSelecionado();
     }//GEN-LAST:event_jTabelaProdutoMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int resposta;//se vai YES ou NO
+        
+        try{
+            //PEGAR O CODIGO DO PRODUTO NA CONSULTA
+            Produto p = fachada.consultarProduto(JcProdutoselecionado.getText());
+            //SALVAR ESSE PRODUTO NESTA NOTA
+            fachada.salvarNotaFiscal_Produto(Integer.parseInt(jLNotaFiscal.getText()), p.getProdutos_Codigo(),Integer.parseInt(jQTDEField.getText()));
+            
+            //PEGUNTA!
+            resposta = JOptionPane.showConfirmDialog(null, "Deseja incluir outro produto ?", "", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+                limparcamposelecionado();
+            }else{
+            dispose();//fecha a tela!
+            }
+        }catch (GeralException ex){
+          JOptionPane.showMessageDialog(null, ex.getMessage());  
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -569,13 +597,21 @@ public class GuiNotaFiscal_Produto extends javax.swing.JDialog {
         return p;
     }
      
+    //PEGAR O ITEM SELECIONADO E SETAR ELE NOS CAMPOS ABAIXO
     private void itemSelecionado(){
         //pegar o objeto selecionado
         Produto p = pSelecionado();
         //jogar o produto selecionado
         JcProdutoselecionado.setText(p.getProdutos_Descricao());
         JcMarca.setText(p.getMarcas().getMarcas_Descricao());
-    }  
+    } 
+    
+    //LIMPAR CAMPO DO ITEM SELECIONADO
+    private void limparcamposelecionado(){
+        JcProdutoselecionado.setText("");
+        JcMarca.setText("");
+        jQTDEField.setText("");
+    }
      
     //fim
 }
