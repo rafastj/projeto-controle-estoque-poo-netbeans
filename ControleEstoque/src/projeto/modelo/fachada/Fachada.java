@@ -387,8 +387,8 @@ public class Fachada {
         return rnNotaFiscal_Produto.consultarNotaFiscal_Produto(NotaFiscal_Numero, Produtos_Codigo);
     }
 
-    public void excluirNotaFiscal_Produto(int notaFiscal_Numero, int produtos_Codigo) throws GeralException {
-        rnNotaFiscal_Produto.excluirNotaFiscal_Produto(notaFiscal_Numero, produtos_Codigo);
+    public void excluirNotaFiscal_Produto(NotaFiscal_Produto nfp) throws GeralException {
+        rnNotaFiscal_Produto.excluirNotaFiscal_Produto(nfp);
     }
 
     /**

@@ -165,7 +165,7 @@ public class RepositorioNotaFiscal_Produto implements IRepositorioNotaFiscal_Pro
      * EXCLUIR o vinculo da Nota Fiscal do Produto
      */
     @Override
-    public void excluir(int NotaFiscal_Numero, int Produtos_Codigo) throws ConexaoException, RepositorioException {
+    public void excluir(NotaFiscal_Produto np) throws ConexaoException, RepositorioException {
         //conectar faz a conexão com o banco de dados
         Connection c = g.conectar();
         /**
@@ -174,8 +174,8 @@ public class RepositorioNotaFiscal_Produto implements IRepositorioNotaFiscal_Pro
         String sqlExcluir = "DELETE FROM notasfiscal_produtos WHERE NOTASFISCAL_NUMERO = ? AND PRODUTOS_CODIGO = ?";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlExcluir);
-            pstm.setInt(1, NotaFiscal_Numero);
-            pstm.setInt(2, Produtos_Codigo);
+            pstm.setInt(1, np.getNotasFiscal_Numero());
+            pstm.setInt(2, np.getProdutos_Codigo());
             pstm.executeUpdate();
             pstm.close();
         } catch (SQLException ex) {
