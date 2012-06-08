@@ -489,10 +489,46 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
 
     private void jBalterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBalterarActionPerformed
         // TODO add your handling code here:
+        
+        try {
+        
+        GuiNotaFiscal_AlterarProduto guiNFAlteraProdu = new GuiNotaFiscal_AlterarProduto(null, rootPaneCheckingEnabled);
+        
+        //chama o metodo que pegar o item selecionado!
+        NotaFiscal_Produto item = itemSelecionado();
+        
+        try{
+        
+        Produto pconsul = fachada.consultarProduto(item.getProduto().getProdutos_Descricao());//pesquisar pelo produto selecionado
+        guiNFAlteraProdu.JcProdutoselecionado.setText(pconsul.getProdutos_Descricao());//jogar o produto selecionado
+        Marca mconsul = fachada.consultarMarcas(pconsul.getMarcas_Codigo());//pesquisar pela marca do produto selecionado
+        guiNFAlteraProdu.JcMarca.setText(mconsul.getMarcas_Descricao()); //jogar a marca do textfield
+        guiNFAlteraProdu.jLNotaFiscalalt.setText(JcNumeroNotaFiscal.getText()); //joga o número da nota fiscal
+        
+        //jogar o codigo do produto e da nota fiscal para o objeto na gui que será aberta
+        guiNFAlteraProdu.nfpAlterar.setProdutos_Codigo(pconsul.getProdutos_Codigo());
+        guiNFAlteraProdu.nfpAlterar.setNotasFiscal_Numero(nf.getNotasFiscal_Numero());
+        guiNFAlteraProdu.nfpAlterar.setNotasFiscalProdutos_Quantidade(item.getNotasFiscalProdutos_Quantidade());
+        
+        //CHAMA A TELA PARA ALTERA O QUANTIDADE DO PRODUTO
+        guiNFAlteraProdu.setVisible(true);
+        
+        }catch (GeralException ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        }catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione o item desejado!");
+        }
+         
     }//GEN-LAST:event_jBalterarActionPerformed
 
     private void jBcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelarActionPerformed
         // TODO add your handling code here:
+        int resposta;//se vai YES ou NO
+         //PEGUNTA!
+            resposta = JOptionPane.showConfirmDialog(null, "Deseja incluir outro produto ?", "", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+            }
     }//GEN-LAST:event_jBcancelarActionPerformed
 
     private void jBconfirmarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBconfirmarCompraActionPerformed
@@ -821,6 +857,13 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
+    
+      //PEGAR OS DADOS DO ITEM SELECIONADO
+      private NotaFiscal_Produto itemSelecionado(){
+        NotaFiscal_Produto nfp = listaItens.get(jTabelaItens.getSelectedRow());
+        return nfp;
+    }
+      
     
 //fim
 }
