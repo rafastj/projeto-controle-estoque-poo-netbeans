@@ -596,7 +596,8 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
                     
                     fachada.devolver(nfpDelvove);
                     
-                     }  
+                     }
+                JOptionPane.showMessageDialog(null, "Nota cancelada!");
                 
                 }catch (GeralException ex){
                     JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -928,6 +929,21 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         NotaFiscal_Produto nfp = listaItens.get(jTabelaItens.getSelectedRow());
         return nfp;
     }
+      
+      //DESABILITAR OS BOTÕES QUANDO A NOTA FOR CANCELADA
+      private void notaCancelada(){
+          JcCpfCnpj.setEnabled(false);
+          JbConsultarCPFCNPJ.setEnabled(false);
+          jBalteraNota.setEnabled(false);
+           jBIncluir.setEnabled(false);
+           jBalterar.setEnabled(false);
+           jBcancelar.setEnabled(false);
+           jBconfirmarCompra.setEnabled(false);
+           jBcancelarCompra.setEnabled(false);
+           jBalteraNota.setEnabled(false);
+           jfuncionarioBox.setEnabled(false);
+           jFormaPagamentoBox.setEnabled(false);
+      }
       
     
 //fim
