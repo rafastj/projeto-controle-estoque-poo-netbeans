@@ -83,7 +83,7 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         jTabelaItens = new javax.swing.JTable();
         jPanalise = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jLValorTotal = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jBcancelar = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
@@ -304,9 +304,9 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Total.:");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel4.setText("0,00");
+        jLValorTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLValorTotal.setForeground(new java.awt.Color(0, 0, 153));
+        jLValorTotal.setText("0,00");
 
         jBcancelar.setText("Cancelar");
         jBcancelar.setEnabled(false);
@@ -376,7 +376,7 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
                             .addGroup(jPanaliseLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4)
+                                .addComponent(jLValorTotal)
                                 .addGap(49, 49, 49))))
                     .addGroup(jPanaliseLayout.createSequentialGroup()
                         .addContainerGap()
@@ -399,7 +399,7 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
             .addGroup(jPanaliseLayout.createSequentialGroup()
                 .addGroup(jPanaliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(jLValorTotal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -529,6 +529,12 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
         listarProdutodaNF();
+        
+        //ATUALIZAR O VALOR TOTAL DA NOTA SE CASO A NOTA FOR INICIADA
+        if(!JcNumeroNotaFiscal.getText().equals("")){
+           
+            valorTotal();
+        }
     }//GEN-LAST:event_formWindowGainedFocus
 
     /**
@@ -602,10 +608,10 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
     private javax.swing.JButton jBcancelarCompra;
     private javax.swing.JButton jBconfirmarCompra;
     private javax.swing.JComboBox jFormaPagamentoBox;
+    private javax.swing.JLabel jLValorTotal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -800,6 +806,20 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         }
           DefaultTableModel modelo = geramodelo(listaItens);
           jTabelaItens.setModel(modelo); 
+    }
+    
+    //OBTER O VALOR TOTAL DA NOTA!
+    private void valorTotal(){
+        try{
+        NotaFiscal valornf = fachada.consultar(nf.getNotasFiscal_Numero());
+        
+        //recebe a conversão de double para string incluindo no formato Moeda
+        String valorVenda = formaMoeda(valornf.getNotasFiscal_ValorNotaFiscal());
+        jLValorTotal.setText( valorVenda);
+        
+        }catch (GeralException ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }
     
 //fim

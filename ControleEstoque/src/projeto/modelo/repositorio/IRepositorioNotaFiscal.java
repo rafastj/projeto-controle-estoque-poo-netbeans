@@ -62,4 +62,5 @@ public interface IRepositorioNotaFiscal {
      * @throws RepositorioException
      */
     public Collection<NotaFiscal> listar(int notasFiscal_Numero) throws ConexaoException, RepositorioException;
+    
 }
