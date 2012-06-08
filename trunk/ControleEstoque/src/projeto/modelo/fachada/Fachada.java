@@ -727,7 +727,7 @@ public class Fachada {
      * @throws GeralException 
      */
     public NotaFiscal consultarUltimaNovaCliente(int clientes_Codigo) throws GeralException {
-        return rnNotaFiscal.consultar(clientes_Codigo);
+        return rnNotaFiscal.consultarUltimaNotaCliente(clientes_Codigo);
     }
 
     /**

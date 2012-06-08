@@ -148,7 +148,7 @@ public class RepositorioNotaFiscal implements IRepositorioNotaFiscal {
     public NotaFiscal consultarUltimaNota(int Cliente_Codigo) throws ConexaoException, RepositorioException {
         NotaFiscal nf = null;
         Connection c = g.conectar();
-        String sqlConsulta = "SELECT notasfiscal_Numero FROM NotasFiscal Order By (clientes_Codigo = ? ) DESC LIMIT 1 ";
+        String sqlConsulta = "SELECT notasfiscal_Numero FROM NotasFiscal WHERE (clientes_Codigo = ? ) Order By notasfiscal_Numero DESC LIMIT 1 ";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsulta);
             pstm.setInt(1, Cliente_Codigo);
