@@ -680,6 +680,11 @@ public class Fachada {
         return rnFuncionario.listar(funcionarios_Nome);
     }
     
+    /**
+     * Listat todos os funcionários
+     * @return
+     * @throws GeralException 
+     */
      public Collection<Funcionario> listarTodosFuncionario() throws GeralException {
         return rnFuncionario.listarTudo();
     }
@@ -711,6 +716,10 @@ public class Fachada {
         rnNotaFiscal.cancelar(notasFiscal_Numero);
     }
     
+    public void alterarNotaFiscal(NotaFiscal nf) throws GeralException{
+        rnNotaFiscal.alterar(nf);
+    }
+    
     /**
      * Listar Nota Fiscal!
      * @param nf Salvar NotaFiscal
@@ -733,6 +742,8 @@ public class Fachada {
     /**
      * FIM DA ÁREA ESCRITA POR Thiago Evoa
      */
+    
+    
     //Marca
 	
 	public void salvarMarca ( Marca m ) throws GeralException{

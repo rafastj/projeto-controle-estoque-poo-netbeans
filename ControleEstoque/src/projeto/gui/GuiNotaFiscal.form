@@ -68,23 +68,6 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="JlCliente1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="JcEndereco" max="32767" attributes="0"/>
-                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                          <Component id="JlNumeroNotaFiscal1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="JcNumeroRes" min="-2" pref="50" max="-2" attributes="0"/>
-                          <EmptySpace min="146" pref="146" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="JlCliente2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="JcCidade" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="215" max="-2" attributes="0"/>
-                          <Component id="jBIncluirNota" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="JlCpfCnpj" min="-2" max="-2" attributes="0"/>
@@ -115,6 +98,30 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jfuncionarioBox" min="-2" pref="260" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="JlCliente1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="JcEndereco" max="32767" attributes="0"/>
+                                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JlNumeroNotaFiscal1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="JcNumeroRes" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="JlCliente2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="JcCidade" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="215" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jBIncluirNota" max="32767" attributes="0"/>
+                              <Component id="jBalteraNota" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -148,17 +155,22 @@
                       <Component id="JlCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="JcEndereco" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JlCliente1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JlNumeroNotaFiscal1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JcNumeroRes" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="JcCidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JlCliente2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBIncluirNota" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="JcEndereco" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="JlCliente1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="JlNumeroNotaFiscal1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="JcNumeroRes" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="JcCidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="JlCliente2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBalteraNota" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="jBIncluirNota" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -303,6 +315,15 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBalteraNota">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Alterar Nota"/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBalteraNotaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

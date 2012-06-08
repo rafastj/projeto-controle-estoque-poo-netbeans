@@ -74,6 +74,7 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         JcCidade = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jFormaPagamentoBox = new javax.swing.JComboBox();
+        jBalteraNota = new javax.swing.JButton();
         jPItens = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -158,6 +159,14 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
 
         jLabel8.setText("Forma de Pagamento.:");
 
+        jBalteraNota.setText("Alterar Nota");
+        jBalteraNota.setEnabled(false);
+        jBalteraNota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBalteraNotaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -170,21 +179,6 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JcCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(JlCliente1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JcEndereco)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JlNumeroNotaFiscal1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JcNumeroRes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(146, 146, 146))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(JlCliente2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JcCidade)
-                        .addGap(215, 215, 215)
-                        .addComponent(jBIncluirNota))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -210,7 +204,26 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jfuncionarioBox, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jfuncionarioBox, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(JlCliente1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JcEndereco)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JlNumeroNotaFiscal1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JcNumeroRes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(59, 59, 59))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(JlCliente2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JcCidade)
+                                .addGap(215, 215, 215)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jBIncluirNota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBalteraNota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -236,15 +249,18 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
                     .addComponent(JcCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JlCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JcEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JlCliente1)
-                    .addComponent(JlNumeroNotaFiscal1)
-                    .addComponent(JcNumeroRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JcCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JlCliente2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JcEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JlCliente1)
+                            .addComponent(JlNumeroNotaFiscal1)
+                            .addComponent(JcNumeroRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JcCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JlCliente2)
+                            .addComponent(jBalteraNota)))
                     .addComponent(jBIncluirNota))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -472,6 +488,22 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_JcCpfCnpjKeyPressed
 
+    private void jBalteraNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBalteraNotaActionPerformed
+        // TODO add your handling code here:
+
+        //Pega a seleção do Funcionário
+        selecionadoFuncionario();
+        //Pega a selação da Forma de pagamento
+        selecionadoFormadePagamento();
+        
+        //altera dados na Nota Fiscal
+        try{
+        fachada.alterarNotaFiscal(nf);
+        }catch (GeralException ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_jBalteraNotaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -537,6 +569,7 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
     private javax.swing.JLabel JlNumeroNotaFiscal1;
     private javax.swing.JButton jBIncluir;
     private javax.swing.JButton jBIncluirNota;
+    private javax.swing.JButton jBalteraNota;
     private javax.swing.JButton jBalterar;
     private javax.swing.JButton jBcancelar;
     private javax.swing.JButton jBcancelarCompra;
@@ -687,9 +720,6 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
     //DESABILITAR E HABILITAR BOTÕES ESPECIFICOS PARA QUANDO SALVAR A NOTA!
     private void desabHabilite(){
          //desabilidata os botões para focar na nova nota fiscal
-           JbConsultarCPFCNPJ.setEnabled(false);
-           jfuncionarioBox.setEnabled(false);
-           jFormaPagamentoBox.setEnabled(false);
            jBIncluirNota.setEnabled(false);
            
            //abilitar os botões do painel análise
@@ -698,6 +728,7 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
            jBcancelar.setEnabled(true);
            jBconfirmarCompra.setEnabled(true);
            jBcancelarCompra.setEnabled(true);
+           jBalteraNota.setEnabled(true);
     }
     
     
