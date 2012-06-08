@@ -13,6 +13,7 @@ import projeto.erro.RepositorioException;
 import projeto.modelo.repositorio.IRepositorioCliente;
 import projeto.modelo.repositorio.RepositorioCliente;
 import projeto.modelo.to.Cliente;
+import projeto.modelo.to.Endereco;
 import projeto.modelo.to.PessoaFisica;
 import projeto.modelo.to.PessoaJuridica;
 import projeto.validaCampo.ValidaCampo;
@@ -249,5 +250,22 @@ public class NegocioCliente {
         }
             
     }
+    
+        public void cliente(PessoaFisica pf) throws GeralException {
+
+        if ((pf.getPessoasFisica_CPF() == null) || (pf.getPessoasFisica_CPF().equals(""))) {
+            throw new GeralException("Digite o CPF!");
+        }
+
+        try {
+            rep.alterar(pf);
+        } catch (RepositorioException ex) {
+            throw new GeralException("Erro de programação!");
+
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível no momento");
+        }
+    }
+
     
 }

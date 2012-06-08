@@ -300,6 +300,7 @@ public class GuiFornecedorAlterar extends javax.swing.JDialog {
         jTextFieldSaidaRS.setEditable(false);
         jTextFieldSaidaRS.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextFieldSaidaRS.setEnabled(false);
+        jTextFieldSaidaRS.setFocusable(false);
 
         jLabelCEP.setText("CEP.:");
 

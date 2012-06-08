@@ -4,14 +4,29 @@
  */
 package projeto.gui;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import projeto.erro.GeralException;
+import projeto.modelo.fachada.Fachada;
+import projeto.modelo.to.Cidade;
+import projeto.modelo.to.Endereco;
+import projeto.modelo.to.PessoaFisica;
 
 /**
  *
  * @author Sandro
  */
 public class GuiPessoaFisicaAlterar extends javax.swing.JDialog {
-
+    public static Fachada fachada = new Fachada();
+    PessoaFisica pfAntigo = new PessoaFisica();
+    PessoaFisica pfAlterado = new PessoaFisica();
+    Endereco endAntigo = new Endereco();
+    Endereco novoEnd = new Endereco();
+    Cidade cid = new Cidade();
     /**
      * Creates new form GuiPessoaFisicaAlterar
      */
@@ -35,6 +50,7 @@ public class GuiPessoaFisicaAlterar extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jbAlterar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -42,7 +58,10 @@ public class GuiPessoaFisicaAlterar extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jTextAlteraLogradouro = new javax.swing.JTextField();
         jTextAlteraNumero = new javax.swing.JTextField();
-        jTextAlteraCidade = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jFormatTextAlteraCEP = new javax.swing.JFormattedTextField();
+        jComboBoxCidade = new javax.swing.JComboBox();
+        jbIncluiCidade = new javax.swing.JButton();
         jbCancela = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -52,10 +71,25 @@ public class GuiPessoaFisicaAlterar extends javax.swing.JDialog {
         jFormatTextAlteraCPF = new javax.swing.JFormattedTextField();
         jRadioAlteraSexoM = new javax.swing.JRadioButton();
         jRadioAlteraSexoF = new javax.swing.JRadioButton();
+        jTextField1 = new javax.swing.JTextField();
+        jbLiberaEdicao = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jbAlterar.setText("Alterar");
+        jbAlterar.setEnabled(false);
+        jbAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAlterarActionPerformed(evt);
+            }
+        });
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Endereço"));
 
@@ -65,11 +99,25 @@ public class GuiPessoaFisicaAlterar extends javax.swing.JDialog {
 
         jLabel7.setText("Cidade :");
 
-        jTextAlteraCidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextAlteraCidadeActionPerformed(evt);
-            }
-        });
+        jTextAlteraLogradouro.setEnabled(false);
+
+        jTextAlteraNumero.setEnabled(false);
+
+        jLabel4.setText("CEP.:");
+
+        try {
+            jFormatTextAlteraCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormatTextAlteraCEP.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jFormatTextAlteraCEP.setEnabled(false);
+
+        jComboBoxCidade.setEditable(true);
+        jComboBoxCidade.setEnabled(false);
+
+        jbIncluiCidade.setText("Incluir Cidade");
+        jbIncluiCidade.setEnabled(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -82,14 +130,20 @@ public class GuiPessoaFisicaAlterar extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jbIncluiCidade)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jTextAlteraLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextAlteraNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                        .addComponent(jTextAlteraNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextAlteraCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jFormatTextAlteraCEP)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -103,16 +157,26 @@ public class GuiPessoaFisicaAlterar extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextAlteraCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addComponent(jLabel4)
+                    .addComponent(jFormatTextAlteraCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbIncluiCidade))
         );
 
         jbCancela.setText("Cancelar");
+        jbCancela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCancelaActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Pessoais"));
+        jPanel1.setEnabled(false);
 
         jLabel1.setText("NOME");
 
+        jTextAlteraNome.setEnabled(false);
         jTextAlteraNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextAlteraNomeActionPerformed(evt);
@@ -129,10 +193,20 @@ public class GuiPessoaFisicaAlterar extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         jFormatTextAlteraCPF.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormatTextAlteraCPF.setEnabled(false);
 
+        buttonGroup1.add(jRadioAlteraSexoM);
         jRadioAlteraSexoM.setText("Masculino");
+        jRadioAlteraSexoM.setEnabled(false);
 
+        buttonGroup1.add(jRadioAlteraSexoF);
         jRadioAlteraSexoF.setText("Feminino");
+        jRadioAlteraSexoF.setEnabled(false);
+
+        jTextField1.setEditable(false);
+        jTextField1.setBorder(null);
+        jTextField1.setEnabled(false);
+        jTextField1.setFocusable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -146,20 +220,27 @@ public class GuiPessoaFisicaAlterar extends javax.swing.JDialog {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jFormatTextAlteraCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextAlteraNome, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRadioAlteraSexoM)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioAlteraSexoF)))
-                .addContainerGap(107, Short.MAX_VALUE))
+                        .addComponent(jTextAlteraNome, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jRadioAlteraSexoM)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioAlteraSexoF))
+                            .addComponent(jFormatTextAlteraCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextAlteraNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextAlteraNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -171,12 +252,21 @@ public class GuiPessoaFisicaAlterar extends javax.swing.JDialog {
                     .addComponent(jRadioAlteraSexoF)))
         );
 
+        jbLiberaEdicao.setText("Editar");
+        jbLiberaEdicao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLiberaEdicaoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbLiberaEdicao)
+                .addGap(18, 18, 18)
                 .addComponent(jbAlterar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbCancela)
@@ -193,8 +283,9 @@ public class GuiPessoaFisicaAlterar extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbCancela)
-                    .addComponent(jbAlterar))
-                .addGap(0, 6, Short.MAX_VALUE))
+                    .addComponent(jbAlterar)
+                    .addComponent(jbLiberaEdicao))
+                .addGap(0, 3, Short.MAX_VALUE))
         );
 
         pack();
@@ -212,9 +303,29 @@ public class GuiPessoaFisicaAlterar extends javax.swing.JDialog {
         this.jFormatTextAlteraCPF = jFormatTextCPF;
     }//GEN-LAST:event_jTextAlteraNomeActionPerformed
 
-    private void jTextAlteraCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextAlteraCidadeActionPerformed
+    private void jbCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextAlteraCidadeActionPerformed
+        dispose();
+    }//GEN-LAST:event_jbCancelaActionPerformed
+
+    private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
+        // TODO add your handling code here:
+        alterarPF();
+    }//GEN-LAST:event_jbAlterarActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        atualizarComboCidade();
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    private void jbLiberaEdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLiberaEdicaoActionPerformed
+        try {
+            pfAntigoEdit();
+        } catch (GeralException ex) {
+            Logger.getLogger(GuiPessoaFisicaAlterar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            liberarTela();
+
+    }//GEN-LAST:event_jbLiberaEdicaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,11 +376,139 @@ public class GuiPessoaFisicaAlterar extends javax.swing.JDialog {
             }
         });
     }
+    
+    private void alterarPF() {
+        String antNome = pfAntigo.getPessoasFisica_Nome();
+        String antNumero = pfAntigo.getClientes_NumeroResidencia();
+        String antCpf = pfAntigo.getPessoasFisica_CPF();
+        String antSexo = pfAntigo.getPessoasFisica_Sexo();
+        int antCodEndereco = pfAntigo.getEnderecos_Codigo();
+        int resposta;
+        PessoaFisica pfConsult = null;
+        String pf_CPF;
+        String str_cep;
+        String str_cnpjOld;
+        String str_cpf;
+        String CNPJ_Old;
+        PessoaFisica pfAlter;
+        try {
+            //Faz a consulta do objeto através do CNPJ antigo para retirada do código do fornecedor.
+            str_cpf = jFormatTextAlteraCPF.getText();
+            str_cpf = str_cpf.replace('.', ' ');
+            str_cpf = str_cpf.replace('-', ' ');
+            str_cpf = str_cpf.replaceAll(" ", "");
+            pf_CPF = str_cpf;
+            
+
+            //Faz a consulta do objeto através do CEP para retirada do código do endereço.
+            str_cep = jFormatTextAlteraCEP.getText();
+            str_cep = str_cep.replace('-', ' ');
+            str_cep = str_cep.replaceAll(" ", "");
+            Endereco end = fachada.consultarEndCep(str_cep);
+            if (end != null){
+                if (antCodEndereco != end.getEnderecos_Codigo()){
+                    pfAlterado.setEnderecos_Codigo(end.getEnderecos_Codigo());
+                }else{
+                    pfAlterado.setEnderecos_Codigo(antCodEndereco);
+                    cid = fachada.consultarCidade((String) jComboBoxCidade.getSelectedItem());
+                    novoEnd.setEnderecos_Codigo(antCodEndereco);
+                    novoEnd.setCidades_Codigo(cid.getCidades_Codigo());
+                    novoEnd.setEnderecos_CEP(str_cep);
+                    novoEnd.setEnderecos_Logradouro(jTextAlteraLogradouro.getText());
+                    fachada.alterarEndereco(novoEnd);
+                }
+            }else{
+               cid = fachada.consultarCidade((String) jComboBoxCidade.getSelectedItem());
+               novoEnd.setCidades_Codigo(cid.getCidades_Codigo());
+               novoEnd.setEnderecos_CEP(str_cep);
+               novoEnd.setEnderecos_Logradouro(jTextAlteraLogradouro.getText());
+               fachada.salvarEndereco(novoEnd);
+               end = fachada.consultarEndCep(str_cep);
+               pfAlterado.setEnderecos_Codigo(end.getEnderecos_Codigo());
+            }
+
+            if (!pf_CPF.equals(antCpf)){
+                pfConsult = fachada.consultarPF_CPF(pf_CPF);
+                if (pfConsult == null){
+                        pfAlterado.setPessoasFisica_Nome(jTextAlteraNome.getText());
+                        pfAlterado.setPessoasFisica_Sexo("M");
+                        pfAlterado.setClientes_NumeroResidencia(jTextAlteraNumero.getText());
+                        pfAlterado.setPessoasFisica_CPF(pf_CPF);
+                        fachada.alterarCliente(pfAlterado);
+                    
+                }else{
+                    
+                }
+            }else{
+                        pfAlterado.setClientes_Codigo(pfAntigo.getClientes_Codigo());
+                        pfAlterado.setPessoasFisica_Nome(jTextAlteraNome.getText());
+                        pfAlterado.setPessoasFisica_Sexo(str_cep);
+                        pfAlterado.setClientes_NumeroResidencia(jTextAlteraNumero.getText());
+                        pfAlterado.setPessoasFisica_CPF(antCpf);
+                        fachada.alterarCliente(pfAlterado);
+                        resposta = JOptionPane.showConfirmDialog(null, "Registro alterado com sucesso!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
+                        if (resposta == JOptionPane.NO_OPTION) {
+                            dispose();
+                        } else {
+                            limparCampos();
+                            bloquearTela();
+                        }
+
+            }
+
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+
+
+    private void limparCampos() {
+/*        jFormattedTextFieldEntradaCEP.setValue(null);
+        jFormattedTextFieldEntradaNumero.setValue(null);
+        jTextFieldEntradaLog.setText("");
+        jTextFieldEntradaRS.setText("");
+        jTextFieldCidade.setText("");
+        jFormattedTextFieldEntradaCNPJ.requestFocus();*/
+    }
+
+    private void liberarTela() {
+        jFormatTextAlteraCEP.setEnabled(true);
+        jTextAlteraNumero.setEnabled(true);
+        jTextAlteraLogradouro.setEnabled(true);
+        jTextAlteraNome.setEnabled(true);
+        jbAlterar.setEnabled(true);
+        jbLiberaEdicao.setEnabled(false);
+        jRadioAlteraSexoF.setEnabled(true);
+        jRadioAlteraSexoM.setEnabled(true);
+        jFormatTextAlteraCPF.setEditable(true);
+        jComboBoxCidade.setEditable(true);
+        jbIncluiCidade.setEnabled(true);
+        
+    }
+
+    private void bloquearTela() {
+        jFormatTextAlteraCEP.setEnabled(false);
+        jTextAlteraNumero.setEnabled(false);
+        jTextAlteraLogradouro.setEnabled(false);
+        jTextAlteraNome.setEnabled(false);
+        jbAlterar.setEnabled(false);
+        jbLiberaEdicao.setEnabled(true);
+        jRadioAlteraSexoF.setEnabled(false);
+        jRadioAlteraSexoM.setEnabled(false);
+        jFormatTextAlteraCPF.setEditable(false);
+        jComboBoxCidade.setEditable(false);
+        jbIncluiCidade.setEnabled(false);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    public javax.swing.JComboBox jComboBoxCidade;
+    public javax.swing.JFormattedTextField jFormatTextAlteraCEP;
     public javax.swing.JFormattedTextField jFormatTextAlteraCPF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -277,11 +516,55 @@ public class GuiPessoaFisicaAlterar extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     public javax.swing.JRadioButton jRadioAlteraSexoF;
     public javax.swing.JRadioButton jRadioAlteraSexoM;
-    public javax.swing.JTextField jTextAlteraCidade;
     public javax.swing.JTextField jTextAlteraLogradouro;
     public javax.swing.JTextField jTextAlteraNome;
     public javax.swing.JTextField jTextAlteraNumero;
+    public javax.swing.JTextField jTextField1;
     private javax.swing.JButton jbAlterar;
     private javax.swing.JButton jbCancela;
+    private javax.swing.JButton jbIncluiCidade;
+    private javax.swing.JButton jbLiberaEdicao;
     // End of variables declaration//GEN-END:variables
+
+    private void pfAntigoEdit() throws GeralException {
+        String str_cep, str_cpf;
+        str_cep = jFormatTextAlteraCEP.getText();
+        str_cep = str_cep.replace('-', ' ');
+        str_cep = str_cep.replaceAll(" ", "");
+        try {
+            endAntigo = fachada.consultarEndCep(str_cep);
+        } catch (GeralException ex) {
+            Logger.getLogger(GuiPessoaFisicaAlterar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        str_cpf = jFormatTextAlteraCPF.getText();
+        str_cpf = str_cpf.replace('.', ' ');
+        str_cpf = str_cpf.replace('-', ' ');
+        str_cpf = str_cpf.replaceAll(" ", "");
+        PessoaFisica codigoPF = new PessoaFisica();
+        codigoPF = fachada.consultarPF_CPF(str_cpf);
+        pfAntigo.setClientes_Codigo(codigoPF.getClientes_Codigo());
+        pfAntigo.setPessoasFisica_CPF(str_cpf);
+        pfAntigo.setPessoasFisica_Nome(jTextAlteraNome.getText());
+        pfAntigo.setPessoasFisica_Sexo(str_cep);
+        pfAntigo.setClientes_NumeroResidencia(jTextAlteraNumero.getText());
+        pfAntigo.setEnderecos_Codigo(endAntigo.getEnderecos_Codigo());
+        pfAntigo.getEndereco().setEnderecos_CEP(str_cep);
+        
+    }
+        private void atualizarComboCidade() {
+        Cidade cid;
+        ArrayList<Cidade> listaCd;
+        try {
+            listaCd = (ArrayList<Cidade>) fachada.listarCidadeTudo();
+            for (Iterator<Cidade> it = listaCd.iterator(); it.hasNext();) {
+                cid = it.next();
+                jComboBoxCidade.addItem(cid.getCidades_Nome());
+            }
+        } catch (GeralException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+
+
 }

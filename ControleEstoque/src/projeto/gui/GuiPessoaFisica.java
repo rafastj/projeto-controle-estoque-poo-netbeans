@@ -104,6 +104,11 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         });
 
         jButton6.setText("Pesquisa");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Endereço.:");
 
@@ -327,6 +332,7 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
 
     private void jbAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizarActionPerformed
         // TODO add your handling code here:
+        atualizarTabela();
     }//GEN-LAST:event_jbAtualizarActionPerformed
 
     private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
@@ -373,6 +379,11 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         atualizarComboCidade();
         atualizarTabela();
     }//GEN-LAST:event_formComponentShown
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        pesquisa();
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -436,7 +447,8 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
                 guiPF_Alterar.jTextAlteraNome.setText(PF.getPessoasFisica_Nome());
                 guiPF_Alterar.jTextAlteraLogradouro.setText(PF.getEndereco().getEnderecos_Logradouro());
                 guiPF_Alterar.jTextAlteraNumero.setText(PF.getClientes_NumeroResidencia());
-                guiPF_Alterar.jTextAlteraCidade.setText(PF.getEndereco().getCidade().getCidades_Nome());
+                //guiPF_Alterar.jComboBoxCidade.setSelectedIndex(PF.getEndereco().getCidade().getCidades_Codigo());
+                guiPF_Alterar.jFormatTextAlteraCEP.setText(PF.getEndereco().getEnderecos_CEP());
                 //guiPF_Alterar.jTextFieldSaidaCidade.setText(fOld.getCidades_Nome());
                 guiPF_Alterar.setVisible(true);
             }
@@ -463,6 +475,36 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
+    }
+    
+    private void pesquisa(){
+        String str_cpf, str_cep ;
+        str_cep = jFormatTextCEP.getText();
+        str_cep = str_cep.replace('-', ' ');
+        str_cep = str_cep.replaceAll(" ", "");
+
+        str_cpf = jFormatTextCPF.getText();
+        str_cpf = str_cpf.replace('.', ' ');
+        str_cpf = str_cpf.replace('/', ' ');
+        str_cpf = str_cpf.replace('-', ' ');
+        str_cpf = str_cpf.replaceAll(" ", "");
+
+        if (str_cpf != null){
+            pesquisarCPF();
+        }else{
+            if (jTextPF.getText()!=null){
+                pesquisarNome();
+            }else{
+                if(str_cep != null){
+                    pesquisarCEP();
+                }else{
+                    if(jTextEnd.getText() != null){
+                        pesquisarLogradouro();
+                    }
+                }
+            }
+        }
+            
     }
     
     private void pesquisarCPF() {
@@ -579,6 +621,7 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
     private DefaultTableModel geramodeloPF(ArrayList<PessoaFisica> listaPF) {
         DefaultTableModel modeloPF = new DefaultTableModel();
         modeloPF.addColumn("Cliente/Nome");
+        modeloPF.addColumn("CPF");
         modeloPF.addColumn("Logradouro");
         modeloPF.addColumn("Número");
         modeloPF.addColumn("Cidade");
@@ -588,8 +631,8 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
         int i = 0;
         for (PessoaFisica pf : listaPF) {
             valores = new ArrayList<String>();
-           // valores.add(pf.getPessoasFisica_CPF());
             valores.add(pf.getPessoasFisica_Nome());
+            valores.add(pf.getPessoasFisica_CPF());
             valores.add(pf.getEndereco().getEnderecos_Logradouro());
             valores.add(String.valueOf(pf.getClientes_NumeroResidencia()));
             valores.add(pf.getEndereco().getCidade().getCidades_Nome());
@@ -603,7 +646,7 @@ public class GuiPessoaFisica extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox jCbBoxCidade;
-    private javax.swing.JFormattedTextField jFormatTextCEP;
+    public javax.swing.JFormattedTextField jFormatTextCEP;
     private javax.swing.JFormattedTextField jFormatTextCPF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
