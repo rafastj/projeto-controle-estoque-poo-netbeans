@@ -288,16 +288,21 @@ public class RepositorioCliente implements IRepositorioCliente {
     public PessoaJuridica consultarPJ(String pj_CNPJ) throws ConexaoException, RepositorioException {
         PessoaJuridica pj = null;
         Connection c = g.conectar();
-        String sqlConsulta = "SELECT clientes_codigo, pessoasjuridica_CNPJ, pessoasjuridica_razaosocial FROM pessoasjuridica WHERE ( pessoasjuridica_CNPJ like ? )";
+        String sqlConsulta = "SELECT pj.clientes_codigo, pj.pessoasjuridica_CNPJ, pj.pessoasjuridica_razaosocial, cli.clientes_numeroresidencia, cli.clientes_tipo, e.enderecos_cep, e.enderecos_logradouro, ci.cidades_nome FROM pessoasjuridica AS pj INNER JOIN Clientes AS cli ON pj.clientes_Codigo = cli.clientes_Codigo INNER JOIN Enderecos AS e ON cli.enderecos_Codigo = e.enderecos_Codigo INNER JOIN Cidades AS ci ON e.cidades_Codigo = ci.cidades_Codigo WHERE ( pessoasjuridica_CNPJ like ? )";
         try {
             PreparedStatement pstm = c.prepareStatement(sqlConsulta);
             pstm.setString(1, '%' + pj_CNPJ + '%');
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
                 pj = new PessoaJuridica();
-                pj.setClientes_Codigo(rs.getInt("clientes_codigo"));
-                pj.setPessoasJuridica_CNPJ(rs.getString("pessoasjuridica_CNPJ"));
-                pj.setPessoasJuridica_RazaoSocial(rs.getString("pessoasjuridica_razaosocial"));
+                pj.setClientes_Codigo(rs.getInt("pj.clientes_codigo"));
+                pj.setPessoasJuridica_CNPJ(rs.getString("pj.pessoasjuridica_CNPJ"));
+                pj.setPessoasJuridica_RazaoSocial(rs.getString("pj.pessoasjuridica_razaosocial"));
+                pj.setClientes_NumeroResidencia(rs.getString("cli.clientes_numeroresidencia"));
+                pj.setClientes_Tipo(rs.getString("cli.clientes_tipo"));
+                pj.getEndereco().setEnderecos_CEP(rs.getString("e.enderecos_cep"));
+                pj.getEndereco().setEnderecos_Logradouro(rs.getString("e.enderecos_logradouro"));
+                pj.getEndereco().getCidade().setCidades_Nome(rs.getString("ci.cidades_nome"));
             }
         } catch (SQLException e) {
             throw new RepositorioException(e.getMessage());
