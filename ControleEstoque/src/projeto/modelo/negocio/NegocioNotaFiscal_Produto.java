@@ -506,7 +506,49 @@ public class NegocioNotaFiscal_Produto {
             throw new GeralException("O banco de dados não está acessível!");
         }
         return lista;
-    }    
+    } 
+    
+    //DEVOLVER A QUANTIDADE DOS PRODUTOS
+    public void devolver(NotaFiscal_Produto nfp) throws GeralException{
+        try{
+            /**
+             * CONSULTAR DO PRODUTO OLD
+             */
+            //CONSULTAR a quantidade vinculada com essa NOTA FISCAL
+            NotaFiscal_Produto npconsulOld = repNotaFiscal_Produto.consultarNotaFiscal_Produto(nfp.getNotasFiscal_Numero(), nfp.getProdutos_Codigo());
+
+
+            //CONSULTAR os dados do PRODUTO
+            Produto pconsulOld = repProduto.consultarCodigo(nfp.getProdutos_Codigo());
+            if (pconsulOld == null) {
+                throw new GeralException("O código do produto informado não existe!");
+            }
+
+            //CONSULTAR os dados dessa NOTA FISCAL
+            NotaFiscal nconsulOld = repNotaFiscal.consultar(nfp.getNotasFiscal_Numero());
+            if (nconsulOld == null) {
+                throw new GeralException("Nota Fiscal não existe!");
+            }
+            /**
+             * TRATAMENTO NO PRODUTO OLD
+             */
+            try {
+                //DEVOLVE A QUANTIDADE AO PRODUTO
+                Produto pAtualizar = new Produto();
+                pAtualizar.setProdutos_Codigo(nfp.getProdutos_Codigo());
+                pAtualizar.setProdutos_Quantidade(pconsulOld.getProdutos_Quantidade() + npconsulOld.getNotasFiscalProdutos_Quantidade());//QUANTIDADE ATUAL DE PRODUTO
+                repNotaFiscal_Produto.atualizarProdutoQtde(pAtualizar);//Chama o DAO responsável pela alteração da quantidade
+            } catch (RepositorioException ex) {
+                throw new GeralException("Diego fez caca!");
+            } catch (ConexaoException ex) {
+                throw new GeralException("O banco de dados não está acessível!");
+         }    
+        }catch (RepositorioException ex) {
+        throw new GeralException("Diego fez caca!");
+        }catch (ConexaoException ex) {
+          throw new GeralException("O banco de dados não está acessível!");
+         }    
+ }
     
     
     
