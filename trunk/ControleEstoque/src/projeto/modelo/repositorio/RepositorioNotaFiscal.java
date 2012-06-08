@@ -51,12 +51,13 @@ public class RepositorioNotaFiscal implements IRepositorioNotaFiscal {
     @Override
     public void alterar(NotaFiscal nf) throws RepositorioException, ConexaoException {
         Connection c = g.conectar();
-        String sqlAlterar = "UPDATE NotasFiscal set (?,?) WHERE notasFiscal_Numero (?)";
+        String sqlAlterar = "UPDATE NotasFiscal set FORMASPAGAMENTO_CODIGO = ?, CLIENTES_CODIGO = ?, FUNCIONARIOS_CODIGO = ? WHERE (notasFiscal_Numero = ?)";
         try {
-            java.sql.PreparedStatement pstm = c.prepareStatement(sqlAlterar);
+            PreparedStatement pstm = c.prepareStatement(sqlAlterar);
             pstm.setInt(1, nf.getFormasPagamento_Codigo());
             pstm.setInt(2, nf.getClientes_Codigo());
-            pstm.setInt(3, nf.getNotasFiscal_Numero());
+            pstm.setInt(3, nf.getFuncionarios_Codigo());
+            pstm.setInt(4, nf.getNotasFiscal_Numero());
             pstm.executeUpdate();
             pstm.close();
         } catch (SQLException ex) {

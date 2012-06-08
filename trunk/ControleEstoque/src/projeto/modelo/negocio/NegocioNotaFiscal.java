@@ -5,6 +5,7 @@ package projeto.modelo.negocio;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.swing.JOptionPane;
 import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.erro.RepositorioException;
@@ -37,7 +38,7 @@ public class NegocioNotaFiscal {
     public void salvar(NotaFiscal nf) throws GeralException {
 
         if (nf.getClientes_Codigo() <= 0) {
-            throw new GeralException("Digite o código do cliente!");
+            throw new GeralException("Informe o CPF ou CNPJ do cliente!");
         }
         if (nf.getFuncionarios_Codigo() <= 0) {
             throw new GeralException("Digite o código do Funcionário!");
@@ -92,9 +93,19 @@ public class NegocioNotaFiscal {
      */
     public void alterar(NotaFiscal nf) throws GeralException {
 
-        if (nf.getNotasFiscal_Numero() <= 0) {
-            throw new GeralException("Digite um número válido!");
+        if (nf.getClientes_Codigo() <= 0) {
+            throw new GeralException("Não foi informado o CPF ou CNPJ do cliente");
         }
+        if (nf.getFuncionarios_Codigo() <= 0) {
+            throw new GeralException("Não foi informado o Funcionário!");
+        }
+        if (nf.getFormasPagamento_Codigo() <= 0) {
+            throw new GeralException("Não foi informado a Forma de Pagamento!");
+        }
+        if (nf.getNotasFiscal_Numero() <= 0) {
+            throw new GeralException("Não foi informado a Nota Fiscal!");
+        }
+        
 
         try {
             NotaFiscal nfConsul = rep.consultar(nf.getNotasFiscal_Numero());
@@ -103,6 +114,8 @@ public class NegocioNotaFiscal {
             }
 
             rep.alterar(nf);
+            
+            JOptionPane.showMessageDialog(null, "Nota Fiscal Alterada!");
 
         } catch (RepositorioException ex) {
             throw new GeralException("Erro de programação!");
