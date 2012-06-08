@@ -481,6 +481,10 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
 
     private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
         // TODO add your handling code here:
+        GuiNotaFiscal_Produto guiNFP = new GuiNotaFiscal_Produto(null, rootPaneCheckingEnabled);
+        guiNFP.jLNotaFiscal.setText(String.valueOf(nf.getNotasFiscal_Numero()));
+        guiNFP.setVisible(true);
+        
     }//GEN-LAST:event_jBIncluirActionPerformed
 
     private void jBalterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBalterarActionPerformed
