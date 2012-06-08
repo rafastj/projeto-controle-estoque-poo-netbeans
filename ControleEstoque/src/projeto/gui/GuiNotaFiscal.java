@@ -13,6 +13,7 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import projeto.erro.GeralException;
 import projeto.erro.RepositorioException;
 import projeto.modelo.fachada.Fachada;
@@ -27,6 +28,8 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
     
     private Fachada fachada = new Fachada();
     private NotaFiscal nf = new NotaFiscal();
+    
+    ArrayList<NotaFiscal_Produto> listaItens = null;
     /**
      * Creates new form GuiNotaFiscal
      */
@@ -77,7 +80,7 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         jBalteraNota = new javax.swing.JButton();
         jPItens = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTabelaItens = new javax.swing.JTable();
         jPanalise = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -93,6 +96,13 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nota Fiscal");
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Nota Fiscal"));
 
@@ -267,19 +277,27 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
 
         jPItens.setBorder(javax.swing.BorderFactory.createTitledBorder("Itens..."));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTabelaItens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null}
             },
             new String [] {
-                "Item", "Qtd", "Valor"
+                "Qtde", "Item", "Valor"
             }
-        ));
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(0).setResizable(false);
-        jTable1.getColumnModel().getColumn(1).setResizable(false);
-        jTable1.getColumnModel().getColumn(2).setResizable(false);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTabelaItens.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTabelaItens);
+        jTabelaItens.getColumnModel().getColumn(0).setResizable(false);
+        jTabelaItens.getColumnModel().getColumn(1).setResizable(false);
+        jTabelaItens.getColumnModel().getColumn(2).setResizable(false);
 
         jPanalise.setBorder(javax.swing.BorderFactory.createTitledBorder("Análise"));
 
@@ -504,6 +522,11 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jBalteraNotaActionPerformed
 
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        listarProdutodaNF();
+    }//GEN-LAST:event_formWindowGainedFocus
+
     /**
      * @param args the command line arguments
      */
@@ -588,7 +611,7 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTabelaItens;
     private javax.swing.JComboBox jfuncionarioBox;
     private javax.swing.JLabel jlData;
     // End of variables declaration//GEN-END:variables
@@ -731,6 +754,49 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
            jBalteraNota.setEnabled(true);
     }
     
+    //MODELO DA TABELA DE ITEM DA NOTA FISCAL
+    private DefaultTableModel geramodelo(ArrayList<NotaFiscal_Produto> listaItens) {
+    DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Qtde","Item","Valor"},0){
+
+        public boolean isCellEditable(int rowIndex, int mColIndex) {
+            return false;
+        }
+    };
+    // modelo.addColumn("Qtde");
+    //modelo.addColumn("Item");
+    //modelo.addColumn("Valor");
+    
+    ArrayList<String> valores;
+    int i = 0;
+    for (NotaFiscal_Produto nfp : listaItens) {
+        valores = new ArrayList<String>();
+        valores.add(Integer.toString(nfp.getNotasFiscalProdutos_Quantidade()));
+        valores.add(nfp.getProduto().getProdutos_Descricao());
+        //recebe a conversão de double para string incluindo no formato Moeda
+        String valorVenda = formaMoeda(nfp.getNotasFiscalProdutos_ValorQuantidade());
+        valores.add(valorVenda);
+        modelo.insertRow(i, valores.toArray());
+        i++;
+    }
+    return modelo;
+    }
+    
+    //FORMATA O VALOR PARA VALOR REAL
+    private String formaMoeda (double valorMoeda){
+        java.text.DecimalFormat df = new java.text.DecimalFormat("###,###,##0.00");
+        return df.format(valorMoeda);
+    }
+    
+    //LISTAR TODOS OS PRODUTOS DA NOTA FISCAL
+    public void listarProdutodaNF(){
+         try{
+            listaItens = (ArrayList<NotaFiscal_Produto>)fachada.listaProdutosNotaFiscal_Produto(nf.getNotasFiscal_Numero());
+        } catch (GeralException ex){
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+          DefaultTableModel modelo = geramodelo(listaItens);
+          jTabelaItens.setModel(modelo); 
+    }
     
 //fim
 }

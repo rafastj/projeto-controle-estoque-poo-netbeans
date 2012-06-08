@@ -408,6 +408,10 @@ public class Fachada {
     public void atualizarNotaFiscal_Produto(NotaFiscal_Produto npOld, NotaFiscal_Produto npNew) throws GeralException {
         rnNotaFiscal_Produto.atualizarNotaFiscal_Produto(npOld, npNew);
     }
+    
+    public ArrayList<NotaFiscal_Produto> listaProdutosNotaFiscal_Produto(int notaFiscal_Produto) throws GeralException{
+        return (ArrayList<NotaFiscal_Produto>) rnNotaFiscal_Produto.listaProdutos(notaFiscal_Produto);
+    }
 
     /**
      * FIM DA ÁREA ESCRITA POR DIEGO SILVA-----------------
