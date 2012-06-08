@@ -290,6 +290,8 @@ public class NegocioNotaFiscal_Produto {
         }
         return lista;
     }
+    
+    
 
     //ALTERAR o vinculo da NOTA FISCAL com o tal PRODUTO
     public void atualizarNotaFiscal_Produto(NotaFiscal_Produto npOld, NotaFiscal_Produto npNew) throws GeralException {
@@ -436,4 +438,25 @@ public class NegocioNotaFiscal_Produto {
             throw new GeralException("O banco de dados não está acessível!");
         }
     }
+    
+    //LISTAR todos o PRODUTOS vinculado a NOTA FISCAL
+    public Collection<NotaFiscal_Produto> listaProdutos(int notaFiscal_Numero) throws GeralException {
+
+        ArrayList<NotaFiscal_Produto> lista;
+
+        try {
+            //chama a camada dao com a possivel lista!
+            lista = (ArrayList<NotaFiscal_Produto>) new RepositorioNotaFiscal_Produto().lista(notaFiscal_Numero);
+
+        } catch (RepositorioException ex) {
+            throw new GeralException("Diego fez caca!");
+        } catch (ConexaoException ex) {
+            throw new GeralException("O banco de dados não está acessível!");
+        }
+        return lista;
+    }    
+    
+    
+    
+//FIM
 }
