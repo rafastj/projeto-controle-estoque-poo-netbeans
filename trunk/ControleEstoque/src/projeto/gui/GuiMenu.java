@@ -166,6 +166,11 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuCliente.add(jMenuItemPF);
 
         jMenuItemPJ.setText("Gerenciar Pessoa Juridica");
+        jMenuItemPJ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemPJActionPerformed(evt);
+            }
+        });
         jMenuCliente.add(jMenuItemPJ);
 
         jMenuCadastro.add(jMenuCliente);
@@ -475,6 +480,17 @@ public class GuiMenu extends javax.swing.JFrame {
             acessar();
         }
     }//GEN-LAST:event_jbAcessarKeyPressed
+
+    private void jMenuItemPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPJActionPerformed
+        // TODO add your handling code here:
+        GuiPessoaJuridica telaPJ = null;
+        try {
+            telaPJ = new GuiPessoaJuridica();
+        } catch (ConexaoException ex) {
+            Logger.getLogger(GuiMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        telaPJ.setVisible(true);
+    }//GEN-LAST:event_jMenuItemPJActionPerformed
 
     /**
      * @param args the command line arguments

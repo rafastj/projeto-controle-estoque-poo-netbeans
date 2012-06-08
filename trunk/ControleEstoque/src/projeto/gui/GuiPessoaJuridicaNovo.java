@@ -11,7 +11,6 @@ import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Cidade;
 import projeto.modelo.to.Endereco;
-import projeto.modelo.to.PessoaFisica;
 import projeto.modelo.to.PessoaJuridica;
 
 /**
@@ -28,6 +27,11 @@ public class GuiPessoaJuridicaNovo extends javax.swing.JDialog {
     public GuiPessoaJuridicaNovo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    GuiPessoaJuridicaNovo() {
+        initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -60,6 +64,13 @@ public class GuiPessoaJuridicaNovo extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Endereço"));
 
@@ -169,7 +180,7 @@ public class GuiPessoaJuridicaNovo extends javax.swing.JDialog {
         jButton1.setText("Pesquisar");
 
         try {
-            jFormatTextCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("AAA.AAA.AAA-AA")));
+            jFormatTextCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -283,6 +294,11 @@ public class GuiPessoaJuridicaNovo extends javax.swing.JDialog {
     private void jTextPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPJActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextPJActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        atualizarComboCidade();
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
@@ -407,17 +423,9 @@ public class GuiPessoaJuridicaNovo extends javax.swing.JDialog {
     }
 
     private int consultarCep(String cep) {
-        //int resComCadastro;
-        //int resSemCadastro;
-        //String str_cep;
-        //String enderecos_CEP;
         Endereco end;
         int endereco_codigo=0;
         try {
-            //str_cep = jFormatTextCEP.getText();
-            //str_cep = str_cep.replace('-', ' ');
-            //str_cep = str_cep.replaceAll(" ", "");
-            //enderecos_CEP = str_cep;
             if((cep == null) || (cep.equals(""))){
                 JOptionPane.showMessageDialog(null, "Digite um CEP!");
                 //bloquearTela();
@@ -425,21 +433,7 @@ public class GuiPessoaJuridicaNovo extends javax.swing.JDialog {
                 end = fachada.consultarEndCep(cep);
                 if (end != null) {
                     endereco_codigo = end.getEnderecos_Codigo();
-                    //resComCadastro = JOptionPane.showConfirmDialog(null, "CEP já está cadastrado!\nDeseja cadastrar outro?", "", JOptionPane.YES_NO_OPTION);
-                    /*if (resComCadastro == JOptionPane.YES_OPTION) {
-                        limparCampos();
-                        bloquearTela();
-                    } else {
-                        dispose();
-                    }*/
                 }
-                    /*resSemCadastro = JOptionPane.showConfirmDialog(null, "CEP não está cadastrado!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
-                    if (resSemCadastro == JOptionPane.YES_OPTION) {
-                        liberarTela();
-                    } else {
-                        dispose();
-                    }*/
-                
             }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());

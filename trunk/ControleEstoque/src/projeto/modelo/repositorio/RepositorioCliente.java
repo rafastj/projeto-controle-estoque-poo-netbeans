@@ -94,7 +94,7 @@ public class RepositorioCliente implements IRepositorioCliente {
          * variavel do tipo String da InstruÃ§Ã£o de inserÃ§Ã£o SQL
          */
         String sqlAlterarPF = "UPDATE PessoasFisica SET PessoasFisica_CPF = ? ,PessoasFisica_Nome = ?, PessoasFisica_Sexo = ? WHERE CLIENTES_CODIGO = ?";
-        String sqlAlterarCli = "UPDATE CLENTES SET CLIENTES_NUMERORESIDENCIA = ?, CLIENTES_TIPO = ? WHERE CLIENTES_CODIGO = ?";
+        String sqlAlterarCli = "UPDATE CLIENTES SET CLIENTES_NUMERORESIDENCIA = ?, CLIENTES_TIPO = ? WHERE CLIENTES_CODIGO = ?";
         
         try {
             PreparedStatement pstm = c.prepareStatement(sqlAlterarCli);

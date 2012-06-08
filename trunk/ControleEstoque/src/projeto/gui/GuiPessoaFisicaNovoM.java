@@ -18,9 +18,8 @@ import projeto.modelo.to.PessoaFisica;
  * @author Sandro
  */
 public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
-    
-    public static Fachada fachada = new Fachada();
 
+    public static Fachada fachada = new Fachada();
 
     /**
      * Creates new form GuiPessoaFisicaNovoM
@@ -62,11 +61,10 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
         jTextPF = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jFormatTextCPF = new javax.swing.JFormattedTextField();
         jRadioBMasculino = new javax.swing.JRadioButton();
         jRadioBFemnino = new javax.swing.JRadioButton();
-        jButton2 = new javax.swing.JButton();
+        jbPesquisa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
@@ -178,8 +176,6 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
 
         jLabel3.setText("SEXO.:");
 
-        jButton1.setText("Pesquisar");
-
         try {
             jFormatTextCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("AAA.AAA.AAA-AA")));
         } catch (java.text.ParseException ex) {
@@ -193,10 +189,10 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
         buttonGroup1.add(jRadioBFemnino);
         jRadioBFemnino.setText("Feminino");
 
-        jButton2.setText("Pesquisar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbPesquisa.setText("Pesquisar");
+        jbPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbPesquisaActionPerformed(evt);
             }
         });
 
@@ -212,19 +208,16 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextPF)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jFormatTextCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(37, 37, 37)
+                        .addComponent(jbPesquisa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRadioBMasculino)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioBFemnino)))
+                        .addComponent(jRadioBFemnino))
+                    .addComponent(jTextPF))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -232,8 +225,7 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jTextPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -243,7 +235,7 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
                         .addComponent(jFormatTextCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2)))
+                        .addComponent(jbPesquisa)))
                 .addGap(0, 9, Short.MAX_VALUE))
         );
 
@@ -266,7 +258,7 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbCancelar)
                     .addComponent(jbSalvarPF))
@@ -279,10 +271,6 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
     private void jComboBoxCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCidadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCidadeActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jFormatTextCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormatTextCEPActionPerformed
         // TODO add your handling code here:
@@ -308,6 +296,11 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
         // TODO add your handling code here:
         salvarPF();
     }//GEN-LAST:event_jbSalvarPFActionPerformed
+
+    private void jbPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPesquisaActionPerformed
+        // TODO add your handling code here:
+        pesquisarCPF();
+    }//GEN-LAST:event_jbPesquisaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -358,8 +351,8 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
             }
         });
     }
-    
-        private void salvarPF() {
+
+    private void salvarPF() {
         int resposta;
         int enderecos_Codigo = 0;
         int cidades_Codigo;
@@ -386,9 +379,9 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
             Cidade cd = fachada.consultarCidade(cidades_Nome);
             cidades_Codigo = cd.getCidades_Codigo();
             enderecos_Logradouro = jTextLogradouro.getText();
-            JOptionPane.showMessageDialog(null,enderecos_Codigo );
-            if (enderecos_Codigo==0){
-                end= new Endereco();
+            JOptionPane.showMessageDialog(null, enderecos_Codigo);
+            if (enderecos_Codigo == 0) {
+                end = new Endereco();
                 end.setCidades_Codigo(cidades_Codigo);
                 end.setEnderecos_CEP(enderecos_CEP);
                 end.setEnderecos_Logradouro(enderecos_Logradouro);
@@ -401,17 +394,17 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
             pf.setEnderecos_Codigo(enderecos_Codigo);
             pf.setPessoasFisica_CPF(pf_CPF);
             pf.setPessoasFisica_Nome(jTextPF.getText());
-            if (jRadioBMasculino.isSelected()==true){
+            if (jRadioBMasculino.isSelected() == true) {
                 sexo = "M";
-            }else{
+            } else {
                 sexo = "F";
             }
             pf.setPessoasFisica_Sexo(sexo);
             fachada.salvarCliente(pf);
-            
+
             resposta = JOptionPane.showConfirmDialog(null, "Registro salvo com sucesso!\nDeseja cadastrar outro Cliente?", "", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.NO_OPTION) {
-                dispose();                
+                dispose();
             } else {
                 //limparCampos();
                 //bloquearTela();
@@ -421,8 +414,7 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
         }
     }
 
-    
-        private void atualizarComboCidade() {
+    private void atualizarComboCidade() {
         Cidade cid;
         ArrayList<Cidade> listaCd;
         try {
@@ -435,6 +427,34 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
+    
+    private void pesquisarCPF(){
+        int resComCadastro;
+        PessoaFisica pf;
+        String str_cpf;
+        String cpfConsult;
+        try {
+            str_cpf = jFormatTextCPF.getText();
+            str_cpf = str_cpf.replace(".", " ");
+            str_cpf = str_cpf.replace("-", " ");
+            str_cpf = str_cpf.replaceAll(" ", "");
+            cpfConsult = str_cpf;
+            pf = fachada.consultarPF_CPF(cpfConsult);
+            if(pf != null){
+                resComCadastro = JOptionPane.showConfirmDialog(null, "Cliente já está cadastrado!\n Deseja cadastrar outro?", "", JOptionPane.YES_NO_OPTION);
+                if (resComCadastro == JOptionPane.YES_OPTION){
+                    jFormatTextCPF.requestFocus();
+                    jTextPF.setText("");
+                }else{
+                    dispose();
+                }
+            }else{
+                jTextLogradouro.requestFocus();
+            }
+        }catch(GeralException ex){
+            
+        }
+    }
 
     private int consultarCep(String cep) {
         //int resComCadastro;
@@ -442,13 +462,13 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
         //String str_cep;
         //String enderecos_CEP;
         Endereco end;
-        int endereco_codigo=0;
+        int endereco_codigo = 0;
         try {
             //str_cep = jFormatTextCEP.getText();
             //str_cep = str_cep.replace('-', ' ');
             //str_cep = str_cep.replaceAll(" ", "");
             //enderecos_CEP = str_cep;
-            if((cep == null) || (cep.equals(""))){
+            if ((cep == null) || (cep.equals(""))) {
                 JOptionPane.showMessageDialog(null, "Digite um CEP!");
                 //bloquearTela();
             } else {
@@ -456,20 +476,20 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
                 if (end != null) {
                     endereco_codigo = end.getEnderecos_Codigo();
                     //resComCadastro = JOptionPane.showConfirmDialog(null, "CEP já está cadastrado!\nDeseja cadastrar outro?", "", JOptionPane.YES_NO_OPTION);
-                    /*if (resComCadastro == JOptionPane.YES_OPTION) {
-                        limparCampos();
-                        bloquearTela();
-                    } else {
-                        dispose();
-                    }*/
+                    /*
+                     * if (resComCadastro == JOptionPane.YES_OPTION) {
+                     * limparCampos(); bloquearTela(); } else { dispose();
+                    }
+                     */
                 }
-                    /*resSemCadastro = JOptionPane.showConfirmDialog(null, "CEP não está cadastrado!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
-                    if (resSemCadastro == JOptionPane.YES_OPTION) {
-                        liberarTela();
-                    } else {
-                        dispose();
-                    }*/
-                
+                /*
+                 * resSemCadastro = JOptionPane.showConfirmDialog(null, "CEP não
+                 * está cadastrado!\nDeseja continuar?", "",
+                 * JOptionPane.YES_NO_OPTION); if (resSemCadastro ==
+                 * JOptionPane.YES_OPTION) { liberarTela(); } else { dispose();
+                    }
+                 */
+
             }
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -477,16 +497,13 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
         return endereco_codigo;
     }
 
-
-    
-
     private void limparCampos() {
         //jFormattedTextFieldCEP.setText("");
         //jTextFieldEntradaLog.setText("");
         //jFormattedTextFieldCEP.requestFocus();
     }
 
-        private void gerenciarCidadeEnd(){
+    private void gerenciarCidadeEnd() {
         String cep = jFormatTextCEP.getText();
         String log = jTextLogradouro.getText();
         dispose();
@@ -499,7 +516,6 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
         jComboBoxCidade.requestFocus();
         guiEnderecoNovo.setVisible(true);
     }
-
     /**
      * Define o padrão da tabela e insere os dados da tabela Endereco em um
      * ArrayList;
@@ -507,11 +523,8 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
      * @param listaEndereco
      * @return
      */
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBoxCidade;
     private javax.swing.JFormattedTextField jFormatTextCEP;
     private javax.swing.JFormattedTextField jFormatTextCPF;
@@ -531,6 +544,7 @@ public class GuiPessoaFisicaNovoM extends javax.swing.JDialog {
     private javax.swing.JTextField jTextPF;
     private javax.swing.JButton jbCancelar;
     private javax.swing.JButton jbGerenciarCidade;
+    private javax.swing.JButton jbPesquisa;
     private javax.swing.JButton jbSalvarPF;
     // End of variables declaration//GEN-END:variables
 }

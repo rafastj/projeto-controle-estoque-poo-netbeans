@@ -12,7 +12,6 @@ import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
 import projeto.modelo.to.Cidade;
-import projeto.modelo.to.PessoaFisica;
 import projeto.modelo.to.PessoaJuridica;
 
 /**
@@ -71,6 +70,13 @@ public class GuiPessoaJuridica extends javax.swing.JDialog {
         jbExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jbNovo.setText("Novo");
         jbNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -311,8 +317,8 @@ public class GuiPessoaJuridica extends javax.swing.JDialog {
 
     private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
         // TODO add your handling code here:
-        GuiPessoaFisicaNovoM pf = new GuiPessoaFisicaNovoM();
-        pf.setVisible(true);
+        GuiPessoaJuridicaNovo pj = new GuiPessoaJuridicaNovo();
+        pj.setVisible(true);
         atualizarComboCidade();
         atualizarTabela();
 
@@ -357,6 +363,11 @@ public class GuiPessoaJuridica extends javax.swing.JDialog {
         atualizarComboCidade();
         atualizarTabela();
     }//GEN-LAST:event_jbExcluirActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        atualizarComboCidade();
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments

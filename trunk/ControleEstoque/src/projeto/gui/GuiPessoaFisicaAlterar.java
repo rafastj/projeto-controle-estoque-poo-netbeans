@@ -434,6 +434,7 @@ public class GuiPessoaFisicaAlterar extends javax.swing.JDialog {
                         pfAlterado.setPessoasFisica_Sexo("M");
                         pfAlterado.setClientes_NumeroResidencia(jTextAlteraNumero.getText());
                         pfAlterado.setPessoasFisica_CPF(pf_CPF);
+                        pfAlterado.setClientes_Tipo("F");
                         fachada.alterarCliente(pfAlterado);
                     
                 }else{
@@ -442,9 +443,10 @@ public class GuiPessoaFisicaAlterar extends javax.swing.JDialog {
             }else{
                         pfAlterado.setClientes_Codigo(pfAntigo.getClientes_Codigo());
                         pfAlterado.setPessoasFisica_Nome(jTextAlteraNome.getText());
-                        pfAlterado.setPessoasFisica_Sexo(str_cep);
+                        pfAlterado.setPessoasFisica_Sexo("M");
                         pfAlterado.setClientes_NumeroResidencia(jTextAlteraNumero.getText());
                         pfAlterado.setPessoasFisica_CPF(antCpf);
+                        pfAlterado.setClientes_Tipo("F");
                         fachada.alterarCliente(pfAlterado);
                         resposta = JOptionPane.showConfirmDialog(null, "Registro alterado com sucesso!\nDeseja continuar?", "", JOptionPane.YES_NO_OPTION);
                         if (resposta == JOptionPane.NO_OPTION) {
