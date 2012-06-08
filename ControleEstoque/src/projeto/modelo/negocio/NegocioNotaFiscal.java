@@ -156,24 +156,23 @@ public class NegocioNotaFiscal {
     }
     
    
-     public void consultarUltimaNotaCliente(int clientes_Codigo) throws GeralException {
+     public NotaFiscal consultarUltimaNotaCliente(int clientes_Codigo) throws GeralException {
+        
+          NotaFiscal nf = null;
         if (clientes_Codigo <= 0) {
-            throw new GeralException("Digite um número de nota fiscal válida!");
+            throw new GeralException("Digite o número da nota fiscal!");
         }
         try {
-            NotaFiscal nf = rep.consultar(clientes_Codigo);
+            nf = rep.consultarUltimaNota(clientes_Codigo);
             if (nf == null) {
-                throw new GeralException("Nota fiscal não está cadastrada!");
+                throw new GeralException("Nota Fiscal não está cadastrada!");
             }
-
-            rep.consultarUltimaNota(clientes_Codigo);
-
-        } catch (RepositorioException ex) {
+        } catch (RepositorioException e) {
             throw new GeralException("Erro de programação!");
-
-        } catch (ConexaoException ex) {
-            throw new GeralException("O banco de dados não está acessível!");
+        } catch (ConexaoException e) {
+            throw new GeralException("O banco de dados não está acessível no momento");
         }
+        return nf;         
     }
     
     

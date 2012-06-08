@@ -5,6 +5,7 @@
 package projeto.gui;
 
 import com.sun.org.apache.bcel.internal.generic.SWITCH;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -59,7 +60,7 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         JlCliente = new javax.swing.JLabel();
         JcCliente = new javax.swing.JTextField();
         JlCpfCnpj = new javax.swing.JLabel();
-        JcCpfCnpj = new javax.swing.JTextField();
+        JcCpfCnpj = new projeto.modelo.componente.SoNumero();
         JbConsultarCPFCNPJ = new javax.swing.JButton();
         jBIncluirNota = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -111,6 +112,12 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         JcCliente.setEnabled(false);
 
         JlCpfCnpj.setText("CPF/CNPJ.:");
+
+        JcCpfCnpj.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JcCpfCnpjKeyPressed(evt);
+            }
+        });
 
         JbConsultarCPFCNPJ.setText("Consultar");
         JbConsultarCPFCNPJ.addActionListener(new java.awt.event.ActionListener() {
@@ -418,33 +425,7 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
 
     private void JbConsultarCPFCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbConsultarCPFCNPJActionPerformed
            // TODO add your handling code here:
-        if(JcCpfCnpj.getText().length() == 11){
-        
-        try {
-            PessoaFisica pf = fachada.consultarPF_CPF(JcCpfCnpj.getText());
-            nf.setClientes_Codigo(pf.getClientes_Codigo());
-            //preencher os campos no cliente
-            JcCliente.setText(pf.getPessoasFisica_Nome());
-            JcEndereco.setText(pf.getEndereco().getEnderecos_Logradouro());
-            JcNumeroRes.setText(pf.getClientes_NumeroResidencia());
-            JcCidade.setText(pf.getEndereco().getCidade().getCidades_Nome());
-            
-        } catch (GeralException ex) {
-           JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-        
-        }else if(JcCpfCnpj.getText().length() == 14){
-        
-        try{
-            PessoaJuridica pj = fachada.consultaPJ_CNPJ(JcCpfCnpj.getText());
-            nf.setClientes_Codigo(pj.getClientes_Codigo());
-
-        } catch (GeralException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-            
-        }
-        
+       verificarCPFCNPJ();
     }//GEN-LAST:event_JbConsultarCPFCNPJActionPerformed
 
     private void jBIncluirNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirNotaActionPerformed
@@ -455,16 +436,21 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         selecionadoFormadePagamento();
         //chamar a fachada para salvar a nota Fiscal
         try {  
+            //SALVAR A NOTA FISCAL
             fachada.salvar(nf);
-            
-            //pegar a nota cadastrada
+
+        } catch (GeralException ex) {
+          JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
+        try{
+           //pegar a nota cadastrada
            NotaFiscal nfNova = fachada.consultarUltimaNovaCliente(nf.getClientes_Codigo());
            //exibir todos os dados não editaveis
-            JcNumeroNotaFiscal.setText(String.valueOf(nfNova.getNotasFiscal_Numero()));
-            nf.setNotasFiscal_Numero(nfNova.getNotasFiscal_Numero());//setar o numero no objeto Nota Fiscal
+           JcNumeroNotaFiscal.setText(String.valueOf(nfNova.getNotasFiscal_Numero()));
+           nf.setNotasFiscal_Numero(nfNova.getNotasFiscal_Numero());//setar o numero no objeto Nota Fiscal
             
-            
-        } catch (GeralException ex) {
+        }catch (GeralException ex) {
           JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         
@@ -489,6 +475,13 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void JcCpfCnpjKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JcCpfCnpjKeyPressed
+        // TODO add your handling code here:
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            verificarCPFCNPJ();
+        }
+    }//GEN-LAST:event_JcCpfCnpjKeyPressed
 
     /**
      * @param args the command line arguments
@@ -622,13 +615,48 @@ public class GuiNotaFiscal extends javax.swing.JDialog {
         }
     }
     
-    //
+    //PEGAR O BOX QUE ESTIVER SELECIONADO
     private void selecionadoFormadePagamento(){
           try {
             FormaPagamento fp = fachada.consultarFormaPagamento((String) jFormaPagamentoBox.getSelectedItem());
             nf.setFormasPagamento_Codigo(fp.getFormaPagamento_Codigo());
         } catch (GeralException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+    
+    
+    private void verificarCPFCNPJ(){
+         
+        //CPF quantidade de digitos
+        if(JcCpfCnpj.getText().length() == 11){
+        
+        try {
+            PessoaFisica pf = fachada.consultarPF_CPF(JcCpfCnpj.getText());
+            nf.setClientes_Codigo(pf.getClientes_Codigo());
+            //preencher os campos no cliente
+            JcCliente.setText(pf.getPessoasFisica_Nome());
+            JcEndereco.setText(pf.getEndereco().getEnderecos_Logradouro());
+            JcNumeroRes.setText(pf.getClientes_NumeroResidencia());
+            JcCidade.setText(pf.getEndereco().getCidade().getCidades_Nome());
+            
+        } catch (GeralException ex) {
+           JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
+        //CNPJ quantidade de digitos
+        }else if(JcCpfCnpj.getText().length() == 14){
+        
+        try{
+            PessoaJuridica pj = fachada.consultaPJ_CNPJ(JcCpfCnpj.getText());
+            nf.setClientes_Codigo(pj.getClientes_Codigo());
+
+        } catch (GeralException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+            
+        }else{
+            JOptionPane.showMessageDialog(null,"O informado não é um CPF ou CNPJ valido!");
         }
     }
     
