@@ -497,6 +497,7 @@ public class Fachada {
      * Sandro Fernandes Altera Cliente/Pessoa Fisica
      */
     public void alterarCliente(PessoaFisica pf) throws GeralException {
+        
     }
 
     /**
