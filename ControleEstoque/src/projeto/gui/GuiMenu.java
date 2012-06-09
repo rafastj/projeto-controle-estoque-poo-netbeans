@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import projeto.conexao.BareBonesBrowserLaunch;
 import projeto.erro.ConexaoException;
 import projeto.erro.GeralException;
 import projeto.modelo.fachada.Fachada;
@@ -75,6 +76,7 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenu9 = new javax.swing.JMenu();
         jMenuItemLogoff = new javax.swing.JMenuItem();
         jMenuItemSair = new javax.swing.JMenuItem();
+        jMenuItemJavaDoc = new javax.swing.JMenuItem();
         jMenuItemSobre = new javax.swing.JMenuItem();
 
         jMenu3.setText("jMenu3");
@@ -303,6 +305,14 @@ public class GuiMenu extends javax.swing.JFrame {
         });
         jMenu9.add(jMenuItemSair);
 
+        jMenuItemJavaDoc.setText("Documentação");
+        jMenuItemJavaDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemJavaDocActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItemJavaDoc);
+
         jMenuItemSobre.setText("Sobre...");
         jMenuItemSobre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -492,6 +502,10 @@ public class GuiMenu extends javax.swing.JFrame {
         telaPJ.setVisible(true);
     }//GEN-LAST:event_jMenuItemPJActionPerformed
 
+    private void jMenuItemJavaDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemJavaDocActionPerformed
+        BareBonesBrowserLaunch.openURL("http://localhost:8080/dist/javadoc/index.html");
+    }//GEN-LAST:event_jMenuItemJavaDocActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -554,6 +568,7 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jMenuItemJavaDoc;
     private javax.swing.JMenuItem jMenuItemLogoff;
     private javax.swing.JMenuItem jMenuItemNovoProduto;
     private javax.swing.JMenuItem jMenuItemNovoUsuario;
